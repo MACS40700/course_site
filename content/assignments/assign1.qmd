@@ -1,6 +1,8 @@
 ---
-output: github_document
-date: 2024-01-04T12:25:00-05:00
+title: "Assignment 1"
+date: 2024-01-04 
+output: md
+
 ---
 
 ```{r setup, include = FALSE}
@@ -12,7 +14,6 @@ library(tidyverse)
 library(haven)
 ```
 
-# Assignment 1
 
 ## Part 1: Visualization critique (5 points)
 
