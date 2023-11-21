@@ -1,6 +1,7 @@
 ---
 title: "Assignment 1"
 date: 2024-01-04 
+---
 
 ## Part 1: Visualization critique (5 points)
 
