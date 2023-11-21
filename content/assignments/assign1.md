@@ -1,6 +1,6 @@
+Assignment 1
+================
 2024-01-04T12:25:00-05:00
-
-# Assignment 1
 
 ## Part 1: Visualization critique (5 points)
 
