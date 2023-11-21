@@ -8,75 +8,76 @@ type: book
 #aliases: ["/hw00_peer-review.html"]
 ---
 
-## Should I take this course?
-
-Meet some of the types of students you will find in this class.
-
-### Jeri
-
-{{< figure src="jeri.jpg" >}}
-
-* Starting points
-    * Ph.D. student in Sociology
-    * Has experience analyzing data in Stata
-    * Feels comfortable with regression and other stats methods 
-    * Tried to learn Git on her own once, quickly became frustrated and gave up
-* Needs
-    * Wants to transition from Stata to R 
-    * Will be analyzing a large-scale dataset for her dissertation
-    * Seeks a reproducible workflow to manage her data projects
-
-### Ryan
-
-{{< figure src="ryan.jpg" >}}
-
-* Starting points
-    * Entering the [MAPSS program](https://mapss.uchicago.edu/)
-    * Undergraduate degree in journalism
-    * Hasn't taken a statistics class in years
-    * Took an online course of introduction to R, but hasn't used it in his day-to-day work
-* Needs
-    * Writing a master's thesis in a single year
-    * Expects to analyze a collection of published news articles 
-    * Wants to understand code samples found online and adapt them to his own work
-
-
-### Fernando
-
-{{< figure src="fernando.jpg" >}}
-
-* Starting points
-    * Third-year undergraduate student
-    * Majoring in political science
-    * Has taken general education math/stats courses
-    * Does not have programming experience, but isn't afraid to tackle a new challenge
-* Needs
-    * Wants to work as a research assistant on a project exploring the onset of civil conflict, which is run exclusively in R
-    * Will start contributing to a new research paper next quarter
-    * Wants to produce high-quality visualizations
-    
-
-### Fang
-
-{{< figure src="fang.jpg" >}}
-
-* Starting points
-    * First year grad-student
-    * Background in psychology, plans to apply for doctoral programs in marketing
-    * Has experience using Excel, SPSS, and Stata
-* Needs
-    * Is going to analyze data collected by her lab members in the next six months
-    * Wants to produce analysis notebooks that are easily shareable with her colleagues
-    * Expects to take courses in machine learning and statistics which require a background in R
-
+# ## Should I take this course?
+# 
+# Meet some of the types of students you will find in this class.
+# 
+# ### Jeri
+# 
+# {{< figure src="jeri.jpg" >}}
+# 
+# * Starting points
+#     * Ph.D. student in Sociology
+#     * Has experience analyzing data in Stata
+#     * Feels comfortable with regression and other stats methods 
+#     * Tried to learn Git on her own once, quickly became frustrated and gave up
+# * Needs
+#     * Wants to transition from Stata to R 
+#     * Will be analyzing a large-scale dataset for her dissertation
+#     * Seeks a reproducible workflow to manage her data projects
+# 
+# ### Ryan
+# 
+# {{< figure src="ryan.jpg" >}}
+# 
+# * Starting points
+#     * Entering the [MAPSS program](https://mapss.uchicago.edu/)
+#     * Undergraduate degree in journalism
+#     * Hasn't taken a statistics class in years
+#     * Took an online course of introduction to R, but hasn't used it in his day-to-day work
+# * Needs
+#     * Writing a master's thesis in a single year
+#     * Expects to analyze a collection of published news articles 
+#     * Wants to understand code samples found online and adapt them to his own work
+# 
+# 
+# ### Fernando
+# 
+# {{< figure src="fernando.jpg" >}}
+# 
+# * Starting points
+#     * Third-year undergraduate student
+#     * Majoring in political science
+#     * Has taken general education math/stats courses
+#     * Does not have programming experience, but isn't afraid to tackle a new challenge
+# * Needs
+#     * Wants to work as a research assistant on a project exploring the onset of civil conflict, which is run exclusively in R
+#     * Will start contributing to a new research paper next quarter
+#     * Wants to produce high-quality visualizations
+#     
+# 
+# ### Fang
+# 
+# {{< figure src="fang.jpg" >}}
+# 
+# * Starting points
+#     * First year grad-student
+#     * Background in psychology, plans to apply for doctoral programs in marketing
+#     * Has experience using Excel, SPSS, and Stata
+# * Needs
+#     * Is going to analyze data collected by her lab members in the next six months
+#     * Wants to produce analysis notebooks that are easily shareable with her colleagues
+#     * Expects to take courses in machine learning and statistics which require a background in R
+# 
 
 ## General description
 
-This course is open to any graduate (or advanced undergraduate) at the University of Chicago. I anticipate drawing students from a wide range of departments such as Information Science, Sociology, Psychology, Political Science, etc. Typically these students are looking to learn basic computational and analytic skills they can apply to master's projects or dissertation research.
-
-If you have never programmed before or don't know what the [shell](/setup/shell/) is, **prepare for a shock**. This class will prove to be very beneficial if you stick with it, but that will require you to commit for the full quarter. I do not presume any prior programming experience, so everyone starts from the same knowledge level. I guarantee that the first few weeks and assignments will be rough - but the good news is that they will be rough for everyone! Your classmates are struggling with you and you can lean on one another to get through the worst part of the learning curve.
+This course is open to any graduate (or advanced undergraduate) at the University of Chicago. I anticipate drawing students from a wide range of departments such as Information Science, Sociology, Psychology, Political Science, etc. Typically these students are looking to develop visualization skills they can apply to master's projects or dissertation research.
 
 <!--
+# If you have never programmed before or don't know what the [shell](/setup/shell/) is, **prepare for a shock**. This class will prove to be very beneficial if you stick with it, but that will require you to commit for the full quarter. I do not presume any prior programming experience, so everyone starts from the same knowledge level. I guarantee that the first few weeks and assignments will be rough - but the good news is that they will be rough for everyone! Your classmates are struggling with you and you can lean on one another to get through the worst part of the learning curve.
+
+
 A highly selective sampling of feedback from when I taught [a similar course at the University of Chicago](https://cfss.uchicago.edu):
 
 > I think this class is really well-organized. The homework is craftily designed as a way to solidify the materials learned in class. Dr. Soltoff is wonderful and helpful! He came to class fully prepared and made the lectures enjoyable and productive. I suggest that all Ph.D. students in Political Science (at least in my field), who likes to conduct quantitative research, should choose this class in the first year, because this class can well set students up with a good understanding of programming techniques.
@@ -93,10 +94,10 @@ A highly selective sampling of feedback from when I taught [a similar course at 
 ## Textbooks/Readings
 
 ### Required 
-
-* [R for Data Science](http://r4ds.had.co.nz/) -- Garrett Grolemund and Hadley Wickham. We will be reading several chapters from this book. The open-source online version is available for free; the hardcover version available for purchase online.
-
-    > Completing the exercises in the book? No official solution manual exists, but several can be found online. I recommend [this version by Jeffrey B. Arnold](https://jrnold.github.io/r4ds-exercise-solutions/). Your exact solutions may vary, but these can be a good starting point.
+# 
+# * [R for Data Science](http://r4ds.had.co.nz/) -- Garrett Grolemund and Hadley Wickham. We will be reading several chapters from this book. The open-source online version is available for free; the hardcover version available for purchase online.
+# 
+#     > Completing the exercises in the book? No official solution manual exists, but several can be found online. I recommend [this version by Jeffrey B. Arnold](https://jrnold.github.io/r4ds-exercise-solutions/). Your exact solutions may vary, but these can be a good starting point.
 
 ### Additional resources
 
@@ -132,9 +133,9 @@ Comprehensive instructions for downloading and setting up this software can be f
 
 ## How will I be evaluated?
 
-Students will complete a series of (roughly) weekly programming assignments linked to class materials.Each assignment will be evaluated by myself or a TA.
+Students will complete a series of (roughly) biweekly programming assignments linked to class materials.Each assignment will be evaluated by myself or a TA.
 
-Assignments will initially come with starter code, or an initial version of the program where you need to fill in the blanks to make it work. As the quarter moves on and your skills become more developed, less help upfront will be provided. 
+# Assignments will initially come with starter code, or an initial version of the program where you need to fill in the blanks to make it work. As the quarter moves on and your skills become more developed, less help upfront will be provided. 
 
 While students are encouraged to assist one another in debugging programs and solving problems in these assignments, it is imperative students also learn how to do this for themselves. That is, **students need to understand, write, and submit their own work.**
 
@@ -185,7 +186,7 @@ All students on campus are required to adhere to the University of Chicago guide
 
 ## Acknowledgments
 
-* Stock photos of student learners by [Generated Photos](https://generated.photos/)
+#* Stock photos of student learners by [Generated Photos](https://generated.photos/)
 * This page has been developed starting from Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY-NC 4.0 Creative Commons License.
 
 
