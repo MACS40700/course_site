@@ -1,5 +1,5 @@
 ---
-title: "Day 3 - Design and evaluation"
+title: "Design and evaluation" #day3
 output:
   html_document:
     highlight: pygments
