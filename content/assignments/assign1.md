@@ -1,13 +1,13 @@
 ---
 title: "Assignment 1"
-date: 2024-01-04T13:30:00-06:00  # Schedule page publish date
+date: 2024-01-10T13:30:00-06:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 
 summary: Critique and improve a visualization 
 ---
 
-## Part 1: Visualization critique (5 points)
+## Visualization critique (5 points)
 
 Select a data visualization and write a (roughly) 1000 word critique of
 the visualization based on the five qualities of great
@@ -48,7 +48,7 @@ in the original `.md` file or write it as an [R
 Markdown](http://rmarkdown.rstudio.com/) document rendered using the
 `github_output` format.
 
-## Part 2: `ggplot2` and the grammar of graphics (10 points)
+
 
 [^1]: Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps
     for communication* by Alberto Cairo.
