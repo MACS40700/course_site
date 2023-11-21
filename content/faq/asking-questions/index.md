@@ -17,7 +17,7 @@ Questions should be posted to [Ed Discussion](https://edstem.org/us/courses/4964
 ## Introduce the problem with an informative title
 
 * Bad title: "I need help!"
-* Good title: "Getting a 'file not found error' when importing scotus.csv"
+* Good title: "Getting a 'file not found error' when importing datafile.csv"
 
 Be specific with your title. It should be brief, but also informative so that when others are looking at it (and they have a similar error and/or solution), they can easily find it.
 

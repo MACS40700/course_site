@@ -20,7 +20,7 @@ marketing:
     site_type: EducationalOrganization
     local_business_type: ''
     org_name: 'University of Chicago'
-    description: 'Introductory course to reproducible research and programming in the social sciences.'
+    description: 'Intermediate course to data vizualization in R in the social sciences.'
     twitter: ''
   analytics:
     google_analytics: ''
@@ -74,7 +74,7 @@ features:
   privacy_pack:
     enable: true
   repository:
-    url: 'https://github.com/css-materials/course-site'
+    url: 'https://github.com/MACS40700/course_site'
     content_dir: content
     branch: main
   avatar:

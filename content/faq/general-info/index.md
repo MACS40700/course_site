@@ -8,6 +8,7 @@ type: book
 #aliases: ["/hw00_peer-review.html"]
 ---
 
+<!--
 # ## Should I take this course?
 # 
 # Meet some of the types of students you will find in this class.
@@ -69,6 +70,7 @@ type: book
 #     * Wants to produce analysis notebooks that are easily shareable with her colleagues
 #     * Expects to take courses in machine learning and statistics which require a background in R
 # 
+-->
 
 ## General description
 

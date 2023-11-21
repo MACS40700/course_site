@@ -37,7 +37,7 @@ Historically, 90% of students in the class earn a B+ or higher.
 The final grade is calculated assuming you are submitting all homework assignments. Missed assignments or incomplete work will negatively affect your grade. 
 
 
-# 
+<!--
 # ## Rubric
 # 
 # *In addition to this general rubric, make sure to consult any specific guidance given in the relevant assignment itself*
@@ -71,6 +71,7 @@ The final grade is calculated assuming you are submitting all homework assignmen
 # 
 # ```
 
+-->
 ## Acknowledgments
 
 
