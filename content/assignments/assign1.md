@@ -1,6 +1,10 @@
 ---
 title: "Assignment 1"
-date: 2024-01-04 
+date: 2024-01-04T13:30:00-06:00  # Schedule page publish date
+publishDate: 2019-03-01T12:25:00-05:00
+draft: false
+
+summary: Critique and improve a visualization 
 ---
 
 ## Part 1: Visualization critique (5 points)
