@@ -1,18 +1,14 @@
-Assignment 1
-================
-2024-01-04T12:25:00-05:00
-
 ## Part 1: Visualization critique (5 points)
 
 Select a data visualization and write a (roughly) 1000 word critique of
 the visualization based on the five qualities of great
-visualizations:[^1]
+visualizations:[1]
 
-- Is it truthful?
-- Is it functional?
-- Is it beautiful?
-- Is it insightful?
-- Is it enlightening?
+-   Is it truthful?
+-   Is it functional?
+-   Is it beautiful?
+-   Is it insightful?
+-   Is it enlightening?
 
 Remember that to critique something does not mean to tear it down or
 find all the flaws. Critiques should include both positive and negative
@@ -24,14 +20,14 @@ improved?
 
 Some good resources for finding visualizations to critique:
 
-- Academic journals/books in your field which include graphs or charts
-  (you don’t have to find some super-duper high tech interactive graph
-  on the web)
-- [r/dataisbeautiful](https://www.reddit.com/r/dataisbeautiful/)
-- Nathan Yau’s [Flowing Data blog](http://flowingdata.com/)
-- [FiveThirtyEight](https://fivethirtyeight.com/) or [The
-  Upshot](https://www.nytimes.com/section/upshot) - or really any other
-  data journalism site
+-   Academic journals/books in your field which include graphs or charts
+    (you don’t have to find some super-duper high tech interactive graph
+    on the web)
+-   [r/dataisbeautiful](https://www.reddit.com/r/dataisbeautiful/)
+-   Nathan Yau’s [Flowing Data blog](http://flowingdata.com/)
+-   [FiveThirtyEight](https://fivethirtyeight.com/) or [The
+    Upshot](https://www.nytimes.com/section/upshot) - or really any
+    other data journalism site
 
 #### Submission details
 
@@ -45,5 +41,5 @@ Markdown](http://rmarkdown.rstudio.com/) document rendered using the
 
 ## Part 2: `ggplot2` and the grammar of graphics (10 points)
 
-[^1]: Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps
-    for communication* by Alberto Cairo.
+[1] Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps
+for communication* by Alberto Cairo.
