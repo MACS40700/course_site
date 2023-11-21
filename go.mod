@@ -1,4 +1,4 @@
-module github.com/uc-cfss/course-site
+module github.com/MACS40700/course_site
 
 go 1.15
 
