@@ -1,5 +1,5 @@
 ---
-title: "Day 8 - Multivariate data visualization"
+title: "Multivariate data visualization"
 output:
   html_document:
     highlight: pygments
