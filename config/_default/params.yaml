@@ -7,8 +7,8 @@
 # Appearance
 
 appearance:
-  theme_day: paige
-  theme_night: paige
+  theme_day: hyde
+  theme_night: hyde
   font: minimal
   font_size: M
 
