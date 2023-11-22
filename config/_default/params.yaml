@@ -2,14 +2,13 @@
 # Guide: https://wowchemy.com/docs/getting-started/
 # Documentation: https://wowchemy.com/docs/
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
-# Benjamin google_analytics: 'UA-45631879-2' delted from below
 
 
 # Appearance
 
 appearance:
-  theme_day: minimal
-  theme_night: minimal
+  theme_day: paige
+  theme_night: paige
   font: minimal
   font_size: M
 
