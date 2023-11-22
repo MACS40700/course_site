@@ -17,7 +17,8 @@ library(haven)
 ```
 
 
-## Part 1: Visualization critique (5 points)
+<!--## Part 1: Visualization critique (5 points)-->
+## Visualization and critique
 
 Select a data visualization and write a (roughly) 1000 word critique of the visualization based on the five qualities of great visualizations:^[Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps for communication* by Alberto Cairo.]
 
@@ -42,4 +43,4 @@ Some good resources for finding visualizations to critique:
 
 Be sure to include a link to the original visualization in your critique. Submit your critique as a [Markdown](http://daringfireball.net/projects/markdown/basics) formatted document that can be read directly in the repo on GitHub. Write either in the original `.md` file or write it as an [R Markdown](http://rmarkdown.rstudio.com/) document rendered using the `github_output` format.
 
-## Part 2: `ggplot2` and the grammar of graphics (10 points)
+<!--## Part 2: `ggplot2` and the grammar of graphics (10 points)-->
