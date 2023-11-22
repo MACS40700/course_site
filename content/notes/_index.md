@@ -7,4 +7,4 @@ type: book
 weight: 1
 ---
 
-This section contains lecture notes and exercises for the course.
+We organize our course into three main chunks: getting started 
