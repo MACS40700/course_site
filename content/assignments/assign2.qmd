@@ -31,3 +31,23 @@ While you don't you need to provide a clear vision for each of the plots, you wi
 In this, provide the graph and approximately 200 words on the plot, why it is designed the way it is, and what feedback you would like. If there are elements you are stuck on / need help with, mention that, too!
 
 Note that while this is a rough draft, it needs to have a title, labeled axes, etc. 
+
+## Grading
+
+Your visualization will be evaluated using the following criteria:
+
+* Is it truthful?
+* Is it functional?
+* Is it beautiful?
+* Is it insightful?
+* Is it enlightening?
+
+In addition to the visualization and accompanying narrative, write an approximately 500 word explanation defending your design choices. This includes (but is not limited to):
+
+* What is the story?
+* Why did you select this graphical form?
+* What is the role of interactivity? How does it enhance your ability to tell the story and communicate the data?
+
+
+## Submission details
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/YW1Ypwo_)
