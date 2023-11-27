@@ -1,0 +1,15 @@
+---
+title: "Basics of graphics"
+date: 2022-09-25T12:25:00-05:00
+
+type: book
+toc: true
+draft: false 
+categories: []
+format: md
+
+weight: 10
+---
+
+# Basics of graphics
+We will move through the fundamentals of graphics, including the grammar of graphics, geoms, themes, and axes.  
