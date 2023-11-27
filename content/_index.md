@@ -12,7 +12,7 @@ Welcome to Data Visualization! You can see our tentative topics below.
 | Date   | Topic                         | Assignment      |
 | ------ | ----------------------------- | --------------- |
 | 4-Jan  | Welcome                       |                 |
-| 9-Jan  | Grammar of graphics           | hwk 1           |
+| 9-Jan  | Grammar of graphics           | [hwk 1](assignments/assign1/)           |
 | 11-Jan | Looking at data               |                 |
 | 16-Jan | geoms                         |                 |
 | 18-Jan | stats + scales + guides       | hwk 2           |
