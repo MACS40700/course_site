@@ -3,6 +3,6 @@
   publish = "public"
 
 [build.environment]
-  HUGO_VERSION = "0.80.0"
-  HUGO_THEME = "repo"
+  HUGO_VERSION = "0.12.4"
+  HUGO_THEME = "whisper"
   HUGO_BASEURL = "/"
