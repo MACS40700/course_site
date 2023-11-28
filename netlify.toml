@@ -1,3 +1,6 @@
+[[module.imports]]
+path = "github.com/willfaught/paige"
+
 [build]
   command = "hugo --gc --minify -b $URL"
   publish = "public"
