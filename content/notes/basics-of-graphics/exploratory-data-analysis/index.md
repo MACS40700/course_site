@@ -1,5 +1,7 @@
 ---
 title: "Exploratory data analysis"
+toc: true
+type: book
 weight: 10
 output:
   html_document:
@@ -8,6 +10,7 @@ output:
     toc: yes
     toc_float: yes
     code_folding: show
+
 ---
 
 ```{r setup, include = FALSE}

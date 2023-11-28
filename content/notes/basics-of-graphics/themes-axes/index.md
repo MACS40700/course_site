@@ -1,5 +1,9 @@
 ---
 title: "Themes"
+weight: 30
+type: book
+toc: true
+draft: false
 output:
   html_document:
     highlight: pygments

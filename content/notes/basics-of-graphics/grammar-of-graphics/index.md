@@ -6,7 +6,7 @@ toc: true
 draft: false
 aliases: ["/dataviz_grammar-of-graphics.html", "/notes/grammar-of-graphics"]
 categories: ["dataviz"]
-weight: 22
+weight: 20
 ---
 
 

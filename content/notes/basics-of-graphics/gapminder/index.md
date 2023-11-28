@@ -7,7 +7,7 @@ draft: false
 aliases: ["/dataviz_gapminder.html", "/notes/gapminder/"]
 categories: ["dataviz"]
 
-weight: 24
+weight: 25
 ---
 
 <!--

@@ -1,9 +1,16 @@
-Basics of graphics
-================
-9/25/22
+---
+title: "Basics of Graphics"
+toc: true
+type: book
+weight: 15
+output:
+  html_document:
+    highlight: pygments
+    theme: readable
+    toc: yes
+    toc_float: yes
+---
 
--   <a href="#basics-of-graphics" id="toc-basics-of-graphics">Basics of
-    graphics</a>
 
 # Basics of graphics
 

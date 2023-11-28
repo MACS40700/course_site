@@ -1,5 +1,8 @@
 ---
 title: "Grammar of graphics and `ggplot2`" #Day 4 
+toc: true
+type: book
+weight: 25
 output:
   html_document:
     highlight: pygments
