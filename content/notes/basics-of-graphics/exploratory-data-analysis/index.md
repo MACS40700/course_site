@@ -1,5 +1,6 @@
 ---
 title: "Exploratory data analysis"
+weight: 10
 output:
   html_document:
     highlight: pygments
