@@ -1,0 +1,795 @@
+---
+title: "Deep dive: geoms"
+author: "MACS 40700 <br /> University of Chicago"
+output: rcfss::xaringan_wide
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+# generate CSS file
+library(xaringanthemer)
+rcfss::xaringan_theme()
+
+# source in the default knitr options
+source(here::here("R", "slide-opts.R"))
+
+# enable panelsets and default theme
+xaringanExtra::use_panelset()
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
+
+# make out width 60% to accommodate panelsets
+knitr::opts_chunk$set(
+  out.width = "60%"
+)
+
+# load basic packages
+library(knitr)
+library(here)
+library(countdown)
+```
+
+class: middle, inverse
+
+# Announcements
+
+---
+
+## Announcements
+
+- HW 1 is posted:
+  - Go to the course GitHub org and look for a repo named `hw01-YOUR_GITHUB_NAME`
+  - Instructions are in the README
+  - All work must be completed in `homework-01.Rmd` document, knit, and submitted along with the output `homework-01.md`
+  - Due Tuesday, Apr 12, by 11:59pm
+  - At the deadline you'll lose push access to your repo, if you want to submit late, email me to enable late submission
+  - Post questions on the discussion forum
+
+- Check Canvas before class on Tuesday for your team assignments, sit with your teams in class
+
+---
+
+class: middle, inverse
+
+# Setup
+
+---
+
+## Packages
+
+```{r}
+# load packages
+library(tidyverse)
+# remotes::install_github("uc-cfss/rcfss")
+library(rcfss)
+```
+
+---
+
+## ggplot2 theme
+
+```{r}
+# set default theme for ggplot2
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
+```
+
+---
+
+## Figure sizing
+
+For more on including figures in R Markdown documents with the right size, resolution, etc. the following resources are great:
+
+- [R for Data Science - Graphics for communication](https://r4ds.had.co.nz/graphics-for-communication.html)
+- [Tips and tricks for working with images and figures in R Markdown documents](https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
+
+```{r eval = FALSE}
+# set default figure parameters for knitr
+knitr::opts_chunk$set(
+  fig.width = 8, # 8"
+  fig.asp = 0.618, # the golden ratio
+  fig.retina = 2, # dpi multiplier for displaying HTML output on retina
+  dpi = 150, # higher dpi, sharper image
+  out.width = "70%"
+)
+```
+
+---
+
+## Data prep: new variables
+
+From last class...
+
+```{r}
+scorecard <- scorecard %>%
+  mutate(pctpell_cat = cut_interval(x = pctpell, n = 6)) %>%
+  drop_na(pctpell_cat)
+
+scorecard %>%
+  count(pctpell_cat)
+```
+
+---
+
+## Data prep: summary table
+
+From last class...
+
+```{r}
+mean_netcost_pctpell <- scorecard %>%
+  group_by(pctpell_cat) %>%
+  summarise(mean_netcost = mean(netcost, na.rm = TRUE))
+
+mean_netcost_pctpell
+```
+
+---
+
+class: middle, inverse
+
+# Aesthetic mappings in ggplot2
+
+---
+
+## Global vs. layer-specific aesthetics
+
+- Aesthetic mappings can be supplied in the initial `ggplot()` call, in individual layers, or in some combination of both.
+
+- Within each layer, you can add, override, or remove mappings.
+
+- If you only have one layer in the plot, the way you specify aesthetics doesn’t make any difference. However, the distinction is important when you start adding additional layers.
+
+---
+
+## Activity: Spot the difference I
+
+.task[
+Do you expect the following plots to be the same or different? If different, how? Discuss in a pair (or group) without running the code and sketch the resulting plots based on what you think the code will produce.
+]
+
+```{r fig.show = "hide"}
+# Plot A
+ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 0.5)
+
+# Plot B
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(aes(color = pctpell_cat), alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 0.5)
+```
+
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 3, bottom = 0)
+```
+
+---
+
+## Activity: Spot the difference II
+
+.task[
+Do you expect the following plots to be the same or different? If different, how? Discuss in a pair (or group) without running the code and sketch the resulting plots based on what you think the code will produce.
+]
+
+```{r fig.show = "hide"}
+# Plot A
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(aes(color = pctpell_cat))
+
+# Plot B
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(color = "blue")
+
+# Plot C
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(color = "#a493ba")
+```
+
+```{r echo = FALSE}
+countdown(minutes = 3, bottom = 0)
+```
+
+---
+
+class: middle, inverse
+
+# Geoms
+
+---
+
+## Geoms
+
+- Geometric objects, or geoms for short, perform the actual rendering of the layer, controlling the type of plot that you create
+
+- You can think of them as "the geometric shape used to represent the data"
+
+---
+
+## One variable
+
+- Discrete:
+  - `geom_bar()`: display distribution of discrete variable.
+
+- Continuous
+  - `geom_histogram()`: bin and count continuous variable, display with bars
+  - `geom_density()`: smoothed density estimate
+  - `geom_dotplot()`: stack individual points into a dot plot
+  - `geom_freqpoly()`: bin and count continuous variable, display with lines
+
+---
+
+## .hand[aside...]
+
+Always use "typewriter text" (monospace font) when writing function names, and follow with `()`, e.g., 
+
+- `geom_freqpoly()`
+- `mean()`
+- `lm()`
+
+---
+
+## `geom_bar()`
+
+```{r}
+ggplot(scorecard, aes(x = pctpell_cat)) +
+  geom_bar()
+```
+
+---
+
+## `geom_bar()`
+
+```{r}
+ggplot(scorecard, aes(y = pctpell_cat)) +
+  geom_bar()
+```
+
+---
+
+## `geom_histogram()`
+
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_histogram()
+```
+
+---
+
+## `geom_histogram()` and `binwidth`
+
+.panelset[
+.panel[.panel-name[2K]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_histogram(binwidth = 2000)
+```
+]
+.panel[.panel-name[5K]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_histogram(binwidth = 5000)
+```
+]
+.panel[.panel-name[10K]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_histogram(binwidth = 10000)
+```
+]
+.panel[.panel-name[20K]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_histogram(binwidth = 20000)
+```
+]
+]
+
+---
+
+## `geom_density()`
+
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density()
+```
+
+---
+
+## `geom_density()` and bandwidth (`bw`)
+
+.panelset[
+.panel[.panel-name[1]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(bw = 1)
+```
+]
+.panel[.panel-name[100]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(bw = 100)
+```
+]
+.panel[.panel-name[1000]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(bw = 1000)
+```
+]
+.panel[.panel-name[10000]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(bw = 10000)
+```
+]
+]
+
+---
+
+## `geom_density()` outlines
+
+.panelset[
+.panel[.panel-name[full]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(outline.type = "full")
+```
+]
+.panel[.panel-name[both]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(outline.type = "both")
+```
+]
+.panel[.panel-name[upper]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(outline.type = "upper")
+```
+]
+.panel[.panel-name[lower]
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_density(outline.type = "lower")
+```
+]
+]
+
+---
+
+## `geom_dotplot()`
+
+.task[
+What does each point represent? How are their locations determined? What do the x and y axes represent?
+]
+
+```{r fig.asp = 0.4, fig.width = 12, out.width = "80%"}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_dotplot(binwidth = 418)
+```
+
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 3, bottom = 0)
+```
+
+---
+
+## `geom_freqpoly()`
+
+```{r}
+ggplot(scorecard, aes(x = netcost)) +
+  geom_freqpoly(binwidth = 1000)
+```
+
+---
+
+## `geom_freqpoly()` for comparisons
+
+.panelset[
+.panel[.panel-name[Histogram]
+```{r}
+ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
+  geom_histogram(binwidth = 5000)
+```
+]
+.panel[.panel-name[Frequency polygon]
+```{r}
+ggplot(scorecard, aes(x = netcost, color = pctpell_cat)) +
+  geom_freqpoly(binwidth = 5000, size = 1)
+```
+]
+]
+
+---
+
+## Two variables - both continuous
+
+- `geom_point()`: scatterplot
+- `geom_quantile()`: smoothed quantile regression
+- `geom_rug()`: marginal rug plots
+- `geom_smooth()`: smoothed line of best fit
+- `geom_text()`: text labels
+
+---
+
+## `geom_rug()`
+
+```{r}
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point() +
+  geom_rug(alpha = 0.1)
+```
+
+---
+
+## `geom_rug()` on the outside
+
+```{r}
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point() +
+  geom_rug(alpha = 0.1, outside = TRUE) +
+  coord_cartesian(clip = "off")
+```
+
+---
+
+## `geom_rug()` on the outside, but better
+
+```{r}
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point() +
+  geom_rug(alpha = 0.1, outside = TRUE, sides = "tr") +
+  coord_cartesian(clip = "off") +
+  theme(plot.margin = margin(1, 1, 1, 1, "cm"))
+```
+
+---
+
+## `geom_text()`
+
+```{r}
+sample_n(scorecard, size = 50) %>%
+  ggplot(aes(x = avgfacsal, y = netcost)) +
+  geom_text(aes(label = type))
+```
+
+
+---
+
+## `geom_text()` and more
+
+```{r}
+sample_n(scorecard, size = 50) %>%
+  ggplot(aes(x = avgfacsal, y = netcost)) +
+  geom_text(aes(label = type, color = type))
+```
+
+---
+
+## `geom_text()` and even more
+
+```{r}
+sample_n(scorecard, size = 50) %>%
+  ggplot(aes(x = avgfacsal, y = netcost)) +
+  geom_text(aes(label = type, color = type),
+    show.legend = FALSE
+  )
+```
+
+---
+
+## Two variables - show distribution
+
+- `geom_bin2d()`: bin into rectangles and count
+- `geom_density2d()`: smoothed 2d density estimate
+- `geom_hex()`: bin into hexagons and count
+
+---
+
+## `geom_hex()`
+
+```{r}
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_hex()
+```
+
+---
+
+## `geom_hex()` and warnings
+
+- Requires installing the [**hexbin**](https://cran.r-project.org/web/packages/hexbin/index.html) package separately!
+
+```{r eval = FALSE}
+install.packages("hexbin")
+```
+
+- Otherwise you might see
+
+```
+Warning: Computation failed in `stat_binhex()`
+```
+
+---
+
+## Two variables
+
+- At least one discrete
+  - `geom_count()`: count number of point at distinct locations
+  - `geom_jitter()`: randomly jitter overlapping points
+
+- One continuous, one discrete
+  - `geom_col()`: a bar chart of pre-computed summaries
+  - `geom_boxplot()`: boxplots
+  - `geom_violin()`: show density of values in each group
+
+---
+
+## `geom_jitter()`
+
+.task[
+How are the following three plots different?
+]
+
+.panelset[
+.panel[.panel-name[Plot A]
+```{r fig.asp = 0.4}
+ggplot(scorecard, aes(x = type, y = netcost)) +
+  geom_point()
+```
+]
+.panel[.panel-name[Plot B]
+```{r fig.asp = 0.4}
+ggplot(scorecard, aes(x = type, y = netcost)) +
+  geom_jitter()
+```
+]
+.panel[.panel-name[Plot C]
+```{r fig.asp = 0.4}
+ggplot(scorecard, aes(x = type, y = netcost)) +
+  geom_jitter()
+```
+]
+]
+
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 3, bottom = 0)
+```
+
+---
+
+## `geom_jitter()` and `set.seed()`
+
+.panelset[
+.panel[.panel-name[Plot A]
+```{r fig.asp = 0.5}
+set.seed(123)
+ggplot(scorecard, aes(x = type, y = netcost)) +
+  geom_jitter()
+```
+]
+.panel[.panel-name[Plot B]
+```{r fig.asp = 0.5}
+set.seed(123)
+ggplot(scorecard, aes(x = type, y = netcost)) +
+  geom_jitter()
+```
+]
+.panel[.panel-name[Plot C]
+```{r fig.asp = 0.5}
+set.seed(234)
+ggplot(scorecard, aes(x = type, y = netcost)) +
+  geom_jitter()
+```
+]
+]
+
+---
+
+## Two variables
+
+- One time, one continuous
+  - `geom_area()`: area plot
+  - `geom_line()`: line plot
+  - `geom_step()`: step plot
+
+- Display uncertainty:
+  - `geom_crossbar()`: vertical bar with center
+  - `geom_errorbar()`: error bars
+  - `geom_linerange()`: vertical line
+  - `geom_pointrange()`: vertical line with center
+
+- Spatial
+  - `geom_sf()`: for map data (more on this later...)
+
+---
+
+## Average net cost per Pell grant recipient
+
+```{r}
+mean_netcost_pctpell <- scorecard %>%
+  mutate(pctpell = round(pctpell, digits = 2)) %>%
+  group_by(pctpell) %>%
+  summarise(
+    n = n(),
+    mean_netcost = mean(netcost),
+    sd_netcost = sd(netcost)
+  ) %>%
+  drop_na(mean_netcost)
+
+mean_netcost_pctpell
+```
+
+---
+
+## `geom_line()`
+
+```{r}
+ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
+  geom_line()
+```
+
+---
+
+## `geom_area()`
+
+```{r}
+ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
+  geom_area()
+```
+
+---
+
+## `geom_step()`
+
+```{r}
+ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
+  geom_step()
+```
+
+---
+
+## `geom_errorbar()`
+
+.task[
+Describe how this plot is constructed and what the points and the lines (error bars) correspond to.
+]
+
+.panelset[
+.panel[.panel-name[Code]
+```{r errorbar, fig.show = "hide"}
+ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
+  geom_point() +
+  geom_errorbar(aes(
+    ymin = mean_netcost - sd_netcost,
+    ymax = mean_netcost + sd_netcost
+  ))
+```
+]
+.panel[.panel-name[Plot]
+```{r ref.label = "errorbar", echo = FALSE}
+
+```
+]
+]
+
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 3, bottom = 0)
+```
+
+---
+
+## Let's clean things up a bit!
+
+Meet your new best friend, the [**scales**](https://scales.r-lib.org/) package!
+
+```{r}
+library(scales)
+```
+
+---
+
+## Let's clean things up a bit!
+
+.panelset[
+```{r panelset = c(output = "Plot", source = "Code"), fig.show = "hold"}
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(alpha = 0.4, size = 2, color = "#012169") +
+  scale_x_continuous(labels = label_number(big.mark = ",")) +
+  scale_y_continuous(labels = label_dollar()) +
+  labs(
+    x = "Average faculty salary (USD)",
+    y = "Net cost of attendance (USD)",
+    title = "Faculty salaries and net cost of attendance in US universities",
+    subtitle = "2018-19",
+    caption = "Source: College Scorecard"
+  )
+```
+]
+
+---
+
+class: middle, inverse
+
+# geoms
+
+---
+
+## Three variables
+
+- `geom_tile()`: tile the plane with rectangles
+- `geom_raster()`: fast version of `geom_tile()` for equal sized tiles
+
+---
+
+## `geom_tile()`
+
+```{r}
+ggplot(scorecard, aes(x = type, y = locale)) +
+ geom_tile(aes(fill = netcost))
+```
+
+---
+
+## Another look at smooth-ish surface
+
+.panelset[
+.panel[.panel-name[Summarize]
+.small[
+```{r}
+mean_netcost_type_locale <- scorecard %>%
+  group_by(type, locale) %>%
+  summarize(mean_netcost = mean(netcost, na.rm = TRUE), .groups = "drop")
+
+mean_netcost_type_locale
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r}
+ggplot(mean_netcost_type_locale, aes(x = type, y = locale)) +
+  geom_point(aes(color = mean_netcost), size = 30, pch = "square")
+```
+]
+]
+
+---
+
+## Activity: Pick a geom
+
+.task[
+For each of the following problems, suggest a useful geom:
+
+1. Display how the value of variable has changed over time
+1. Show the detailed distribution of a single continuous variable
+1. Focus attention on the overall relationship between two variables in a large dataset
+1. Label outlying points in a single variable
+]
+
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 3, bottom = 0)
+```
+
+---
+
+class: inverse, middle
+
+# Homework 1
+
+---
+
+## Homework 1
+
+.task[
+- Locate your Homework 1 repo, clone it in RStudio
+- Put your name in the YAML of `homework-01.Rmd`, knit, commit (with a meaningful message), push
+- Skim the README to get a sense of the instructions and use the remaining time to ask any clarifying questions and to get started on the first question
+- Make sure you know how to ask a question on the course discussion forum, and set up notifications
+]
+
+---
+
+## Homework 1 tips
+
+- You can go in order or jump around between exercises. If you get stuck
+  on a specific exercise, feel free to switch to a different one.
+
+- But, of course, do what feels right for you in terms of pace, ordering, etc.!
+
+- And ask questions on the course discussion forum

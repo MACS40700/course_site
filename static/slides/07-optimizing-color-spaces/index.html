@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Optimizing color spaces</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACS 40700   University of Chicago" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="index_files/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Optimizing color spaces
+### MACS 40700 <br /> University of Chicago
+
+---
+
+
+
+
+
+
+# Uses of color in data visualization
+
+--
+
+&lt;table style = "border: none; line-height: 2.5;"&gt;
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left; width: 50%;"&gt;
+1. Distinguish categories (qualitative)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+---
+
+# Qualitative scale example
+
+&lt;img src="index_files/figure-html/popgrowth-vs-popsize-colored-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Okabe-Ito
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Qualitative scale example
+
+&lt;img src="index_files/figure-html/popgrowth-vs-popsize-colored2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Palette name: ColorBrewer Set1
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Qualitative scale example
+
+&lt;img src="index_files/figure-html/popgrowth-vs-popsize-colored3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Palette name: ColorBrewer Set3
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Uses of color in data visualization
+
+&lt;table style = "border: none; line-height: 2.5;"&gt;
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left; width: 50%;"&gt;
+1. Distinguish categories (qualitative)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+2. Represent numeric values (sequential)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+---
+
+# Sequential scale example
+
+&lt;img src="index_files/figure-html/four-locations-temps-by-month-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Viridis
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Sequential scale example
+
+&lt;img src="index_files/figure-html/four-locations-temps-by-month2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Inferno
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Sequential scale example
+
+&lt;img src="index_files/figure-html/four-locations-temps-by-month3-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Cividis
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+
+---
+
+# Uses of color in data visualization
+
+&lt;table style = "border: none; line-height: 2.5;"&gt;
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left; width: 50%;"&gt;
+1. Distinguish categories (qualitative)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+2. Represent numeric values (sequential)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+3. Represent numeric values (diverging)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/diverging.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+---
+
+# Diverging scale example
+
+&lt;img src="index_files/figure-html/forensic-correlations1-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+Palette name: ColorBrewer PiYG
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Diverging scale example
+
+&lt;img src="index_files/figure-html/forensic-correlations2-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Carto Earth
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Diverging scale example
+
+&lt;img src="index_files/figure-html/forensic-correlations3-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Blue-Red
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Uses of color in data visualization
+
+&lt;table style = "border: none; line-height: 2.5;"&gt;
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left; width: 50%;"&gt;
+1. Distinguish categories (qualitative)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle;"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+2. Represent numeric values (sequential)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+3. Represent numeric values (diverging)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/diverging.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+4. Highlight
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/highlight.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+---
+
+# Highlight example
+
+&lt;img src="index_files/figure-html/Aus-athletes-track-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Grays with accents
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Highlight example
+
+&lt;img src="index_files/figure-html/Aus-athletes-track2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Palette name: Okabe-Ito accent
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Highlight example
+
+&lt;img src="index_files/figure-html/Aus-athletes-track3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Palette name: ColorBrewer accent
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+# Uses of color in data visualization
+
+&lt;table style = "border: none; line-height: 2.5;"&gt;
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left; width: 50%;"&gt;
+1. Distinguish categories (qualitative)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle;"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+2. Represent numeric values (sequential)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+3. Represent numeric values (diverging)
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/diverging.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr style = "background: white;"&gt;
+&lt;td style = "text-align: left;"&gt;
+4. Highlight
+&lt;/td&gt;
+&lt;td&gt;
+&lt;img src = "images/highlight.png" width = 100% style = "text-align: right; vertical-align: middle"&gt;&lt;/img&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+---
+
+class: inverse, middle
+
+# Choosing a color scale
+
+---
+
+# Choosing a color scale
+
+- Emphasis on interpretability and accessibility
+- Default palettes are less than desirable
+- Variables may require transformations
+
+---
+
+# Default palette in `ggplot2`
+
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Suboptimal default choices
+
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Common forms of color vision deficiency
+
+### Red-green
+
+- Deuteranomaly
+- Protanomaly
+- Protanopia and deuteranopia
+
+### Blue-yellow
+
+- Tritanomaly
+- Tritanopia
+
+### Complete color vision deficiency
+
+- Monochromacy
+
+---
+
+# Inspecting for color vision deficiency
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Inspecting for color vision deficiency
+
+
+```r
+library(colorblindr)
+cvd_grid(plot = pen_fig)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Inspecting for color deficiency
+
+&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Inspecting for color deficiency
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# When to use quantitative or qualitative color scales?
+
+&lt;img src="images/quant-qual.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+# Use qualitative for nominal variables
+
+&lt;img src="images/unordered.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+# Use qualitative for nominal variables
+
+&lt;img src="images/unemp-best.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+# Quantitative `\(\neq\)` continuous
+
+&lt;img src="images/likert.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+# Shades to emphasize order
+
+&lt;img src="images/treemap.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+# Double-encoded line chart
+
+&lt;img src="images/double-encode-lines.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+# Shades to distinguish subcategories
+
+&lt;img src="images/subcategories.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+
+---
+
+class: inverse, middle
+
+# Implementing optimal color palettes in R
+
+---
+
+## **ggplot2** color scale functions
+
+--
+
+.small.center[
+
+Scale function            | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp;   | Data type     | Palette type
+:-----------              | :----------  | :------------ | :------------
+`scale_color_hue()` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | `color` | discrete  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | qualitative &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+]
+
+---
+
+## **ggplot2** color scale functions are a bit of a mess
+
+.small.center[
+
+Scale function            | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp;   | Data type     | Palette type
+:-----------              | :----------  | :------------ | :------------
+`scale_color_hue()` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | `color` | discrete  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | qualitative &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+`scale_fill_hue()`        | `fill `      | discrete      | qualitative
+]
+
+---
+
+## **ggplot2** color scale functions are a bit of a mess
+
+.small.center[
+
+Scale function            | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp;   | Data type     | Palette type
+:-----------              | :----------  | :------------ | :------------
+`scale_color_hue()` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | `color` | discrete  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | qualitative &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+`scale_fill_hue()`        | `fill `      | discrete      | qualitative
+`scale_color_gradient()`  | `color`      | continuous    | sequential
+]
+
+---
+
+## **ggplot2** color scale functions are a bit of a mess
+
+.small.center[
+
+Scale function            | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp;   | Data type     | Palette type
+:-----------              | :----------  | :------------ | :------------
+`scale_color_hue()` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | `color` | discrete  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | qualitative &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+`scale_fill_hue()`        | `fill `      | discrete      | qualitative
+`scale_color_gradient()`  | `color`      | continuous    | sequential
+`scale_color_gradient2()` | `color`      | continuous    | diverging
+]
+
+---
+
+## **ggplot2** color scale functions are a bit of a mess
+
+.small.center[
+
+Scale function            | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp;   | Data type     | Palette type
+:-----------              | :----------  | :------------ | :------------
+`scale_color_hue()` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | `color` | discrete  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; | qualitative &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+`scale_fill_hue()`        | `fill `      | discrete      | qualitative
+`scale_color_gradient()`  | `color`      | continuous    | sequential
+`scale_color_gradient2()` | `color`      | continuous    | diverging
+`scale_fill_viridis_c()`   | `color`      | continuous    | sequential
+`scale_fill_viridis_d()`   | `fill`       | discrete      | sequential
+`scale_color_brewer()`    | `color`      | discrete      | qualitative, diverging, sequential
+`scale_fill_brewer()`     | `fill`       | discrete      | qualitative, diverging, sequential
+`scale_color_distiller()` | `color`      | continuous    | qualitative, diverging, sequential
+]
+
+... and there are many many more
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles1-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic()
+  # no fill scale defined, default is scale_fill_gradient()
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles2-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_gradient()
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles3-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_viridis_c()
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles4-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_viridis_c(option = "B", begin = 0.15)
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles5-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_distiller(palette = "YlGnBu")
+```
+]
+]
+
+---
+
+## The `colorspace` package creates some order
+
+Scale name: `scale_&lt;aesthetic&gt;_&lt;datatype&gt;_&lt;colorscale&gt;()`
+
+--
+
+- `&lt;aesthetic&gt;`: name of the aesthetic (`fill`, `color`, `colour`)
+- `&lt;datatype&gt;`: type of variable plotted (`discrete`, `continuous`, `binned`)
+- `&lt;colorscale&gt;`: type of the color scale (`qualitative`, `sequential`, `diverging`, `divergingx`)
+
+--
+
+Scale function                       | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp; | Data type  | Palette type &amp;nbsp;&amp;nbsp;&amp;nbsp;
+:-----------                         | :--------  | :--------- | :------------
+`scale_color_discrete_qualitative()` | `color`    | discrete   | qualitative
+`scale_fill_continuous_sequential()` | `fill`     | continuous | sequential
+`scale_colour_continuous_divergingx()` | `colour`   | continuous | diverging
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles6-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_continuous_sequential(palette = "YlGnBu")
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles7-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_continuous_sequential(palette = "Viridis")
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/temps-tiles8-out-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = 0.95, height = 0.95) + 
+  coord_fixed(expand = FALSE) +
+  theme_classic() +
+* scale_fill_continuous_sequential(palette = "Inferno", begin = 0.15)
+```
+]
+]
+
+---
+
+
+```r
+colorspace::hcl_palettes(type = "sequential", plot = TRUE) # all sequential palettes
+```
+
+&lt;img src="index_files/figure-html/colorspace-palettes-seq-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+colorspace::hcl_palettes(type = "diverging", plot = TRUE, n = 9) # all diverging palettes
+```
+
+&lt;img src="index_files/figure-html/colorspace-palettes-div-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+```r
+colorspace::divergingx_palettes(plot = TRUE, n = 9) # all divergingx palettes
+```
+
+&lt;img src="index_files/figure-html/colorspace-palettes-divx-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, middle
+
+# Setting colors for discrete, qualitative scales
+
+---
+
+
+```r
+colorspace::hcl_palettes(type = "qualitative", plot = TRUE) # all qualitative palettes
+```
+
+&lt;img src="index_files/figure-html/colorspace-palettes-qual-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/qual-scales-example1-out-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
+  geom_point(size = 4) +
+  scale_x_log10()
+  # no color scale defined, default is scale_color_hue()
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/qual-scales-example2-out-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
+  geom_point(size = 4) +
+  scale_x_log10() +
+* scale_color_hue()
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/qual-scales-example3a-out-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
+  geom_point(size = 4) +
+  scale_x_log10() +
+  # uses Pastel 1
+* scale_color_discrete_qualitative(palette = "Dark 2")
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/qual-scales-example3-out-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+library(ggthemes)  # for scale_color_colorblind()
+
+ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
+  geom_point(size = 4) +
+  scale_x_log10() +
+  # uses Okabe-Ito colors
+* scale_color_colorblind()
+```
+]
+]
+
+---
+
+## Examples
+
+.panelset[
+.panel[.panel-name[Output]
+&lt;img src="index_files/figure-html/qual-scales-example4-out-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
+  geom_point(size = 4) +
+  scale_x_log10() +
+* scale_color_manual(
+*   values = c(
+*     West = "#E69F00", South = "#56B4E9",
+*     Midwest = "#009E73", Northeast = "#F0E442"
+*   )
+* )
+```
+]
+]
+
+---
+
+## Okabe-Ito RGB codes
+
+.center[
+&lt;img src = "https://clauswilke.com/dataviz/pitfalls_of_color_use_files/figure-html/palette-Okabe-Ito-1.png", width = 100%&gt;&lt;/img&gt;
+]
+
+.tiny-font[
+Name           | Hex code &amp;nbsp;&amp;nbsp; | R, G, B (0-255)
+:----------    | :-------  | :--------
+orange         | #E69F00   | 230, 159, 0
+sky blue	     | #56B4E9   | 86, 180, 233
+bluish green   | #009E73   | 0, 158, 115
+yellow	       | #F0E442   | 240, 228, 66
+blue	         | #0072B2   | 0, 114, 178
+vermilion	     | #D55E00   | 213, 94, 0
+reddish purple | #CC79A7   | 204, 121, 167
+black	         | #000000   | 0, 0, 0
+]
+
+???
+
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+---
+
+## Apply it!
+
+```r
+# install if necessary
+install.packages(c("tidyverse", "here", "colorspace",
+                   "scales", "ggthemes", "usethis"))
+
+usethis::use_course("uc-dataviz/choosing-colors")
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlighStyle": "solarized-light",
+"highlightLanguage": "r",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
