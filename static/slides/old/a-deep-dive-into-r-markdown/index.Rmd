@@ -1,0 +1,746 @@
+---
+title: "A deep dive into R Markdown"
+author: "MACSS 30500 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# generate CSS file
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#011f4b",
+  secondary_color = "#bbd6c7",
+  inverse_header_color = "#222222",
+  black_color = "#222222",
+  header_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  text_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  code_font_google = xaringanthemer::google_font("Source Code Pro"),
+  base_font_size = "24px",
+  code_font_size = "20px",
+  # title_slide_background_image = "https://github.com/uc-dataviz/course-notes/raw/main/images/hexsticker.svg",
+  # title_slide_background_size = "contain",
+  # title_slide_background_position = "top",
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.75rem",
+  header_h3_font_size = "1.5rem",
+  extra_css = list(
+    "h1" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h2" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h3" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    ".tiny" = list("font-size" = "70%"),
+    ".small" = list("font-size" = "90%"),
+    ".midi" = list("font-size" = "150%"),
+    ".tiny .remark-code" = list("font-size" = "70%"),
+    ".small .remark-code" = list("font-size" = "90%"),
+    ".midi .remark-code" = list("font-size" = "150%"),
+    ".large" = list("font-size" = "200%"),
+    ".xlarge" = list("font-size" = "600%"),
+    ".huge" = list(
+      "font-size" = "400%",
+      "font-family" = "'Montserrat', sans-serif",
+      "font-weight" = "bold"
+    ),
+    ".hand" = list(
+      "font-family" = "'Gochi Hand', cursive",
+      "font-size" = "125%"
+    ),
+    ".task" = list(
+      "padding-right" = "10px",
+      "padding-left" = "10px",
+      "padding-top" = "3px",
+      "padding-bottom" = "3px",
+      "margin-bottom" = "6px",
+      "margin-top" = "6px",
+      "border-left" = "solid 5px #F1DE67",
+      "background-color" = "#F3D03E"
+    ),
+    ".pull-left" = list(
+      "width" = "49%",
+      "float" = "left"
+    ),
+    ".pull-right" = list(
+      "width" = "49%",
+      "float" = "right"
+    ),
+    ".pull-left-wide" = list(
+      "width" = "70%",
+      "float" = "left"
+    ),
+    ".pull-right-narrow" = list(
+      "width" = "27%",
+      "float" = "right"
+    ),
+    ".pull-left-narrow" = list(
+      "width" = "27%",
+      "float" = "left"
+    ),
+    ".pull-right-wide" = list(
+      "width" = "70%",
+      "float" = "right"
+    ),
+    ".blue" = list(color = "#2A9BB7"),
+    ".purple" = list(color = "#a493ba"),
+    ".yellow" = list(color = "#f1de67"),
+    ".gray" = list(color = "#222222")
+  )
+)
+
+source(here::here("R", "slide-opts.R"))
+xaringanExtra::use_panelset()
+knitr::opts_chunk$set(
+  echo = FALSE
+)
+```
+
+```{r pkgs, include = FALSE, cache = FALSE}
+library(tidyverse)
+library(rcis)
+library(knitr)
+library(kableExtra)
+library(here)
+library(ymlthis)
+library(countdown)
+
+set.seed(1234)
+theme_set(theme_minimal(base_size = rcis::base_size))
+```
+
+## R Markdown: resources 
+
+Assigned readings:
+* Chapters 27 "R Markdown", 28 "Graphics for communication", and 29 "R Markdown formats" in [R for Data Science](http://r4ds.had.co.nz)
+
+Additional resources:
+
+* [R Markdown the definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+* [R Markdown cheat sheet](https://posit.co/resources/cheatsheets/?_page=2/)
+* [Markdown and R Markdown](https://pjbartlein.github.io/REarthSysSci/markdown.html) by Pat Bartlein
+* [R Markdown from R Studio](https://rmarkdown.rstudio.com/lesson-1.html) official documentation
+* `Rmarkdown.Rmd` from lecture two:  `usethis::use_course("CFSS-MACSS/intro-r")`
+---
+
+## R Markdown and Markdown
+
+**R Markdown**: text file that uses the extension `.Rmd`.
+
+**Markdown**: text file that use the extension `.md`
+
+* Similarities: 
+  * they use the same syntax, R Markdown is just an extension of the markdown syntax
+* Differences: 
+  * R code cannot be executed in a `.md` VS we can embed and execute R code in a `.Rmd `
+  * An `.md` can be generated from a `.Rmd` but not the other way around
+
+---
+
+## R Markdown: Knitting process
+
+R Markdown files allow to generate well-formatted documents (md, pdf, word, html, etc.) that include text, code, and output.
+
+To create such documents, you “Knit” or “render” them in three ways: 
+
+1. by clicking the “Knit” button in the script editor panel of your R Markdown file and select the desired output
+
+1. by adding the desired output in the YAML header such as: `github_document`, `pdf_document`, `word_document`, `html_document`, etc. (notice: without $\LaTeX$ installed, the pdf won't work)
+
+1. by using `render()`, as explained [here](https://pkgs.rstudio.com/rmarkdown/reference/render.html). For example, run in your console: `rmarkdown::render("my-document.Rmd", output_format: html_document`)
+
+---
+
+## R Markdown: Knitting process for presentations
+
+* [ioslides](http://rmarkdown.rstudio.com/ioslides_presentation_format.html)
+* [reveal.js](http://rmarkdown.rstudio.com/revealjs_presentation_format.html)
+* [Slidy](http://rmarkdown.rstudio.com/slidy_presentation_format.html)
+* [Beamer](http://rmarkdown.rstudio.com/beamer_presentation_format.html)
+* [`xaringan`](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+
+---
+
+## R Markdown: Knitting process
+
+```{r}
+include_graphics(path = "rmarkdownflow.png")
+```
+
+When you knit the document:
+
+1. R Markdown sends the .Rmd file to knitr: http://yihui.name/knitr/
+
+1. Knitr executes all of the code chunks and creates a new plain markdown (.md) file which includes the code and its output
+
+1. This plain markdown file is then converted by pandoc into any number of output types including html, PDF, Word document, etc.: http://pandoc.org/
+
+---
+
+## R Markdown: Three main components
+
+1. A **YAML header** surrounded by `---` at the top of the file
+
+1. Text mixed with simple text formatting using the [Markdown syntax](../hw01-edit-README.html)
+
+1. **Chunks** of R code surrounded by ` ``` `
+To insert them:
+  * keyboard shortcut Cmd/Ctrl + Alt + I
+  * “Insert” button icon in the editor toolbar
+  * manually type the chunk delimiters ` ```{r} and ``` `
+
+---
+
+## R Markdown: Basic Syntax
+
+```` 
+_Italics_ and *Italics*
+````
+*Italics* and _Italics_
+
+--
+
+````
+__Bold__ and **Bold**
+````
+**Bold** and __Bold__
+
+--
+
+````
+~~Strikethrough~~ 
+````
+~~Strikethrough~~ 
+
+--
+
+````
+`inline code`
+````
+`inline code`
+
+---
+
+## R Markdown: Basic Syntax
+
+Use a backslash `\` to make special characters visible, e.g., to interpret them literally:
+
+--
+
+````
+I want to use \* for emphasis, not for italics: \*great\*
+````
+I want to use \* for emphasis, not for italics: \*great\*
+
+--
+
+````
+I do not want a list here, I want the literal number followed by a dot: 1\.
+````
+I do not want a list here, I want the literal number followed by a dot: 1\.
+
+
+
+
+---
+
+## R Markdown: Unordered lists
+
+Use either `*`, `-`, or `+`, then a space, then the text:
+
+.pull-left[
+
+````
++ item 1
+  + sub
+  + sub
+- item 2
+  - sub
+  - sub
++ item 3
+  - sub
+  * sub
+- item 4
+  * sub
+  * sub
+````
+
+]
+.pull-right[
+
++ item 1
+  + sub
+  + sub
+- item 2
+  - sub
+  - sub
++ item 3
+  - sub
+  * sub
+- item 4
+  * sub
+  * sub
+]
+
+---
+
+## R Markdown: Ordered lists
+
+Write the number 1, followed by a period or a round bracket, then a space, then the text. 
+For nested lists, indent once and use `+`, `*`, or `-` followed by a space: 
+
+.pull-left[
+
+````
+1. item 1
+    + sub
+        + sub sub
+    + sub
+1. item 2
+    * sub
+        * sub
+1) item 3
+    - sub
+       + sub
+````
+
+]
+.pull-right[
+
+1. item 1
+    + sub
+        + sub sub
+    + sub
+1) item 2
+    * sub
+        * sub sub
+    * sub
+1. item 3
+    - sub
+        + sub sub
+    
+]
+
+---
+
+## R Markdown: Headers
+
+Use `#` to add headers. The more `#`, the smallest the header:
+
+.pull-left[
+
+````
+# Main title, 1st level
+
+## Section title, 2nd level
+
+### Subsection title, 3rd level
+
+#### Subsection title, 4th level
+
+Write regular-sized sentences without `#`
+
+````
+
+]
+.pull-right[
+
+# Main title, 1st level
+
+## Section title, 2nd level
+
+### Subsection title, 3rd level
+
+#### Subsection title, 4th level
+
+Write regular-sized sentences without `#`
+
+]
+
+--
+
+NB: in R scripts or in `.Rmd` code chunks, `#` are used for comments, the number of `#` does not matter for comments
+
+---
+
+## R Markdown: links, tables, pictures
+
+**Link**: write the linked text in brackets `[]`, followed immediately by the URL in parentheses `()`. 
+
+````
+[R Studio](https://www.rstudio.com/)
+````
+
+**Picture**: make sure the picture is in your folder, then type `![text](picture link, "title")`. The title is optional.
+
+**Table**: use `-----` for rows and `|` for columns. See https://www.markdownguide.org/extended-syntax/
+
+---
+
+
+## R Markdown: tables
+
+```{r}
+data(gun_deaths)
+youth <- gun_deaths %>% filter(age <= 65)
+#knitr::kable(gun_deaths)
+```
+
+--
+
+```{r}
+youth <- gun_deaths %>% filter(age <= 65)
+colsrename <- str_to_title(names(youth))
+
+# note: excerpting table for speed / rendering
+kable(youth[1:15,], col.names = colsrename, 
+                         align = c(rep("c", 7), "l", "r", "l"), 
+                         caption = "Table 1. etc.")
+```
+
+
+
+---
+
+## R Markdown: Inline code
+
+.small[
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(rcis)
+```
+
+## Gun deaths by age
+
+Data for this plot come from the `gun_deaths` dataset.We have data about `r nrow(gun_deaths)` individuals killed by guns.
+Only `r nrow(gun_deaths) - nrow(youth)` are older than 65. The distribution of the remainder is shown in the figure below.
+
+```{r youth-dist, fig.cap = "Gun Death Victims Over 65",  echo = FALSE}
+youth <- gun_deaths %>% filter(age <= 65)
+youth %>% 
+  ggplot(aes(age)) + 
+  geom_freqpoly(binwidth = 1)
+```
+````
+
+]
+
+---
+
+## R Markdown: Inline code
+
+```{r youth, include = FALSE}
+youth <- gun_deaths %>% filter(age <= 65)
+```
+
+````{verbatim, lang = "markdown", echo = TRUE}
+Data for this plot come from the `gun_deaths` dataset.
+We have data about `r nrow(gun_deaths)` individuals killed by guns.
+
+Only `r nrow(gun_deaths) - nrow(youth)` are older than 65.
+The distribution of the remainder is shown in the previous figure.
+````
+
+--
+
+Data for this plot come from the `gun_deaths` dataset.
+We have data about `r nrow(gun_deaths)` individuals killed by guns.
+
+Only `r nrow(gun_deaths) - nrow(youth)` are older than 65.
+The distribution of the remainder is shown in the previous figure.
+
+
+---
+
+class: inverse, middle
+
+# Practice 1 (~10 min)
+
+Complete this tutorial: <https://commonmark.org/help/tutorial/>
+
+
+---
+
+## R Markdown: Naming code chunks 
+
+A named code chunk:
+````{verbatim, lang = 'markdown', echo = TRUE}
+```{r youth-dist2}
+# code goes here
+```
+````
+
+Advantages:
+
+1. More easily navigate to specific chunks (using the drop-down code navigator in the bottom-left of the script editor). Notice: Two code chunks should not have the same name.
+
+1. Graphics produced by the chunks will have useful names
+
+1. Used with `cache = TRUE`, allows to set up cached chunks to avoid re-performing expensive computations on every run 
+
+--
+
+`cache = TRUE` save the output of the chunk to a file on memory. On subsequent runs, R will check if the code chunk has changed; if not, R reuses it rather than re-running (Ch. 27 R for Data Science)
+
+---
+
+## R Markdown: Code chunks options
+
+**`eval = FALSE`** code is not evaluated; code appears in the report, results do not appear in the report (useful to show an example code in your report, or when code has an error you want to show). Default is `eval = TRUE` 
+
+**`include = FALSE`** code is evaluated; code does not appear in the report, nor do results (useful when you do not want to clutter your report with too much code). Default is `include = TRUE`
+
+**`echo = FALSE`** code is evaluated; code does not appear in the report, results appear in the report (useful to show your output to people that are not interested in the code that produced it, or for demos of hw2 and hw3 which had the graphs but not code). Default is `echo = TRUE`
+
+**`error = TRUE`** code is evaluated and appear in the report even if there is an error (e.g. to knit with errors). Default is `error = FALSE`
+
+**`message = FALSE`** or **`warning = FALSE`** prevents messages or warnings from appearing in the  report. Defaults is `message = TRUE` or `warning = TRUE`
+
+---
+
+## R Markdown: Code chunks options
+
+```{r}
+include_graphics(path = "chunk_options.jpg")
+```
+
+Source: https://r4ds.had.co.nz/r-markdown.html#chunk-options
+
+Full list: full list at http://yihui.name/knitr/options/
+
+---
+
+## Global options
+
+Use global options if you want to change the default chunk options for all chunks in your file. 
+
+In a code chunk (usually at the top of the document) type `knitr::opts_chunk$set()` with your options. For example, if we want to hide the code by default:
+
+```r
+knitr::opts_chunk$set(
+  echo = FALSE
+)
+```
+
+---
+
+class: inverse, middle
+
+# Practice 2 (~10 min)
+
+Open **`gun-deaths.Rmd`**  
+> `usethis::use_course("CFSS-MACSS/a-deep-dive-into-r-markdown")`
+
+1. Observe how the file is structured, then knit it, and observe the output
+
+2. Modify the code chunks options of the two code chunks that generate the graphs. For example: set one chunk to `eval = FALSE` and the other to `include = FALSE` and knit it; or create a bug in one of the code chunk and try to knit it
+
+3. Add to the global options `echo = FALSE` and observe the output
+
+---
+
+## YAML header specifications
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+author: "Jean Clipperton"
+output: html_document
+---
+````
+
+* **Y**et **A**nother **M**arkup **L**anguage
+* Standardized format for storing hierarchical data in a human-readable syntax
+* Defines how your `.Rmd` file is rendered
+
+See Chapter 27 of R for Data Science for more on YAML header (e.g., parameters, bibliogrpahies and citations). Here we review some topics not mentioned in that Chapter.
+
+---
+
+## YAML header specifications
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+author: "Jean Clipperton"
+output: html_document
+---
+````
+
+---
+
+## YAML header specifications: Table of contents
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+author: "Jean Clipperton"
+output: 
+  html_document
+    toc: true
+    toc_depth: 2
+---
+````
+
+---
+
+## YAML header specifications: Apparence and Style
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+author: "Jean Clipperton"
+output: 
+  html_document
+    theme: readable
+    fig_width: 8
+    fig_height: 6
+---
+````
+
+
+---
+
+## YAML header specifications: Date as string
+
+We can add a date and modify it every time we modify our file. We can add a date as a simple string:
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+output: html_document
+date: "July 3, 2023"
+---
+````
+
+--
+
+But adding the date manually is not scalable. We can add it automatically instead. 
+
+---
+
+## YAML header specifications: `lubridate` 
+
+Add the date automatically using `lubridate`:
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+output: html_document
+date: "`r lubridate::today()`"
+---
+````
+
+For more on the `lubridate` package: [Chapter 16 of R for Data Science](https://r4ds.had.co.nz/dates-and-times.html)
+
+---
+
+## YAML header specifications: `Sys.Date`
+
+Add the date automatically using `Sys.Date`:
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+output: html_document
+date: "`r Sys.Date()`"
+---
+````
+
+`Sys.Date` returns the current day in the current time zone. The default uses the format year/month/day.
+
+---
+
+## YAML header specifications: `Sys.time`
+
+Add the date automatically using `Sys.time`:
+
+````{verbatim, echo = TRUE}
+---
+title: "Gun deaths"
+output: html_document
+date: "`r format (Sys.time(), '%d, %B, %Y')`"
+---
+````
+
+`Sys.time` returns an absolute date-time value which can be converted to various time zones, and it more easily is customizable.
+
+This format says we want the date as: numeric day, full name of the month, and full (4-digit) year, but it can be changed
+
+---
+
+## YAML header specifications: Date formats
+
+
+Symbol |	Meaning	| Example |
+-------|----------|---------|
+%d |	day as a number | 	01-31 |
+%a | abbreviated weekday | Mon |
+%A |	unabbreviated weekday	| Monday  |
+%m |	month | 00-12 |
+%b | abbreviated month | Jan |
+%B |	unabbreviated month	|January |
+%y | 2-digit year | 07 |
+%Y |	4-digit year	| 2007 |
+
+Source: https://www.statmethods.net/input/dates.html     
+Documentation: https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/strptime 
+
+---
+
+class: inverse, middle
+
+# Practice 3 (~10 min)
+
+Open **`gun-deaths.Rmd`** (get the repo from the website). Modify the YAML header as follows:
+
+1. Add a table of contents (toc), a theme (https://www.datadreaming.org/post/r-markdown-theme-gallery/), and set the default fig_width to 6 and fig_height to 4 
+
+2. Instead of using `lubridate`, modify the date using `Sys.time()`. Render the following two dates exaclty as they appear here (using a comma (,) in the first and a slash (/) in the second):
+  * July 3, 2023
+  * 2023/07/03
+  
+3. Make a table with at least three rows and at least three columns
+
+---
+
+class: tiny
+
+## R scripts
+
+```{embed, file = here("static", "extras", "gun-deaths.R"), echo = TRUE}
+```
+
+---
+
+### When to use a script
+
+* For troubleshooting
+* Initial stages of project
+* Building a reproducible pipeline
+* It depends
+
+---
+
+## Acknowledgments 
+
+The content of these slides is derived in part from Sabrina Nardin and Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY NC 4.0 Creative Commons License. Any errors or oversights are mine alone.
