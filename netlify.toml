@@ -5,5 +5,3 @@
 [build.environment]
   HUGO_VERSION = "0.110.0"
   HUGO_ENABLEGITINFO = "false"
-  HUGO_THEME = "whisper"
-  HUGO_BASEURL = "/"
