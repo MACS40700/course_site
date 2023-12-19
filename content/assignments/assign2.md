@@ -1,0 +1,54 @@
+---
+title: "Assignment 2"
+date: 2024-01-19T13:30:00-06:00  # Schedule page publish date
+publishDate: 2019-03-01T12:25:00-05:00
+draft: false
+
+summary: "EDA: one plot + proposal"
+---
+
+# Part 1: Portfolio 1 proposal
+
+For this portion of the assignment, you need to provide a THREE GRAPH PLAN for exploring a question / dataset. You will identify a relevant independent and dependent variable and provide plots that give us information about the variables separately and then a plot that demonstrates their overall relationship / association.
+
+While there are only three graphs here, this means that you will be graded on only three graphs. You want to carefully think about your question, the potential variables, any filtering / cleaning / etc. that needs to be done, and then any polishing that needs to be done on your graphs.
+
+You will also provide a write-up of these graphs that can go into a portfolio you share when you are on the job market / applying to graduate school. (See assignment 3 for more details.)
+
+In this assignment, you need to provide:
+
+-   Your dataset (source)
+-   Your tentative research question
+-   Any cleaning that needs done
+-   A sketch of the three graphs (literal sketches -- does not need to be with real data aside from the first plot).
+-   Any challenges you are anticipating
+
+Note that this is open-ended and you can choose your difficulty level to match your skills. If you are newer to R / programming, you may want to choose an 'off the shelf' dataset that does not require much cleaning. If you are a more experienced programmer, working on your own research, you can use something that might need a bit more cleaning.
+
+# Part 2: EDA + critique
+
+While you don't you need to provide a clear vision for each of the plots, you will provide a rough draft of your first plot here.
+
+In this, provide the graph and approximately 200 words on the plot, why it is designed the way it is, and what feedback you would like. If there are elements you are stuck on / need help with, mention that, too!
+
+Note that while this is a rough draft, it needs to have a title, labeled axes, etc.
+
+## Grading
+
+Your visualization will be evaluated using the following criteria:
+
+-   Is it truthful?
+-   Is it functional?
+-   Is it beautiful?
+-   Is it insightful?
+-   Is it enlightening?
+
+In addition to the visualization and accompanying narrative, write an approximately 500 word explanation defending your design choices. This includes (but is not limited to):
+
+-   What is the story?
+-   Why did you select this graphical form?
+-   What is the role of interactivity? How does it enhance your ability to tell the story and communicate the data?
+
+## Submission details
+
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/YW1Ypwo_)

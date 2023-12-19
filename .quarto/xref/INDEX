@@ -16,5 +16,29 @@
   },
   "content/assignments/assign5.qmd": {
     "assign5.md": "0c6ca94a"
+  },
+  "content/old_assignments/final-project.qmd": {
+    "final-project.md": "8dc6b7e8"
+  },
+  "public/assignments/assign1.qmd": {
+    "assign1.md": "466ddbd1"
+  },
+  "public/assignments/assign2.qmd": {
+    "assign2.md": "a0f307c4"
+  },
+  "public/assignments/assign3.qmd": {
+    "assign3.md": "10aacbb3"
+  },
+  "public/assignments/assign4.qmd": {
+    "assign4.md": "1eae8e21"
+  },
+  "public/assignments/assign5.qmd": {
+    "assign5.md": "ad4ec351"
+  },
+  "public/assignments/final-project.qmd": {
+    "final-project.md": "6ae63980"
+  },
+  "public/notes/basics-of-graphics/index.qmd": {
+    "index.md": "3b15abb8"
   }
 }
