@@ -1,10 +1,10 @@
 ---
-date: "2023-11/21T00:00:00-05:00"
+date: "2022-09-25T00:00:00-05:00"
 draft: false
-title: "Notes"
+title: ""
 toc: true
 type: book
-weight: 5
+weight: 1
 ---
 
-This section contains common questions and general information about the course. Use the left pane to navigate topics. 
+This section contains lecture notes and exercises for the course.

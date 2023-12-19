@@ -10,11 +10,11 @@ main:
   - name: FAQ
     url: '/faq/'
     weight: 20
-  - name: Schedule
+  - name: Schedule of Topics
     url: '/syllabus/'
     weight: 30
-  - name: Assignments
-    url: '/assignments/'
+  - name: Homework
+    url: '/homework/'
     weight: 40
   - name: Setup
     url: '/setup/'

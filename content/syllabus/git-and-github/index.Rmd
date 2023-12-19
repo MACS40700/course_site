@@ -28,7 +28,7 @@ tags: []
 
 # Links (optional).
 url_pdf: ""
-url_slides: "/slides/intro-to-course/"
+url_slides: "/slides/intro-to-git/"
 url_video: ""
 url_code: ""
 

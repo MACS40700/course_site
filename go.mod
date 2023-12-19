@@ -1,10 +1,9 @@
-module github.com/MACS40700/course_site
+module github.com/wowchemy/wowchemy-shortcode-starter
 
 go 1.15
 
 require (
-	github.com/willfaught/paige v0.71.4 // indirect
-	github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-plugin-netlify v1.0.0 // indirect
+	github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-plugin-netlify v1.1.0 // indirect
 	github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy-plugin-netlify-cms v1.0.0 // indirect
 	github.com/wowchemy/wowchemy-hugo-themes/modules/wowchemy/v5 v5.6.0 // indirect
 )

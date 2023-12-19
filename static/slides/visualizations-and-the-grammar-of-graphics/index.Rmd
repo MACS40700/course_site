@@ -1,6 +1,6 @@
 ---
 title: "Visualizations and the Grammar of Graphics"
-author: "MACSS 40700 <br /> University of Chicago"
+author: "MACSS 30500 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
     css: xaringan-themer.css
@@ -102,7 +102,7 @@ style_duo_accent(
   )
 )
 
-source(here::here("..","..", "R", "slide-opts.R"))
+source(here::here("R", "slide-opts.R"))
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
