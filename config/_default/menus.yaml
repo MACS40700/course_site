@@ -13,12 +13,12 @@ main:
   - name: Schedule of Topics
     url: '/syllabus/'
     weight: 30
-  - name: Homework
-    url: '/homework/'
+  - name: Assignments
+    url: '/assignments/'
     weight: 40
   - name: Setup
     url: '/setup/'
     weight: 50
-  - name: Notes
-    url: '/notes/'
-    weight: 60
+  # - name: Notes
+  #   url: '/notes/'
+  #   weight: 60
