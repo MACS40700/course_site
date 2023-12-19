@@ -1,5 +1,5 @@
 ---
-date: "2023-11/22T00:00:00-05:00"
+date: "2023-11/20T00:00:00-05:00"
 draft: false
 title: ""
 toc: true
@@ -33,9 +33,18 @@ You can see our tentative topics below.
 | 05-Mar | Final project due             |  | [final project](/assignments/final-project/)|
 
 
+## TA & Office Hours 
+TA: Zihua Chen
+Prof: Jean Clipperton
 
 ## Assignments / grading
 You can see our assignments listed out above with their respective deadlines. Generally speaking, you can expect the assignments and deadlines to be constant. 
+
+* Each assignment is graded along a check / check-plus / check-minus with most assignments getting a 'check', this includes the final assignment. 
+* Getting all checks is sufficient for a B+ in the course. 
+* A check-plus on the final is required for an A- in the course. 
+* Distinctions between and A and A- come from overall quality of work (at least two homework assignments at the check-plus level in addition to the final exam), and general engagement in the course. 
+* The distinction between a check and a check-plus comes from the level of completion. A check-level assignment satisfies the requirements of the prompt but may not be as polished or thoughtful. For more on the rubric, see [the rubric discussion](/faq/homework-evaluations).
 
 ## Course policies
 ### Access & Inclusion

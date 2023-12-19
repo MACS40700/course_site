@@ -1,13 +1,13 @@
 ---
 title: "Introduction to data visualization"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output: xaringan::moon_reader
 ---
 
 ```{r setup, include = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 source(here::here("R", "slide-opts.R"))
 knitr::opts_chunk$set(echo = FALSE)
@@ -22,7 +22,7 @@ library(datasauRus)
 library(gganimate)
 library(socviz)
 library(patchwork)
-library(rcfss)
+library(rcis)
 library(tidycensus)
 library(statebins)
 library(here)
@@ -490,7 +490,7 @@ class: center
 ggplot(datasaurus_dozen, aes(x = x, y = y))+
   geom_point() +
   coord_fixed() +
-  theme_minimal(base_size = rcfss::base_size) +
+  #theme_minimal(base_size = rcfss::base_size) +
   transition_states(dataset, 3, 3) + 
   ease_aes('cubic-in-out')
 ```

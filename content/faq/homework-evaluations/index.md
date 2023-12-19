@@ -32,9 +32,9 @@ Let's pull back the curtain and demystify how I calculate final grade!
 * If you earn a combination of "Satisfactory" and "Needs Improvement" scores, then you might be somewhere between a B+ and a B or lower.
 * Etc. etc.
 
-Historically, 90% of students in the class earn a B+ or higher. 
+<--Historically, 90% of students in the class earn a B+ or higher.--> 
 
-The final grade is calculated assuming you are submitting all homework assignments. Missed assignments or incomplete work will negatively affect your grade. We have a total of 8 assignments in the class; each is worth roughly 12.5% of your final grade. A missed assignment is worth 0%.
+The final grade is calculated assuming you are submitting all homework assignments and the final project. Missed assignments or incomplete work will negatively affect your grade. A missed assignment is worth 0%.
 
 
 
@@ -44,30 +44,34 @@ The final grade is calculated assuming you are submitting all homework assignmen
 
 Topic| Excellent: <br> ✓+ coded as +  | Satisfactory: <br> ✓ coded as 0  |Needs improvement: <br> ✓- coded as - |
 |-----------| ---------------------- |--------------------------| ----------------------|
-|Coding style| Student has gone beyond what was expected and required, coding conventions are followed, code is well commented. | Coding style lacks refinement and has some errors, but code is readable and has some comments. | Many errors in coding style, little attention paid to making the code human readable.|
-|Coding strategy| Complicated problem broken down into sub-problems that are individually much simpler. Code is efficient, correct, and minimal. Code uses appropriate data structure (list, data frame, vector/matrix/array). Code checks for common errors.  | Code is correct, but could be edited down to leaner code. Some "hacking" instead of using suitable data structure. Some checks for errors. |   Code tackles complicated problem in one big chunk. Code is repetitive and could easily be functionalized. No anticipation of errors. |
-|Presentation | Graph(s) carefully tuned for desired purpose. One graph illustrates one point. <br><br> Table(s) carefully constructed to make it easy to perform important comparisons. Careful styling highlights important features. <br><br> Full command of Markdown syntax and its components. | Graph(s) well chosen, but with a few minor problems: inappropriate aspect ratios, poor labels. <br><br> Table(s) generally appropriate but possibly some minor formatting deficiencies. <br><br> Appropriate use of Markdown syntax and its components, but with some minor deficiencies. | Graph(s) poorly chosen to support questions. <br><br> Table(s) with too many, or inconsistent, decimal places. Table(s) not appropriate for questions and findings. <br><br> Major display problems with graphs, tables and/or Markdown components.|
-|Achievement, mastery, cleverness, creativity|Student has gone beyond what was expected and required, e.g., extraordinary effort, additional tools not addressed by this course and/or shows sophisticated application of tools from course.|Tools and techniques from the course are applied very competently and, perhaps, somewhat creatively. Chosen task was acceptable, but fairly conservative in ambition.|Student does not display the expected level of mastery of the tools and techniques in this course. Chosen task was too limited in scope.|
-|Reproducibility, compliance with course conventions for submitted work|Access is as easy as possible, comply with reproducibility conventions, code runs, workflow is correct. | Code partially complies with reproducibility conventions and/or code does not run. | Not an earnest effort to reduce friction and comply with conventions and/or code does not run.|
+|**Truthfulness of graphic**| Visualizations are accurate representations of underlying phenomena. | Some misleading or confusing aspects of the graph. | Visualization misrepresents underlying data in a significant and/or meaningful way.    <br><br>|
+|**Functionality of graphic** | Graph(s) carefully tuned for desired purpose. One graph illustrates one point. <br><br> Table(s) carefully constructed to make it easy to perform important comparisons. Careful styling highlights important features. <br><br> Full command of Markdown syntax and its components. | Graph(s) well chosen, but with a few minor problems: inappropriate aspect ratios, poor labels. <br><br> Table(s) generally appropriate but possibly some minor formatting deficiencies. <br><br> Appropriate use of Markdown syntax and its components, but with some minor deficiencies. | Graph(s) poorly chosen to support questions. <br><br> Table(s) with too many, or inconsistent, decimal places. Table(s) not appropriate for questions and findings. <br><br> Major display problems with graphs, tables and/or Markdown components.<br><br>|
+|**Beauty of graphic**| Visualizations follow design principles from class, have excellent use of color and design and are noteworthy in overall aesthetic. | Visualizations generally follow principles from class but some room for improvement.  | Significant issues with visualizations. <br><br>    |
+|**Insight and enlightening-ness** |Student has gone beyond what was expected and required, e.g., extraordinary effort, additional tools not addressed by this course and/or shows sophisticated application of tools from course.|Tools and techniques from the course are applied very competently and, perhaps, somewhat creatively. Chosen task was acceptable, but fairly conservative in ambition.|Student does not display the expected level of mastery of the tools and techniques in this course. Chosen task was too limited in scope.<br><br>|
+|**Technical aspects, e.g. Coding style**| Student has gone beyond what was expected and required, coding conventions are followed, code is well commented. | Coding style lacks refinement and has some errors, but code is readable and has some comments. | Many errors in coding style, little attention paid to making the code human readable.<br><br>|
+|**Reproducibility, compliance with course conventions for submitted work**|Access is as easy as possible, comply with reproducibility conventions, code runs, workflow is correct. | Code partially complies with reproducibility conventions and/or code does not run. | Not an earnest effort to reduce friction and comply with conventions and/or code does not run.|
 
 ## Template
 
 ```
 Evaluation
-----------------------------------------------------
-| Topic                       | Excellent | Satisfactory | Needs Improvement |
-|-----------------------------|-----------|--------------|------------|
-| **Coding style**            |           |              |            |
-| **Coding strategy**         |           |              |            |
-| **Presentation**            |           |              |            |
-| **Achievement, creativity** |           |              |            |
-| **Reproducibility**         |           |              |            |
+--------------------------------------------------------------------------------------
+| Topic                               | Excellent | Satisfactory | Needs Improvement |
+|-------------------------------------|-----------|--------------|-------------------|
+| **Truthfulness of visualization**     |           |              |            |
+| **Functionality of visualization**    |           |              |            |
+| **Beauty of visualization**           |           |              |            |
+| **Insight and** 
+| **Enlightening-ness of of visualization** |           |              |            |
+| **Technical aspect (code, etc.) **    |           |              |            |
+| **Reproducibility**                   |           |              |            |
 
 Examples of further remarks:
 
 * Elaborate on above, especially for "Needs improvement"
 * Some specific praise
 * Specific constructive criticism
+
 
 ```
 

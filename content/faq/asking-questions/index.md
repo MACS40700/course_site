@@ -12,7 +12,7 @@ aliases: "/hw00_asking_questions.html"
 
 Asking questions is an important part of this class. Remember the **15 minute rule**: Once you've spent 15 minutes attempting to troubleshoot a problem, ask for help.
 
-Questions should be posted to [Ed Discussion](https://edstem.org/us/courses/29905/discussion/) in the appropriate category. Here are some **tips** you should always follow when posting questions.
+Questions should be posted to [Ed Discussion](https://edstem.org/us/courses/49641/discussion/) in the appropriate category. Here are some **tips** you should always follow when posting questions.
 
 ## Introduce the problem with an informative title
 
