@@ -1,0 +1,858 @@
+---
+title: "Data transformation"
+author: "MACSS 30500 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# generate CSS file
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#011f4b",
+  secondary_color = "#bbd6c7",
+  inverse_header_color = "#222222",
+  black_color = "#222222",
+  header_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  text_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  code_font_google = xaringanthemer::google_font("Source Code Pro"),
+  base_font_size = "24px",
+  code_font_size = "20px",
+  # title_slide_background_image = "https://github.com/uc-dataviz/course-notes/raw/main/images/hexsticker.svg",
+  # title_slide_background_size = "contain",
+  # title_slide_background_position = "top",
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.75rem",
+  header_h3_font_size = "1.5rem",
+  extra_css = list(
+    "h1" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h2" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h3" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    ".tiny" = list("font-size" = "70%"),
+    ".small" = list("font-size" = "90%"),
+    ".midi" = list("font-size" = "150%"),
+    ".tiny .remark-code" = list("font-size" = "70%"),
+    ".small .remark-code" = list("font-size" = "90%"),
+    ".midi .remark-code" = list("font-size" = "150%"),
+    ".large" = list("font-size" = "200%"),
+    ".xlarge" = list("font-size" = "600%"),
+    ".huge" = list(
+      "font-size" = "400%",
+      "font-family" = "'Montserrat', sans-serif",
+      "font-weight" = "bold"
+    ),
+    ".hand" = list(
+      "font-family" = "'Gochi Hand', cursive",
+      "font-size" = "125%"
+    ),
+    ".task" = list(
+      "padding-right" = "10px",
+      "padding-left" = "10px",
+      "padding-top" = "3px",
+      "padding-bottom" = "3px",
+      "margin-bottom" = "6px",
+      "margin-top" = "6px",
+      "border-left" = "solid 5px #F1DE67",
+      "background-color" = "#F3D03E"
+    ),
+    ".pull-left" = list(
+      "width" = "49%",
+      "float" = "left"
+    ),
+    ".pull-right" = list(
+      "width" = "49%",
+      "float" = "right"
+    ),
+    ".pull-left-wide" = list(
+      "width" = "70%",
+      "float" = "left"
+    ),
+    ".pull-right-narrow" = list(
+      "width" = "27%",
+      "float" = "right"
+    ),
+    ".pull-left-narrow" = list(
+      "width" = "27%",
+      "float" = "left"
+    ),
+    ".pull-right-wide" = list(
+      "width" = "70%",
+      "float" = "right"
+    ),
+    ".blue" = list(color = "#2A9BB7"),
+    ".purple" = list(color = "#a493ba"),
+    ".yellow" = list(color = "#f1de67"),
+    ".gray" = list(color = "#222222")
+  )
+)
+
+source(here::here("R", "slide-opts.R"))
+knitr::opts_chunk$set(echo = FALSE)
+
+# enable panelsets and default theme
+xaringanExtra::use_panelset()
+```
+
+```{r pkgs, include = FALSE, cache = FALSE}
+# devtools::install_github("gadenbuie/tweetrmd")
+library(tweetrmd)
+library(tidyverse)
+library(palmerpenguins)
+library(nycflights13)
+library(rcis)
+library(knitr)
+library(countdown)
+
+set.seed(1234)
+theme_set(theme_gray(base_size = 16))
+```
+
+## Reminders
+
+- Check in on Homework 1
+  - submit link to your repo on Canvas
+  - check general rubric and HW specific rubric on our website
+  
+  
+- Last lecture: visualization and ggplot2
+  - review assigned readings and class notes (esp. "Defaults" section)
+  - practice practice practice
+  
+  
+- Homework 2 opens today  
+  - covers data visualization, transformation, and exploration
+
+
+---
+# Editing your files: Script and RMD structure
+
+
+* [Consider how to structure your R scripts](https://bookdown.org/yih_huynh/Guide-to-R-Book/r-conventions.html)
+* [Rmarkdown (intermediate)](https://posit.co/blog/r-markdown-tips-tricks-2-cleaning-up-your-code/)
+* [Rmarkdown resources](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+---
+
+class: inverse, middle
+
+# Programming as a form of problem-solving
+
+---
+
+## `penguins`
+
+```{r out.width = "80%"}
+include_graphics(path = "../../../static/img/lter_penguins.png")
+```
+
+---
+
+## `penguins`
+
+```{r echo = TRUE}
+penguins
+```
+
+---
+
+## What is the average body mass of an Adelie penguin?
+
+.panelset[
+.panel[.panel-name[Conceptual]
+
+1. First we need to identify the **input**, or the data were going to analyze: `penguins` data frame
+1. Next we need to **select** only the observations classified as species Adelie penguins
+1. Finally we need to calculate the average value, or **mean**, of the variable `body_mass_g`
+
+
+
+```{r echo = TRUE}
+head(penguins, 5)
+```
+
+]
+
+.panel[.panel-name[Code]
+
+```{r avg-mass-adelie, echo = TRUE}
+library(palmerpenguins)
+data("penguins")
+penguins_adelie <- filter(.data = penguins, species == "Adelie")
+summarize(.data = penguins_adelie, avg_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+]
+]
+
+---
+
+## What is the average body mass of a penguin for each species?
+
+.panelset[
+.panel[.panel-name[Conceptual]
+
+1. First we need to identify the **input**, or the data were going to analyze: our `penguins` data frame
+1. Next we need to **group** the observations by species
+1. Finally we need to calculate the average value, or **mean**, of the variable `body_mass_g`
+
+```{r echo = FALSE}
+head(penguins, 5)
+```
+
+]
+
+.panel[.panel-name[Code]
+
+```{r avg-mass-species, echo = TRUE}
+library(palmerpenguins)
+data("penguins")
+penguins_species <- group_by(.data = penguins, species)
+summarize(.data = penguins_species, avg_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+]
+]
+
+---
+
+class: inverse, middle
+
+# Data transformation with dplyr
+
+---
+
+```{r echo = FALSE, fig.alt = "Cartoon of a fuzzy monster with a cowboy hat and lasso, riding another fuzzy monster labeled 'dplyr', lassoing a group of angry / unruly looking creatures labeled 'data.'", out.width = "55%"}
+include_graphics(path = "https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/dplyr_wrangling.png")
+```
+
+Documentation: **https://dplyr.tidyverse.org/**
+
+.footnote[Source of image: [Allison Horst](https://github.com/allisonhorst/stats-illustrations)]
+
+---
+
+## Flow for data transformation
+
+
+1. The first argument is a data frame
+--
+
+1. Subsequent arguments describe what to do with the data frame
+
+--
+1. The result is a **new data frame**
+
+--
+
+`dplyr` contains useful functions for transforming and manipulating data frames. 
+
+These functions can be thought of as **verbs that define actions** to be performed on the data: 
+the noun is the data, and the verb is acting on the noun. 
+
+All of the dplyr verbs (all the verbs in the wider tidyverse) work similarly.
+
+---
+
+## Key functions in `dplyr`
+
+
+`function()`  | **Action performed**
+--------------|--------------------------------------------------------
+`filter()`    | Picks observations from the data frame based on their values (operates on rows)
+`arrange()`   | Changes the order of observations based on their values
+`select()`    | Picks columns/variables from the data frame based on their names (operates on columns)
+`rename()`    | Changes the name of columns in the data frame
+`mutate()`    | Creates new columns from existing ones
+`group_by()`  | Changes the unit of analysis from the complete data frame to individual groups
+`summarize()` | Collapses the data frame to a smaller number of rows which summarize the larger data
+
+These are the basic verbs you will commonly use to transform your data. By **combining them together**, you can perform powerful data manipulation tasks.
+
+---
+
+## American vs. British English
+
+.pull-left[
+
+```{r tweet}
+include_tweet("https://twitter.com/hadleywickham/status/405707093770244097", plain = TRUE)
+```
+]
+
+--
+
+.pull-right[
+
+```{r swanson, echo = FALSE, fig.width = 6}
+include_graphics("https://media.giphy.com/media/8KnfG3knLExpu/giphy.gif")
+```
+
+]
+
+--
+
+* US `summarize()` = UK `summarise()`
+* US `color()` = UK `colour()`
+
+---
+
+## Look again at key functions in `dplyr`
+
+
+`function()`  | Action performed
+--------------|--------------------------------------------------------
+`filter()`    | Picks observations from the data frame based on their values (operates on rows)
+`arrange()`   | Changes the order of observations based on their values
+`select()`    | Picks columns/variables from the data frame based on their names (operates on columns)
+`rename()`    | Changes the name of columns in the data frame
+`mutate()`    | Creates new columns from existing ones
+`group_by()`  | Changes the unit of analysis from the complete data frame to individual groups
+`summarize()` | Collapses the data frame to a smaller number of rows which summarize the larger data
+
+---
+
+# dplyr in action: trying out functions:
+
+* filter(data, criteria) (other rows discarded)
+* arrange(.data, by, how) (sort your table by value(s))
+* select() (select the columns you wish to keep DANGER!)
+* rename(.data, newvarname = oldvarname) (rename variables)
+* mutate() (create variable based on prior variable(s))
+* group_by() (get ready to do math/mutations/etc based on some kind of aggregate factor)
+* summarize() (do that math!)
+
+
+---
+
+# dplyr in action: trying out functions:
+```{r, echo = TRUE, eval = FALSE}
+penguins2<-filter(penguins, sex == "female")
+arrange(penguins, bill_length_mm) # notice: what did this do?
+favorite_penguins <- select(penguins, sex) #how is this different from filter?
+oops <-rename(penguins, KINDofPENGUIN = species) #what is wrong here -- what mistakes did I make?
+penguins$bill_in <- mutate(penguins, bill_depth_in = bill_depth_mm/25.4) 
+penguins_species <- group_by(.data = penguins, species)
+summarize(
+  .data = penguins_species,
+  avg_bill = mean(bill_length_mm, na.rm = TRUE),
+  avg_mass = mean(body_mass_g, na.rm = TRUE)
+)
+```
+
+
+
+## What is the average bill length and body mass for each Adelie penguin by sex?
+
+```{r cache = FALSE}
+countdown(minutes = 5)
+```
+
+---
+### What is the average bill length and body mass for each Adelie penguin by sex?
+.panelset[
+.panel[.panel-name[Filter, then group by]
+
+```{r adelie-filter-group, echo = TRUE}
+library(palmerpenguins)
+data("penguins")
+
+penguins_adelie <- filter(.data = penguins, species == "Adelie")
+penguins_adelie_sex <- group_by(.data = penguins_adelie, sex)
+summarize(
+  .data = penguins_adelie_sex,
+  avg_bill = mean(bill_length_mm, na.rm = TRUE),
+  avg_mass = mean(body_mass_g, na.rm = TRUE)
+)
+```
+
+]
+
+.panel[.panel-name[Group by, then filter]
+
+```{r adelie-group-filter, echo = TRUE}
+library(palmerpenguins)
+data("penguins")
+
+penguins_sex <- group_by(.data = penguins, sex)
+penguins_sex_adelie <- filter(.data = penguins_sex, species == "Adelie")
+summarize(
+  .data = penguins_sex_adelie,
+  avg_bill = mean(bill_length_mm, na.rm = TRUE),
+  avg_mass = mean(body_mass_g, na.rm = TRUE)
+)
+```
+
+]
+]
+
+---
+
+## Saving transformed data (`<-`)
+
+```{r knit-change, cache = FALSE, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+.panelset[
+.panel[.panel-name[Printed, but not saved]
+
+```{r print}
+filter(diamonds, cut == "Ideal")
+```
+
+]
+
+.panel[.panel-name[Saved, but not printed]
+
+```{r save}
+diamonds_ideal <- filter(.data = diamonds, cut == "Ideal")
+```
+
+]
+
+.panel[.panel-name[Saved and printed]
+
+```{r print-save}
+(diamonds_ideal <- filter(.data = diamonds, cut == "Ideal"))
+```
+
+]
+]
+
+---
+
+## Syntactic column names
+
+Normally within tidyverse functions, we can refer to column names directly. For example:
+
+```{r colname-normal-intro}
+count(x = diamonds, color)
+```
+
+Here `color` is a column of the `diamonds` data frame. It has a syntactic name, so we can refer to it directly. This won't work for any column name that is non-syntactic. 
+
+
+---
+
+.pull-left[
+
+### Syntactic column names
+
+```{r colname-normal}
+count(x = diamonds, color)
+```
+
+A **syntactic name** is what R consider a **valid name** and consists of letters, digits, . and `_` but it can’t begin with `_` (or other symbols) or a with a digit
+
+]
+
+--
+
+.pull-right[
+
+### Non-syntactic names
+
+* `Social conservative`
+* `7-point ideology`
+* `_id`
+
+A **non-syntactic name** is name that doesn’t follow these rules or a name that uses a reserved word in R like TRUE, NULL, if, and function (see the complete list in ?Reserved) 
+
+You **do not want to deliberately create non-syntactic names**, BUT you need to understand how they work because you’ll come across them, for ex. with data that has been created outside R
+
+]
+
+
+---
+
+## Referring to non-syntactic names
+
+.pull-left[
+
+### Use backticks
+
+```{r colname-backtick}
+count(x = diamonds, `color`)
+```
+
+]
+
+--
+
+.pull-right[
+
+### Don't use quotation marks
+
+```{r colname-quote}
+count(x = diamonds, "color")
+```
+
+The word “color” has been duplicated 53940 times and tabulated using the count() function. That's a weird behavior and not what we intended!
+
+]
+
+Note that color is actually a syntactic name, so it does not need backticks (it can have them though). The point of this example is to illustrate that with non-syntactic names you want to use backticks rather than "" 
+
+---
+
+## Referring to non-syntactic names
+
+Non-syntactic name without backticks
+```
+7-point ideology <- c("communism", "anarchism", "fascism")
+Error: unexpected symbol in "7-point ideology"
+```
+Non-syntactic name with backticks
+```{r}
+`7-point ideology` <- c("communism", "anarchism", "fascism")
+```
+
+Non-syntactic name without backticks
+```
+if <- 10
+Error: unexpected assignment in "if <-"
+```
+
+Non-syntactic name with backticks
+```{r}
+`if` <- 10
+```
+
+
+
+
+
+
+
+---
+
+class: inverse, middle
+
+# Pipes (`%>%`)
+
+---
+
+## Piping (`%>%`)
+
+
+> Pipes are a special operator in R. They allow you to write a sequence of multiple operations by   **passing the result of one function to another one, in sequence** 
+
+
+Pipes simplify your code and make your operations more intuitive, BUT they are not the only way to write your R code... in fact for a long time they did not even exist in R!
+
+
+Let' start by looking at ways you can write the same code with and without pipes
+
+---
+
+
+## Piping (`%>%`)
+
+Imagine we have the following task:
+**using the penguins dataset, calculate the average body mass for Adelie penguins on different islands**
+
+First, we break down the problem into smaller steps:
+1. Filter penguins to only keep observations where the species is Adelie
+1. Group the filtered penguins by island
+1. Summarize the grouped and filtered penguins by calculating the average body mass
+
+#### How do we implement the code?
+
+---
+
+### Option 1: save each step in a new data frame
+
+```{r no-pipes-new}
+data(penguins)
+
+penguins_1 <- filter(penguins, species == "Adelie")
+penguins_2 <- group_by(penguins_1, island)
+penguins_3 <- summarize(penguins_2, body_mass = mean(body_mass_g, na.rm = TRUE))
+print(penguins_3)
+```
+This is valid code. The drawback is that we have to name each intermediate object. Here each intermediate object is named with a number to the end, which is not good self-documentation. We have to remember that the data exists in each intermediate step and remember to reference the correct one. 
+
+---
+
+### Option 2: replace the original data frame
+
+```{r no-pipes-replace}
+data(penguins)
+
+penguins <- filter(penguins, species == "Adelie")
+penguins <- group_by(penguins, island)
+(penguins <- summarize(penguins, body_mass = mean(body_mass_g, na.rm = TRUE)))
+```
+
+Instead of creating intermediate objects, we can replace the original data frame with the modified form. This is also valid code. The drawback is that if we make an error in the middle of the operation, we need to rerun the entire operation from the beginning.
+
+---
+
+### Option 3: function composition
+
+```{r no-pipes-fcomp}
+data(penguins)
+
+summarize(group_by(filter(penguins, species == "Adelie"), island), 
+          body_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+This is valid code. The drawback is that this code is hard to read, since we need to read it from the inside out, and prone to errors.
+
+---
+
+### Option 4: pipes!
+
+```{r with-pipes}
+penguins %>%
+  filter(species == "Adelie") %>%
+  group_by(island) %>%
+  summarize(body_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+Notice the clearer syntax and the focus on **actions**, not objects.
+
+Pipes **chains a series of functions together**: they automatically pass the output from the first function the next one as the input, producing code that is easily readable by humans.
+
+<!--
+
+## Piping (`%>%`)
+
+.panelset.sideways[
+.panel[.panel-name[No pipes]
+
+```{r no-pipe}
+by_dest <- group_by(
+  .data = flights,
+  dest
+)
+
+delays <- summarise(
+  .data = by_dest,
+  count = n(),
+  dist = mean(distance, na.rm = TRUE),
+  delay = mean(arr_delay, na.rm = TRUE)
+)
+
+delays <- filter(
+  .data = delays,
+  count > 20,
+  dest != "HNL"
+)
+```
+
+]
+
+.panel[.panel-name[With pipes]
+
+```{r pipe}
+delays <- flights %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    dist = mean(distance, na.rm = TRUE),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>%
+  filter(
+    count > 20,
+    dest != "HNL"
+  )
+```
+
+]
+
+]
+-->
+
+---
+
+## Errors to avoid with pipes: example 1
+
+.pull-left[
+
+#### Invalid code
+
+```
+# all flights departed from NYC in 2013
+library(nycflights13)
+data(flights)
+
+delays <- flights %>% 
+  by_dest <- group_by(dest) %>% 
+  delay <- summarize(
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>% 
+  d <- filter(count > 20, dest != "HNL")
+```
+
+]
+
+--
+
+.pull-right[
+
+#### Correct code
+
+```{r}
+# all flights departed from NYC in 2013
+library(nycflights13)
+data(flights)
+
+delays <- flights %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>%
+  filter(count > 20, dest != "HNL")
+```
+
+]
+
+Don’t assign anything within the pipes. That is, **don't not use <- inside the piped operation** for intermediate steps. Only use this at the beginning if you want to save the output
+
+---
+
+## Errors to avoid with pipes: example 2
+
+.pull-left[
+
+#### Invalid code
+
+```
+delays <- flights %>%
+  group_by(dest)
+  summarize(
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  )
+  filter(count > 20, dest != "HNL")
+```
+
+]
+
+--
+
+.pull-right[
+
+#### Correct code
+
+```{r}
+delays <- flights %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>%
+  filter(count > 20, dest != "HNL")
+```
+
+]
+
+Remember to **add the pipe %>% at the end of each line involved in the piped operation**
+
+
+---
+
+## Errors to avoid with pipes: example 3
+
+.pull-left[
+
+#### Invalid code
+
+```
+delays <- flights %>% 
+  group_by(.data = flights, dest) %>% 
+  summarize(.data = flights,
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>% 
+  filter(.data = flights, 
+          count > 20, dest != "HNL")
+```
+]
+
+--
+
+.pull-right[
+
+#### Correct code
+
+```{r}
+delays <- flights %>%
+  group_by(dest) %>%
+  summarize(
+    count = n(),
+    delay = mean(arr_delay, na.rm = TRUE)
+  ) %>%
+  filter(count > 20, dest != "HNL")
+```
+
+]
+
+When you use pipes, **don’t reference the data frame with each function**: just the first time at the beginning of the pipe sequence
+
+---
+
+class: inverse, middle 
+
+## Practice transforming data
+
+---
+### Exercise: built-in datasets
+(group work)
+
+* Call `data()` in R
+* Look over list of data options
+* Choose a dataset
+* Summarize the dataset in a meaningful way (use AT LEAST two of the key functions from slide #13)
+* Post on [ed discussion thread for today](https://edstem.org/us/courses/40496/discussion/3207082)
+
+---
+
+
+class: inverse, middle
+
+## Homework 2 overview
+
+---
+
+## Tips to tackle a coding assignment
+  
+- start early and divide it up in multiple sessions
+- you are stepping outside your comfort zone: some problems (and some frustration) are expected... be patient with yourself
+- jumping right into coding is a bad habit: 
+   * take some time to review the readings and class notes
+   * take some time to think at how you can approach the assignment into small steps
+- form a study group! 
+
+--
+
+**got stack?** 
+- take a break and come back with fresh eyes
+- write down the problem with pen and paper and/or explain it out loud to yourself, your roommate, your dog, cat, fish, etc.
+- 15-min rule, google/stackoverflow, ask a classmate and/or the instructional staff
+- review our website FAQ on how to ask questions
+  
+---
+
+## Acknowledgments 
+
+The content of these slides is derived in part from Sabrina Nardin's and Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY NC 4.0 Creative Commons License. Any errors or oversights are mine alone.
