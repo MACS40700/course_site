@@ -9,14 +9,14 @@ weight: 1
 
 **Welcome to Data Visualization!** You can see our tentative topics below. 
 
-| Date   &nbsp; &nbsp; | Topic                 &nbsp; &nbsp;   &nbsp;       |  Slides    &nbsp; &nbsp;   &nbsp; &nbsp; &nbsp;     |Assignment      | 
+| Date   | Topic            |  Slides    &nbsp; &nbsp;   &nbsp; &nbsp; &nbsp;     |Assignment      | 
 | ------ | ----------------------------- | --------------- | --------------- | 
 | 4-Jan  | Welcome                       |  [slides](slides/01-intro)  |    
 | 9-Jan  | Grammar of graphics           |   [slides](slides/02-grammar-of-graphics)  | [hwk 1](/assignments/assign1/)   |     
 | 11-Jan | Looking at data               |	   [slides](slides/03-look-at-data)        |                 |
 | 16-Jan | geoms                         |  [slides](slides/04-geoms) 	|               |
 | 18-Jan | stats + scales + guides       |  [slides](slides/05-stats-scales-guides)    | [hwk 2](/assignments/assign2/)       |
-| 23-Jan | coordinate systems + faceting | [slides](slides/06-coordinates-facets)|
+| 23-Jan  &nbsp; &nbsp;| coordinate systems + faceting  &nbsp; &nbsp;| [slides](slides/06-coordinates-facets)|
 | 25-Jan | optimizing color spaces       | [slides](slides/07-optimizing-color-spaces)       |           |
 | 30-Jan | themes + axes + annotation    | [slides](slides/08-themes-axes-annotations)  | [hwk 3](/assignments/assign3/)   |
 | 1-Feb  | presentation-ready plots      | [slides](slides/09-presentation-ready-plots)   |               |
