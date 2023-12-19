@@ -34,7 +34,7 @@ You can see our tentative topics below.
 
 
 ## TA & Office Hours 
-TA: Zihua Chen
+TA: Zihua Chen <br>
 Prof: Jean Clipperton
 
 ## Assignments / grading

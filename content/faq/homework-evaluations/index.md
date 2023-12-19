@@ -32,7 +32,7 @@ Let's pull back the curtain and demystify how I calculate final grade!
 * If you earn a combination of "Satisfactory" and "Needs Improvement" scores, then you might be somewhere between a B+ and a B or lower.
 * Etc. etc.
 
-<--Historically, 90% of students in the class earn a B+ or higher.--> 
+<!--Historically, 90% of students in the class earn a B+ or higher.--> 
 
 The final grade is calculated assuming you are submitting all homework assignments and the final project. Missed assignments or incomplete work will negatively affect your grade. A missed assignment is worth 0%.
 
