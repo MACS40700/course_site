@@ -9,8 +9,8 @@ weight: 1
 
 **Welcome to Data Visualization!** You can see our tentative topics below. 
 
-| Date   | Topic                         |  Slides |Assignment      | 
-| ------ | ----------------------------- | --------------- | | --------------- | 
+| Date   | Topic                         |  Slides          |Assignment      | 
+| ------ | ----------------------------- | --------------- | --------------- | 
 | 4-Jan  | Welcome                       |  [welcome slides](slides/intro-to-course/)    |    
 | 9-Jan  | Grammar of graphics           |    [grammar slides](slides/grammar-of-graphics)  | [hwk 1](/assignments/assign1/)           | 
 | 11-Jan | Looking at data               |	                |                 |
