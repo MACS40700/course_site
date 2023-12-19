@@ -5,4 +5,6 @@ header:
 title: Homework assignments
 view: 2
 type: post
+
+aliases: ["/assignments/"]
 ---
