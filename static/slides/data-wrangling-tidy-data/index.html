@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data wrangling: import and tidy data in R</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACSS 30500   University of Chicago" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Data wrangling: import and tidy data in R
+]
+.author[
+### MACSS 30500 <br /> University of Chicago
+]
+
+---
+
+
+
+
+
+
+class: inverse, middle
+
+# Importing data in R
+
+---
+
+## base R VS `readr`
+
+To load data into R we need importing functions. 
+
+There are a number of them depending on the type of file we want to import (see Chapter 11 of R for Data Science for details).
+
+The most common importing functions are those that read **comma delimited files**. There are two versions of them:
+
+- **base R**: `read.csv()`
+
+- **`readr` package**: `read_csv()`
+
+&lt;!-- `read.csv` is a special case of `read.table`, while `read_csv` is special case of `read_delim`
+--&gt;
+
+--
+
+&gt; They are similar, in that they both import comma delimited files, but one comes from base R, while the other comes from the newest `readr` package (part of the `tidyverse`, like `ggplot2` and `dplyr`). We focus on `read_csv`
+
+---
+
+## `read_csv()`
+
+The `read_csv()` function takes several arguments, see https://readr.tidyverse.org/reference/read_delim.html. For example:
+
+```
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"))
+```
+--
+
+The `file` argument must specified, the other arguments can be left as default:
+
+```
+library(readr)
+
+# load data into my local R Studio
+test &lt;- read_csv(file = "/Users/jclip/Desktop/testdata.csv")
+
+# load data into my R Workbench 
+test &lt;- read_csv(file = "/home/jclip/lecture/testdata.csv")
+
+# trick if you're not sure where it is / want to select it
+test &lt;- read_csv(file = file.choose())
+```
+
+&lt;!--
+Make sure the file is located in the given path and you are typing the path correctly. Let's practice!
+--&gt;
+
+---
+
+## Practice
+
+
+1. Create a `testdata.csv` file on your desktop, and save it as plain `csv` [Try to have at least three columns, including integers, characters, and maybe a factor/categorical variable. Include at least one NA.]
+&lt;!--#testfile &lt;- data.frame(num_teas = c(5,3,2,4,5,na,NA),
+#                       days = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
+#                       favorite = c("matcha", "black", "green", "chai", "black", "matcha", ""))
+# write_csv(testfile, "/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv") --&gt;
+
+1. Open R Workbench: upload the file to the server (skip this step if you are using R locally)
+
+1. Look at your current directory by typing `getwd()` in the console. That's where R looks at files by default
+
+1. Load the data into R using the `read_csv()` function. Make sure to specify the correct path
+
+1. Modify the `read_csv()` function arguments: set `col_names = FALSE` (default is TRUE). What happens?
+
+---
+
+### Modify `read_csv()` arguments: `col_types`
+
+```
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"))
+```
+
+
+```r
+# set col_types option 1
+test &lt;- read_csv("test.csv", #note: if I don't specify the location, it assumes my working directory
+                 col_types = cols(
+                   num_teas = col_integer(),
+                   days = readr::col_factor( #ASK ME ABOUT THIS!!
+                     c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+                     ),
+                   favorite = col_character()
+                   )
+                 )
+test
+```
+
+```
+## # A tibble: 7 × 3
+##   num_teas days      favorite
+##      &lt;int&gt; &lt;fct&gt;     &lt;chr&gt;   
+## 1        5 Monday    matcha  
+## 2        3 Tuesday   black   
+## 3        2 Wednesday green   
+## 4        4 Thursday  chai    
+## 5        5 Friday    black   
+## 6        3 Saturday  matcha  
+## 7       NA Sunday    &lt;NA&gt;
+```
+
+
+```r
+# set col_types option 2
+test &lt;- read_csv("test.csv",
+                 col_types = ("ifc") #i(integer)f(factor)c(character)
+                 )
+test
+```
+
+```
+## # A tibble: 7 × 3
+##   num_teas days      favorite
+##      &lt;int&gt; &lt;fct&gt;     &lt;chr&gt;   
+## 1        5 Monday    matcha  
+## 2        3 Tuesday   black   
+## 3        2 Wednesday green   
+## 4        4 Thursday  chai    
+## 5        5 Friday    black   
+## 6        3 Saturday  matcha  
+## 7       NA Sunday    &lt;NA&gt;
+```
+
+---
+
+### Modify `read_csv()` arguments: `na`
+
+```
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"))
+```
+
+Load the data and leave the `na` argument as default. Check your loaded data and notice what happened to the missing values.
+
+Load the data again, but this time modify the `na` argument as follows:
+
+```
+test &lt;- read_csv("/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv",
+                na = c("na", "NA")
+                 )
+```
+
+Check your loaded data and notice what happened to the missing values. Then modify the `na` argument again using the code below, and check:
+
+```
+test &lt;- read_csv("/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv",
+                 na = c("na", "NA", "N/A", "")
+                 )
+```
+
+---
+
+&lt;!--
+
+
+&lt;img src="index_files/figure-html/compare-speed-small-plot-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+## `readr` vs. base R
+
+
+
+&lt;img src="index_files/figure-html/compare-speed-large-plot-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+--&gt;
+
+## Other file formats
+
+The `readr` package and other packages include several functions to load almost all possible file formats that you might encounter (when given an option though, choose a csv over other formats). For example:
+
+* **Comma separated csv** use `read_csv()` from the `readr` package
+* **Semi column separated csv** use `read_csv2()`from the `readr` package
+* **Tab separated files** use `read_tsv()`from the `readr` package
+* **RDS** use `readRDS()` or `read_rds()`
+* **Excel** use `read_excel()` from the `readxl` package
+* **SPSS/Stata** use the`haven` package (several functions)
+
+--
+
+Cheat Sheet `readr` and `readxl`:
+**Help &gt; Cheat Sheets &gt; Browse Cheat Sheets**
+
+&lt;!--
+## `challenge`
+
+To illustrate these different file formats, we use the challange.csv dataset from the readings:
+
+
+```
+## # A tibble: 2,000 × 2
+##        x y     
+##    &lt;dbl&gt; &lt;date&gt;
+##  1   404 NA    
+##  2  4172 NA    
+##  3  3004 NA    
+##  4   787 NA    
+##  5    37 NA    
+##  6  2332 NA    
+##  7  2489 NA    
+##  8  1449 NA    
+##  9  3665 NA    
+## 10  3863 NA    
+## # ℹ 1,990 more rows
+```
+## RDS
+
+R file format. 
+
+* because is native to R, can only be opened by R
+* does not render well on GitHub
+* can be easily compressed
+* faster
+* guarantees consistency
+
+&lt;!--
+
+
+
+```r
+# compare file size
+file.info(here("static", "data", "challenge.rds"))$size %&gt;%
+  utils:::format.object_size("auto")
+```
+
+```
+## [1] "11.6 Kb"
+```
+
+```r
+file.info(here("static", "data", "challenge.csv"))$size %&gt;%
+  utils:::format.object_size("auto")
+```
+
+```
+## [1] "37.1 Kb"
+```
+
+## RDS
+
+&lt;img src="index_files/figure-html/rds-3-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+## `feather`
+
+
+
+&lt;img src="index_files/figure-html/feather-2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+--&gt;
+
+---
+
+## `readxl`
+
+From the `readxl` package https://readxl.tidyverse.org/, use `read_excel()` to import excel files:
+
+
+```r
+library(readxl)
+xlsx_example &lt;- readxl_example(path = "datasets.xlsx")
+read_excel(path = xlsx_example)
+```
+
+```
+## # A tibble: 150 × 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # ℹ 140 more rows
+```
+
+---
+
+## `readxl`
+
+We can specify the specific worksheet by name or position
+
+
+```r
+excel_sheets(path = xlsx_example)
+```
+
+```
+## [1] "iris"     "mtcars"   "chickwts" "quakes"
+```
+
+
+```r
+read_excel(path = xlsx_example, sheet = "chickwts")
+```
+
+```
+## # A tibble: 71 × 2
+##    weight feed     
+##     &lt;dbl&gt; &lt;chr&gt;    
+##  1    179 horsebean
+##  2    160 horsebean
+##  3    136 horsebean
+##  4    227 horsebean
+##  5    217 horsebean
+##  6    168 horsebean
+##  7    108 horsebean
+##  8    124 horsebean
+##  9    143 horsebean
+## 10    140 horsebean
+## # ℹ 61 more rows
+```
+
+---
+
+## `haven` and SAS
+
+
+```r
+library(haven)
+
+read_sas(data_file = system.file("examples", "iris.sas7bdat",
+  package = "haven"
+))
+```
+
+```
+## # A tibble: 150 × 5
+##    Sepal_Length Sepal_Width Petal_Length Petal_Width Species
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;  
+##  1          5.1         3.5          1.4         0.2 setosa 
+##  2          4.9         3            1.4         0.2 setosa 
+##  3          4.7         3.2          1.3         0.2 setosa 
+##  4          4.6         3.1          1.5         0.2 setosa 
+##  5          5           3.6          1.4         0.2 setosa 
+##  6          5.4         3.9          1.7         0.4 setosa 
+##  7          4.6         3.4          1.4         0.3 setosa 
+##  8          5           3.4          1.5         0.2 setosa 
+##  9          4.4         2.9          1.4         0.2 setosa 
+## 10          4.9         3.1          1.5         0.1 setosa 
+## # ℹ 140 more rows
+```
+
+---
+
+## `haven` and SPSS
+
+
+```r
+read_sav(file = system.file("examples", "iris.sav",
+  package = "haven"
+))
+```
+
+```
+## # A tibble: 150 × 5
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species   
+##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl+lbl&gt; 
+##  1          5.1         3.5          1.4         0.2 1 [setosa]
+##  2          4.9         3            1.4         0.2 1 [setosa]
+##  3          4.7         3.2          1.3         0.2 1 [setosa]
+##  4          4.6         3.1          1.5         0.2 1 [setosa]
+##  5          5           3.6          1.4         0.2 1 [setosa]
+##  6          5.4         3.9          1.7         0.4 1 [setosa]
+##  7          4.6         3.4          1.4         0.3 1 [setosa]
+##  8          5           3.4          1.5         0.2 1 [setosa]
+##  9          4.4         2.9          1.4         0.2 1 [setosa]
+## 10          4.9         3.1          1.5         0.1 1 [setosa]
+## # ℹ 140 more rows
+```
+
+---
+
+## `haven` and Stata
+
+
+```r
+read_dta(file = system.file("examples", "iris.dta",
+  package = "haven"
+))
+```
+
+```
+## # A tibble: 150 × 5
+##    sepallength sepalwidth petallength petalwidth species
+##          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  
+##  1        5.10       3.5         1.40      0.200 setosa 
+##  2        4.90       3           1.40      0.200 setosa 
+##  3        4.70       3.20        1.30      0.200 setosa 
+##  4        4.60       3.10        1.5       0.200 setosa 
+##  5        5          3.60        1.40      0.200 setosa 
+##  6        5.40       3.90        1.70      0.400 setosa 
+##  7        4.60       3.40        1.40      0.300 setosa 
+##  8        5          3.40        1.5       0.200 setosa 
+##  9        4.40       2.90        1.40      0.200 setosa 
+## 10        4.90       3.10        1.5       0.100 setosa 
+## # ℹ 140 more rows
+```
+
+---
+
+class: inverse, middle
+
+# Exporting Data from R
+
+---
+
+## `write_csv()`
+
+Similar to the `read_csv()` function used for reading in csv files into R, there is a `write_csv()` function that **generates csv files** from R data frames.
+
+Documentation: https://readr.tidyverse.org/reference/write_delim.html
+
+```
+# import
+test &lt;- read_csv(file = "/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv)
+
+# export
+write_csv(test, file = "/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/testdata_cleaned.csv")
+```
+
+
+---
+
+class: inverse, middle
+
+# Tidy data
+
+---
+
+## Tidy data
+
+&lt;img src="tidydata_1.jpg" alt="Stylized text providing an overview of Tidy Data. The top reads 'Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.' On the left reads 'In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.' There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure." width="70%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst)]
+
+&lt;!-- tidy data is a way of standardizing info in a dataframe
+but it is not the only way and we are going to see some examples
+the opposite of tidy would be messy data or untidy 
+the reason why tidy data is popular is because provides a STANDARDIZED form
+all packages we have learned so far ggplot, dplyr work with tidy data
+which means you can simply load the dataset and start working on it
+without reshaping it or cleaning it up (if tidy)
+so point here: as soon as you get data and you know u want to work on them
+within the tidyverse (ggplot, dplyr etc) get them in a tidy format first, 
+then focus with the analyses or anything else u want to do!
+
+NB: this also means if you are working outside tidyverse, in another package 
+or basic R you might not need tidy data
+
+are there ? on the tidy structure, i wanna make sure you konw not only 
+the definition but also why we emphasize it so much here
+--&gt;
+
+---
+
+## Tidy data
+
+&lt;img src="tidydata_2.jpg" alt="There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading 'our columns are variables and our rows are observations!'. Text to the left of that group reads 'The standard structure of tidy data means that 'tidy datasets are all alike…' The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) 'my column are values and my rows are variables', 'I have variables in columns AND in rows', 'I have multiple variables in a single column', and 'I don’t even KNOW what my deal is.' Next to the frazzled data tables is text '...but every messy dataset is messy in its own way. -Hadley Wickham.'" width="70%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst)]
+
+---
+
+## Tidy data
+
+&lt;img src="tidydata_3.jpg" alt="On the left is a happy cute fuzzy monster holding a rectangular data frame with a tool that fits the data frame shape. On the workbench behind the monster are other data frames of similar rectangular shape, and neatly arranged tools that also look like they would fit those data frames. The workbench looks uncluttered and tidy. The text above the tidy workbench reads 'When working with tidy data, we can use the same tools in similar ways for different datasets…' On the right is a cute monster looking very frustrated, using duct tape and other tools to haphazardly tie data tables together, each in a different way. The monster is in front of a messy, cluttered workbench. The text above the frustrated monster reads '...but working with untidy data often means reinventing the wheel with one-time approaches that are hard to iterate or reuse.'" width="70%" style="display: block; margin: auto;" /&gt;
+
+.footnote[Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst)]
+
+---
+
+## Common tidying tasks
+
+* Pivoting
+    * Longer
+    * Wider
+* Separating
+* Uniting
+
+We are going to illustrate these tasks with datasets from the readings (Chapter 12 R for Data Science). Each dataset shows the same values of four variables country, year, population, and cases, but each dataset organises the values in a different way.
+
+--
+
+Remember the tidy data principles:
+- Each variable must have its own column
+- Each observation must have its own row
+- Each value must have its own cell
+
+---
+
+## Pivot longer
+
+Look at this dataset. Why is it messy/untidy? 
+
+
+```r
+library(tidyverse)
+table4a
+```
+
+```
+## # A tibble: 3 × 3
+##   country     `1999` `2000`
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+```
+
+--
+
+"Each variable must have its own column". Thus, the column names should be names of variables. Instead, here they are values of a variable: 1999 and 2000 are values of the year variable 
+
+"Each observation must have its own row". Here we have one row for every country, but that's not sufficient because this is panel data. We should have the country-year pair to define one observation, rather than only country.
+
+---
+
+## Pivot longer
+
+.pull-left[
+
+
+```r
+table4a
+```
+
+```
+## # A tibble: 3 × 3
+##   country     `1999` `2000`
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+```
+
+]
+
+
+.pull-right[
+
+
+```r
+pivot_longer(
+  data = table4a,
+  cols = c(`1999`, `2000`),
+  names_to = "year",
+  values_to = "cases"
+)
+```
+
+```
+## # A tibble: 6 × 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
+## 1 Afghanistan 1999     745
+## 2 Afghanistan 2000    2666
+## 3 Brazil      1999   37737
+## 4 Brazil      2000   80488
+## 5 China       1999  212258
+## 6 China       2000  213766
+```
+
+]
+
+&lt;!--
+We can reshape and tidy it using `pivot_longer`, which takes four main arguments:
+- data: data we are reshaping -- notice we go from a 3by3 to a 6by3
+- cols: name of the columns we use to make this pivot (or to drop); note the use of back ticks!
+- names_to column: variable we wish to create from column names
+- values_to column: variable we wish to create and fill with values
+--&gt;
+
+--
+
+---
+
+## Pivot wider
+
+Look at this dataset. Why is it messy/untidy? 
+
+.pull-left[
+
+```r
+library(tidyverse)
+table2
+```
+
+```
+## # A tibble: 12 × 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
+```
+
+]
+
+--
+
+.pull-right[
+
+"Each variable must have its own column". The current values of the type        column are not values but are variables names. 
+  
+"Each observation must have its own row". Here an observation is scattered across multiple rows: an observation is a country in a year, but each observation is spread across two rows.
+
+]
+
+---
+
+## Pivot wider
+
+.pull-left[
+
+
+```r
+table2
+```
+
+```
+## # A tibble: 12 × 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
+```
+
+]
+
+--
+
+.pull-right[
+
+
+```r
+pivot_wider(
+  data = table2,
+  names_from = type,
+  values_from = count
+)
+```
+
+```
+## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+]
+
+---
+
+## Separating
+
+Look at this dataset. Why is it messy/untidy? 
+
+
+```r
+table5
+```
+
+```
+## # A tibble: 6 × 4
+##   country     century year  rate             
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583
+```
+
+
+---
+
+## Separating
+
+.pull-left[
+
+
+```r
+table3
+```
+
+```
+## # A tibble: 6 × 3
+##   country      year rate             
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
+```
+
+]
+
+--
+
+.pull-right[
+
+
+```r
+separate(
+  data = table3,
+  col = rate,
+  into = c(
+    "cases",
+    "population"
+  ),
+  convert = TRUE
+)
+```
+
+```
+## # A tibble: 6 × 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+]
+
+
+---
+
+
+## Uniting
+
+Look at this dataset. Why is it messy/untidy? 
+
+
+```r
+table5
+```
+
+```
+## # A tibble: 6 × 4
+##   country     century year  rate             
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583
+```
+
+---
+
+## Uniting
+
+.pull-left[
+
+
+```r
+table5
+```
+
+```
+## # A tibble: 6 × 4
+##   country     century year  rate             
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583
+```
+
+]
+
+--
+
+.pull-right[
+
+
+```r
+unite(
+  data = table5,
+  col = "year",
+  century, year
+)
+```
+
+```
+## # A tibble: 6 × 3
+##   country     year  rate             
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19_99 745/19987071     
+## 2 Afghanistan 20_00 2666/20595360    
+## 3 Brazil      19_99 37737/172006362  
+## 4 Brazil      20_00 80488/174504898  
+## 5 China       19_99 212258/1272915272
+## 6 China       20_00 213766/1280428583
+```
+
+]
+
+---
+
+## Uniting
+
+.pull-left[
+
+
+```r
+table5
+```
+
+```
+## # A tibble: 6 × 4
+##   country     century year  rate             
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583
+```
+
+]
+
+.pull-right[
+
+
+```r
+unite(
+  data = table5,
+  col = "year",
+  century, year,
+  # remove underscore
+  sep = ""
+)
+```
+
+```
+## # A tibble: 6 × 3
+##   country     year  rate             
+##   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 1999  745/19987071     
+## 2 Afghanistan 2000  2666/20595360    
+## 3 Brazil      1999  37737/172006362  
+## 4 Brazil      2000  80488/174504898  
+## 5 China       1999  212258/1272915272
+## 6 China       2000  213766/1280428583
+```
+
+]
+
+---
+
+## Uniting
+
+.pull-left[
+
+
+```r
+table5
+```
+
+```
+## # A tibble: 6 × 4
+##   country     century year  rate             
+##   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            
+## 1 Afghanistan 19      99    745/19987071     
+## 2 Afghanistan 20      00    2666/20595360    
+## 3 Brazil      19      99    37737/172006362  
+## 4 Brazil      20      00    80488/174504898  
+## 5 China       19      99    212258/1272915272
+## 6 China       20      00    213766/1280428583
+```
+
+]
+
+.pull-right[
+
+
+```r
+unite(
+  data = table5,
+  col = "year",
+  century, year,
+  # remove underscore
+  sep = ""
+) %&gt;%
+  # store as numeric
+  mutate(year = parse_number(year))
+```
+
+```
+## # A tibble: 6 × 3
+##   country      year rate             
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
+```
+]
+
+---
+
+# Let's get messy!
+
+&lt;img src="https://media.giphy.com/media/fCUCbWXe9JONVsJSUd/giphy.gif" width="40%" style="display: block; margin: auto;" /&gt;
+
+[https://macs30500.netlify.app/notes/data-wrangle/tidy-exercise/](https://macs30500.netlify.app/notes/data-wrangle/tidy-exercise/)
+
+---
+
+## Acknowledgments 
+
+The content of these slides is derived in part from Sabrina Nardin and Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY NC 4.0 Creative Commons License. Any errors or oversights are mine alone.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLines": true,
+"highlightLanguage": "r",
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

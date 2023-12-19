@@ -1,0 +1,807 @@
+---
+title: "Data wrangling: import and tidy data in R"
+author: "MACSS 30500 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# generate CSS file
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#011f4b",
+  secondary_color = "#bbd6c7",
+  inverse_header_color = "#222222",
+  black_color = "#222222",
+  header_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  text_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  code_font_google = xaringanthemer::google_font("Source Code Pro"),
+  base_font_size = "24px",
+  code_font_size = "20px",
+  # title_slide_background_image = "https://github.com/uc-dataviz/course-notes/raw/main/images/hexsticker.svg",
+  # title_slide_background_size = "contain",
+  # title_slide_background_position = "top",
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.75rem",
+  header_h3_font_size = "1.5rem",
+  extra_css = list(
+    "h1" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h2" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h3" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    ".tiny" = list("font-size" = "70%"),
+    ".small" = list("font-size" = "90%"),
+    ".midi" = list("font-size" = "150%"),
+    ".tiny .remark-code" = list("font-size" = "70%"),
+    ".small .remark-code" = list("font-size" = "90%"),
+    ".midi .remark-code" = list("font-size" = "150%"),
+    ".large" = list("font-size" = "200%"),
+    ".xlarge" = list("font-size" = "600%"),
+    ".huge" = list(
+      "font-size" = "400%",
+      "font-family" = "'Montserrat', sans-serif",
+      "font-weight" = "bold"
+    ),
+    ".hand" = list(
+      "font-family" = "'Gochi Hand', cursive",
+      "font-size" = "125%"
+    ),
+    ".task" = list(
+      "padding-right" = "10px",
+      "padding-left" = "10px",
+      "padding-top" = "3px",
+      "padding-bottom" = "3px",
+      "margin-bottom" = "6px",
+      "margin-top" = "6px",
+      "border-left" = "solid 5px #F1DE67",
+      "background-color" = "#F3D03E"
+    ),
+    ".pull-left" = list(
+      "width" = "49%",
+      "float" = "left"
+    ),
+    ".pull-right" = list(
+      "width" = "49%",
+      "float" = "right"
+    ),
+    ".pull-left-wide" = list(
+      "width" = "70%",
+      "float" = "left"
+    ),
+    ".pull-right-narrow" = list(
+      "width" = "27%",
+      "float" = "right"
+    ),
+    ".pull-left-narrow" = list(
+      "width" = "27%",
+      "float" = "left"
+    ),
+    ".pull-right-wide" = list(
+      "width" = "70%",
+      "float" = "right"
+    ),
+    ".blue" = list(color = "#2A9BB7"),
+    ".purple" = list(color = "#a493ba"),
+    ".yellow" = list(color = "#f1de67"),
+    ".gray" = list(color = "#222222")
+  )
+)
+
+source(here::here("R", "slide-opts.R"))
+```
+
+```{r pkgs, include = FALSE, cache = FALSE}
+library(tidyverse)
+library(nycflights13)
+library(rcis)
+library(knitr)
+library(here)
+
+theme_set(theme_minimal(base_size = 16))
+```
+
+class: inverse, middle
+
+# Importing data in R
+
+---
+
+## base R VS `readr`
+
+To load data into R we need importing functions. 
+
+There are a number of them depending on the type of file we want to import (see Chapter 11 of R for Data Science for details).
+
+The most common importing functions are those that read **comma delimited files**. There are two versions of them:
+
+- **base R**: `read.csv()`
+
+- **`readr` package**: `read_csv()`
+
+<!-- `read.csv` is a special case of `read.table`, while `read_csv` is special case of `read_delim`
+-->
+
+--
+
+> They are similar, in that they both import comma delimited files, but one comes from base R, while the other comes from the newest `readr` package (part of the `tidyverse`, like `ggplot2` and `dplyr`). We focus on `read_csv`
+
+---
+
+## `read_csv()`
+
+The `read_csv()` function takes several arguments, see https://readr.tidyverse.org/reference/read_delim.html. For example:
+
+```
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"))
+```
+--
+
+The `file` argument must specified, the other arguments can be left as default:
+
+```
+library(readr)
+
+# load data into my local R Studio
+test <- read_csv(file = "/Users/jclip/Desktop/testdata.csv")
+
+# load data into my R Workbench 
+test <- read_csv(file = "/home/jclip/lecture/testdata.csv")
+
+# trick if you're not sure where it is / want to select it
+test <- read_csv(file = file.choose())
+```
+
+<!--
+Make sure the file is located in the given path and you are typing the path correctly. Let's practice!
+-->
+
+---
+
+## Practice
+
+
+1. Create a `testdata.csv` file on your desktop, and save it as plain `csv` [Try to have at least three columns, including integers, characters, and maybe a factor/categorical variable. Include at least one NA.]
+<!--#testfile <- data.frame(num_teas = c(5,3,2,4,5,na,NA),
+#                       days = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
+#                       favorite = c("matcha", "black", "green", "chai", "black", "matcha", ""))
+# write_csv(testfile, "/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv") -->
+
+1. Open R Workbench: upload the file to the server (skip this step if you are using R locally)
+
+1. Look at your current directory by typing `getwd()` in the console. That's where R looks at files by default
+
+1. Load the data into R using the `read_csv()` function. Make sure to specify the correct path
+
+1. Modify the `read_csv()` function arguments: set `col_names = FALSE` (default is TRUE). What happens?
+
+---
+
+### Modify `read_csv()` arguments: `col_types`
+
+```
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"))
+```
+
+```{r}
+# set col_types option 1
+test <- read_csv("test.csv", #note: if I don't specify the location, it assumes my working directory
+                 col_types = cols(
+                   num_teas = col_integer(),
+                   days = readr::col_factor( #ASK ME ABOUT THIS!!
+                     c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+                     ),
+                   favorite = col_character()
+                   )
+                 )
+test
+```
+
+```{r}
+# set col_types option 2
+test <- read_csv("test.csv",
+                 col_types = ("ifc") #i(integer)f(factor)c(character)
+                 )
+test
+```
+
+---
+
+### Modify `read_csv()` arguments: `na`
+
+```
+read_csv(file, col_names = TRUE, col_types = NULL, na = c("", "NA"))
+```
+
+Load the data and leave the `na` argument as default. Check your loaded data and notice what happened to the missing values.
+
+Load the data again, but this time modify the `na` argument as follows:
+
+```
+test <- read_csv("/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv",
+                na = c("na", "NA")
+                 )
+```
+
+Check your loaded data and notice what happened to the missing values. Then modify the `na` argument again using the code below, and check:
+
+```
+test <- read_csv("/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv",
+                 na = c("na", "NA", "N/A", "")
+                 )
+```
+
+---
+
+<!--
+```{r compare-speed-small, dependson = "data-gen", message = FALSE, echo = FALSE}
+library(microbenchmark)
+
+results_small <- microbenchmark(
+  read.csv = read.csv(here("static", "data", "sim-data-small.csv")),
+  read_csv = read_csv(here("static", "data", "sim-data-small.csv"))
+)
+```
+
+```{r compare-speed-small-plot, dependson = "compare-speed-small", message = FALSE, echo = FALSE}
+autoplot(results_small) +
+  scale_y_log10() +
+  labs(
+    title = str_c("Number of observations:",
+      scales::comma(nrow(read_csv(here("static", "data", "sim-data-small.csv")))),
+      sep = " "
+    ),
+    y = "Time [milliseconds], logged"
+  )
+```
+
+## `readr` vs. base R
+
+```{r compare-speed-large, dependson = "data-gen", message = FALSE, echo = FALSE}
+results_large <- microbenchmark(
+  read.csv = read.csv(here("static", "data", "sim-data-large.csv")),
+  read_csv = read_csv(here("static", "data", "sim-data-large.csv"))
+)
+```
+
+```{r compare-speed-large-plot, dependson = "compare-speed-large", message = FALSE, echo = FALSE}
+autoplot(results_large) +
+  scale_y_log10() +
+  labs(
+    title = str_c("Number of observations:",
+      scales::comma(nrow(read_csv(here("static", "data", "sim-data-large.csv")))),
+      sep = " "
+    ),
+    y = "Time [milliseconds], logged"
+  )
+```
+-->
+
+## Other file formats
+
+The `readr` package and other packages include several functions to load almost all possible file formats that you might encounter (when given an option though, choose a csv over other formats). For example:
+
+* **Comma separated csv** use `read_csv()` from the `readr` package
+* **Semi column separated csv** use `read_csv2()`from the `readr` package
+* **Tab separated files** use `read_tsv()`from the `readr` package
+* **RDS** use `readRDS()` or `read_rds()`
+* **Excel** use `read_excel()` from the `readxl` package
+* **SPSS/Stata** use the`haven` package (several functions)
+
+--
+
+Cheat Sheet `readr` and `readxl`:
+**Help > Cheat Sheets > Browse Cheat Sheets**
+
+<!--
+## `challenge`
+
+To illustrate these different file formats, we use the challange.csv dataset from the readings:
+
+```{r challenge, echo = FALSE}
+challenge <- read_csv(
+  readr_example("challenge.csv"),
+  col_types = cols(
+    x = col_double(),
+    y = col_date()
+  )
+)
+
+challenge
+```
+## RDS
+
+R file format. 
+
+* because is native to R, can only be opened by R
+* does not render well on GitHub
+* can be easily compressed
+* faster
+* guarantees consistency
+
+<!--
+```{r rds, dependson = "challenge", include = FALSE}
+# write to csv
+write_csv(challenge, here("static", "data", "challenge.csv"))
+
+# write to/read from rds
+write_rds(challenge, here("static", "data", "challenge.rds"), compress = "gz")
+read_rds(here("static", "data", "challenge.rds"))
+```
+
+```{r rds-2, dependson = c("challenge", "rds"), message = FALSE}
+# compare file size
+file.info(here("static", "data", "challenge.rds"))$size %>%
+  utils:::format.object_size("auto")
+
+file.info(here("static", "data", "challenge.csv"))$size %>%
+  utils:::format.object_size("auto")
+```
+
+## RDS
+
+```{r rds-3, dependson = c("challenge", "rds"), echo = FALSE}
+# compare read speeds
+microbenchmark(
+  read_csv = read_csv(
+    readr_example("challenge.csv"),
+    col_types = cols(
+      x = col_double(),
+      y = col_date()
+    )
+  ),
+  read_rds = read_rds(here("static", "data", "challenge.rds"))
+) %>%
+  autoplot() +
+  labs(y = "Time [microseconds], logged")
+```
+
+## `feather`
+
+```{r feather, dependson = "challenge", include = FALSE}
+library(arrow)
+
+write_feather(x = challenge, sink = here("static", "data", "challenge.feather"))
+read_feather(file = here("static", "data", "challenge.feather"))
+```
+
+```{r feather-2, dependson = "challenge", message = FALSE, echo = FALSE}
+microbenchmark(
+  read_csv = read_csv(
+    readr_example("challenge.csv"),
+    col_types = cols(
+      x = col_double(),
+      y = col_date()
+    )
+  ),
+  read_rds = read_rds(here("static", "data", "challenge.rds")),
+  read_feather = read_feather(file = here("static", "data", "challenge.feather"))
+) %>%
+  autoplot() +
+  scale_y_log10(labels = scales::comma) +
+  labs(y = "Time [microseconds], logged")
+```
+-->
+
+---
+
+## `readxl`
+
+From the `readxl` package https://readxl.tidyverse.org/, use `read_excel()` to import excel files:
+
+```{r readxl}
+library(readxl)
+xlsx_example <- readxl_example(path = "datasets.xlsx")
+read_excel(path = xlsx_example)
+```
+
+---
+
+## `readxl`
+
+We can specify the specific worksheet by name or position
+
+```{r readxl-sheets, dependson = "readxl"}
+excel_sheets(path = xlsx_example)
+```
+
+```{r readxl-select-sheet, dependson = "readxl"}
+read_excel(path = xlsx_example, sheet = "chickwts")
+```
+
+---
+
+## `haven` and SAS
+
+```{r haven-sas}
+library(haven)
+
+read_sas(data_file = system.file("examples", "iris.sas7bdat",
+  package = "haven"
+))
+```
+
+---
+
+## `haven` and SPSS
+
+```{r haven-spss}
+read_sav(file = system.file("examples", "iris.sav",
+  package = "haven"
+))
+```
+
+---
+
+## `haven` and Stata
+
+```{r haven-stata}
+read_dta(file = system.file("examples", "iris.dta",
+  package = "haven"
+))
+```
+
+---
+
+class: inverse, middle
+
+# Exporting Data from R
+
+---
+
+## `write_csv()`
+
+Similar to the `read_csv()` function used for reading in csv files into R, there is a `write_csv()` function that **generates csv files** from R data frames.
+
+Documentation: https://readr.tidyverse.org/reference/write_delim.html
+
+```
+# import
+test <- read_csv(file = "/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/test.csv)
+
+# export
+write_csv(test, file = "/Users/jeanclipperton/Library/CloudStorage/Box-Box/Teaching/CFSS/course-site/static/slides/data-wrangling-tidy-data/testdata_cleaned.csv")
+```
+
+
+---
+
+class: inverse, middle
+
+# Tidy data
+
+---
+
+## Tidy data
+
+```{r echo = FALSE, out.width = "70%", fig.alt = "Stylized text providing an overview of Tidy Data. The top reads 'Tidy data is a standard way of mapping the meaning of a dataset to its structure. - Hadley Wickham.' On the left reads 'In tidy data: each variable forms a column; each observation forms a row; each cell is a single measurement.' There is an example table on the lower right with columns ‘id’, ‘name’ and ‘color’ with observations for different cats, illustrating tidy data structure."}
+
+include_graphics(path = "tidydata_1.jpg")
+```
+
+.footnote[Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst)]
+
+<!-- tidy data is a way of standardizing info in a dataframe
+but it is not the only way and we are going to see some examples
+the opposite of tidy would be messy data or untidy 
+the reason why tidy data is popular is because provides a STANDARDIZED form
+all packages we have learned so far ggplot, dplyr work with tidy data
+which means you can simply load the dataset and start working on it
+without reshaping it or cleaning it up (if tidy)
+so point here: as soon as you get data and you know u want to work on them
+within the tidyverse (ggplot, dplyr etc) get them in a tidy format first, 
+then focus with the analyses or anything else u want to do!
+
+NB: this also means if you are working outside tidyverse, in another package 
+or basic R you might not need tidy data
+
+are there ? on the tidy structure, i wanna make sure you konw not only 
+the definition but also why we emphasize it so much here
+-->
+
+---
+
+## Tidy data
+
+```{r echo = FALSE, out.width = "70%", fig.alt = "There are two sets of anthropomorphized data tables. The top group of three tables are all rectangular and smiling, with a shared speech bubble reading 'our columns are variables and our rows are observations!'. Text to the left of that group reads 'The standard structure of tidy data means that 'tidy datasets are all alike…' The lower group of four tables are all different shapes, look ragged and concerned, and have different speech bubbles reading (from left to right) 'my column are values and my rows are variables', 'I have variables in columns AND in rows', 'I have multiple variables in a single column', and 'I don’t even KNOW what my deal is.' Next to the frazzled data tables is text '...but every messy dataset is messy in its own way. -Hadley Wickham.'"}
+
+include_graphics(path = "tidydata_2.jpg")
+```
+
+.footnote[Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst)]
+
+---
+
+## Tidy data
+
+```{r echo = FALSE, out.width = "70%", fig.alt = "On the left is a happy cute fuzzy monster holding a rectangular data frame with a tool that fits the data frame shape. On the workbench behind the monster are other data frames of similar rectangular shape, and neatly arranged tools that also look like they would fit those data frames. The workbench looks uncluttered and tidy. The text above the tidy workbench reads 'When working with tidy data, we can use the same tools in similar ways for different datasets…' On the right is a cute monster looking very frustrated, using duct tape and other tools to haphazardly tie data tables together, each in a different way. The monster is in front of a messy, cluttered workbench. The text above the frustrated monster reads '...but working with untidy data often means reinventing the wheel with one-time approaches that are hard to iterate or reuse.'"}
+
+include_graphics(path = "tidydata_3.jpg")
+
+```
+
+.footnote[Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst)]
+
+---
+
+## Common tidying tasks
+
+* Pivoting
+    * Longer
+    * Wider
+* Separating
+* Uniting
+
+We are going to illustrate these tasks with datasets from the readings (Chapter 12 R for Data Science). Each dataset shows the same values of four variables country, year, population, and cases, but each dataset organises the values in a different way.
+
+--
+
+Remember the tidy data principles:
+- Each variable must have its own column
+- Each observation must have its own row
+- Each value must have its own cell
+
+---
+
+## Pivot longer
+
+Look at this dataset. Why is it messy/untidy? 
+
+```{r}
+library(tidyverse)
+table4a
+```
+
+--
+
+"Each variable must have its own column". Thus, the column names should be names of variables. Instead, here they are values of a variable: 1999 and 2000 are values of the year variable 
+
+"Each observation must have its own row". Here we have one row for every country, but that's not sufficient because this is panel data. We should have the country-year pair to define one observation, rather than only country.
+
+---
+
+## Pivot longer
+
+.pull-left[
+
+```{r spread-columns}
+table4a
+```
+
+]
+
+
+.pull-right[
+
+```{r pivot-longer}
+pivot_longer(
+  data = table4a,
+  cols = c(`1999`, `2000`),
+  names_to = "year",
+  values_to = "cases"
+)
+```
+
+]
+
+<!--
+We can reshape and tidy it using `pivot_longer`, which takes four main arguments:
+- data: data we are reshaping -- notice we go from a 3by3 to a 6by3
+- cols: name of the columns we use to make this pivot (or to drop); note the use of back ticks!
+- names_to column: variable we wish to create from column names
+- values_to column: variable we wish to create and fill with values
+-->
+
+--
+
+---
+
+## Pivot wider
+
+Look at this dataset. Why is it messy/untidy? 
+
+.pull-left[
+```{r}
+library(tidyverse)
+table2
+```
+
+]
+
+--
+
+.pull-right[
+
+"Each variable must have its own column". The current values of the type        column are not values but are variables names. 
+  
+"Each observation must have its own row". Here an observation is scattered across multiple rows: an observation is a country in a year, but each observation is spread across two rows.
+
+]
+
+---
+
+## Pivot wider
+
+.pull-left[
+
+```{r spread-rows}
+table2
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r pivot-wider}
+pivot_wider(
+  data = table2,
+  names_from = type,
+  values_from = count
+)
+```
+
+]
+
+---
+
+## Separating
+
+Look at this dataset. Why is it messy/untidy? 
+
+```{r}
+table5
+```
+
+
+---
+
+## Separating
+
+.pull-left[
+
+```{r merged-columns}
+table3
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r separate}
+separate(
+  data = table3,
+  col = rate,
+  into = c(
+    "cases",
+    "population"
+  ),
+  convert = TRUE
+)
+```
+
+]
+
+
+---
+
+
+## Uniting
+
+Look at this dataset. Why is it messy/untidy? 
+
+```{r}
+table5
+```
+
+---
+
+## Uniting
+
+.pull-left[
+
+```{r merged-rows}
+table5
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r unite}
+unite(
+  data = table5,
+  col = "year",
+  century, year
+)
+```
+
+]
+
+---
+
+## Uniting
+
+.pull-left[
+
+```{r ref.label = "merged-rows"}
+
+```
+
+]
+
+.pull-right[
+
+```{r unite-underscore}
+unite(
+  data = table5,
+  col = "year",
+  century, year,
+  # remove underscore
+  sep = ""
+)
+```
+
+]
+
+---
+
+## Uniting
+
+.pull-left[
+
+```{r ref.label = "merged-rows"}
+
+```
+
+]
+
+.pull-right[
+
+```{r unite-parse}
+unite(
+  data = table5,
+  col = "year",
+  century, year,
+  # remove underscore
+  sep = ""
+) %>%
+  # store as numeric
+  mutate(year = parse_number(year))
+```
+]
+
+---
+
+# Let's get messy!
+
+```{r echo = FALSE, out.width = "40%"}
+include_graphics(path = "https://media.giphy.com/media/fCUCbWXe9JONVsJSUd/giphy.gif")
+```
+
+[https://macs30500.netlify.app/notes/data-wrangle/tidy-exercise/](https://macs30500.netlify.app/notes/data-wrangle/tidy-exercise/)
+
+---
+
+## Acknowledgments 
+
+The content of these slides is derived in part from Sabrina Nardin and Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY NC 4.0 Creative Commons License. Any errors or oversights are mine alone.

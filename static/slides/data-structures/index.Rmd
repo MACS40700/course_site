@@ -1,0 +1,436 @@
+---
+title: "Data Structures"
+author: "MACSS 30500 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# generate CSS file
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#011f4b",
+  secondary_color = "#bbd6c7",
+  inverse_header_color = "#222222",
+  black_color = "#222222",
+  header_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  text_font_google = xaringanthemer::google_font("Atkinson Hyperlegible"),
+  code_font_google = xaringanthemer::google_font("Source Code Pro"),
+  base_font_size = "24px",
+  code_font_size = "20px",
+  # title_slide_background_image = "https://github.com/uc-dataviz/course-notes/raw/main/images/hexsticker.svg",
+  # title_slide_background_size = "contain",
+  # title_slide_background_position = "top",
+  header_h1_font_size = "2rem",
+  header_h2_font_size = "1.75rem",
+  header_h3_font_size = "1.5rem",
+  extra_css = list(
+    "h1" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h2" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    "h3" = list(
+      "margin-block-start" = "0.4rem",
+      "margin-block-end" = "0.4rem"
+    ),
+    ".tiny" = list("font-size" = "70%"),
+    ".small" = list("font-size" = "90%"),
+    ".midi" = list("font-size" = "150%"),
+    ".tiny .remark-code" = list("font-size" = "70%"),
+    ".small .remark-code" = list("font-size" = "90%"),
+    ".midi .remark-code" = list("font-size" = "150%"),
+    ".large" = list("font-size" = "200%"),
+    ".xlarge" = list("font-size" = "600%"),
+    ".huge" = list(
+      "font-size" = "400%",
+      "font-family" = "'Montserrat', sans-serif",
+      "font-weight" = "bold"
+    ),
+    ".hand" = list(
+      "font-family" = "'Gochi Hand', cursive",
+      "font-size" = "125%"
+    ),
+    ".task" = list(
+      "padding-right" = "10px",
+      "padding-left" = "10px",
+      "padding-top" = "3px",
+      "padding-bottom" = "3px",
+      "margin-bottom" = "6px",
+      "margin-top" = "6px",
+      "border-left" = "solid 5px #F1DE67",
+      "background-color" = "#F3D03E"
+    ),
+    ".pull-left" = list(
+      "width" = "49%",
+      "float" = "left"
+    ),
+    ".pull-right" = list(
+      "width" = "49%",
+      "float" = "right"
+    ),
+    ".pull-left-wide" = list(
+      "width" = "70%",
+      "float" = "left"
+    ),
+    ".pull-right-narrow" = list(
+      "width" = "27%",
+      "float" = "right"
+    ),
+    ".pull-left-narrow" = list(
+      "width" = "27%",
+      "float" = "left"
+    ),
+    ".pull-right-wide" = list(
+      "width" = "70%",
+      "float" = "right"
+    ),
+    ".blue" = list(color = "#2A9BB7"),
+    ".purple" = list(color = "#a493ba"),
+    ".yellow" = list(color = "#f1de67"),
+    ".gray" = list(color = "#222222")
+  )
+)
+
+source(here::here("R", "slide-opts.R"))
+xaringanExtra::use_panelset()
+```
+
+```{r pkgs, include = FALSE, cache = FALSE}
+library(tidyverse)
+library(rcis)
+library(countdown)
+library(modeldata)
+library(here)
+
+set.seed(1234)
+theme_set(theme_minimal(base_size = 16))
+```
+
+class: inverse, middle
+
+# R Base Data Structures
+
+<!-- notes:
+this is a new lecture that focuses on a general review of data structures
+from the original lecture ("vectors-and-iteration") I kept the vectors and lists here 
+and I need to enlarge this lecture with more data structures
+I do not think I need all libraries listed there, double check
+
+also check this lecture corresponding pages on the syllabus 
+this lecture does not have notes (content > notes)
+make sure to do that ahead of time to ensure things work!
+-->
+
+---
+
+### R Base Data Structures
+
+R data structures:
+* Vectors
+* Matrices
+* Lists
+* Data frames
+* Arrays
+
+These data structures can be organized by:
+- their dimensions (1d, 2d, or nd)
+- whether they are homogeneous (all contents must be of the same type, like atomic vectors and matrices) or heterogeneous (contents can be of different types, like lists and data frames)
+
+Please, review:
+* Lecture 2 (`introR_lecture`) to define, subset, and manipulate these data structures
+* Chapter 20 "Vectors" in R for Data Science
+
+---
+
+### R is fundamentally a vector-based program
+
+So far, we have been using predominantly data frames, which are very common when working with social science data. 
+
+However, data frames are not actually the most fundamental type of object in R: **vectors are the ultimate building blocks of objects within R**.
+
+A matrix is made of vectors, a list is made of vectors (a list is still a vector in R but not an atomic one), data frames are made by lists, etc.
+
+Basically in R either something is a vector, or it's NULL...
+
+---
+
+### R is fundamentally a vector-based program
+
+```{r echo = FALSE, out.width = "60%"}
+include_graphics(path = "https://r4ds.had.co.nz/diagrams/data-structures-overview.png")
+```
+
+<!-- focus today is on atomic vectors and lists -->
+
+---
+
+class: inverse, middle
+
+# Atomic vectors 
+
+---
+
+### Types of atomic vectors
+
+Remember: **All values in an atomic vector must to be of the same type**.
+
+**Logical**: you have used it every time you use a conditional test or operation (e.g., when you filter a data frame)
+```{r parse-logical, collapse = TRUE}
+logical_vector <- c("TRUE", "TRUE", "FALSE", "TRUE", "NA")
+```
+
+**Numeric**: can be integer or double (default)
+```{r parse-numeric, collapse = TRUE}
+integer_vector <- c("1", "5", "3", "4", "12423")
+double_vector <- c("4.2", "4", "6", "53.2")
+```
+
+**Character**: note you can use single or double quotations, you just need to be consistent
+```{r parse-character, collapse = TRUE}
+character_vector <- c("Scary", "'1,2,3 ready!'", "Halloween", '10/31/2022')
+```
+
+---
+
+### Scalars
+
+In math a scalar is defined as a single real number. R has no concept of a scalar: **in R, a scalar is simply a vector of length 1**
+
+```{r recycle}
+# set up a vector x of length 10
+(x <- sample(10))
+
+# add 100 to x
+x + c(100, 100, 100, 100, 100, 100, 100, 100, 100, 100)
+
+# add 100 to x: the R way (vector recycling)
+x + 100
+```
+
+<!-- The second way to add the numbers is more efficient but can also be dangerous...-->
+
+---
+
+### Vector Recycling
+
+When two vectors are involved in an operation, **R repeats the elements of the shorter vector to match the length of the longer vector**.
+
+This will work for any vector of any length. For example:
+```{r recycle-bad}
+# x1 is sequence of numbers from 1 to 2
+(x1 <- seq(from = 1, to = 2))
+
+# x2 is a sequence of numbers from 1 to 10
+(x2 <- seq(from = 1, to = 10))
+```
+
+---
+
+### Vector Recycling
+
+If we add `x1` and `x2` together, R will do it, but the result might not be what we expect:
+```{r}
+(x1 + x2)
+```
+
+The shorter vector, `x1`, is duplicated five times in order to match the length of the longer vector `x2.` 
+
+This behavior is called **vector recycling** and happens automatically in R. You need to pay attention if this is what you intended to do. If not, extend the length of the shorter vector manually first, then add them up.
+
+Note, if the shorter vector is not a multiple of the longer one, R will print a warning message.
+
+---
+
+### Subsetting vectors: slicing
+
+To subset a vector we use the index location of its elements:
+
+```{r subset-vec}
+x <- c("one", "two", "three", "four", "five")
+```
+
+```
+# keep the first element
+x[1]
+
+# keep the first through third elements
+x[c(1, 2, 3)]   # long way
+x[1:3]          # shorter
+x[c(seq(1, 3))] # sequence 
+x[-c(4:5)]      # negative indexing (values that you do not want to keep)
+x[-c(4,5)]      # negative indexing
+
+x[c(-1,2,3)]   # error! do not mix negative and positive subscripts
+```
+
+---
+
+### Subset with a logical vector: conditional subsetting
+
+Sometimes, rather than slicing, like we did in the previous example, we want to keep certain values based of a **condition**. 
+
+This is more similar to a filtering operation (vs. slicing) and it is a 2-step operation:
+1. create a logical vector of TRUEs and FALSEs, that identifies for each of the elements in the original vector, which one we want to keep
+
+2. apply that vector to the vector we want to subset 
+
+---
+
+### Subset with a logical vector: conditional subsetting
+
+Given a vector `x`:
+```{r subset-logic}
+x <- c(NA, 10, 3, 5, 8, 1, NA)
+```
+
+We want to keep all the non-missing values in `x`. To find them we can use `is.na()`. This function outputs a logical vector of TRUEs and FALSEs.
+Notice the `!` reverts the output, so we get TRUE for non-missing and FALSE for missing values -- we want to keep the TRUEs:
+```{r}
+!is.na(x)
+```
+
+Then, we put the function into `[]` to apply it to our `x` vector. This says "keep all elements that are TRUE" in this vector:
+```{r}
+x[!is.na(x)]
+```
+
+---
+
+### Subset with a logical vector: conditional subsetting
+
+This applies to any kind of conditional test. For example, given the same vector `x`:
+```{r}
+x <- c(NA, 10, 3, 5, 8, 1, NA)
+```
+
+We might want to get all even or missing values of `x`. To do so, we first use modular division: 
+```{r}
+x %% 2 == 0 
+```
+
+Then, we apply it to our vector `x`:
+```{r}
+x[x %% 2 == 0]
+```
+
+---
+
+class: inverse, middle
+
+# Lists
+
+---
+
+## Lists
+
+Lists are another type of vector, but they are not atomic vector. They differ from atomic vectors in two main ways:
+
+1. They **store heterogeneous elements** (vs. all values in an atomic vector must be of the same type)
+2. They **are structured differently** and are created with the `list()` function, not with the `c()` function. Notice the output is different than the output from an atomic vector:
+```{r list}
+x <- list(1, 2, 3)
+x
+```
+
+---
+
+## Lists structure
+
+List objects are structured as a list of **independent elements**. Use `str()` to see their structure: 
+```{r str}
+x <- list(1, 2, 3)
+str(x)
+```
+
+Here we have a list of length 3, and each of the elements of this list is a numeric atomic vector of length 1.
+
+---
+
+## Lists elements
+
+Unlike atomic vectors, lists can contain **multiple data types**, and we can also name each of them:
+```{r}
+x_named <- list(a = "abc", b = 2, c = c(1, 2, 3))
+str(x_named)
+```
+Here we have a list of length 3, and each of the elements of this list is a different object: we have a character vector of length 1, one numeric vector of length 1, and one numeric vector of length 3. 
+
+---
+
+## Nested lists
+
+You can also store lists inside a list: **nested list structure**. 
+
+In this object `z` we have two lists:
+```{r list-list}
+z <- list(list(1, 2), list(3, 4))
+str(z)
+```
+
+This is often useful when you interact with API to get data from the web (frequently you get this type of nested list as output when you get data from API).
+
+---
+
+## Secret lists: data frames!
+
+Notice, we have been using lists extensively in the class. Each column of a data frame is a list: 
+```{r list-df}
+str(gun_deaths)
+```
+
+The only difference between data frames and actual lists is that the length of each list object in the data frame has to the same (a data frame is rectangular).
+
+---
+
+## Subsetting lists
+
+Lists have a more complex structure than vectors, thus subsetting them also requires more attention.
+
+.pull-left[
+
+For example, `a` is a list that contains four elements: 
+* a numeric vector
+* a character vector
+* a numeric vector
+* a list object which in turns contains two distinct numeric vectors (notice the space in the middle)
+
+]
+
+.pull-right[
+
+```{r echo = FALSE, out.width = "30%"}
+include_graphics(path = "lists-subsetting-a-only.png")
+```
+
+]
+
+---
+
+## Subsetting lists
+
+```{r echo = FALSE, out.width = "50%"}
+include_graphics(path = "https://r4ds.had.co.nz/diagrams/lists-subsetting.png")
+```
+
+---
+
+class: inverse, middle
+
+# Practice subsetting vectors and lists
+
+---
+
+## Acknowledgments 
+
+The content of these slides is derived in part from Sabrina Nardin and Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY NC 4.0 Creative Commons License. Any errors or oversights are mine alone.

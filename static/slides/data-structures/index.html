@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data Structures</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="MACSS 30500   University of Chicago" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="index_files/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Data Structures
+]
+.author[
+### MACSS 30500 <br /> University of Chicago
+]
+
+---
+
+
+
+
+
+
+class: inverse, middle
+
+# R Base Data Structures
+
+&lt;!-- notes:
+this is a new lecture that focuses on a general review of data structures
+from the original lecture ("vectors-and-iteration") I kept the vectors and lists here 
+and I need to enlarge this lecture with more data structures
+I do not think I need all libraries listed there, double check
+
+also check this lecture corresponding pages on the syllabus 
+this lecture does not have notes (content &gt; notes)
+make sure to do that ahead of time to ensure things work!
+--&gt;
+
+---
+
+### R Base Data Structures
+
+R data structures:
+* Vectors
+* Matrices
+* Lists
+* Data frames
+* Arrays
+
+These data structures can be organized by:
+- their dimensions (1d, 2d, or nd)
+- whether they are homogeneous (all contents must be of the same type, like atomic vectors and matrices) or heterogeneous (contents can be of different types, like lists and data frames)
+
+Please, review:
+* Lecture 2 (`introR_lecture`) to define, subset, and manipulate these data structures
+* Chapter 20 "Vectors" in R for Data Science
+
+---
+
+### R is fundamentally a vector-based program
+
+So far, we have been using predominantly data frames, which are very common when working with social science data. 
+
+However, data frames are not actually the most fundamental type of object in R: **vectors are the ultimate building blocks of objects within R**.
+
+A matrix is made of vectors, a list is made of vectors (a list is still a vector in R but not an atomic one), data frames are made by lists, etc.
+
+Basically in R either something is a vector, or it's NULL...
+
+---
+
+### R is fundamentally a vector-based program
+
+&lt;img src="https://r4ds.had.co.nz/diagrams/data-structures-overview.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+&lt;!-- focus today is on atomic vectors and lists --&gt;
+
+---
+
+class: inverse, middle
+
+# Atomic vectors 
+
+---
+
+### Types of atomic vectors
+
+Remember: **All values in an atomic vector must to be of the same type**.
+
+**Logical**: you have used it every time you use a conditional test or operation (e.g., when you filter a data frame)
+
+```r
+logical_vector &lt;- c("TRUE", "TRUE", "FALSE", "TRUE", "NA")
+```
+
+**Numeric**: can be integer or double (default)
+
+```r
+integer_vector &lt;- c("1", "5", "3", "4", "12423")
+double_vector &lt;- c("4.2", "4", "6", "53.2")
+```
+
+**Character**: note you can use single or double quotations, you just need to be consistent
+
+```r
+character_vector &lt;- c("Scary", "'1,2,3 ready!'", "Halloween", '10/31/2022')
+```
+
+---
+
+### Scalars
+
+In math a scalar is defined as a single real number. R has no concept of a scalar: **in R, a scalar is simply a vector of length 1**
+
+
+```r
+# set up a vector x of length 10
+(x &lt;- sample(10))
+```
+
+```
+##  [1] 10  6  5  4  1  8  2  7  9  3
+```
+
+```r
+# add 100 to x
+x + c(100, 100, 100, 100, 100, 100, 100, 100, 100, 100)
+```
+
+```
+##  [1] 110 106 105 104 101 108 102 107 109 103
+```
+
+```r
+# add 100 to x: the R way (vector recycling)
+x + 100
+```
+
+```
+##  [1] 110 106 105 104 101 108 102 107 109 103
+```
+
+&lt;!-- The second way to add the numbers is more efficient but can also be dangerous...--&gt;
+
+---
+
+### Vector Recycling
+
+When two vectors are involved in an operation, **R repeats the elements of the shorter vector to match the length of the longer vector**.
+
+This will work for any vector of any length. For example:
+
+```r
+# x1 is sequence of numbers from 1 to 2
+(x1 &lt;- seq(from = 1, to = 2))
+```
+
+```
+## [1] 1 2
+```
+
+```r
+# x2 is a sequence of numbers from 1 to 10
+(x2 &lt;- seq(from = 1, to = 10))
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+---
+
+### Vector Recycling
+
+If we add `x1` and `x2` together, R will do it, but the result might not be what we expect:
+
+```r
+(x1 + x2)
+```
+
+```
+##  [1]  2  4  4  6  6  8  8 10 10 12
+```
+
+The shorter vector, `x1`, is duplicated five times in order to match the length of the longer vector `x2.` 
+
+This behavior is called **vector recycling** and happens automatically in R. You need to pay attention if this is what you intended to do. If not, extend the length of the shorter vector manually first, then add them up.
+
+Note, if the shorter vector is not a multiple of the longer one, R will print a warning message.
+
+---
+
+### Subsetting vectors: slicing
+
+To subset a vector we use the index location of its elements:
+
+
+```r
+x &lt;- c("one", "two", "three", "four", "five")
+```
+
+```
+# keep the first element
+x[1]
+
+# keep the first through third elements
+x[c(1, 2, 3)]   # long way
+x[1:3]          # shorter
+x[c(seq(1, 3))] # sequence 
+x[-c(4:5)]      # negative indexing (values that you do not want to keep)
+x[-c(4,5)]      # negative indexing
+
+x[c(-1,2,3)]   # error! do not mix negative and positive subscripts
+```
+
+---
+
+### Subset with a logical vector: conditional subsetting
+
+Sometimes, rather than slicing, like we did in the previous example, we want to keep certain values based of a **condition**. 
+
+This is more similar to a filtering operation (vs. slicing) and it is a 2-step operation:
+1. create a logical vector of TRUEs and FALSEs, that identifies for each of the elements in the original vector, which one we want to keep
+
+2. apply that vector to the vector we want to subset 
+
+---
+
+### Subset with a logical vector: conditional subsetting
+
+Given a vector `x`:
+
+```r
+x &lt;- c(NA, 10, 3, 5, 8, 1, NA)
+```
+
+We want to keep all the non-missing values in `x`. To find them we can use `is.na()`. This function outputs a logical vector of TRUEs and FALSEs.
+Notice the `!` reverts the output, so we get TRUE for non-missing and FALSE for missing values -- we want to keep the TRUEs:
+
+```r
+!is.na(x)
+```
+
+```
+## [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+```
+
+Then, we put the function into `[]` to apply it to our `x` vector. This says "keep all elements that are TRUE" in this vector:
+
+```r
+x[!is.na(x)]
+```
+
+```
+## [1] 10  3  5  8  1
+```
+
+---
+
+### Subset with a logical vector: conditional subsetting
+
+This applies to any kind of conditional test. For example, given the same vector `x`:
+
+```r
+x &lt;- c(NA, 10, 3, 5, 8, 1, NA)
+```
+
+We might want to get all even or missing values of `x`. To do so, we first use modular division: 
+
+```r
+x %% 2 == 0 
+```
+
+```
+## [1]    NA  TRUE FALSE FALSE  TRUE FALSE    NA
+```
+
+Then, we apply it to our vector `x`:
+
+```r
+x[x %% 2 == 0]
+```
+
+```
+## [1] NA 10  8 NA
+```
+
+---
+
+class: inverse, middle
+
+# Lists
+
+---
+
+## Lists
+
+Lists are another type of vector, but they are not atomic vector. They differ from atomic vectors in two main ways:
+
+1. They **store heterogeneous elements** (vs. all values in an atomic vector must be of the same type)
+2. They **are structured differently** and are created with the `list()` function, not with the `c()` function. Notice the output is different than the output from an atomic vector:
+
+```r
+x &lt;- list(1, 2, 3)
+x
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+```
+
+---
+
+## Lists structure
+
+List objects are structured as a list of **independent elements**. Use `str()` to see their structure: 
+
+```r
+x &lt;- list(1, 2, 3)
+str(x)
+```
+
+```
+## List of 3
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+```
+
+Here we have a list of length 3, and each of the elements of this list is a numeric atomic vector of length 1.
+
+---
+
+## Lists elements
+
+Unlike atomic vectors, lists can contain **multiple data types**, and we can also name each of them:
+
+```r
+x_named &lt;- list(a = "abc", b = 2, c = c(1, 2, 3))
+str(x_named)
+```
+
+```
+## List of 3
+##  $ a: chr "abc"
+##  $ b: num 2
+##  $ c: num [1:3] 1 2 3
+```
+Here we have a list of length 3, and each of the elements of this list is a different object: we have a character vector of length 1, one numeric vector of length 1, and one numeric vector of length 3. 
+
+---
+
+## Nested lists
+
+You can also store lists inside a list: **nested list structure**. 
+
+In this object `z` we have two lists:
+
+```r
+z &lt;- list(list(1, 2), list(3, 4))
+str(z)
+```
+
+```
+## List of 2
+##  $ :List of 2
+##   ..$ : num 1
+##   ..$ : num 2
+##  $ :List of 2
+##   ..$ : num 3
+##   ..$ : num 4
+```
+
+This is often useful when you interact with API to get data from the web (frequently you get this type of nested list as output when you get data from API).
+
+---
+
+## Secret lists: data frames!
+
+Notice, we have been using lists extensively in the class. Each column of a data frame is a list: 
+
+```r
+str(gun_deaths)
+```
+
+```
+## spc_tbl_ [100,798 × 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ id       : num [1:100798] 1 2 3 4 5 6 7 8 9 10 ...
+##  $ year     : num [1:100798] 2012 2012 2012 2012 2012 ...
+##  $ month    : chr [1:100798] "Jan" "Jan" "Jan" "Feb" ...
+##  $ intent   : chr [1:100798] "Suicide" "Suicide" "Suicide" "Suicide" ...
+##  $ police   : num [1:100798] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ sex      : chr [1:100798] "M" "F" "M" "M" ...
+##  $ age      : num [1:100798] 34 21 60 64 31 17 48 41 50 NA ...
+##  $ race     : chr [1:100798] "Asian/Pacific Islander" "White" "White" "White" ...
+##  $ place    : chr [1:100798] "Home" "Street" "Other specified" "Home" ...
+##  $ education: Factor w/ 4 levels "Less than HS",..: 4 3 4 4 2 1 2 2 3 NA ...
+```
+
+The only difference between data frames and actual lists is that the length of each list object in the data frame has to the same (a data frame is rectangular).
+
+---
+
+## Subsetting lists
+
+Lists have a more complex structure than vectors, thus subsetting them also requires more attention.
+
+.pull-left[
+
+For example, `a` is a list that contains four elements: 
+* a numeric vector
+* a character vector
+* a numeric vector
+* a list object which in turns contains two distinct numeric vectors (notice the space in the middle)
+
+]
+
+.pull-right[
+
+&lt;img src="lists-subsetting-a-only.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## Subsetting lists
+
+&lt;img src="https://r4ds.had.co.nz/diagrams/lists-subsetting.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: inverse, middle
+
+# Practice subsetting vectors and lists
+
+---
+
+## Acknowledgments 
+
+The content of these slides is derived in part from Sabrina Nardin and Benjamin Soltoff’s “Computing for the Social Sciences” course materials, licensed under the CC BY NC 4.0 Creative Commons License. Any errors or oversights are mine alone.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLines": true,
+"highlightLanguage": "r",
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
