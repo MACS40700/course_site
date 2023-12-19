@@ -21,7 +21,7 @@ Please, follow one of the two options and complete the required steps for both o
 
 {{% callout note %}}
 
-I encourage students to utilize the RStudio Workbench option. This will ensure all students use a consistent software environment. If you choose to install your own software locally, I cannot guarantee the instructional staff will be able to help you troubleshoot issues caused by software configuration.
+I encourage students to use R on their machines for this course as we are presupposing a higher level of R experience. 
 
 {{% /callout %}}
 
