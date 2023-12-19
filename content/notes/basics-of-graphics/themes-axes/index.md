@@ -12,9 +12,3 @@ output:
     toc_float: yes
     code_folding: show
 ---
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(cache = TRUE)
-```
-
-# Objectives
