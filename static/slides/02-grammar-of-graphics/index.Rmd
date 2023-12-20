@@ -1,13 +1,13 @@
 ---
 title: "Grammar of graphics"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output: xaringan::moon_reader
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 source(here::here("R", "slide-opts.R"))
 
@@ -22,8 +22,18 @@ library(here)
 
 class: middle, inverse
 
-# Data visualization
+# Data visualization: Agenda for today
 
+* Basics of visualization
+* Palmer penguins (!)
+* Parts of a graph: 
+  * aesthetics
+    * color
+    * shape
+    * size
+    * alpha (transparency)
+  * faceting
+* Prettying up
 ---
 
 ## Data visualization
@@ -147,6 +157,7 @@ ggplot(quartet, aes(x = x, y = y)) +
 
 2. Convey information in a way that is otherwise difficult/impossible to convey
 
+
 ---
 
 ## Impact of Omicron variant on unvaccinated populations
@@ -170,6 +181,8 @@ include_graphics("images/nytimes-us-covid-vaccine.png")
 .footnote[
 Source: [New York Times](https://www.nytimes.com/interactive/2020/us/covid-19-vaccine-doses.html), March 28, 2022.
 ]
+
+
 
 ---
 
@@ -205,12 +218,12 @@ ggplot(data = [dataset],
 
 Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
 
-.pull-left-narrow[
+.pull-left[
 ```{r echo=FALSE, out.width="80%"}
 include_graphics("images/penguins.png")
 ```
 ]
-.pull-right-wide[
+.pull-right[
 ```{r}
 library(palmerpenguins)
 glimpse(penguins)
@@ -1094,5 +1107,40 @@ staff_long %>%
 ```{r ref.label = "instructor-lines", fig.show = "hide"}
 ```
 
+]]
+
+---
+
+## Practice: Penguin challenge
+Choose one of the following plots and explain why you think it is the best representation of the data. Describe a research question it might help you answer. Post on Ed -- be specific and reference the readings when possible.  
+
+.panelset[
+.panel[.panel-name[Facets]
+```{r ref.label = "facet-color-no-legend", echo = FALSE, warning = FALSE}
+```
+]
+.panel[.panel-name[Alpha]
+```{r ref.label = "alpha", echo = FALSE, warning = FALSE, out.width = "70%"}
+```
+]
+.panel[.panel-name[Narrative]
+```{r ref.label="penguins-10-nohighlight", echo = FALSE, warning = FALSE, out.width = "70%", fig.width = 8}
+```
 ]
 ]
+
+---
+class: inverse
+
+# Assignment 1
+
+You need to find a graph and **critique** it (don't totally trash it -- this is an academic exercise). If you want you can work to make it better if you can get your hands on similar data. But if not, that's OK! 
+
+---
+
+# Speaking of: doing well on assignments
+
+```{r echo = FALSE, out.width="85%"}
+
+knitr::include_graphics("https://geekd-out.com/wp-content/uploads/2018/08/sugar-rush-featured-image.jpg")
+```

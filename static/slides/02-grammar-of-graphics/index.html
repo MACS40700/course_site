@@ -5,16 +5,21 @@
     <meta charset="utf-8" />
     <meta name="author" content="MACS 40700   University of Chicago" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/remark-css/default.css" rel="stylesheet" />
+    <link href="index_files/remark-css/default-fonts.css" rel="stylesheet" />
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Grammar of graphics
+]
+.author[
 ### MACS 40700 <br /> University of Chicago
+]
 
 ---
 
@@ -25,8 +30,18 @@ class: center, middle, inverse, title-slide
 
 class: middle, inverse
 
-# Data visualization
+# Data visualization: Agenda for today
 
+* Basics of visualization
+* Palmer penguins (!)
+* Parts of a graph: 
+  * aesthetics
+    * color
+    * shape
+    * size
+    * alpha (transparency)
+  * faceting
+* Prettying up
 ---
 
 ## Data visualization
@@ -156,6 +171,7 @@ quartet %&gt;%
 
 2. Convey information in a way that is otherwise difficult/impossible to convey
 
+
 ---
 
 ## Impact of Omicron variant on unvaccinated populations
@@ -175,6 +191,8 @@ Source: [John Burn-Murdoch](https://twitter.com/jburnmurdoch/status/150342066086
 .footnote[
 Source: [New York Times](https://www.nytimes.com/interactive/2020/us/covid-19-vaccine-doses.html), March 28, 2022.
 ]
+
+
 
 ---
 
@@ -209,10 +227,10 @@ ggplot(data = [dataset],
 
 Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
 
-.pull-left-narrow[
+.pull-left[
 &lt;img src="images/penguins.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
-.pull-right-wide[
+.pull-right[
 
 ```r
 library(palmerpenguins)
@@ -270,7 +288,7 @@ class: middle, inverse
 .pull-left[
 
 ```r
-*ggplot(data = penguins)
+ggplot(data = penguins) #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -288,7 +306,7 @@ class: middle, inverse
 
 ```r
 ggplot(data = penguins,
-*      mapping = aes(x = bill_depth_mm))
+       mapping = aes(x = bill_depth_mm)) #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -308,7 +326,7 @@ ggplot(data = penguins,
 ```r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
-*                    y = bill_length_mm))
+                     y = bill_length_mm)) #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -330,7 +348,7 @@ ggplot(data = penguins,
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm)) + 
-* geom_point()
+  geom_point() #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -353,7 +371,7 @@ ggplot(data = penguins,
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
-*                    color = species)) +
+                     color = species)) + #&lt;&lt;
   geom_point()
 ```
 ]
@@ -380,7 +398,7 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      color = species)) +
   geom_point() +
-* labs(title = "Bill depth and length")
+  labs(title = "Bill depth and length") #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -408,7 +426,7 @@ ggplot(data = penguins,
                      color = species)) +
   geom_point() +
   labs(title = "Bill depth and length",
-*      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins")
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins") #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -438,7 +456,7 @@ ggplot(data = penguins,
   geom_point() +
   labs(title = "Bill depth and length",
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-*      x = "Bill depth (mm)", y = "Bill length (mm)")
+       x = "Bill depth (mm)", y = "Bill length (mm)") #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -470,7 +488,7 @@ ggplot(data = penguins,
   labs(title = "Bill depth and length",
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
        x = "Bill depth (mm)", y = "Bill length (mm)",
-*      color = "Species")
+       color = "Species") #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -504,7 +522,7 @@ ggplot(data = penguins,
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
        x = "Bill depth (mm)", y = "Bill length (mm)",
        color = "Species",
-*      caption = "Source: Palmer Station LTER / palmerpenguins package")
+       caption = "Source: Palmer Station LTER / palmerpenguins package") #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -540,7 +558,7 @@ ggplot(data = penguins,
        x = "Bill depth (mm)", y = "Bill length (mm)",
        color = "Species",
        caption = "Source: Palmer Station LTER / palmerpenguins package") +
-* scale_color_viridis_d()
+  scale_color_viridis_d() #&lt;&lt;
 ```
 ]
 .pull-right[
@@ -650,7 +668,7 @@ Commonly used characteristics of plotting characters that can be **mapped to a s
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
-*          color = species)) +
+           color = species)) + #&lt;&lt;
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -672,7 +690,7 @@ ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
            color = species,
-*          shape = island)) +
+           shape = island)) + #&lt;&lt;
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -694,7 +712,7 @@ ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
            color = species,
-*          shape = species)) +
+           shape = species)) + #&lt;&lt;
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -715,7 +733,7 @@ ggplot(penguins,
            y = bill_length_mm,
            color = species,
            shape = species,
-*          size = body_mass_g)) +
+           size = body_mass_g)) + #&lt;&lt;
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -737,7 +755,7 @@ ggplot(penguins,
            color = species,
            shape = species,
            size = body_mass_g,
-*          alpha = flipper_length_mm)) +
+           alpha = flipper_length_mm)) + #&lt;&lt;
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -756,8 +774,8 @@ ggplot(penguins,
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm,
-*          size = body_mass_g,
-*          alpha = flipper_length_mm)) +
+           size = body_mass_g, #&lt;&lt;
+           alpha = flipper_length_mm)) + #&lt;&lt;
   geom_point()
 ```
 
@@ -771,7 +789,7 @@ ggplot(penguins,
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm)) + 
-* geom_point(size = 2, alpha = 0.5)
+  geom_point(size = 2, alpha = 0.5) #&lt;&lt;
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -812,7 +830,7 @@ class: middle, inverse
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-* facet_grid(rows = vars(species), cols = vars(island))
+  facet_grid(rows = vars(species), cols = vars(island)) #&lt;&lt;
 ```
 ]
 ]
@@ -834,7 +852,7 @@ But you should always label your plots!
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-* facet_grid(rows = vars(species), cols = vars(sex))
+  facet_grid(rows = vars(species), cols = vars(sex)) #&lt;&lt;
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -845,7 +863,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-* facet_grid(rows = vars(sex), cols = vars(species))
+  facet_grid(rows = vars(sex), cols = vars(species)) #&lt;&lt;
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -856,7 +874,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-* facet_wrap(facets = vars(species))
+  facet_wrap(facets = vars(species)) #&lt;&lt;
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -867,7 +885,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-* facet_grid(rows = NULL, cols = vars(species))
+  facet_grid(rows = NULL, cols = vars(species)) #&lt;&lt;
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -878,7 +896,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-* facet_wrap(facets = vars(species), ncol = 2)
+  facet_wrap(facets = vars(species), ncol = 2) #&lt;&lt;
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -909,10 +927,10 @@ ggplot(
   penguins, 
   aes(x = bill_depth_mm, 
       y = bill_length_mm, 
-*     color = species)) +
+      color = species)) + #&lt;&lt;
   geom_point() +
   facet_grid(species ~ sex) +
-* scale_color_viridis_d()
+  scale_color_viridis_d() #&lt;&lt;
 ```
 ]
 ]
@@ -936,7 +954,7 @@ ggplot(
       color = species)) +
   geom_point() +
   facet_grid(species ~ sex) +
-* scale_color_viridis_d(guide = "none")
+  scale_color_viridis_d(guide = "none")  #&lt;&lt;
 ```
 ]
 ]
@@ -978,7 +996,7 @@ staff
 ## 3 Full-Time Non-…   10.3   14.1   13.6   13.6   15.2   15.5   15     14.8   14.9
 ## 4 Part-Time Facu…   24     30.4   33.1   33.2   35.5   36     37     39.3   40.5
 ## 5 Graduate Stude…   20.5   16.5   18.1   18.8   18.7   19     20     19.9   19.5
-## # … with 2 more variables: `2009` &lt;dbl&gt;, `2011` &lt;dbl&gt;
+## # ℹ 2 more variables: `2009` &lt;dbl&gt;, `2011` &lt;dbl&gt;
 ```
 
 ---
@@ -1051,7 +1069,7 @@ staff_long
 ##  8 Full-Time Tenured Faculty 2005        17.8
 ##  9 Full-Time Tenured Faculty 2007        17.2
 ## 10 Full-Time Tenured Faculty 2009        16.8
-## # … with 45 more rows
+## # ℹ 45 more rows
 ```
 ]
 
@@ -1151,36 +1169,59 @@ I want to achieve the following look but I have no idea how!
 library(scales)
 
 staff_long %&gt;%
-* mutate(
-*   part_time = if_else(faculty_type == "Part-Time Faculty",
-*                       "Part-Time Faculty", "Other Faculty"),
-*   year = as.numeric(year)
-*   ) %&gt;%
+  mutate( #&lt;&lt;
+    part_time = if_else(faculty_type == "Part-Time Faculty", #&lt;&lt;
+                        "Part-Time Faculty", "Other Faculty"), #&lt;&lt;
+    year = as.numeric(year) #&lt;&lt;
+    ) %&gt;% #&lt;&lt;
   ggplot(aes(x = year, y = percentage/100, group = faculty_type, 
              color = part_time)) +
   geom_line() +
-* scale_color_manual(values = c("gray", "red")) +
-* scale_y_continuous(labels = label_percent(accuracy = 1)) +
+  scale_color_manual(values = c("gray", "red")) + #&lt;&lt;
+  scale_y_continuous(labels = label_percent(accuracy = 1)) + #&lt;&lt;
   theme_minimal() +
   labs(
     title = "Instructional staff employment trends",
     x = "Year", y = "Percentage", color = NULL
   ) +
-* theme(legend.position = "bottom")
+  theme(legend.position = "bottom") #&lt;&lt;
 ```
 
+]]
+
+---
+
+## Practice: Penguin challenge
+Choose one of the following plots and explain why you think it is the best representation of the data. Describe a research question it might help you answer. Post on Ed -- be specific and reference the readings when possible.  
+
+.panelset[
+.panel[.panel-name[Facets]
+&lt;img src="index_files/figure-html/unnamed-chunk-49-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Alpha]
+&lt;img src="index_files/figure-html/unnamed-chunk-50-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Narrative]
+&lt;img src="index_files/figure-html/unnamed-chunk-51-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 ]
 ]
+
+---
+class: inverse
+
+# Assignment 1
+
+You need to find a graph and **critique** it (don't totally trash it -- this is an academic exercise). If you want you can work to make it better if you can get your hands on similar data. But if not, that's OK! 
+
+---
+
+# Speaking of: doing well on assignments
+
+&lt;img src="https://geekd-out.com/wp-content/uploads/2018/08/sugar-rush-featured-image.jpg" width="85%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlighStyle": "solarized-light",
-"highlightLanguage": "r",
-"highlightLines": true,
-"ratio": "16:9",
-"countIncrementalSlides": false
-});
+<script>var slideshow = remark.create();
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -1220,6 +1261,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
@@ -1245,24 +1299,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

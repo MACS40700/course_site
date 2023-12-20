@@ -44,7 +44,7 @@ class: middle, inverse
 
 ### Teaching assistant
 
-Zihua Chen
+* Zihua Chen
 
 ---
 
@@ -118,15 +118,15 @@ class: middle, inverse
 ## Assessments
 
 - Homework assignments
-  - Submitted on GitHub, individual or team
+  - Accessed on GitHub, submitted on Canvas, individual or team
 - Final Project
-  - Submitted on GitHub, individual or team-based
+  - Accessed on GitHub, submitted on Canvas, individual or team-based
 
 ---
 
 ## Teams: UP TO YOU
 
-- Team assignments
+- Final project
   - You can opt in to group work OR work independently
   - Team-based submissions may be up to three people and each person must clearly explain their contributions to the project both descriptively and within a % (e.g. I did x while my partner did y and I contributed z% to the project (but more detail!)). While the percentages don't have to match exactly, they should be in the general ball-park. 
 - Expectations and roles
@@ -140,9 +140,13 @@ class: middle, inverse
 
 |Assignment|Type       |Value  | n  |Due                  |
 |:---------|:----------|:------|:---|---------------------|
-|Homeworks         |Individual      |65%    | 4 | ~ Every other week  |
-|Project 2 | Choice      |35%    | 1  | Exam week      | 
+|Homeworks         |Individual      |60%    | 4 | ~ Every other week  |
+|Project 2 | Choice      |40%    | 1 .fn[*]  | Exam week      | 
 
+
+
+
+.footnote[[*] check-ins and proposal are part of this grade]
 ---
 
 class: middle, inverse
@@ -153,7 +157,7 @@ class: middle, inverse
 
 ## Collaboration policy
 
-- Only work that is clearly assigned as team work should be completed collaboratively (Projects)
+- Only work that is clearly designated as team work should be completed collaboratively (Projects)
 
 - Homework assignments must be completed individually. You may not directly share answers / code with others, however you are welcome to discuss the problems in general and ask for advice.
 
@@ -766,10 +770,10 @@ class: middle, inverse
 
 - Create a GitHub account if you don't have one
 
-- Complete the [*FIRST ASSIGNMENT*](assignments/assign1/)
+- Complete the [*FIRST ASSIGNMENT*](https://macs40700.netlify.app/assignments/assign1/)
 
-- Read the [syllabus](https://uc-dataviz.netlify.app/syllabus.html)
+- Read the [syllabus](https://macs40700.netlify.app/course-syllabus/)
 
-- Complete the [reading](https://uc-dataviz.netlify.app/schedule.html)
+- Complete the [reading](https://macs40700.netlify.app/)
 
 - Make sure you have working installations of R and RStudio
