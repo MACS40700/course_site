@@ -26,7 +26,7 @@ You can see our tentative topics below.
 | 6-Feb  | [visualizing spatial data ](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| final proposal |
 | 8-Feb  | [visualizing spatial data](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) |             |
 | 13-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [GG: Ch 7](https://ggplot2-book.org/networks.html)  |        final progress report    |
-| 15-Feb | [text + network data ](slides/13-visualize-text-network)  |  [*Opt* Hamilton](/notes/hamilton/)  |          |
+| 15-Feb | [text + network data ](slides/13-visualize-text-network)  |   |          | <!--[*Opt* Hamilton](/notes/hamilton/) -->
 | 20-Feb | [animation  ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          ||
 | 22-Feb | [interactive reporting](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |           |
 | 27-Feb | [interactive visualization](slides/16-interactive-visualization)  | | [hwk 4](/assignments/assign4/)   |
