@@ -1,6 +1,6 @@
 ---
 date: "2022-09-25T00:00:00-05:00"
-draft: false
+draft: true
 title: ""
 toc: true
 type: book

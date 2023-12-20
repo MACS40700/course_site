@@ -8,6 +8,7 @@ weight: 1
 draft: false
 ---
 
+
 # Syllabus
 **Welcome to Data Visualization!** 
 
