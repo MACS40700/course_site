@@ -5,6 +5,7 @@ title: ""
 toc: true
 type: book
 weight: 1
+draft: false
 ---
 
 # Syllabus
