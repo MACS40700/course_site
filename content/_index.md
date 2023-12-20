@@ -14,7 +14,7 @@ You can see our tentative topics below.
 
 | Date   | Topic (Slides linked)   | Readings (complete BEFORE class)  |   Assignment      | 
 | ------ | ----------------------------- | --------------- | --------------- | 
-| 4-Jan  | [Welcome](slides/01-intro)  | Ch 2 TA   |
+| 4-Jan  | [Welcome](slides/01-intro)  | [Ch 2 TA](https://paul.zhdk.ch/pluginfile.php/93337/mod_resource/content/1/The%20Functional%20Art%20-%20An%20Introduction%20to%20Information%20Graphics%20and%20Visualization%20by%20Alberto%20Cairo%20%28z-lib.org%29.pdf)   |
 | 9-Jan  |  [Grammar of graphics](slides/02-grammar-of-graphics)  | [GG: Ch 13](https://ggplot2-book.org/mastery.html)| [hwk 1](/assignments/assign1/)   |     
 | 11-Jan | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) |                 |
 | 16-Jan | [geoms](slides/04-geoms) 	|     [GG: Ch 14](https://ggplot2-book.org/layers.html)          ||
