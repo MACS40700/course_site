@@ -9,7 +9,6 @@ draft: false
 ---
 
 
-# Syllabus
 **Welcome to Data Visualization!** 
 
 ## Schedule 

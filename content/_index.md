@@ -47,25 +47,5 @@ You can see our tentative topics below.
 TA: Zihua Chen <br>
 Prof: Jean Clipperton
 
-## Assignments / grading
-You can see our assignments listed out above with their respective deadlines. Generally speaking, you can expect the assignments and deadlines to be constant. 
-
-* Each assignment is graded along a check / check-plus / check-minus with most assignments getting a 'check', this includes the final assignment. 
-* Getting all checks is sufficient for a B+ in the course. 
-* A check-plus on the final is required for an A- in the course. 
-* Distinctions between and A and A- come from overall quality of work (at least two homework assignments at the check-plus level in addition to the final exam), and general engagement in the course. 
-* The distinction between a check and a check-plus comes from the level of completion. A check-level assignment satisfies the requirements of the prompt but may not be as polished or thoughtful. For more on the rubric, see [the rubric discussion](/faq/homework-evaluations).
-
-## Course policies
-### Access & Inclusion
-Difference enhances both the teaching and learning experiences. The classroom is a space where all students are welcome, regardless of age, dis/ability, ethnicity, gender identity and/or expression, national origin, race, religious non/belief, sex, sexual orientation, socioeconomic status, and alignment with other identities or contexts. Furthermore, if any student has a particular consideration, including learning and participation style, that affects their ability to meet course expectations, please see me as soon as possible. I am personally committed to creating and maintaining an inclusive learning environment for each and every student. Please, do not hesitate to contact me with specific needs or concerns, and the sooner the better. Maintaining transparency (and communication in general) with your instructor is not only a good professional skill, but also a good way to develop a more one-on-one relationship. Furthermore, accommodations are far easier and effective to arrange when planned than when rushed. In short, I will make every effort to ensure students equal access. Please let me know how I can help make this class work for you.
-
- 
-
-My classroom is intended to be a constructive and critical space, wherein all students feel comfortable engaging openly with the material, each other, and oneself. However, this is only possible when everyone commits to this endeavor. I expect you to do so, and to help your peers (and me) to do the same. While I very much encourage (and celebrate) dissent and/or debate, I will not tolerate disrespect in my classroom. Please let me know if you feel the principles expressed in this syllabus are not being upheld so that I can address it as soon as possible.
-
- 
-
-### Communication
-I am generally available via email at the address above, and will do my best to respond within 24 hours of contact during the week and 48 hours on weekends--I try not to check email much on weekends FYI. In addition to the office hours above, there will likely be time at the end of each class meeting to discuss individual issues. Please do not hesitate to be in touch with any questions or concerns. It’s helpful for me if you put ‘MACS 40700’ in the heading. I do ask that you check the syllabus/website before contacting me because the answer you seek is most likely there already.
-
+# Syllabus and policies
+See the [course syllabus in the side menu](/course-syllabus/)
