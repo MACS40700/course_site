@@ -1,7 +1,7 @@
 ---
 date: "2023-11/20T00:00:00-05:00"
 draft: false
-title: ""
+title: "Syllabus"
 toc: true
 type: book
 weight: 1
