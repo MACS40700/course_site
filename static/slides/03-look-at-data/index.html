@@ -5,18 +5,23 @@
     <meta charset="utf-8" />
     <meta name="author" content="MACS 40700   University of Chicago" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/remark-css/default.css" rel="stylesheet" />
+    <link href="index_files/remark-css/default-fonts.css" rel="stylesheet" />
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
     <link href="index_files/countdown/countdown.css" rel="stylesheet" />
     <script src="index_files/countdown/countdown.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Looking at data
+]
+.author[
 ### MACS 40700 <br /> University of Chicago
+]
 
 ---
 
@@ -60,7 +65,7 @@ staff
 ## 3 Full-Time Non-…   10.3   14.1   13.6   13.6   15.2   15.5   15     14.8   14.9
 ## 4 Part-Time Facu…   24     30.4   33.1   33.2   35.5   36     37     39.3   40.5
 ## 5 Graduate Stude…   20.5   16.5   18.1   18.8   18.7   19     20     19.9   19.5
-## # … with 2 more variables: `2009` &lt;dbl&gt;, `2011` &lt;dbl&gt;
+## # ℹ 2 more variables: `2009` &lt;dbl&gt;, `2011` &lt;dbl&gt;
 ```
 
 ---
@@ -133,7 +138,7 @@ staff_long
 ##  8 Full-Time Tenured Faculty 2005        17.8
 ##  9 Full-Time Tenured Faculty 2007        17.2
 ## 10 Full-Time Tenured Faculty 2009        16.8
-## # … with 45 more rows
+## # ℹ 45 more rows
 ```
 ]
 
@@ -231,22 +236,22 @@ I want to achieve the following look but I have no idea how!
 library(scales)
 
 staff_long %&gt;%
-* mutate(
-*   part_time = if_else(faculty_type == "Part-Time Faculty",
-*                       "Part-Time Faculty", "Other Faculty"),
-*   year = as.numeric(year)
-*   ) %&gt;%
+  mutate( #&lt;&lt;
+    part_time = if_else(faculty_type == "Part-Time Faculty", #&lt;&lt;
+                        "Part-Time Faculty", "Other Faculty"), #&lt;&lt;
+    year = as.numeric(year) #&lt;&lt;
+    ) %&gt;% #&lt;&lt;
   ggplot(aes(x = year, y = percentage/100, group = faculty_type, 
              color = part_time)) +
   geom_line() +
-* scale_color_manual(values = c("gray", "red")) +
-* scale_y_continuous(labels = label_percent(accuracy = 1)) +
+  scale_color_manual(values = c("gray", "red")) + #&lt;&lt;
+  scale_y_continuous(labels = label_percent(accuracy = 1)) + #&lt;&lt;
   theme_minimal() +
   labs(
     title = "Instructional staff employment trends",
     x = "Year", y = "Percentage", color = NULL
   ) +
-* theme(legend.position = "bottom")
+  theme(legend.position = "bottom") #&lt;&lt;
 ```
 
 ]
@@ -268,7 +273,7 @@ class: middle, inverse
 
 - Extracted from College Scorecard API
 
-- Source: `rcfss::scorecard`
+- Source: `rcis::scorecard`
 
 ]
 
@@ -279,31 +284,31 @@ class: middle, inverse
 
 ---
 
-## `rcfss::scorecard`
+## `rcis::scorecard`
 
 
 ```r
 library(tidyverse)
-# remotes::install_github("uc-cfss/rcfss")
-library(rcfss)
+# remotes::install_github("uc-cfss/rcis")
+library(rcis)
 
 glimpse(scorecard)
 ```
 
 ```
-## Rows: 1,732
+## Rows: 1,721
 ## Columns: 14
 ## $ unitid    &lt;dbl&gt; 100654, 100663, 100706, 100724, 100751, 100830, 100858, 1009…
 ## $ name      &lt;chr&gt; "Alabama A &amp; M University", "University of Alabama at Birmin…
 ## $ state     &lt;chr&gt; "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", …
 ## $ type      &lt;fct&gt; "Public", "Public", "Public", "Public", "Public", "Public", …
-## $ admrate   &lt;dbl&gt; 0.9175, 0.7366, 0.8257, 0.9690, 0.8268, 0.9044, 0.8067, 0.53…
-## $ satavg    &lt;dbl&gt; 939, 1234, 1319, 946, 1261, 1082, 1300, 1230, 1066, NA, 1076…
-## $ cost      &lt;dbl&gt; 23053, 24495, 23917, 21866, 29872, 19849, 31590, 32095, 3431…
-## $ netcost   &lt;dbl&gt; 14990, 16953, 15860, 13650, 22597, 13987, 24104, 22107, 2071…
-## $ avgfacsal &lt;dbl&gt; 69381, 99441, 87192, 64989, 92619, 71343, 96642, 56646, 5400…
-## $ pctpell   &lt;dbl&gt; 0.7019, 0.3512, 0.2536, 0.7627, 0.1772, 0.4644, 0.1455, 0.23…
-## $ comprate  &lt;dbl&gt; 0.2974, 0.6340, 0.5768, 0.3276, 0.7110, 0.3401, 0.7911, 0.69…
+## $ admrate   &lt;dbl&gt; 0.8965, 0.8060, 0.7711, 0.9888, 0.8039, 0.9555, 0.8507, 0.60…
+## $ satavg    &lt;dbl&gt; 959, 1245, 1300, 938, 1262, 1061, 1302, 1202, 1068, NA, 1101…
+## $ cost      &lt;dbl&gt; 23445, 25542, 24861, 21892, 30016, 20225, 32196, 32514, 3483…
+## $ netcost   &lt;dbl&gt; 15529, 16530, 17208, 19534, 20917, 13678, 24018, 19808, 2050…
+## $ avgfacsal &lt;dbl&gt; 68391, 102420, 87273, 64746, 93141, 69561, 96498, 62649, 533…
+## $ pctpell   &lt;dbl&gt; 0.7095, 0.3397, 0.2403, 0.7368, 0.1718, 0.4654, 0.1343, 0.22…
+## $ comprate  &lt;dbl&gt; 0.2866, 0.6117, 0.5714, 0.3177, 0.7214, 0.3040, 0.7870, 0.70…
 ## $ firstgen  &lt;dbl&gt; 0.3658281, 0.3412237, 0.3101322, 0.3434343, 0.2257127, 0.381…
 ## $ debt      &lt;dbl&gt; 15250, 15085, 14000, 17500, 17671, 12000, 17500, 16000, 1425…
 ## $ locale    &lt;fct&gt; City, City, City, City, City, City, City, City, City, Suburb…
@@ -314,8 +319,7 @@ glimpse(scorecard)
 ## A simple visualization
 
 .panelset[
-&lt;div class="panel"&gt;
-&lt;div class="panel-name"&gt;Code&lt;/div&gt;
+.panel[.panel-name[Code]
 
 ```r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
@@ -330,14 +334,13 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 
 
 
-&lt;/div&gt;
+]
 
-&lt;div class="panel"&gt;
-&lt;div class="panel-name"&gt;Plot&lt;/div&gt;
+.panel[.panel-name[Plot]
 
 &lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
-&lt;/div&gt;
+]
 ]
 
 ---
@@ -355,20 +358,20 @@ scorecard %&gt;%
 ```
 
 ```
-## # A tibble: 1,728 × 2
+## # A tibble: 1,717 × 2
 ##    pctpell pctpell_cat  
 ##      &lt;dbl&gt; &lt;fct&gt;        
-##  1   0.702 (0.667,0.833]
-##  2   0.351 (0.333,0.5]  
-##  3   0.254 (0.167,0.333]
-##  4   0.763 (0.667,0.833]
-##  5   0.177 (0.167,0.333]
-##  6   0.464 (0.333,0.5]  
-##  7   0.146 [0,0.167]    
-##  8   0.236 (0.167,0.333]
-##  9   0.488 (0.333,0.5]  
-## 10   0.706 (0.667,0.833]
-## # … with 1,718 more rows
+##  1   0.710 (0.667,0.833]
+##  2   0.340 (0.333,0.5]  
+##  3   0.240 (0.167,0.333]
+##  4   0.737 (0.667,0.833]
+##  5   0.172 (0.167,0.333]
+##  6   0.465 (0.333,0.5]  
+##  7   0.134 [0,0.167]    
+##  8   0.226 (0.167,0.333]
+##  9   0.501 (0.5,0.667]  
+## 10   0.697 (0.667,0.833]
+## # ℹ 1,707 more rows
 ```
 
 ---
@@ -389,12 +392,12 @@ scorecard %&gt;%
 ## # A tibble: 6 × 2
 ##   pctpell_cat       n
 ##   &lt;fct&gt;         &lt;int&gt;
-## 1 [0,0.167]       157
-## 2 (0.167,0.333]   610
-## 3 (0.333,0.5]     632
-## 4 (0.5,0.667]     225
-## 5 (0.667,0.833]    74
-## 6 (0.833,1]        30
+## 1 [0,0.167]       169
+## 2 (0.167,0.333]   630
+## 3 (0.333,0.5]     609
+## 4 (0.5,0.667]     205
+## 5 (0.667,0.833]    73
+## 6 (0.833,1]        31
 ```
 
 ---
@@ -402,8 +405,7 @@ scorecard %&gt;%
 ## A slightly more complex visualization
 
 .panelset[
-&lt;div class="panel"&gt;
-&lt;div class="panel-name"&gt;Code&lt;/div&gt;
+.panel[.panel-name[Code]
 
 ```r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
@@ -420,14 +422,13 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
 
 
 
-&lt;/div&gt;
+]
 
-&lt;div class="panel"&gt;
-&lt;div class="panel-name"&gt;Plot&lt;/div&gt;
+.panel[.panel-name[Plot]
 
 &lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
-&lt;/div&gt;
+]
 ]
 
 ---
@@ -495,8 +496,8 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
     color = "Percentage of Pell grant recipients",
     title = "Faculty salaries and net cost of attendance in US universities"
   ) +
-* theme_minimal(base_size = 16) +
-* scale_color_viridis_d(end = 0.9)
+  theme_minimal(base_size = 16) +  #&lt;&lt;
+  scale_color_viridis_d(end = 0.9)  #&lt;&lt;
 ```
 ]
 ]
@@ -523,7 +524,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
     title = "Faculty salaries and net cost of attendance in US universities"
   ) +
   theme_minimal(base_size = 16) +
-* scale_color_viridis_d(end = 0.8, option = "A")
+  scale_color_viridis_d(end = 0.8, option = "A") #&lt;&lt;
 ```
 ]
 ]
@@ -549,12 +550,12 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
     color = "Percentage of Pell grant recipients",
     title = "Faculty salaries and net cost of attendance in US universities"
   ) +
-* theme_dark(base_size = 16) +
-* scale_color_manual(values = c("yellow", "blue", "orange", "red", "green", "white")) +
-* theme(
-*   text = element_text(color = "red", face = "bold.italic"),
-*   plot.background = element_rect(fill = "yellow")
-* )
+  theme_dark(base_size = 16) + #&lt;&lt;
+  scale_color_manual(values = c("yellow", "blue", "orange", "red", "green", "white")) + #&lt;&lt;
+  theme( #&lt;&lt;
+    text = element_text(color = "red", face = "bold.italic"), #&lt;&lt;
+    plot.background = element_rect(fill = "yellow") #&lt;&lt;
+  ) #&lt;&lt;
 ```
 ]
 ]
@@ -582,7 +583,7 @@ Tufte strongly recommends maximizing the **data-to-ink ratio** this in the Visua
 
 ]
 .pull-right-narrow[
-&lt;img src="images/tufte-visual-display-cover.png" title="Cover of Visual Display of Quantitative Information, Tufte (1983)." alt="Cover of Visual Display of Quantitative Information, Tufte (1983)." width="100%" style="display: block; margin: auto 0 auto auto;" /&gt;
+&lt;img src="images/tufte-visual-display-cover.png" alt="Cover of Visual Display of Quantitative Information, Tufte (1983)." width="100%" style="display: block; margin: auto 0 auto auto;" /&gt;
 ]
 
 ---
@@ -629,12 +630,12 @@ mean_netcost_pctpell
 ## # A tibble: 6 × 2
 ##   pctpell_cat   mean_netcost
 ##   &lt;fct&gt;                &lt;dbl&gt;
-## 1 [0,0.167]           29991.
-## 2 (0.167,0.333]       22477.
-## 3 (0.333,0.5]         18655.
-## 4 (0.5,0.667]         17428.
-## 5 (0.667,0.833]       14997.
-## 6 (0.833,1]           10100.
+## 1 [0,0.167]           29919.
+## 2 (0.167,0.333]       22579.
+## 3 (0.333,0.5]         19171.
+## 4 (0.5,0.667]         16966.
+## 5 (0.667,0.833]       15572.
+## 6 (0.833,1]           10138.
 ```
 
 ---
@@ -649,7 +650,7 @@ mean_netcost_pctpell
 
 ```r
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
-* geom_col() +
+  geom_col() + #&lt;&lt;
   labs(
     x = "Mean net cost of attendance", y = "Pell grant recipients",
     title = "Mean net cost of attendance, by Pell grant recipients"
@@ -672,7 +673,7 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 
 ```r
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
-* geom_point(size = 4) +
+  geom_point(size = 4) + #&lt;&lt;
   labs(
     x = "Mean net cost of attendance", y = "Pell grant recipients",
     title = "Mean net cost of attendance, by Pell grant recipients"
@@ -695,12 +696,12 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 ```r
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
   geom_point(size = 4) +
-* geom_segment(
-*   aes(
-*     x = 0, xend = mean_netcost,
-*     y = pctpell_cat, yend = pctpell_cat
-*   )
-* ) +
+  geom_segment( #&lt;&lt;
+    aes( #&lt;&lt;
+      x = 0, xend = mean_netcost, #&lt;&lt;
+      y = pctpell_cat, yend = pctpell_cat #&lt;&lt;
+    ) #&lt;&lt;
+  ) + #&lt;&lt;
   labs(
     x = "Mean net cost of attendance", y = "Pell grant recipients",
     title = "Mean net cost of attendance, by Pell grant recipients"
@@ -722,11 +723,12 @@ This is Minard’s visualization of Napoleon’s retreat. Discuss in a pair (or 
 ]
 ]
 
-&lt;img src="images/minard.jpg" title="Minard’s visualization of Napoleon’s retreat" alt="Minard’s visualization of Napoleon’s retreat" width="83%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/minard.jpg" alt="Minard’s visualization of Napoleon’s retreat" width="83%" style="display: block; margin: auto;" /&gt;
 
 .footnote[Source: [Wikipedia](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#/media/File:Minard.png)]
 
-<div class="countdown" id="timer_624c63b9" style="top:0;right:0;" data-warnwhen="0">
+<div class="countdown" id="timer_ea6c2eac" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -736,10 +738,10 @@ This is Minard’s visualization of Napoleon’s retreat. Discuss in a pair (or 
 
 .panelset[
 .panel[.panel-name[Original]
-&lt;img src="images/healy-democracy-nyt-version.png" title="A crisis of faith in democracy? New York Times." alt="A crisis of faith in democracy? New York Times." width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/healy-democracy-nyt-version.png" alt="A crisis of faith in democracy? New York Times." width="50%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Improved]
-&lt;img src="images/healy-democracy-voeten-version-2.png" title="A crisis of faith in democracy? New York Times." alt="A crisis of faith in democracy? New York Times." width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/healy-democracy-voeten-version-2.png" alt="A crisis of faith in democracy? New York Times." width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -751,7 +753,7 @@ Healy, Data Visualization: A practical introduction. [Chapter 1](https://socviz.
 
 ## Bad perception
 
-&lt;img src="images/healy-perception-curves.png" title="Aspect ratios affect our perception of rates of change, modeled after an example by William S. Cleveland." alt="Aspect ratios affect our perception of rates of change, modeled after an example by William S. Cleveland." width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/healy-perception-curves.png" alt="Aspect ratios affect our perception of rates of change, modeled after an example by William S. Cleveland." width="80%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Healy, Data Visualization: A practical introduction. [Chapter 1](https://socviz.co/lookatdata.html). Figure 1.12.
@@ -821,7 +823,8 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 ]
 ]
 
-<div class="countdown" id="timer_624c6387" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_6c2c5219" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -845,13 +848,7 @@ Think back to all the plots you saw in the lecture, without flipping back throug
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlighStyle": "solarized-light",
-"highlightLanguage": "r",
-"highlightLines": true,
-"ratio": "16:9",
-"countIncrementalSlides": false
-});
+<script>var slideshow = remark.create();
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
@@ -891,6 +888,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
@@ -916,24 +926,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

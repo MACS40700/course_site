@@ -1,13 +1,13 @@
 ---
 title: "Looking at data"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output: xaringan::moon_reader
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcis::xaringan_theme()
 
 source(here::here("R", "slide-opts.R"))
 
@@ -18,6 +18,7 @@ ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 ```{r pkgs, include = FALSE, cache = FALSE}
 library(knitr)
 library(here)
+library(readr)
 library(countdown)
 ```
 
@@ -228,7 +229,7 @@ class: middle, inverse
 
 - Extracted from College Scorecard API
 
-- Source: `rcfss::scorecard`
+- Source: `rcis::scorecard`
 
 ]
 
@@ -239,12 +240,12 @@ class: middle, inverse
 
 ---
 
-## `rcfss::scorecard`
+## `rcis::scorecard`
 
 ```{r}
 library(tidyverse)
-# remotes::install_github("uc-cfss/rcfss")
-library(rcfss)
+# remotes::install_github("uc-cfss/rcis")
+library(rcis)
 
 glimpse(scorecard)
 ```
