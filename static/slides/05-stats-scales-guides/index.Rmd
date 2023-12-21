@@ -1,13 +1,16 @@
 ---
 title: "Deep dive: stats + scales + guides"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output:
+  xaringan::moon_reader:
+    nature:
+      ratio: '16:9'
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -24,9 +27,14 @@ library(countdown)
 
 class: middle, inverse
 
-# Project #1
+# Agenda:
+* Scales: display for how the axes appear numerically
+* Guides
+  * Legends
+  * Axes (incl ticks)
 
----
+
+<!-----
 
 - [Project description](https://uc-dataviz.netlify.app/project-1.html)
 - Group assignments
@@ -36,194 +44,15 @@ class: middle, inverse
     - April 22 - Revised proposals for instructor review
     - April 28 - write-up and presentation
 
----
-
-class: inverse, middle
-
-# Wrap-up up from Thursday
-
----
-
-## Two variables
-
-- One time, one continuous
-  - `geom_area()`: area plot
-  - `geom_line()`: line plot
-  - `geom_step()`: step plot
-
-- Display uncertainty:
-  - `geom_crossbar()`: vertical bar with center
-  - `geom_errorbar()`: error bars
-  - `geom_linerange()`: vertical line
-  - `geom_pointrange()`: vertical line with center
-
-- Spatial
-  - `geom_sf()`: for map data (more on this later...)
-
----
-
-## Average net cost per Pell grant recipient
-
-```{r include = FALSE, cache = FALSE}
-# load packages
-library(tidyverse)
-library(rcfss)
-
-# set default theme for ggplot2
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
-
-# set default figure parameters for knitr
-knitr::opts_chunk$set(
-  fig.width = 8, # 8"
-  fig.asp = 0.618, # the golden ratio
-  fig.retina = 2, # dpi multiplier for displaying HTML output on retina
-  dpi = 150, # higher dpi, sharper image
-  out.width = "60%"
-)
-```
-
-```{r}
-mean_netcost_pctpell <- scorecard %>%
-  mutate(pctpell = round(pctpell, digits = 2)) %>%
-  group_by(pctpell) %>%
-  summarise(
-    n = n(),
-    mean_netcost = mean(netcost),
-    sd_netcost = sd(netcost)
-  ) %>%
-  drop_na(mean_netcost)
-
-mean_netcost_pctpell
-```
-
----
-
-## `geom_errorbar()`
-
-.task[
-Describe how this plot is constructed and what the points and the lines (error bars) correspond to.
-]
-
-.panelset[
-.panel[.panel-name[Code]
-```{r errorbar, fig.show = "hide"}
-ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
-  geom_point() +
-  geom_errorbar(aes(
-    ymin = mean_netcost - sd_netcost,
-    ymax = mean_netcost + sd_netcost
-  ))
-```
-]
-.panel[.panel-name[Plot]
-```{r ref.label = "errorbar", echo = FALSE}
-
-```
-]
-]
-
-```{r echo = FALSE, cache = FALSE}
-countdown(minutes = 3, bottom = 0)
-```
-
----
-
-## Let's clean things up a bit!
-
-Meet your new best friend, the [**scales**](https://scales.r-lib.org/) package!
-
-```{r}
-library(scales)
-```
-
----
-
-## Let's clean things up a bit!
-
-.panelset[
-```{r panelset = c(output = "Plot", source = "Code"), fig.show = "hold"}
-ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
-  geom_point(alpha = 0.4, size = 2, color = "#012169") +
-  scale_x_continuous(labels = label_number(big.mark = ",")) +
-  scale_y_continuous(labels = label_dollar()) +
-  labs(
-    x = "Average faculty salary (USD)",
-    y = "Net cost of attendance (USD)",
-    title = "Faculty salaries and net cost of attendance in US universities",
-    subtitle = "2018-19",
-    caption = "Source: College Scorecard"
-  )
-```
-]
-
----
-
-class: middle, inverse
-
-# geoms
-
----
-
-## Three variables
-
-- `geom_tile()`: tile the plane with rectangles
-- `geom_raster()`: fast version of `geom_tile()` for equal sized tiles
-
----
-
-## `geom_tile()`
-
-```{r}
-ggplot(scorecard, aes(x = type, y = locale)) +
- geom_tile(aes(fill = netcost))
-```
-
----
-
-## Another look at smooth-ish surface
-
-.panelset[
-.panel[.panel-name[Summarize]
-.small[
-```{r}
-mean_netcost_type_locale <- scorecard %>%
-  group_by(type, locale) %>%
-  summarize(mean_netcost = mean(netcost, na.rm = TRUE), .groups = "drop")
-
-mean_netcost_type_locale
-```
-]
-]
-.panel[.panel-name[Plot]
-```{r}
-ggplot(mean_netcost_type_locale, aes(x = type, y = locale)) +
-  geom_point(aes(color = mean_netcost), size = 30, pch = "square")
-```
-]
-]
-
----
-
-## Activity: Pick a geom
-
-.task[
-For each of the following problems, suggest a useful geom:
-
-1. Display how the value of variable has changed over time
-1. Show the detailed distribution of a single continuous variable
-1. Focus attention on the overall relationship between two variables in a large dataset
-1. Label outlying points in a single variable
-]
-
-```{r echo = FALSE, cache = FALSE}
-countdown(minutes = 3, bottom = 0)
-```
+--->
 
 ---
 
 class: inverse, middle
 
 # Setup
+* Stats
+* Scales
 
 ---
 
@@ -232,7 +61,7 @@ class: inverse, middle
 ```{r cache = FALSE}
 # load packages
 library(tidyverse)
-library(rcfss)
+library(rcis)
 
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
@@ -263,7 +92,7 @@ class: middle, inverse
 
 ---
 
-## Stats < > geoms
+## Stats != geoms
 
 - Statistical transformation (**stat**) transforms the data, typically by summarizing
 - Many of ggplot2’s stats are used behind the scenes to generate many important geoms
@@ -295,17 +124,19 @@ knitr::include_graphics("images/summary-stats.png")
 ```{r}
 ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
   geom_point(alpha = 0.5) + 
-  stat_summary(geom = "point", fun = "median", color = "red", size = 5, pch = 4, stroke = 2) #<<
+  stat_summary(geom = "point", fun = "median", 
+               color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
 ---
 
-## Alternate: layering with stats
+## Alternate layering with stats
 
 ```{r}
 ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
   geom_point(alpha = 0.5) + 
-  geom_point(stat = "summary", fun = "median", color = "red", size = 5, pch = 4, stroke = 2) #<<
+  geom_point(stat = "summary", fun = "median", 
+             color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
 ---
@@ -319,9 +150,24 @@ What can you say about the distribution of average faculty salaries from the fol
 .small[
 ```{r out.width = "50%"}
 ggplot(scorecard, aes(sample = avgfacsal)) +
-  stat_qq() + #<<
-  stat_qq_line() + #<<
+  stat_qq() + 
+  stat_qq_line() + 
   labs(y = "avgfacsal")
+```
+]
+
+---
+# Stats: Exercise:
+
+.task[Use the `PlantGrowth` dataset (hint: data()) and make a boxplot with the means marked with a green X]
+.small[
+--
+```{r}
+data("PlantGrowth")
+ggplot(PlantGrowth, aes(x = group, y = weight))  +
+     geom_boxplot() +
+     stat_summary(geom = "point", fun = "mean", 
+                  color = "darkgreen", size = 5, pch = 4, stroke = 2)
 ```
 ]
 
@@ -421,18 +267,23 @@ What happens if you pair a discrete variable with a continuous scale? What happe
 ]
 
 .panelset[
+.panel[.panel-name[Type]
+```{r}
+ggplot(scorecard, aes(type)) + geom_bar(stat = "count")
+```
+]
 .panel[.panel-name[Plots]
 .pull-left[
 ```{r incorrect-scale-continuous, error = TRUE, eval = FALSE}
 ggplot(
   data = scorecard,
   mapping = aes(
-    x = type, #<<
+    x = type,  
     y = avgfacsal
   )
 ) +
   geom_point(alpha = 0.5) +
-  scale_x_continuous() #<<
+  scale_x_continuous() 
 ```
 ]
 
@@ -442,11 +293,11 @@ ggplot(
   data = scorecard,
   mapping = aes(
     x = type,
-    y = avgfacsal #<<
+    y = avgfacsal 
   )
 ) +
   geom_point(alpha = 0.5) +
-  scale_y_discrete() #<<
+  scale_y_discrete() 
 ```
 
 ]
@@ -528,7 +379,7 @@ ggplot(scorecard,
 ggplot(scorecard, 
        aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
-  scale_y_log10()
+  scale_y_log10(labels = scales::label_comma())
 ```
 ]
 
@@ -573,6 +424,16 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) +
 ```{r echo = FALSE, cache = FALSE}
 countdown(minutes = 5, bottom = 0, left = 0)
 ```
+---
+# Scales exercise
+
+.task[In groups of two-to-three:
+* Identify a relevant R dataset that has your assigned variable type (e.g. continuous/continuous)
+* Create a simple plot
+* Rework the scales using both of the following:
+  * Naming
+  * Transformation
+]
 
 ---
 
@@ -602,7 +463,7 @@ Source: ggplot2: Elegant Graphics for Data Analysis, [Chp 15](https://ggplot2-bo
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_x_continuous(
-    name = "Net cost of attendance" #<<
+    name = "Net cost of attendance" 
   )
 ```
 
@@ -620,7 +481,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   geom_point(alpha = 0.5) +
   scale_x_continuous(
     name = "Net cost of attendance",
-    breaks = seq(from = 0, to = 60000, by = 10000) #<<
+    breaks = seq(from = 0, to = 60000, by = 10000) 
   )
 ```
 ]
@@ -636,7 +497,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   scale_x_continuous(
     name = "Net cost of attendance",
     breaks = seq(from = 0, to = 60000, by = 10000),
-    limits = c(0, 60000)  #<<
+    limits = c(0, 60000)  
   )
 ```
 ]
@@ -653,7 +514,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
     name = "Net cost of attendance",
     breaks = seq(from = 0, to = 60000, by = 10000),
     limits = c(0, 60000),
-    labels = c("$0", "$10,000", "$20,000", "$30,000", "$40,000", "$50,000", "$60,000") #<<
+    labels = c("$0", "$10,000", "$20,000", "$30,000", "$40,000", "$50,000", "$60,000") 
   )
 ```
 ]
@@ -672,12 +533,11 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
     name = "Net cost of attendance",
     breaks = seq(from = 0, to = 60000, by = 10000),
     limits = c(0, 60000),
-    labels = label_dollar() #<<
-  )
+    labels = label_dollar() )
 ```
 ]
 
-----
+---
 
 ## Customizing axes
 
@@ -686,31 +546,24 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_x_continuous(
-    name = "Net cost of attendance",
-    breaks = seq(from = 0, to = 60000, by = 10000),
-    limits = c(0, 60000),
-    labels = label_dollar()
-  ) +
-  scale_y_continuous( #<<
-    name = "Average faculty salary (USD)", #<<
-    labels = label_dollar() #<<
-  ) #<<
+    name = "Net cost of attendance", breaks = seq(from = 0, to = 60000, by = 10000),
+    limits = c(0, 60000), labels = label_dollar()) +
+  scale_y_continuous( name = "Average faculty salary (USD)", labels = label_dollar()) 
 ```
 ]
 
 ---
 
 ## Aside: storing a plot
-
+.small[
 ```{r}
 set.seed(1234)
-
 p_pctpell_avgfacsal_type <- ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) +
   geom_jitter(aes(color = type, shape = type), size = 2)
 
 p_pctpell_avgfacsal_type
 ```
-
+]
 ---
 
 ## Customizing axis and legend labels with `scale_*()`
@@ -718,10 +571,10 @@ p_pctpell_avgfacsal_type
 .small[
 ```{r}
 p_pctpell_avgfacsal_type +
-  scale_x_continuous(name = "Percent of students receiving a Pell grant") + #<<
-  scale_y_continuous(name = "Average faculty salary (USD)") + #<<
-  scale_color_discrete(name = "College type") + #<<
-  scale_shape_discrete(name = "College type") #<<
+  scale_x_continuous(name = "Percent of students receiving a Pell grant") + 
+  scale_y_continuous(name = "Average faculty salary (USD)") + 
+  scale_color_discrete(name = "College type") + 
+  scale_shape_discrete(name = "College type") 
 ```
 ]
 
@@ -729,29 +582,40 @@ p_pctpell_avgfacsal_type +
 
 ## Customizing axis and legend labels with `labs()`
 
+.panelset[
+.panel[.panel-name[Separate]
 .small[
 ```{r out.width = "50%"}
-p_pctpell_avgfacsal_type +
-  labs( #<<
-    x = "Percent of students receiving a Pell grant", #<<
-    y = "Average faculty salary (USD)", #<<
-    color = "College type", #<<
-    shape = "College type", #<<
-  )
+p_pctpell_avgfacsal_type + labs( x = "Percent of students receiving a Pell grant",
+    y = "Average faculty salary (USD)",
+    color = "College type")
 ```
 ]
+]
+.panel[.panel-name[Combined]
+.small[
+```{r out.width = "50%"}
+p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell grant", 
+    y = "Average faculty salary (USD)", 
+    color = "College type", 
+    shape = "College type", )
+```
+]
+]
+]
+
 
 ---
+# Guides exercise
 
-## Splitting legend labels
-
-.small[
-```{r out.width = "50%"}
-p_pctpell_avgfacsal_type +
-  labs(
-    x = "Percent of students receiving a Pell grant",
-    y = "Average faculty salary (USD)",
-    color = "College type"
-  )
-```
+.task[In groups of two-to-three:
+* Identify a relevant R dataset that has your assigned variable type (e.g. continuous/continuous)
+* Create a simple plot
+* Rework the scales using at least one per category of the following:
+  * Scales (x axis): adding breaks, limits, labels transformations
+  * Scales (y axis): adding breaks, limits, labels transformations
+  * Add color or shape (e.g. `scale_color_discrete()`)
+  * Legend and labs: polish
 ]
+
+Post this graph and code on Ed -- it should be reproducible as-is!!
