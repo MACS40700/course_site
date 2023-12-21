@@ -1,13 +1,13 @@
 ---
-title: "Deep dive: geoms"
+title: "Deep dive: geometric objects (AKA geoms)"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output: xaringan::moon_reader
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -29,21 +29,16 @@ library(countdown)
 
 class: middle, inverse
 
-# Announcements
+# Agenda:
+
+* Aesthetic mappings: WHERE TO PUT!
+* Geoms: making a layer cake
+* Scales
 
 ---
 
 ## Announcements
 
-- HW 1 is posted:
-  - Go to the course GitHub org and look for a repo named `hw01-YOUR_GITHUB_NAME`
-  - Instructions are in the README
-  - All work must be completed in `homework-01.Rmd` document, knit, and submitted along with the output `homework-01.md`
-  - Due Tuesday, Apr 12, by 11:59pm
-  - At the deadline you'll lose push access to your repo, if you want to submit late, email me to enable late submission
-  - Post questions on the discussion forum
-
-- Check Canvas before class on Tuesday for your team assignments, sit with your teams in class
 
 ---
 
@@ -58,8 +53,8 @@ class: middle, inverse
 ```{r}
 # load packages
 library(tidyverse)
-# remotes::install_github("uc-cfss/rcfss")
-library(rcfss)
+# remotes::install_github("cis-ds/rcis")
+library(rcis)
 ```
 
 ---
@@ -159,6 +154,35 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 ```{r echo = FALSE, cache = FALSE}
 countdown(minutes = 3, bottom = 0)
 ```
+
+---
+
+
+## Activity: Spot the difference I
+
+.task[
+Do you expect the following plots to be the same or different? If different, how? Discuss in a pair (or group) without running the code and sketch the resulting plots based on what you think the code will produce.
+]
+
+.panelset[
+.panel[.panel-name["Plot A"]
+```{r }
+# Plot A
+ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 0.5)
+```
+] 
+.panel[.panel-name["Plot B"]
+```{r }
+
+# Plot B
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(aes(color = pctpell_cat), alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 0.5)
+```
+]]
+
 
 ---
 
@@ -611,9 +635,9 @@ mean_netcost_pctpell <- scorecard %>%
     mean_netcost = mean(netcost),
     sd_netcost = sd(netcost)
   ) %>%
-  drop_na(mean_netcost)
+  drop_na(mean_netcost) 
 
-mean_netcost_pctpell
+mean_netcost_pctpell %>% head(6)
 ```
 
 ---
@@ -737,7 +761,7 @@ mean_netcost_type_locale <- scorecard %>%
   group_by(type, locale) %>%
   summarize(mean_netcost = mean(netcost, na.rm = TRUE), .groups = "drop")
 
-mean_netcost_type_locale
+mean_netcost_type_locale %>% head(10)
 ```
 ]
 ]
@@ -770,26 +794,30 @@ countdown(minutes = 3, bottom = 0)
 
 class: inverse, middle
 
-# Homework 1
+# Assignment 2
 
 ---
 
-## Homework 1
+## Assignment 2
 
 .task[
-- Locate your Homework 1 repo, clone it in RStudio
-- Put your name in the YAML of `homework-01.Rmd`, knit, commit (with a meaningful message), push
-- Skim the README to get a sense of the instructions and use the remaining time to ask any clarifying questions and to get started on the first question
-- Make sure you know how to ask a question on the course discussion forum, and set up notifications
+**TWO PARTS**
+- Part 1: propose a portfolio: THREE GRAPH PLAN for exploring a question / dataset
+- Part 2: EDA (first graph): rough draft of your first plot + critique
 ]
+
+--
+
+### Tips
+
+- Start with a research question / topic area / theme
+- Work on how the graphs will fit together
+- Can submit in groups (prep for assignment 3 + final) or separately (you can change your mind later as well!)
+- Cannot have all the same graph type
+- Can potentially resubmit if you get a check-minus (determined on a case-by-case basis -- basically this should be a good faith effort) 
+
 
 ---
 
-## Homework 1 tips
+# Recap
 
-- You can go in order or jump around between exercises. If you get stuck
-  on a specific exercise, feel free to switch to a different one.
-
-- But, of course, do what feels right for you in terms of pace, ordering, etc.!
-
-- And ask questions on the course discussion forum
