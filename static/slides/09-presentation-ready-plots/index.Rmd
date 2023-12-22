@@ -1,13 +1,16 @@
 ---
 title: "Presentation ready plots"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output:
+  xaringan::moon_reader:
+    nature:
+      ratio: '16:9'
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
