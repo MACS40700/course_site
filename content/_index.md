@@ -23,13 +23,13 @@ You can see our tentative topics below.
 | 25-Jan | [optimizing color spaces ](slides/07-optimizing-color-spaces)       |  [DV: Ch 4](https://clauswilke.com/dataviz/color-basics.html) *Opt* [DIY palette](https://blog.datawrapper.de/colors-for-data-vis-style-guides/)       |
 | 30-Jan | [themes + axes + annotation](slides/08-themes-axes-annotations)  |[EG: Ch 18](https://ggplot2-book.org/polishing.html) and [EG: Ch 8](https://ggplot2-book.org/annotations.html) and [DV: Ch 22](https://clauswilke.com/dataviz/figure-titles-captions.html) &nbsp; &nbsp; |[hwk 3](/assignments/assign3/)   |
 | 1-Feb  |[visualizing spatial data ](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| |
-| 6-Feb  | [visualizing spatial data](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) |     final proposal         |
+| 6-Feb  | [visualizing spatial data](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) |            |
 | 8-Feb  |  [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          |
-| 13-Feb |[text + network data ](slides/13-visualize-text-network)  |   |          | <!--[*Opt* Hamilton](/notes/hamilton/) -->
-| 15-Feb |  [presentation-ready plots](slides/09-presentation-ready-plots)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) |        project progress report        |
-| 20-Feb | [animation  ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          | [hwk 4](/assignments/assign4/)  |
-| 22-Feb | [interactive reporting](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
-| 27-Feb | [interactive visualization](slides/16-interactive-visualization)  | |   |
+| 13-Feb |[animation  ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  final proposal  |
+| 15-Feb | [interactive reporting](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
+| 20-Feb | [interactive visualization](slides/16-interactive-visualization)  | |     |
+| 22-Feb |  [presentation-ready plots](slides/09-presentation-ready-plots)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) |   [hwk 4](/assignments/assign4/)      |
+| 27-Feb | lightning talks: preliminary results + feedback ||      project progress report|
 | 05-Mar | Final project due             |  | [final project](/assignments/final-project/)|
 
 ### Readings:
