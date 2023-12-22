@@ -28,26 +28,17 @@ class: center, middle, inverse, title-slide
 
 class: middle, inverse
 
-# Welcome
+# Agenda:
+
+* Wrap up annotations
+* Telling a story
+* `xaringan`
+* Plots on slides
+
 
 ---
 
-## Announcements I
-
-Project presentations on Thursday
-
-- Bring a laptop to fill out feedback forms
-- Presentation order, with latest start-by times:
-  - 11:03 - Calm Comet
-  - 11:11 - Chalky Piglet
-  - 11:19 - Elated Anura
-  - 11:27 - Female Python
-  - 11:35 - Froggy Panda
-  - 11:43 - Outer Baboon
-  - 12:51 - Sleepy Spider
-  - 11:59 - Swampy Pygmy
-  - 12:07 - Tan Egg
-  - 12:15 - Undead Hen
+## Announcements 
 
 ---
 
@@ -77,18 +68,6 @@ options(dplyr.print_max = 6, dplyr.print_min = 6)
 
 ---
 
-## Agenda for today
-
-- Wrap up annotations
-
-- Telling a story
-
-- `xaringan`
-
-- Plots on slides
-
----
-
 class: inverse, middle
 
 # Telling a story
@@ -104,7 +83,7 @@ class: inverse, middle
 &lt;br&gt;
 
 .note[
-**Project note:** you're asked to create two plots per question. One possible approach: Start with a plot showing the raw data, and show derived quantities (e.g. percent increases, averages, coefficients of fitted models) in the subsequent plot.
+**Project note:** you're asked to create three plots. One possible approach: Start with a plot showing the raw data, and show derived quantities (e.g. percent increases, averages, coefficients of fitted models) in the subsequent plot, and some combination in the third. 
 ]
 
 ---
@@ -115,7 +94,7 @@ class: inverse, middle
 
 - Never assume your audience can rapidly process complex visual displays
 
-- Don't add variables to your plot that are tangential to your story
+- Don't add variables to your plot that are only tangential to your story
 
 - Don't jump straight to a highly complex figure; first show an easily digestible subset (e.g., show one facet first)
 
@@ -123,9 +102,9 @@ class: inverse, middle
 
 &lt;br&gt;
 
-.note[
-**Project note:** Make sure to leave time to iterate on your plots after you practice your presentation. If certain plots are getting too wordy to explain, take time to simplify them!
-]
+&lt;!-- .note[ --&gt;
+&lt;!-- **Project note:** Make sure to leave time to iterate on your plots after you practice your presentation. If certain plots are getting too wordy to explain, take time to simplify them! --&gt;
+&lt;!-- ] --&gt;
 
 ---
 
@@ -139,9 +118,9 @@ class: inverse, middle
 
 &lt;br&gt;
 
-.note[
-**Project note:** If possible, ask a friend who is not in the class to listen to your presentation and then ask them what they remember. Then, ask yourself: is that what you wanted them to remember?
-]
+&lt;!-- .note[ --&gt;
+&lt;!-- **Project note:** If possible, ask a friend who is not in the class to listen to your presentation and then ask them what they remember. Then, ask yourself: is that what you wanted them to remember? --&gt;
+&lt;!-- ] --&gt;
 
 ---
 
@@ -159,7 +138,9 @@ class: inverse, middle
 
 - [`xaringan` in R Markdown reference book](https://bookdown.org/yihui/rmarkdown/xaringan.html)
 
-- [Example slides](https://dataviz-sp22.github.io/proj1/presentation/presentation.html#1)
+- [Example slides](https://slides.yihui.org/xaringan/#1) 
+
+&lt;!-- #https://dataviz-sp22.github.io/proj1/presentation/presentation.html#1) --&gt;
 
 ---
 
@@ -188,21 +169,26 @@ class: inverse, middle
 
 ## Multiple figures on a slide
 
-- Use `.pull-left` and `.pull-right` environments (example in slide template)
+- Use `.pull-left` and `.pull-right` environments  
 
 - Use `out.width= "50%"` in a chunk that creates two plots to have each span half the slide and be placed next to each other (or `out.width = "33%"` for three plots, etc.)
 
-- Use the [**patchwork**](https://patchwork.data-imaginist.com/) package (details on this later in the semester, but feel free to look into it yourself!)
+- Use the [**patchwork**](https://patchwork.data-imaginist.com/) package (details on this later in the quarter, but feel free to look into it yourself!)
 
 - Possibly, use pivoting to reshape your data and then use facets
 
 ---
 
-## Like something you saw in my slides?
+&lt;!-- ## Like something you saw in my slides? --&gt;
 
-&lt;br&gt;
+&lt;!-- &lt;br&gt; --&gt;
 
-Look into the source code at https://github.com/uc-dataviz/slides.
+&lt;!-- Look into the source code at https://github.com/uc-dataviz/slides. --&gt;
+
+# Try it out
+
+* Create a four-slide grouping of your final project so far
+* Aim to have three-ish bullet points per slide
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
