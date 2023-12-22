@@ -1,13 +1,16 @@
 ---
 title: "Deep dive: coordinates + facets"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output:
+  xaringan::moon_reader:
+    nature:
+      ratio: '16:9'
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -26,44 +29,18 @@ library(patchwork)
 
 class: middle, inverse
 
-# Announcements
+# Agenda:
+* Coordinate systems
+* Facets
+* Group collaboration
 
 ---
 
 ## Announcements
 
-- Homework 1 collected
-- Homework 2 distributed
 
 
---
 
-- Project 1 peer evaluation groups
-
-.small[
-|Reviewer      |Reviewee                    |
-|:-------------|:---------------------------|
-|Calm Comet    |Undead Hen, Tan Egg         |
-|Chalky Piglet |Calm Comet, Undead Hen      |
-|Elated Anura  |Chalky Piglet, Calm Comet   |
-|Female Python |Elated Anura, Chalky Piglet |
-|Froggy Panda  |Female Python, Elated Anura |
-|Outer Baboon  |Froggy Panda, Female Python |
-|Sleepy Spider |Outer Baboon, Froggy Panda  |
-|Swampy Pygmy  |Sleepy Spider, Outer Baboon |
-|Tan Egg       |Swampy Pygmy, Sleepy Spider |
-|Undead Hen    |Tan Egg, Swampy Pygmy       |
-]
-
----
-
-## Agenda for today
-
-- Coordinate systems
-
-- Facets
-
-- Group collaboration
 
 ---
 
@@ -143,23 +120,17 @@ countdown(minutes = 5, top = 0)
 .tiny[
 ```{r set-limits, out.width = "25%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() +
-  labs(title = "Plot 1")
+  geom_point() + geom_smooth() + labs(title = "Plot 1")
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() +
-  scale_x_continuous(limits = c(190, 220)) + scale_y_continuous(limits = c(4000, 5000)) + #<<
-  labs(title = "Plot 2")
+  geom_point() + geom_smooth() + scale_x_continuous(limits = c(190, 220)) + 
+  scale_y_continuous(limits = c(4000, 5000)) + labs(title = "Plot 2")
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() +
-  xlim(190, 220) + ylim(4000, 5000) + #<<
-  labs(title = "Plot 3")
+  geom_point() + geom_smooth() + xlim(190, 220) + ylim(4000, 5000) + labs(title = "Plot 3")
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() +
-  coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + #<<
-  labs(title = "Plot 4")
+  geom_point() + geom_smooth() + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plot 4")
 ```
 ]
 
@@ -199,8 +170,7 @@ ggplot(hsb2, aes(x = read, y = write)) +
 ggplot(hsb2, aes(x = read, y = write)) +
   geom_point() + geom_smooth(method = "lm") +
   geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray") +
-  coord_fixed() + #<<
-  labs(title = "Fixed")
+  coord_fixed() + labs(title = "Fixed")
 ```
 ]
 
@@ -247,22 +217,18 @@ p + tune::coord_obs_pred()
 .tiny[
 ```{r transformations, out.width = "25%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
 ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() + geom_smooth(method = "lm") +
-  labs(title = "Plot 1")
+  geom_point() + geom_smooth(method = "lm") + labs(title = "Plot 1")
 
 ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() + geom_smooth(method = "lm") +
-  scale_x_log10() + scale_y_log10() + #<<
+  geom_point() + geom_smooth(method = "lm") + scale_x_log10() + scale_y_log10() + 
   labs(title = "Plot 2")
 
 ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() + geom_smooth(method = "lm") +
-  coord_trans(x = "log10", y = "log10") + #<<
+  geom_point() + geom_smooth(method = "lm") + coord_trans(x = "log10", y = "log10") + 
   labs(title = "Plot 3")
 
 ggplot(penguins, aes(x = log(bill_depth_mm, base = 10), y = log(body_mass_g, base = 10))) + #<<
-  geom_point() + geom_smooth(method = "lm") +
-  labs(title = "Plot 4")
+  geom_point() + geom_smooth(method = "lm") + labs(title = "Plot 4")
 ```
 ]
 
@@ -290,9 +256,9 @@ ggplot(penguins, aes(x = 1, fill = species)) +
 
 ---
 
-class: middle
+class: middle, inverse
 
-.large[.hand[aside: about pie charts...]]
+# aside: about pie charts...
 
 ---
 
@@ -343,7 +309,7 @@ pie_loan_grades
 ## Pie charts: when to love 'em, when to lose 'em
 
 .pull-left-narrow[
-`r emo::ji("heart")` For categorical variables with few levels, pie charts can work well
+`r emo::ji("heart")` For categorical variables with few levels, pie charts can sort of work well
 ]
 .pull-right-wide[
 ```{r echo = FALSE, out.width = "50%"}
@@ -356,6 +322,9 @@ loans %>%
   labs(x = "Homeownership", y = "Count")
 ```
 ]
+
+---
+## Pie charts: when to love 'em, when to lose 'em
 
 .pull-left-narrow[
 `r emo::ji("broken_heart")` For categorical variables with many levels, pie charts are difficult to read
@@ -447,33 +416,31 @@ penguins %>%
 
 ---
 
-class: middle
+class: middle, inverse
 
-.large[.hand[back to coordinate systems...]]
+# back to coordinate systems...
 
 ---
 
 ## `coord_quickmap()`
 
 .pull-left-narrow[
-- Approximation that sets the aspect ratio to ensure that 1m of latitude and 1m of longitude are the same distance in the middle of the plot
+- Approximation sets aspect ratio: 1m of latitude \& 1m of longitude are same distance in middle of plot
 - Reasonable for smaller regions
 - Fast
 ]
 .pull-right-wide[
 .panelset[
 .panel[.panel-name[Cartesian]
-```{r out.width = "75%"}
+```{r out.width = "45%"}
 ggplot(map_data("italy"), aes(long, lat, group = group)) +
-  geom_polygon(fill = "white", color = "#008c45") +
-  labs(x = NULL, y = NULL)
+  geom_polygon(fill = "white", color = "#008c45") +labs(x = NULL, y = NULL)
 ```
 ]
 .panel[.panel-name[Quickmap]
-```{r out.width = "75%"}
+```{r out.width = "45%"}
 ggplot(map_data("italy"), aes(long, lat, group = group)) +
-  geom_polygon(fill = "white", color = "#008c45") +
-  labs(x = NULL, y = NULL) +
+  geom_polygon(fill = "white", color = "#008c45") + labs(x = NULL, y = NULL) +
   coord_quickmap()
 ```
 ]
@@ -492,25 +459,22 @@ ggplot(map_data("italy"), aes(long, lat, group = group)) +
 .pull-right-wide[
 .panelset[
 .panel[.panel-name[Cartesian]
-```{r out.width = "75%"}
+```{r out.width = "45%"}
 ggplot(map_data("state"), aes(long, lat, group = group)) +
-  geom_polygon(fill = "white", color = "#3c3b6e") +
-  labs(x = NULL, y = NULL)
+  geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL)
 ```
 ]
 .panel[.panel-name[Mercator]
-```{r out.width = "75%"}
+```{r out.width = "45%"}
 ggplot(map_data("state"), aes(long, lat, group = group)) +
-  geom_polygon(fill = "white", color = "#3c3b6e") +
-  labs(x = NULL, y = NULL) +
+  geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL) +
   coord_map()
 ```
 ]
 .panel[.panel-name[Stereographic]
-```{r out.width = "75%"}
+```{r out.width = "45%"}
 ggplot(map_data("state"), aes(long, lat, group = group)) +
-  geom_polygon(fill = "white", color = "#3c3b6e") +
-  labs(x = NULL, y = NULL) +
+  geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL) +
   coord_map(projection = "stereographic")
 ```
 ]
@@ -519,9 +483,23 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
 
 ---
 
+## Try it out!
+
+.task[Create a map of a region or state you have visited]
+
+--
+```{r}
+ggplot(map_data("county", "iowa"), aes(long, lat, group = group)) +
+     geom_polygon(fill = "gray75", color = "black") + labs(x = NULL, y = NULL) +
+     coord_map()
+```
+
+
+---
+
 class: middle, inverse
 
-# Facets
+# Facets: what if you want to break it down into sub-plots?
 
 ---
 
@@ -571,7 +549,7 @@ p +
   labs(title = "Free x scale")
 p +
   facet_wrap(vars(species), scales = "free_y") +
-  labs(title = "Free x scale")
+  labs(title = "Free y scale")
 ```
 ]
 
@@ -618,6 +596,33 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(aes(color = species)) +
   facet_wrap(vars(species))
 ```
+
+---
+# Discussion
+
+* When might it (not) be appropriate to use the following:
+  * facets
+  * free x
+  * free y
+  * free space
+  * highlighting
+
+
+---
+# Discussion: TS
+
+.pull-left[
+```{r echo = FALSE, out.width="100%"}
+knitr::include_graphics("images/ts_sentiment_arc.png")
+```
+
+]
+
+.pull-right[
+```{r echo = FALSE, out.width="100%"}
+knitr::include_graphics("images/ts_sentiment_arc_facet.png")
+```
+]
 
 ---
 
@@ -672,26 +677,14 @@ p +
   )
 ```
 
+--- 
+# Custom themes!
+
+* Can tweak existing
+* Can google for your own (e.g. topic + ggplot)
+  * Example: [TSwift custom themes](https://taylor.wjakethompson.com/articles/plotting)
+* [Color brewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+
 ---
 
-class: middle, inverse
-
-# Project #1
-
----
-
-# Project #1
-
-.pull-left[
-- Initial proposal
-- Develop as a group
-- Take chances, make mistakes, get messy!
-]
-
---
-
-.pull-right[
-```{r echo = FALSE}
-include_graphics(path = "https://media.giphy.com/media/vhpwk2TOw2hq0/giphy.gif")
-```
-]
+# Recap

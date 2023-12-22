@@ -140,8 +140,8 @@ class: middle, inverse
 
 |Assignment|Type       |Value  | n  |Due                  |
 |:---------|:----------|:------|:---|---------------------|
-|Homeworks         |Individual      |60%    | 4 | ~ Every other week  |
-|Project 2 | Choice      |40%    | 1 .fn[*]  | Exam week      | 
+|Assignments         |Individual-ish      |60%    | 4 | ~ Every other week  |
+|Final choice | Choice      |40%    | 1 .fn[*]  | Exam week      | 
 
 
 

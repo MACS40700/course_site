@@ -1243,3 +1243,26 @@ install.packages(c("tidyverse", "here", "colorspace",
 
 usethis::use_course("uc-dataviz/choosing-colors")
 ```
+
+---
+class: middle, inverse
+
+# Project #1
+
+---
+
+# Project #1
+
+.pull-left[
+- Initial proposal
+- Develop as a group
+- Take chances, make mistakes, get messy!
+]
+
+--
+
+.pull-right[
+```{r echo = FALSE}
+include_graphics(path = "https://media.giphy.com/media/vhpwk2TOw2hq0/giphy.gif")
+```
+]
