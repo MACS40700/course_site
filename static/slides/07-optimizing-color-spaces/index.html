@@ -5,16 +5,21 @@
     <meta charset="utf-8" />
     <meta name="author" content="MACS 40700   University of Chicago" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/remark-css/default.css" rel="stylesheet" />
+    <link href="index_files/remark-css/default-fonts.css" rel="stylesheet" />
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Optimizing color spaces
+]
+.author[
 ### MACS 40700 <br /> University of Chicago
+]
 
 ---
 
@@ -418,7 +423,7 @@ cvd_grid(plot = pen_fig)
 
 ---
 
-# Use qualitative for nominal variables
+# Use quantitative for numerical variables
 
 &lt;img src="images/unemp-best.png" width="80%" style="display: block; margin: auto;" /&gt;
 
@@ -572,7 +577,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_gradient()
+  scale_fill_gradient() #&lt;&lt;
 ```
 ]
 ]
@@ -593,7 +598,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_viridis_c()
+  scale_fill_viridis_c() #&lt;&lt;
 ```
 ]
 ]
@@ -614,7 +619,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_viridis_c(option = "B", begin = 0.15)
+  scale_fill_viridis_c(option = "B", begin = 0.15) #&lt;&lt;
 ```
 ]
 ]
@@ -635,7 +640,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_distiller(palette = "YlGnBu")
+  scale_fill_distiller(palette = "YlGnBu") #&lt;&lt;
 ```
 ]
 ]
@@ -676,7 +681,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_continuous_sequential(palette = "YlGnBu")
+  scale_fill_continuous_sequential(palette = "YlGnBu") #&lt;&lt;
 ```
 ]
 ]
@@ -697,7 +702,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_continuous_sequential(palette = "Viridis")
+  scale_fill_continuous_sequential(palette = "Viridis") #&lt;&lt;
 ```
 ]
 ]
@@ -718,7 +723,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-* scale_fill_continuous_sequential(palette = "Inferno", begin = 0.15)
+  scale_fill_continuous_sequential(palette = "Inferno", begin = 0.15) #&lt;&lt;
 ```
 ]
 ]
@@ -800,7 +805,7 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
-* scale_color_hue()
+  scale_color_hue() #&lt;&lt;
 ```
 ]
 ]
@@ -821,7 +826,7 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
   # uses Pastel 1
-* scale_color_discrete_qualitative(palette = "Dark 2")
+  scale_color_discrete_qualitative(palette = "Dark 2") #&lt;&lt;
 ```
 ]
 ]
@@ -844,7 +849,7 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
   # uses Okabe-Ito colors
-* scale_color_colorblind()
+  scale_color_colorblind() #&lt;&lt;
 ```
 ]
 ]
@@ -864,12 +869,12 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
-* scale_color_manual(
-*   values = c(
-*     West = "#E69F00", South = "#56B4E9",
-*     Midwest = "#009E73", Northeast = "#F0E442"
-*   )
-* )
+  scale_color_manual( #&lt;&lt;
+    values = c( #&lt;&lt;
+      West = "#E69F00", South = "#56B4E9", #&lt;&lt;
+      Midwest = "#009E73", Northeast = "#F0E442" #&lt;&lt;
+    ) #&lt;&lt;
+  ) #&lt;&lt;
 ```
 ]
 ]
@@ -901,7 +906,7 @@ Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.
 
 ---
 
-## Apply it!
+## Apply it -- work in groups through the exercises here
 
 ```r
 # install if necessary
@@ -910,15 +915,14 @@ install.packages(c("tidyverse", "here", "colorspace",
 
 usethis::use_course("uc-dataviz/choosing-colors")
 ```
+
+---
+# Recap
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlighStyle": "solarized-light",
-"highlightLanguage": "r",
-"highlightLines": true,
-"ratio": "16:9",
-"countIncrementalSlides": false
+"ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -959,6 +963,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
@@ -984,24 +1001,7 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();
-// adds .remark-code-has-line-highlighted class to <pre> parent elements
-// of code chunks containing highlighted lines with class .remark-code-line-highlighted
-(function(d) {
-  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
-  const preParents = [];
-  const findPreParent = function(line, p = 0) {
-    if (p > 1) return null; // traverse up no further than grandparent
-    const el = line.parentElement;
-    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
-  };
-
-  for (let line of hlines) {
-    let pre = findPreParent(line);
-    if (pre && !preParents.includes(pre)) preParents.push(pre);
-  }
-  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
-})(document);</script>
+})();</script>
 
 <script>
 slideshow._releaseMath = function(el) {

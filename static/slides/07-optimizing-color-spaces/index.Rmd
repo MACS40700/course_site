@@ -1,13 +1,16 @@
 ---
 title: "Optimizing color spaces"
 author: "MACS 40700 <br /> University of Chicago"
-output: rcfss::xaringan_wide
+output:
+  xaringan::moon_reader:
+    nature:
+      ratio: '16:9'
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -72,7 +75,7 @@ theme_map <- function(base_size, ...) {
 }
 
 set.seed(123)
-theme_set(theme_minimal(base_size = rcfss::base_size - 2))
+#theme_set(theme_minimal(base_size = rcfss::base_size - 2))
 ```
 
 # Uses of color in data visualization
@@ -753,7 +756,7 @@ include_graphics(path = "images/unordered.png")
 
 ---
 
-# Use qualitative for nominal variables
+# Use quantitative for numerical variables
 
 ```{r}
 include_graphics(path = "images/unemp-best.png")
@@ -1234,7 +1237,7 @@ Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.
 
 ---
 
-## Apply it!
+## Apply it -- work in groups through the exercises here
 
 ```r
 # install if necessary
@@ -1245,24 +1248,4 @@ usethis::use_course("uc-dataviz/choosing-colors")
 ```
 
 ---
-class: middle, inverse
-
-# Project #1
-
----
-
-# Project #1
-
-.pull-left[
-- Initial proposal
-- Develop as a group
-- Take chances, make mistakes, get messy!
-]
-
---
-
-.pull-right[
-```{r echo = FALSE}
-include_graphics(path = "https://media.giphy.com/media/vhpwk2TOw2hq0/giphy.gif")
-```
-]
+# Recap
