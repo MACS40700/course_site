@@ -113,9 +113,10 @@ class: middle, inverse
 
 ## `stat_boxplot()`
 
-```{r echo = FALSE, fig.alt = "Documentation for `stat_boxplot()`.", out.width = "90%"}
-knitr::include_graphics("images/summary-stats.png")
+```{r echo = FALSE, fig.alt = "Documentation for `stat_boxplot()`.", out.width = "85%"}
+knitr::include_url("https://ggplot2.tidyverse.org/reference/geom_boxplot.html#summary-statistics")
 ```
+
 
 ---
 
@@ -160,8 +161,11 @@ ggplot(scorecard, aes(sample = avgfacsal)) +
 # Stats: Exercise:
 
 .task[Use the `PlantGrowth` dataset (hint: data()) and make a boxplot with the means marked with a green X]
-.small[
+
 --
+
+.small[
+
 ```{r}
 data("PlantGrowth")
 ggplot(PlantGrowth, aes(x = group, y = weight))  +
@@ -619,3 +623,8 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
 ]
 
 Post this graph and code on Ed -- it should be reproducible as-is!!
+
+
+---
+
+# Recap
