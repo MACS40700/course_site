@@ -1,12 +1,21 @@
 ---
 title: "Introduction to data visualization"
 author: "MACS 40700 <br /> University of Chicago"
-output: xaringan::moon_reader
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
 ---
 
 ```{r setup, include = FALSE}
 # generate CSS file
 library(xaringanthemer)
+
 #rcfss::xaringan_theme()
 
 source(here::here("R", "slide-opts.R"))

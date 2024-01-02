@@ -3,8 +3,13 @@ title: "Deep dive: themes + axes + annotation"
 author: "MACS 40700 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
+    css: xaringan-themer.css
     nature:
-      ratio: '16:9'
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
@@ -71,7 +76,7 @@ class: middle, inverse
 
 # Is that gray background okay?
 .pull-left-narrow[
-```{r standard-grey, echo = FALSE, out.width = "50%"}
+```{r standard-grey, echo = FALSE, out.width = "80%"}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
   geom_point(size = 2)
 ```
@@ -1553,5 +1558,6 @@ ggplot(
 ```{r ref.label = "pretty-plot-15", echo = FALSE, warning = FALSE, out.width = "90%", fig.width = 10}
 ```
 
---- 
+---
+
 # Recap

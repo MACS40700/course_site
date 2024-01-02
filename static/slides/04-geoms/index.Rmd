@@ -1,7 +1,16 @@
 ---
 title: "Deep dive: geometric objects (AKA geoms)"
 author: "MACS 40700 <br /> University of Chicago"
-output: xaringan::moon_reader
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
