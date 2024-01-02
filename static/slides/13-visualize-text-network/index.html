@@ -13,8 +13,12 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Visualizing text + network data
+]
+.author[
 ### MACS 40700 <br /> University of Chicago
+]
 
 ---
 
@@ -151,7 +155,7 @@ love_actually %&gt;%
 ##  8     1     1 (Man)   of      
 ##  9     1     1 (Man)   the     
 ## 10     1     1 (Man)   world   
-## # … with 9,889 more rows
+## # ℹ 9,889 more rows
 ```
 
 ---
@@ -183,7 +187,7 @@ love_actually %&gt;%
 ##  8 is      124
 ##  9 of      112
 ## 10 no      111
-## # … with 1,760 more rows
+## # ℹ 1,760 more rows
 ```
 
 ---
@@ -216,7 +220,7 @@ get_stopwords("en")
 ##  8 ourselves snowball
 ##  9 you       snowball
 ## 10 your      snowball
-## # … with 165 more rows
+## # ℹ 165 more rows
 ```
 ]
 ]
@@ -243,7 +247,7 @@ get_stopwords("es")
 ##  8 los   snowball
 ##  9 del   snowball
 ## 10 se    snowball
-## # … with 298 more rows
+## # ℹ 298 more rows
 ```
 ]
 ]
@@ -274,7 +278,7 @@ love_actually %&gt;%
 ##  8 god           23
 ##  9 bye           21
 ## 10 time          20
-## # … with 1,345 more rows
+## # ℹ 1,345 more rows
 ```
 
 ---
@@ -301,7 +305,7 @@ love_actually %&gt;%
 ##  8    39   434 Aurelia (Portuguese) I don't want to drown saving some shit my g…
 ##  9    39   436 Aurelia (Portuguese) What kind of an idiot doesn't do copies?    
 ## 10    39   438 Aurelia (Portuguese) Try not to disturb the eels.                
-## # … with 15 more rows
+## # ℹ 15 more rows
 ```
 
 ---
@@ -326,7 +330,7 @@ love_actually %&gt;%
 
 ```
 ## # A tibble: 0 × 4
-## # … with 4 variables: scene &lt;dbl&gt;, line &lt;dbl&gt;, speaker &lt;chr&gt;, dialogue &lt;chr&gt;
+## # ℹ 4 variables: scene &lt;dbl&gt;, line &lt;dbl&gt;, speaker &lt;chr&gt;, dialogue &lt;chr&gt;
 ```
 
 ---
@@ -357,7 +361,7 @@ love_actually %&gt;%
 ##  8 bye          21
 ##  9 time         20
 ## 10 ah           19
-## # … with 1,344 more rows
+## # ℹ 1,344 more rows
 ```
 
 ---
@@ -636,7 +640,7 @@ bigrams
 ##  8     1     1 (Man)   of the     
 ##  9     1     1 (Man)   the world  
 ## 10     1     1 (Man)   world i    
-## # … with 8,956 more rows
+## # ℹ 8,956 more rows
 ```
 
 ---
@@ -663,7 +667,7 @@ bigrams %&gt;%
 ##  8 in the       21
 ##  9 are you      20
 ## 10 i think      20
-## # … with 6,346 more rows
+## # ℹ 6,346 more rows
 ```
 
 ---
@@ -694,7 +698,7 @@ bigrams_separated
 ##  8     1     1 (Man)   of       the   
 ##  9     1     1 (Man)   the      world 
 ## 10     1     1 (Man)   world    i     
-## # … with 8,956 more rows
+## # ℹ 8,956 more rows
 ```
 
 ---
@@ -726,7 +730,7 @@ bigrams_filtered
 ##  8     1     1 (Man)   planes     hit        
 ##  9     1     1 (Man)   twin       towers     
 ## 10     1     1 (Man)   phone      calls      
-## # … with 920 more rows
+## # ℹ 920 more rows
 ```
 
 ---
@@ -757,7 +761,7 @@ bigrams_united
 ##  8     1     1 (Man)   planes hit            
 ##  9     1     1 (Man)   twin towers           
 ## 10     1     1 (Man)   phone calls           
-## # … with 920 more rows
+## # ℹ 920 more rows
 ```
 
 ---
@@ -786,7 +790,7 @@ bigrams_united %&gt;%
 ##  8 billy mack          4
 ##  9 bye baby            4
 ## 10 goodbye baby        4
-## # … with 698 more rows
+## # ℹ 698 more rows
 ```
 
 ---
@@ -816,7 +820,7 @@ bigrams_united %&gt;%
 ##  8 bye baby            4
 ##  9 goodbye baby        4
 ## 10 joni mitchell       4
-## # … with 697 more rows
+## # ℹ 697 more rows
 ```
 
 ---
@@ -887,9 +891,9 @@ bigram_graph
 ```
 
 ```
-## IGRAPH 39a31c9 DN-- 83 62 -- 
+## IGRAPH 5fd0e0a DN-- 83 62 -- 
 ## + attr: name (v/c), n (e/n)
-## + edges from 39a31c9 (vertex names):
+## + edges from 5fd0e0a (vertex names):
 ##  [1] prime    -&gt;minister  bye      -&gt;bye       baby     -&gt;baby     
 ##  [4] merry    -&gt;christmas uncle    -&gt;jamie     baby     -&gt;bye      
 ##  [7] billy    -&gt;mack      bye      -&gt;baby      goodbye  -&gt;baby     
@@ -1143,7 +1147,7 @@ character_scene_counts
 ##  8     6 Judy (Joanna Page)           1
 ##  9     7 Mark (Andrew Lincoln)        4
 ## 10     7 Peter (Chiwetel Ejiofor)     4
-## # … with 152 more rows
+## # ℹ 152 more rows
 ```
 
 ---
@@ -1186,7 +1190,7 @@ character_scene_counts %&gt;%
 ##  8     6 Judy (Joanna Page)           1 not monologue
 ##  9     7 Mark (Andrew Lincoln)        4 not monologue
 ## 10     7 Peter (Chiwetel Ejiofor)     4 not monologue
-## # … with 152 more rows
+## # ℹ 152 more rows
 ```
 
 ---
@@ -1273,7 +1277,7 @@ character_scene_counts %&gt;%
 ## 18 Mia (Heike…    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
 ## 19 Sam (Thoma…    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
 ## 20 Aurelia (L…    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA
-## # … with 64 more variables: `13` &lt;int&gt;, `14` &lt;int&gt;, `15` &lt;int&gt;, `16` &lt;int&gt;,
+## # ℹ 64 more variables: `13` &lt;int&gt;, `14` &lt;int&gt;, `15` &lt;int&gt;, `16` &lt;int&gt;,
 ## #   `17` &lt;int&gt;, `18` &lt;int&gt;, `19` &lt;int&gt;, `20` &lt;int&gt;, `21` &lt;int&gt;, `22` &lt;int&gt;,
 ## #   `23` &lt;int&gt;, `24` &lt;int&gt;, `25` &lt;int&gt;, `26` &lt;int&gt;, `27` &lt;int&gt;, `28` &lt;int&gt;,
 ## #   `29` &lt;int&gt;, `30` &lt;int&gt;, `31` &lt;int&gt;, `32` &lt;int&gt;, `33` &lt;int&gt;, `34` &lt;int&gt;,
@@ -1328,13 +1332,13 @@ character_scene_occurences
 ## 18 Mia (Heike…     0     0     0     0     0     0     0     0     0     0     0
 ## 19 Sam (Thoma…     0     0     0     0     0     0     0     0     0     0     0
 ## 20 Aurelia (L…     0     0     0     0     0     0     0     0     0     0     0
-## # … with 64 more variables: s13 &lt;int&gt;, s14 &lt;int&gt;, s15 &lt;int&gt;, s16 &lt;int&gt;,
-## #   s17 &lt;int&gt;, s18 &lt;int&gt;, s19 &lt;int&gt;, s20 &lt;int&gt;, s21 &lt;int&gt;, s22 &lt;int&gt;,
-## #   s23 &lt;int&gt;, s24 &lt;int&gt;, s25 &lt;int&gt;, s26 &lt;int&gt;, s27 &lt;int&gt;, s28 &lt;int&gt;,
-## #   s29 &lt;int&gt;, s30 &lt;int&gt;, s31 &lt;int&gt;, s32 &lt;int&gt;, s33 &lt;int&gt;, s34 &lt;int&gt;,
-## #   s35 &lt;int&gt;, s36 &lt;int&gt;, s37 &lt;int&gt;, s38 &lt;int&gt;, s39 &lt;int&gt;, s40 &lt;int&gt;,
-## #   s42 &lt;int&gt;, s43 &lt;int&gt;, s44 &lt;int&gt;, s45 &lt;int&gt;, s46 &lt;int&gt;, s47 &lt;int&gt;,
-## #   s48 &lt;int&gt;, s49 &lt;int&gt;, s50 &lt;int&gt;, s51 &lt;int&gt;, s52 &lt;int&gt;, s53 &lt;int&gt;, …
+## # ℹ 64 more variables: s13 &lt;int&gt;, s14 &lt;int&gt;, s15 &lt;int&gt;, s16 &lt;int&gt;, s17 &lt;int&gt;,
+## #   s18 &lt;int&gt;, s19 &lt;int&gt;, s20 &lt;int&gt;, s21 &lt;int&gt;, s22 &lt;int&gt;, s23 &lt;int&gt;,
+## #   s24 &lt;int&gt;, s25 &lt;int&gt;, s26 &lt;int&gt;, s27 &lt;int&gt;, s28 &lt;int&gt;, s29 &lt;int&gt;,
+## #   s30 &lt;int&gt;, s31 &lt;int&gt;, s32 &lt;int&gt;, s33 &lt;int&gt;, s34 &lt;int&gt;, s35 &lt;int&gt;,
+## #   s36 &lt;int&gt;, s37 &lt;int&gt;, s38 &lt;int&gt;, s39 &lt;int&gt;, s40 &lt;int&gt;, s42 &lt;int&gt;,
+## #   s43 &lt;int&gt;, s44 &lt;int&gt;, s45 &lt;int&gt;, s46 &lt;int&gt;, s47 &lt;int&gt;, s48 &lt;int&gt;,
+## #   s49 &lt;int&gt;, s50 &lt;int&gt;, s51 &lt;int&gt;, s52 &lt;int&gt;, s53 &lt;int&gt;, s54 &lt;int&gt;, …
 ```
 ]
 
@@ -1749,9 +1753,9 @@ cooccur_graph
 ```
 
 ```
-## IGRAPH 20e0175 UNW- 20 37 -- 
+## IGRAPH 4316395 UNW- 20 37 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 20e0175 (vertex names):
+## + edges from 4316395 (vertex names):
 ##  [1] Billy (Bill Nighy)   --Joe (Gregor Fisher)         
 ##  [2] Jamie (Colin Firth)  --Karen (Emma Thompson)       
 ##  [3] Jamie (Colin Firth)  --Harry (Alan Rickman)        
@@ -1846,6 +1850,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable

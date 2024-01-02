@@ -15,7 +15,7 @@ output:
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
