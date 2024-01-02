@@ -802,7 +802,7 @@ class: inverse, middle
 
 .task[
 **TWO PARTS**
-- Part 1: propose a portfolio: THREE GRAPH PLAN for exploring a question / dataset
+- **Part 1**: propose a portfolio: THREE GRAPH PLAN for exploring a question / dataset
 - Part 2: EDA (first graph): rough draft of your first plot + critique
 ]
 

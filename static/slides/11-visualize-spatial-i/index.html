@@ -15,8 +15,12 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Visualizing spatial data I
+]
+.author[
 ### MACS 40700 <br /> University of Chicago
+]
 
 ---
 
@@ -30,14 +34,6 @@ class: inverse, middle
 ---
 
 ## Announcements
-
-- Project 1 evaluations
-
-- Project 2 team assignments
-
-- Homework 2 evaluations 😩
-
-- Revised deadlines for homeworks 3 and 4
 
 ---
 
@@ -225,9 +221,9 @@ chi_bb &lt;- c(
 * left = -87.936287,
 * bottom = 41.679835,
 * right = -87.447052,
-* top = 42.000835
+* top = 42.060835
 )
-chicago &lt;- get_stamenmap(
+chicago &lt;- get_stadiamap(
   bbox = chi_bb,
   zoom = 11
 )
@@ -535,7 +531,8 @@ ggmap(chicago) +
 usethis::use_course("uc-dataviz/raster-maps")
 ```
 
-<div class="countdown" id="timer_627bf571" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown" id="timer_303b2440" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -733,7 +730,7 @@ election_2020
 ##  8 Delaware                          3     3     0 Democrat  
 ##  9 District of Columbia              3     3     0 Democrat  
 ## 10 Florida                          29     0    29 Republican
-## # … with 41 more rows
+## # ℹ 41 more rows
 ```
 
 ---
@@ -831,6 +828,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
