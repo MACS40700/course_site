@@ -58,31 +58,11 @@ class: middle, inverse
 
 # Text data
 
----
-
-## 
-
-
-
-.task[
-Do you recognize the following text?
-]
-
-&lt;br&gt;
-
-&gt;Whenever I get gloomy with the state of the world, I think about the arrivals gate at Heathrow airport. General opinion started to make out that we live in a world of hatred and greed, but I don't see that. Seems to me that love is everywhere. Often it's not particularly dignified or newsworthy but it's always there. Fathers and sons, mothers and daughters, husbands and wives, boyfriends, girlfriends, old friends. When the planes hit the Twin Towers, as far as I know, none of the phone calls from people on board were messages of hate or revenge, they were all messages of love. If you look for it, I've got a sneaky feeling, you'll find that love actually is all around.
 
 ---
 
 class: middle
-
-&lt;img src="https://media.giphy.com/media/l1Kss6txsK9OQCJ56/giphy.gif" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-
-class: middle, center
-
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/giq7KdN4X-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;img src="images/ts_positive_words_album_track.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -107,6 +87,17 @@ Text can be represented as data in a variery of ways:
 - Each column is a variable
 - Each type of observational unit is a row
 
+---
+
+class: center, middle, inverse
+
+## Tidy text: Application
+### Love Actually: popular *Christmas movie* ...
+
+
+
+---
+## `Tidy text`: Application
 
 ```r
 love_actually %&gt;%
@@ -125,6 +116,8 @@ love_actually %&gt;%
 ## 6     2     6 Billy   Right, OK, let's go. ♪ I feel it in my fingers ♪ In my fi…
 ```
 
+
+
 ---
 
 ## Tokenize into words
@@ -138,24 +131,20 @@ love_actually %&gt;%
     output = word,    # first argument is output
     input = dialogue, # second argument is input
     token = "words"   # third argument is token, with default "words"
-    )
+    ) %&gt;%
+  slice_head(n = 6)
 ```
 
 ```
-## # A tibble: 9,899 × 4
-##    scene  line speaker word    
-##    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   
-##  1     1     1 (Man)   whenever
-##  2     1     1 (Man)   i       
-##  3     1     1 (Man)   get     
-##  4     1     1 (Man)   gloomy  
-##  5     1     1 (Man)   with    
-##  6     1     1 (Man)   the     
-##  7     1     1 (Man)   state   
-##  8     1     1 (Man)   of      
-##  9     1     1 (Man)   the     
-## 10     1     1 (Man)   world   
-## # ℹ 9,889 more rows
+## # A tibble: 6 × 4
+##   scene  line speaker word    
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   
+## 1     1     1 (Man)   whenever
+## 2     1     1 (Man)   i       
+## 3     1     1 (Man)   get     
+## 4     1     1 (Man)   gloomy  
+## 5     1     1 (Man)   with    
+## 6     1     1 (Man)   the
 ```
 
 ---
@@ -562,6 +551,132 @@ love_actually %&gt;%
 ]
 
 ---
+class: inverse, center, middle
+
+# Your turn!
+
+---
+# Activity: testing out text analysis
+
+- Find relevant data (see next slides for more detail)
+  * If you are struggling -- you can use The Office data: 
+- Remove stopwords
+- Create a relevant visualization (e.g. top words)
+---
+
+## Activity: finding relevant data
+
+* Honestly -- Kaggle can often be an easy source but probably not the best aside from quick / short projects
+* Google: 'thing you care about' + 'dataset'
+* APIs (see MACS 30550)
+* Scraping (beyond our context MACS 30550 or MACS 30112/30122)
+
+---
+# Activity: guided (The Office) [step 1: load]
+
+
+
+```r
+office_words &lt;- office %&gt;%
+  unnest_tokens(
+    output = word,    # first argument is output
+    input = line, # second argument is input
+    token = "words"   # third argument is token, with default "words"
+    ) 
+  
+office_words %&gt;% 
+  slice_head(n = 6)
+```
+
+```
+## # A tibble: 6 × 7
+##   season episode title scene speaker ...7  word       
+##    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;      
+## 1      1       1 Pilot     1 Michael &lt;NA&gt;  all        
+## 2      1       1 Pilot     1 Michael &lt;NA&gt;  right      
+## 3      1       1 Pilot     1 Michael &lt;NA&gt;  jim        
+## 4      1       1 Pilot     1 Michael &lt;NA&gt;  your       
+## 5      1       1 Pilot     1 Michael &lt;NA&gt;  quarterlies
+## 6      1       1 Pilot     1 Michael &lt;NA&gt;  look
+```
+
+
+---
+# Activity: guided (The Office) [step2: no stopwords]
+
+Notice what we have here -- why would this NOT be a good approach? 
+
+```r
+office_words %&gt;% 
+  anti_join(stop_words) %&gt;%
+  count(word, sort = TRUE)
+```
+
+```
+## # A tibble: 19,111 × 2
+##    word        n
+##    &lt;chr&gt;   &lt;int&gt;
+##  1 yeah     2909
+##  2 hey      2213
+##  3 michael  1855
+##  4 uh       1467
+##  5 gonna    1416
+##  6 dwight   1354
+##  7 jim      1163
+##  8 time     1157
+##  9 pam      1046
+## 10 guys      947
+## # ℹ 19,101 more rows
+```
+
+---
+
+.panelset.sideways[
+.panel[.panel-name[Code]
+
+```r
+*custom_words &lt;-data.frame("word" = c("hey", "uh", "um"))
+*custom_words &lt;- full_join(stop_words, custom_words)
+*char_names &lt;- c("michael", "jim", "dwight", "pam")
+office_words %&gt;%
+  anti_join(custom_words) %&gt;%
+  count(word, sort = TRUE) %&gt;%
+  mutate(character = ifelse( word %in% char_names, "yes","no")) %&gt;% 
+  slice_head(n = 10) %&gt;%
+  ggplot(aes(y = fct_reorder(word, n), x = n, fill = character)) +
+  geom_col() + scale_fill_manual(values  = c("yes" = "#2B152C", "no" = "#B3A6A3")) +
+  labs(
+    x = "Count", y = NULL,
+    title = "&lt;span style = 'color:#808080'&gt;Most common words in&lt;/span&gt;",  
+    subtitle ="&lt;span style = 'font-weight:strong; font-family: Courier New'&gt;&lt;b&gt;The Office&lt;/b&gt;&lt;/span&gt;"  
+  ) +
+  theme(
+    plot.title = element_textbox_simple(halign = 1),  
+    plot.subtitle = element_textbox_simple(size = 30, halign = 1),  
+    plot.title.position = "plot"  
+    )
+```
+
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+# Closing thoughts:
+
+* What did we do well in our previous graphic? 
+* How might we improve? 
+
+---
+
 
 class: inverse, middle
 
@@ -592,7 +707,8 @@ Main concern in designing a network visualization is the purpose it has to serve
 - What are the structural properties that we want to highlight?
 - What are the key concerns we want to address?
 
-&lt;img src="images/network-purpose.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/network-purpose.png" width="50%" style="display: block; margin: auto;" /&gt;
+
 
 .footnote[
 Source: https://kateto.net/network-visualization
@@ -854,7 +970,7 @@ bigrams_united %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -891,9 +1007,9 @@ bigram_graph
 ```
 
 ```
-## IGRAPH 5fd0e0a DN-- 83 62 -- 
+## IGRAPH e9e67cd DN-- 83 62 -- 
 ## + attr: name (v/c), n (e/n)
-## + edges from 5fd0e0a (vertex names):
+## + edges from e9e67cd (vertex names):
 ##  [1] prime    -&gt;minister  bye      -&gt;bye       baby     -&gt;baby     
 ##  [4] merry    -&gt;christmas uncle    -&gt;jamie     baby     -&gt;bye      
 ##  [7] billy    -&gt;mack      bye      -&gt;baby      goodbye  -&gt;baby     
@@ -911,7 +1027,7 @@ bigram_graph
 
 Common bigrams in Love Actually that occurred more than once and where neither word was a stop word
 
-&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -925,7 +1041,7 @@ set.seed(1015)
 ggraph(bigram_graph)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -940,7 +1056,7 @@ ggraph(bigram_graph) +
   geom_edge_link()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -956,7 +1072,7 @@ ggraph(bigram_graph) +
   geom_node_point()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -973,7 +1089,7 @@ ggraph(bigram_graph) +
   geom_node_text(aes(label = name))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -981,9 +1097,9 @@ ggraph(bigram_graph) +
 
 Step 5. Consider layouts
 
-&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-36-2.png" width="35%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-40-2.png" width="35%" /&gt;
 
-&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-37-2.png" width="35%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-41-2.png" width="35%" /&gt;
 
 ---
 
@@ -1000,7 +1116,7 @@ ggraph(bigram_graph, layout = "fr") +
   geom_node_text(aes(label = name))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1017,7 +1133,7 @@ ggraph(bigram_graph, layout = "fr") +
   geom_node_text(aes(label = name), hjust = 1, vjust = 1)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1045,11 +1161,59 @@ ggraph(bigram_graph, layout = "fr") +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
 
+
+---
+# Application: Continue with your data
+
+* Find bigrams
+* Visualize
+
+
+Build on your prior data to explore word occurrences
+
+
+---
+# Application: Office walk-through
+
+
+
+
+.panelset.sideways[
+.panel[.panel-name[Code]
+
+```r
+a &lt;- grid::arrow(type = "closed", length = unit(0.1, "inches"))
+
+set.seed(42)
+ggraph(bigram_graph_office, layout = "fr") +
+  geom_edge_link(aes(edge_alpha = log(n)), show.legend = FALSE,
+                 arrow = a, end_cap = circle(0.01, "inches")) +
+  geom_node_point(color = "#B3A6A3") +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1)
+```
+
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+class: center, middle, inverse
+
+# Networks: character co-occurrence
+### (you may not have the data to be able to do this)
 ---
 
 ## Main characters
@@ -1162,7 +1326,7 @@ character_scene_counts %&gt;%
   geom_path(aes(group = scene))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-52-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1220,7 +1384,7 @@ character_scene_counts %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-48-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -1753,9 +1917,9 @@ cooccur_graph
 ```
 
 ```
-## IGRAPH 4316395 UNW- 20 37 -- 
+## IGRAPH 783d8b7 UNW- 20 37 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 4316395 (vertex names):
+## + edges from 783d8b7 (vertex names):
 ##  [1] Billy (Bill Nighy)   --Joe (Gregor Fisher)         
 ##  [2] Jamie (Colin Firth)  --Karen (Emma Thompson)       
 ##  [3] Jamie (Colin Firth)  --Harry (Alan Rickman)        
@@ -1789,10 +1953,83 @@ ggraph(cooccur_graph, layout = "fr") +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-55-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
+
+---
+### Co-occurences: The Office
+
+
+```r
+char_names &lt;- c("michael", "jim", "dwight", "pam", "angela", "bob", "phyllis", "oscar", "creed", "kevin", "stanley", "andy", "kelly", "toby", "robert", "nellie", "todd", "jan", "carol", "ryan", "meredith", "holly", "david", "karen", "jo") 
+character_scene_counts_office &lt;- office %&gt;% 
+    count(scene, speaker, season, episode) 
+
+character_scene_counts_office %&gt;% filter(speaker %in% str_to_sentence(char_names)) %&gt;%
+  filter(season == 1 &amp; episode == 1) %&gt;% 
+  ggplot(aes(x = scene, y = speaker)) +
+  geom_point() +
+  geom_path(aes(group = scene))
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-62-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+### Co-occurences: The Office
+
+
+```r
+character_scene_matrix_office &lt;- character_scene_counts_office %&gt;%
+  filter(speaker %in% str_to_sentence(char_names)) %&gt;%
+  filter(season &lt; 4) %&gt;%
+  group_by(season, episode, scene)  %&gt;%
+  pivot_wider(
+    names_from = c(season, episode, scene),
+    names_prefix = "s",
+    values_from = n,
+    values_fn = length,
+    values_fill = 0 ) %&gt;%
+  column_to_rownames(var = "speaker") %&gt;%
+  as.matrix()  
+  
+  cooccur_office &lt;- character_scene_matrix_office %*% t(character_scene_matrix_office)
+
+cooccur_office &lt;- graph_from_adjacency_matrix(
+  cooccur_office, 
+  weighted = TRUE, 
+  mode = "undirected", 
+  diag = FALSE )        # don't include diagonals 
+```
+---
+### Co-occurences: The Office
+
+
+.panelset.sideways[
+.panel[.panel-name[Code]
+
+```r
+set.seed(42)
+ggraph(cooccur_office, layout = "fr") +
+  geom_edge_link(color = "gray") +
+  geom_node_point(color = "#2B152C", size = 3) +
+  geom_node_text(aes(label = name), hjust = 0.2, vjust = 1)
+```
+
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-64-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+# Recap
 
 ---
 

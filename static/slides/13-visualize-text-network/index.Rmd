@@ -31,6 +31,8 @@ library(here)
 library(countdown)
 library(patchwork)
 library(flipbookr)
+library(extrafont)
+font_import()
 ```
 
 ## Setup
@@ -65,35 +67,13 @@ class: middle, inverse
 
 # Text data
 
----
-
-## 
-
-```{r echo = FALSE, message = FALSE}
-love_actually <- read_csv(here::here("13-visualize-text-network", "data/love-actually.csv"))
-```
-
-.task[
-Do you recognize the following text?
-]
-
-<br>
-
->Whenever I get gloomy with the state of the world, I think about the arrivals gate at Heathrow airport. General opinion started to make out that we live in a world of hatred and greed, but I don't see that. Seems to me that love is everywhere. Often it's not particularly dignified or newsworthy but it's always there. Fathers and sons, mothers and daughters, husbands and wives, boyfriends, girlfriends, old friends. When the planes hit the Twin Towers, as far as I know, none of the phone calls from people on board were messages of hate or revenge, they were all messages of love. If you look for it, I've got a sneaky feeling, you'll find that love actually is all around.
 
 ---
 
 class: middle
-
 ```{r echo = FALSE}
-include_graphics(path = "https://media.giphy.com/media/l1Kss6txsK9OQCJ56/giphy.gif")
+include_graphics("images/ts_positive_words_album_track.png")
 ```
-
----
-
-class: middle, center
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/giq7KdN4X-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 
@@ -118,10 +98,25 @@ Text can be represented as data in a variery of ways:
 - Each column is a variable
 - Each type of observational unit is a row
 
+---
+
+class: center, middle, inverse
+
+## Tidy text: Application
+### Love Actually: popular *Christmas movie* ...
+```{r echo = FALSE, message = FALSE}
+love_actually <- read_csv(here::here("13-visualize-text-network", "data/love-actually.csv"))
+```
+
+
+---
+## `Tidy text`: Application
 ```{r}
 love_actually %>%
   slice_head(n = 6)
 ```
+
+
 
 ---
 
@@ -135,7 +130,8 @@ love_actually %>%
     output = word,    # first argument is output
     input = dialogue, # second argument is input
     token = "words"   # third argument is token, with default "words"
-    )
+    ) %>%
+  slice_head(n = 6)
 ```
 
 ---
@@ -355,6 +351,92 @@ love_actually %>%
 ]
 
 ---
+class: inverse, center, middle
+
+# Your turn!
+
+---
+# Activity: testing out text analysis
+
+- Find relevant data (see next slides for more detail)
+  * If you are struggling -- you can use The Office data: 
+- Remove stopwords
+- Create a relevant visualization (e.g. top words)
+---
+
+## Activity: finding relevant data
+
+* Honestly -- Kaggle can often be an easy source but probably not the best aside from quick / short projects
+* Google: 'thing you care about' + 'dataset'
+* APIs (see MACS 30550)
+* Scraping (beyond our context MACS 30550 or MACS 30112/30122)
+
+---
+# Activity: guided (The Office) [step 1: load]
+
+```{r echo = FALSE, message = FALSE}
+office <- read_csv(here::here("13-visualize-text-network", "data/The-Office-Lines-V4.csv"))
+```
+```{r}
+office_words <- office %>%
+  unnest_tokens(
+    output = word,    # first argument is output
+    input = line, # second argument is input
+    token = "words"   # third argument is token, with default "words"
+    ) 
+  
+office_words %>% 
+  slice_head(n = 6)
+```
+
+
+---
+# Activity: guided (The Office) [step2: no stopwords]
+
+Notice what we have here -- why would this NOT be a good approach? 
+```{r}
+office_words %>% 
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE)
+```
+
+---
+
+.panelset.sideways[
+```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
+
+custom_words <-data.frame("word" = c("hey", "uh", "um")) #<<
+custom_words <- full_join(stop_words, custom_words) #<<
+char_names <- c("michael", "jim", "dwight", "pam") #<<
+office_words %>%
+  anti_join(custom_words) %>%
+  count(word, sort = TRUE) %>%
+  mutate(character = ifelse( word %in% char_names, "yes","no")) %>% 
+  slice_head(n = 10) %>%
+  ggplot(aes(y = fct_reorder(word, n), x = n, fill = character)) +
+  geom_col() + scale_fill_manual(values  = c("yes" = "#2B152C", "no" = "#B3A6A3")) +
+  labs(
+    x = "Count", y = NULL,
+    title = "<span style = 'color:#808080'>Most common words in</span>",  
+    subtitle ="<span style = 'font-weight:strong; font-family: Courier New'><b>The Office</b></span>"  
+  ) +
+  theme(
+    plot.title = element_textbox_simple(halign = 1),  
+    plot.subtitle = element_textbox_simple(size = 30, halign = 1),  
+    plot.title.position = "plot"  
+    )
+```
+]
+
+---
+
+# Closing thoughts:
+
+* What did we do well in our previous graphic? 
+* How might we improve? 
+
+---
+
 
 class: inverse, middle
 
@@ -385,9 +467,10 @@ Main concern in designing a network visualization is the purpose it has to serve
 - What are the structural properties that we want to highlight?
 - What are the key concerns we want to address?
 
-```{r echo = FALSE, out.width = "40%", fig.align = "center"}
+```{r echo = FALSE, out.width = "50%", fig.align = "center"}
 knitr::include_graphics("images/network-purpose.png")
 ```
+
 
 .footnote[
 Source: https://kateto.net/network-visualization
@@ -697,6 +780,57 @@ ggraph(bigram_graph, layout = "fr") +
 ```
 ]
 
+
+---
+# Application: Continue with your data
+
+* Find bigrams
+* Visualize
+
+
+Build on your prior data to explore word occurrences
+
+
+---
+# Application: Office walk-through
+
+
+```{r include = FALSE}
+bigrams_united_office <- office %>% unnest_tokens(bigram, line, token = "ngrams", n = 2) %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  filter(!(word1 %in% stop_words$word)) %>%
+  filter(!(word2 %in% stop_words$word)) %>%
+  filter(!(word1 %in% c("NA", "na"))) %>%
+  filter(!(word2 %in% c("NA", "na"))) %>%
+  unite(bigram, word1, word2, sep = " ")
+
+bigram_graph_office <- bigrams_united_office %>%
+  separate(bigram, c("word1", "word2"), sep = " ") %>%
+  count(word1, word2, sort = TRUE) %>%
+  filter(n > 15) %>%       # filter for bigrams that occur more than once
+  graph_from_data_frame()
+```
+
+.panelset.sideways[
+```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
+a <- grid::arrow(type = "closed", length = unit(0.1, "inches"))
+
+set.seed(42)
+ggraph(bigram_graph_office, layout = "fr") +
+  geom_edge_link(aes(edge_alpha = log(n)), show.legend = FALSE,
+                 arrow = a, end_cap = circle(0.01, "inches")) +
+  geom_node_point(color = "#B3A6A3") +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1)
+
+```
+]
+
+
+---
+class: center, middle, inverse
+
+# Networks: character co-occurrence
+### (you may not have the data to be able to do this)
 ---
 
 ## Main characters
@@ -886,6 +1020,63 @@ ggraph(cooccur_graph, layout = "fr") +
   geom_node_text(aes(label = name), hjust = 0.2, vjust = 1)
 ```
 ]
+
+---
+### Co-occurences: The Office
+
+```{r}
+char_names <- c("michael", "jim", "dwight", "pam", "angela", "bob", "phyllis", "oscar", "creed", "kevin", "stanley", "andy", "kelly", "toby", "robert", "nellie", "todd", "jan", "carol", "ryan", "meredith", "holly", "david", "karen", "jo") 
+character_scene_counts_office <- office %>% 
+    count(scene, speaker, season, episode) 
+
+character_scene_counts_office %>% filter(speaker %in% str_to_sentence(char_names)) %>%
+  filter(season == 1 & episode == 1) %>% 
+  ggplot(aes(x = scene, y = speaker)) +
+  geom_point() +
+  geom_path(aes(group = scene))
+```
+
+---
+### Co-occurences: The Office
+
+```{r}
+character_scene_matrix_office <- character_scene_counts_office %>%
+  filter(speaker %in% str_to_sentence(char_names)) %>%
+  filter(season < 4) %>%
+  group_by(season, episode, scene)  %>%
+  pivot_wider(
+    names_from = c(season, episode, scene),
+    names_prefix = "s",
+    values_from = n,
+    values_fn = length,
+    values_fill = 0 ) %>%
+  column_to_rownames(var = "speaker") %>%
+  as.matrix()  
+  
+  cooccur_office <- character_scene_matrix_office %*% t(character_scene_matrix_office)
+
+cooccur_office <- graph_from_adjacency_matrix(
+  cooccur_office, 
+  weighted = TRUE, 
+  mode = "undirected", 
+  diag = FALSE )        # don't include diagonals 
+```
+---
+### Co-occurences: The Office
+
+
+.panelset.sideways[
+```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
+set.seed(42)
+ggraph(cooccur_office, layout = "fr") +
+  geom_edge_link(color = "gray") +
+  geom_node_point(color = "#2B152C", size = 3) +
+  geom_node_text(aes(label = name), hjust = 0.2, vjust = 1)
+```
+]
+
+---
+# Recap
 
 ---
 
