@@ -15,7 +15,7 @@ output:
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+#rcfss::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -155,7 +155,7 @@ library(ggnewscale)
 
 # keep top 5 in each gender
 babynames_top5 <- babynames %>%
-  filter(year == 2020) %>%
+  filter(year == 2017) %>%
   group_by(sex) %>%
   slice_max(order_by = n, n = 5) %>%
   select(sex, name) %>%
