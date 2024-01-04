@@ -12,14 +12,56 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, include = FALSE}
+```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
+style_xaringan(
+  text_color = "#464A53",
+  header_color = "#586891",
+  background_color = "#F1F3F2",
+  title_slide_background_color = "#586891",
+  title_slide_text_color = "#F1F3F2",
+  table_row_even_background_color = "#B3A6A3",
+  link_color= "#586891",
+  text_bold_color= "#586891",
+  #code_highlight_color= rgba(255,255,0,0.5),
+  inverse_text_color= "#464A53",
+  inverse_background_color= "#B3A6A3",
+  inverse_header_color= "#464A53",
+  inverse_link_color= "#586891",
+  header_background_color= "#586891",
+  header_background_text_color= "#F1F3F2",
+  code_highlight_color = "#9ab7c4",
+  text_font_family = "Nunito",
+  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
+  header_font_google = google_font("Afacad"))
 
-#rcfss::xaringan_theme()
 
+# source in the default knitr options
 source(here::here("R", "slide-opts.R"))
 knitr::opts_chunk$set(echo = FALSE)
+
+# enable panelsets and default theme
+xaringanExtra::use_panelset()
+# ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
+
+# load basic packages
+library(knitr)
+library(here)
+library(countdown)
+library(patchwork)
+library(flipbookr)
+library(scales)
+
+mp4_vid <- function(src){
+  HTML(
+    paste0(
+      '<video autoplay>
+        <source src="', src, '" type="video/mp4">
+      </video>'
+    )
+  )
+}
 ```
 
 ```{r packages, include = FALSE, cache = FALSE}
@@ -53,7 +95,7 @@ class: middle, inverse
 
 ### Teaching assistant
 
-* Zihua Chen
+* Zihua Chen - zihuachen@uchicago.edu
 
 ---
 
@@ -298,11 +340,10 @@ class: inverse center middle
 
 ]
 
-```{r}
+```{r, echo = FALSE}
 include_graphics(path = "images/01/ndgt-scientism.png")
 ```
 
-???
 
 [Original tweet](https://twitter.com/neiltyson/status/345551599382446081)
 
@@ -410,7 +451,7 @@ class: middle, center, inverse
 
 .pull-left.center[
 
-```{r fig.caption = "Frank Wilczek's A Beautiful Question", out.width = "50%"}
+```{r fig.caption = "Frank Wilczek's A Beautiful Question", out.width = "50%", echo = FALSE}
 include_graphics(path = "images/01/beautiful-question.jpg")
 ```
 
@@ -497,7 +538,7 @@ ggplot(datasaurus_dozen, aes(x = x, y = y))+
 
 # Raw data is not enough
 
-```{r datasaurus-graph-static}
+```{r datasaurus-graph-static, echo = FALSE}
 ggplot(datasaurus_dozen, aes(x = x, y = y)) +
   facet_wrap(vars(dataset), nrow = 3) +
   geom_point(size = 0.8) +

@@ -18,18 +18,18 @@
  *  Version: 0.4.2
  *
  * ------------------------------------------------------- */
-@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap);
-@import url(https://fonts.googleapis.com/css?family=Cabin:600,600i&display=swap);
+@import url(https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif);
+@import url(https://fonts.googleapis.com/css?family=Afacad&display=swap);
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700&display=swap);
 
 
 :root {
   /* Fonts */
-  --text-font-family: 'Noto Sans';
-  --text-font-is-google: 1;
+  --text-font-family: Nunito;
+  --text-font-is-google: 0;
   --text-font-family-fallback: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial;
   --text-font-base: sans-serif;
-  --header-font-family: Cabin;
+  --header-font-family: Afacad;
   --header-font-is-google: 1;
   --header-font-family-fallback: Georgia, serif;
   --code-font-family: 'Source Code Pro';
@@ -43,19 +43,20 @@
   --header-h3-font-size: 1.75rem;
 
   /* Colors */
-  --text-color: #5A658B;
+  --text-color: #464A53;
   --header-color: #586891;
-  --background-color: #FFF;
-  --link-color: rgb(249, 38, 114);
-  --code-highlight-color: rgba(255,255,0,0.5);
-  --inverse-text-color: #d6d6d6;
-  --inverse-background-color: #8897A4;
-  --inverse-header-color: #f3f3f3;
-  --inverse-link-color: rgb(249, 38, 114);
+  --background-color: #F1F3F2;
+  --link-color: #586891;
+  --text-bold-color: #586891;
+  --code-highlight-color: #9ab7c4;
+  --inverse-text-color: #464A53;
+  --inverse-background-color: #B3A6A3;
+  --inverse-header-color: #464A53;
+  --inverse-link-color: #586891;
   --title-slide-background-color: #586891;
   --title-slide-text-color: #F1F3F2;
   --header-background-color: #586891;
-  --header-background-text-color: #FFF;
+  --header-background-text-color: #F1F3F2;
 }
 
 html {
@@ -99,12 +100,13 @@ h1, h2, h3 {
   color: #000;
 }
 .remark-slide-number {
-  color: #8897A4;
+  color: #B3A6A3;
   opacity: 1;
   font-size: 0.9rem;
 }
 strong {
   font-weight: bold;
+  color: var(--text-bold-color);
 }
 a, a > code {
   color: var(--link-color);
