@@ -74,7 +74,7 @@ class: middle, inverse
 A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
 ]
 .pull-right-wide[
-&lt;img src="images/grammar-of-graphics.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/grammar-of-graphics.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
 .footnote[
@@ -173,9 +173,9 @@ quartet %&gt;%
 
 ---
 
-## Impact of Omicron variant on unvaccinated populations
+### Impact of Omicron variant on unvaccinated populations
 
-&lt;img src="images/covid-hong-kong.jpeg" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/covid-hong-kong.jpeg" width="60%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [John Burn-Murdoch](https://twitter.com/jburnmurdoch/status/1503420660869214213)
@@ -183,9 +183,9 @@ Source: [John Burn-Murdoch](https://twitter.com/jburnmurdoch/status/150342066086
 
 ---
 
-## COVID-19 vaccination in US Counties
+### COVID-19 vaccination in US Counties
 
-&lt;img src="images/nytimes-us-covid-vaccine.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/nytimes-us-covid-vaccine.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 Source: [New York Times](https://www.nytimes.com/interactive/2020/us/covid-19-vaccine-doses.html), March 28, 2022.
@@ -287,7 +287,7 @@ class: middle, inverse
 .pull-left[
 
 ```r
-ggplot(data = penguins) #&lt;&lt;
+*ggplot(data = penguins)
 ```
 ]
 .pull-right[
@@ -305,7 +305,7 @@ ggplot(data = penguins) #&lt;&lt;
 
 ```r
 ggplot(data = penguins,
-       mapping = aes(x = bill_depth_mm)) #&lt;&lt;
+*      mapping = aes(x = bill_depth_mm))
 ```
 ]
 .pull-right[
@@ -325,7 +325,7 @@ ggplot(data = penguins,
 ```r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
-                     y = bill_length_mm)) #&lt;&lt;
+*                    y = bill_length_mm))
 ```
 ]
 .pull-right[
@@ -347,7 +347,7 @@ ggplot(data = penguins,
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm)) + 
-  geom_point() #&lt;&lt;
+* geom_point()
 ```
 ]
 .pull-right[
@@ -370,7 +370,7 @@ ggplot(data = penguins,
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
-                     color = species)) + #&lt;&lt;
+*                    color = species)) +
   geom_point()
 ```
 ]
@@ -397,7 +397,7 @@ ggplot(data = penguins,
                      y = bill_length_mm,
                      color = species)) +
   geom_point() +
-  labs(title = "Bill depth and length") #&lt;&lt;
+* labs(title = "Bill depth and length")
 ```
 ]
 .pull-right[
@@ -425,7 +425,7 @@ ggplot(data = penguins,
                      color = species)) +
   geom_point() +
   labs(title = "Bill depth and length",
-       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins") #&lt;&lt;
+*      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins")
 ```
 ]
 .pull-right[
@@ -455,7 +455,7 @@ ggplot(data = penguins,
   geom_point() +
   labs(title = "Bill depth and length",
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
-       x = "Bill depth (mm)", y = "Bill length (mm)") #&lt;&lt;
+*      x = "Bill depth (mm)", y = "Bill length (mm)")
 ```
 ]
 .pull-right[
@@ -487,7 +487,7 @@ ggplot(data = penguins,
   labs(title = "Bill depth and length",
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
        x = "Bill depth (mm)", y = "Bill length (mm)",
-       color = "Species") #&lt;&lt;
+*      color = "Species")
 ```
 ]
 .pull-right[
@@ -521,7 +521,7 @@ ggplot(data = penguins,
        subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
        x = "Bill depth (mm)", y = "Bill length (mm)",
        color = "Species",
-       caption = "Source: Palmer Station LTER / palmerpenguins package") #&lt;&lt;
+*      caption = "Source: Palmer Station LTER / palmerpenguins package")
 ```
 ]
 .pull-right[
@@ -557,7 +557,7 @@ ggplot(data = penguins,
        x = "Bill depth (mm)", y = "Bill length (mm)",
        color = "Species",
        caption = "Source: Palmer Station LTER / palmerpenguins package") +
-  scale_color_viridis_d() #&lt;&lt;
+* scale_color_viridis_d()
 ```
 ]
 .pull-right[
@@ -667,7 +667,7 @@ Commonly used characteristics of plotting characters that can be **mapped to a s
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
-           color = species)) + #&lt;&lt;
+*          color = species)) +
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -689,7 +689,7 @@ ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
            color = species,
-           shape = island)) + #&lt;&lt;
+*          shape = island)) +
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -711,7 +711,7 @@ ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
            color = species,
-           shape = species)) + #&lt;&lt;
+*          shape = species)) +
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -732,7 +732,7 @@ ggplot(penguins,
            y = bill_length_mm,
            color = species,
            shape = species,
-           size = body_mass_g)) + #&lt;&lt;
+*          size = body_mass_g)) +
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -754,7 +754,7 @@ ggplot(penguins,
            color = species,
            shape = species,
            size = body_mass_g,
-           alpha = flipper_length_mm)) + #&lt;&lt;
+*          alpha = flipper_length_mm)) +
   geom_point() +
   scale_color_viridis_d()
 ```
@@ -773,8 +773,8 @@ ggplot(penguins,
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm,
-           size = body_mass_g, #&lt;&lt;
-           alpha = flipper_length_mm)) + #&lt;&lt;
+*          size = body_mass_g,
+*          alpha = flipper_length_mm)) +
   geom_point()
 ```
 
@@ -788,7 +788,7 @@ ggplot(penguins,
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm)) + 
-  geom_point(size = 2, alpha = 0.5) #&lt;&lt;
+* geom_point(size = 2, alpha = 0.5)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -821,7 +821,7 @@ class: middle, inverse
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Code]
 
@@ -829,7 +829,7 @@ class: middle, inverse
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-  facet_grid(rows = vars(species), cols = vars(island)) #&lt;&lt;
+* facet_grid(rows = vars(species), cols = vars(island))
 ```
 ]
 ]
@@ -851,10 +851,10 @@ But you should always label your plots!
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-  facet_grid(rows = vars(species), cols = vars(sex)) #&lt;&lt;
+* facet_grid(rows = vars(species), cols = vars(sex))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -862,10 +862,10 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-  facet_grid(rows = vars(sex), cols = vars(species)) #&lt;&lt;
+* facet_grid(rows = vars(sex), cols = vars(species))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -873,10 +873,10 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-  facet_wrap(facets = vars(species)) #&lt;&lt;
+* facet_wrap(facets = vars(species))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -884,7 +884,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-  facet_grid(rows = NULL, cols = vars(species)) #&lt;&lt;
+* facet_grid(rows = NULL, cols = vars(species))
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -895,7 +895,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ```r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
-  facet_wrap(facets = vars(species), ncol = 2) #&lt;&lt;
+* facet_wrap(facets = vars(species), ncol = 2)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="80%" style="display: block; margin: auto;" /&gt;
@@ -916,7 +916,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Code]
 
@@ -926,10 +926,10 @@ ggplot(
   penguins, 
   aes(x = bill_depth_mm, 
       y = bill_length_mm, 
-      color = species)) + #&lt;&lt;
+*     color = species)) +
   geom_point() +
   facet_grid(species ~ sex) +
-  scale_color_viridis_d() #&lt;&lt;
+* scale_color_viridis_d()
 ```
 ]
 ]
@@ -940,7 +940,7 @@ ggplot(
 
 .panelset[
 .panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Code]
 
@@ -953,7 +953,7 @@ ggplot(
       color = species)) +
   geom_point() +
   facet_grid(species ~ sex) +
-  scale_color_viridis_d(guide = "none")  #&lt;&lt;
+* scale_color_viridis_d(guide = "none")
 ```
 ]
 ]
@@ -973,7 +973,7 @@ and other academic professionals.
 by the AAUP shows trends in instructional staff employees between 1975 
 and 2011, and contains an image very similar to the one given below.
 
-&lt;img src="images/staff-employment.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/staff-employment.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1131,7 +1131,7 @@ staff_long %&gt;%
   theme_minimal()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-47-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-47-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -1168,22 +1168,22 @@ I want to achieve the following look but I have no idea how!
 library(scales)
 
 staff_long %&gt;%
-  mutate( #&lt;&lt;
-    part_time = if_else(faculty_type == "Part-Time Faculty", #&lt;&lt;
-                        "Part-Time Faculty", "Other Faculty"), #&lt;&lt;
-    year = as.numeric(year) #&lt;&lt;
-    ) %&gt;% #&lt;&lt;
+* mutate(
+*   part_time = if_else(faculty_type == "Part-Time Faculty",
+*                       "Part-Time Faculty", "Other Faculty"),
+*   year = as.numeric(year)
+*   ) %&gt;%
   ggplot(aes(x = year, y = percentage/100, group = faculty_type, 
              color = part_time)) +
   geom_line() +
-  scale_color_manual(values = c("gray", "red")) + #&lt;&lt;
-  scale_y_continuous(labels = label_percent(accuracy = 1)) + #&lt;&lt;
+* scale_color_manual(values = c("gray", "red")) +
+* scale_y_continuous(labels = label_percent(accuracy = 1)) +
   theme_minimal() +
   labs(
     title = "Instructional staff employment trends",
     x = "Year", y = "Percentage", color = NULL
   ) +
-  theme(legend.position = "bottom") #&lt;&lt;
+* theme(legend.position = "bottom")
 ```
 
 ]]
@@ -1195,13 +1195,13 @@ Choose one of the following plots and explain why you think it is the best repre
 
 .panelset[
 .panel[.panel-name[Facets]
-&lt;img src="index_files/figure-html/unnamed-chunk-49-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-49-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Alpha]
-&lt;img src="index_files/figure-html/unnamed-chunk-50-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-50-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
-.panel[.panel-name[Narrative]
-&lt;img src="index_files/figure-html/unnamed-chunk-51-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+.panel[.panel-name[Basic]
+&lt;img src="index_files/figure-html/unnamed-chunk-51-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -1216,7 +1216,7 @@ You need to find a graph and **critique** it (don't totally trash it -- this is 
 
 # Speaking of: doing well on assignments
 
-&lt;img src="https://geekd-out.com/wp-content/uploads/2018/08/sugar-rush-featured-image.jpg" width="85%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://geekd-out.com/wp-content/uploads/2018/08/sugar-rush-featured-image.jpg" width="65%" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
