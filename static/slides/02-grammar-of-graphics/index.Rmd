@@ -1179,3 +1179,8 @@ You need to find a graph and **critique** it (don't totally trash it -- this is 
 
 knitr::include_graphics("https://geekd-out.com/wp-content/uploads/2018/08/sugar-rush-featured-image.jpg")
 ```
+
+
+---
+
+# Recap
