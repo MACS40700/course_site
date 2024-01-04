@@ -15,7 +15,15 @@ output:
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-#rcfss::xaringan_theme()
+style_xaringan(
+  text_color = "#5A658B",
+  header_color = "#586891",
+  background_color = "#FFF",
+  title_slide_background_color = "#586891",
+  title_slide_text_color = "#F1F3F2",
+  inverse_background_color = "#8897A4",
+  table_row_even_background_color = "#B3A6A3")
+
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -153,9 +161,10 @@ library(babynames)
 library(hrbrthemes)
 library(ggnewscale)
 
+
 # keep top 5 in each gender
 babynames_top5 <- babynames %>%
-  filter(year == 2017) %>%
+  filter(year == 2016) %>%
   group_by(sex) %>%
   slice_max(order_by = n, n = 5) %>%
   select(sex, name) %>%
@@ -192,7 +201,7 @@ babynames_p <- ggplot(data = babynames_top5,
   scale_y_continuous(labels = label_comma()) +
   labs(
     title = "Baby name popularity in the United States",
-    subtitle = "Most popular names in 2020",
+    subtitle = "Most popular names in 2016",
     x = "Year",
     y = "Number of babies born",
     color = NULL,
@@ -458,16 +467,17 @@ Which transition was used in the following animations?
 .pull-left[
 ```{r transition-layers, warning = FALSE, gganimate = list(nframes = 20), cache = TRUE, echo = FALSE, out.width = "100%", message = FALSE}
 penguins %>%
-  drop_na() %>%
+  drop_na() %>%  
   ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point() +
   geom_smooth(color = "grey", se = FALSE, method = 'loess', formula = y ~ x) +
   geom_smooth(aes(color = species)) +
   transition_layers(
-    layer_length = 1, transition_length = 2,
+    layer_length = 1, 
+    transition_length = 2,
     from_blank = FALSE, keep_layers = c(Inf, 0, 0)
   ) +
-  enter_fade() +
+  #enter_fade() +
   exit_fade()
 ```
 ]
@@ -963,6 +973,97 @@ animate(freedom_bar_race, nframes = 30, fps = 2)
 
 ---
 
+class: inverse, center, middle
+
+# Discussion: Designing an animation
+
+---
+```{r sakura-ex, echo = FALSE, warning = FALSE, out.width="45%"}
+
+library(tidyverse) # Data manipulation
+library(gganimate) # Animation
+library(lubridate) # Working with dates
+library(ggthemes) # ggplot2 theme for maps
+library(ggimage) # Images in ggplot2 plots
+library(extrafont) # Custom fonts
+library(ggtext) # Customizing text colour in titles
+library(magick)
+loadfonts()
+
+ 
+
+sakura <- read_csv("https://raw.githubusercontent.com/tacookson/data/master/sakura-flowering/sakura-modern.csv")
+sakura_overall <- sakura %>%
+  # Ensure complete records for flowering and full-bloom dates
+  filter(!is.na(flower_doy),
+         !is.na(full_bloom_doy)) %>%
+  # Calculate average days of year
+  group_by(station_id, station_name, latitude, longitude) %>%
+  summarise(flower_doy = mean(flower_doy),
+            full_bloom_doy = mean(full_bloom_doy),
+            .groups = "drop")
+
+sakura_labels <- sakura_overall %>%
+  filter(station_name %in% c("Sapporo", "Tokyo", "Kyoto",
+                             "Hiroshima", "Niigata", "Naha",
+                             "Nagasaki", "Sendai", "Hakodate")) %>%
+  select(station_name, longitude, latitude)
+
+sakura_icon_url <- "https://raw.githubusercontent.com/tacookson/data/master/sakura-flowering/ref/sakura-no-border.svg" ###
+
+p <- ggplot() +
+  borders(regions = "Japan",
+          fill = "#AA9C8F",
+          colour = NA) +
+  geom_point(data = sakura_labels,
+             aes(longitude, latitude),
+             size = 1,
+             colour = "#3D1308") +
+  geom_text(data = sakura_labels,
+            aes(longitude, latitude, label = station_name),
+            colour = "#3D1308",
+            family = "Luminari",
+            hjust = -0.2,
+            vjust = 1) +
+  geom_image(data = sakura_overall,
+             aes(longitude, latitude, image = sakura_icon_url),
+             size = 0.028) +
+  coord_map(projection = "mercator") +
+  theme_map() +
+  transition_events(start = flower_doy - 3,
+                    end = full_bloom_doy,
+                    range(0, 151),
+                    enter_length = 6,
+                    exit_length = 6) +
+  enter_grow() +
+  exit_drift(y_mod = -1) +
+  exit_shrink() + #############################################################################
+  labs(title = "When do <span style = 'color:#D47FA8'>**cherry blossoms**</span> bloom in Japan?",
+       subtitle = paste("<span style = 'color:#D47FA8'>**Hanami**</span> (\"flower viewing\") is a Japanese tradition over 1,000 years old, usually associated with", "cherry blossom trees. The <span style = 'color:#D47FA8'>**sakura zensen**</span> (cherry blossom front) shows the typical date of",
+                     "flowering and full bloom across Japan.",
+                     "\n",
+                     sep = "\n"),
+  #############################################################################
+       caption = "{paste(month(ymd(\"2019-01-01\") + frame_time, label = TRUE, abbr = FALSE),
+                  day(ymd(\"2019-01-01\") + frame_time))}") +
+  theme(text = element_text(family = "Luminari", colour = "#3D1308"),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        plot.background = element_rect(fill = "#FFF9F3", colour = NA),
+        plot.margin = margin(10, 50, 10, 50),
+        plot.title = element_textbox_simple(size = 11, halign = 0.5, margin = margin(10, 10, 10, 10)), ###
+        plot.subtitle = element_textbox_simple(size = 8, halign = 0.5),                                ###
+        plot.caption = element_text(size = 14))
+
+animate(p, nframes = 152 * 2, start_pause = 3, end_pause = 15, height = 715, width = 600)
+
+```
+
+.footnote[https://www.alexcookson.com/post/2020-10-18-building-an-animation-step-by-step-with-gganimate/]
+---
+# Recap 
+
+---
 ## Acknowledgements
 
 - [Getting your plots to talk back by Di Cook](https://emitanaka.org/datavis-workshop-ssavic/)
