@@ -34,7 +34,14 @@ style_xaringan(
   code_highlight_color = "#9ab7c4",
   text_font_family = "Nunito",
   text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
-  header_font_google = google_font("Afacad"))
+  header_font_google = google_font("Afacad"),
+  base_font_size= "28px",
+  text_font_size= "1rem",
+  code_font_size= "20px",
+  code_inline_font_size= "1em",
+  header_h1_font_size= "2rem",
+  header_h2_font_size= "1.75rem",
+  header_h3_font_size= "1.5rem")
 
 
 # source in the default knitr options
@@ -713,7 +720,7 @@ include_graphics(path = "images/01/pie-genus.png")
 
 .right-column[
 
-```{r out.width = "65%"}
+```{r out.width = "60%"}
 include_graphics(path = "images/01/changing-face-of-america.png")
 ```
 
@@ -741,7 +748,7 @@ include_graphics(path = "images/01/changing-face-of-america.png")
 
 .right-column[
 
-```{r out.width = "75%"}
+```{r out.width = "60%"}
 include_graphics(path = "images/death_penalty.jpg")
 ```
 
