@@ -14,7 +14,7 @@ You can see our tentative topics below.
 
 | Date   | Topic (Slides linked)   | Readings (complete BEFORE class)  |   Assignment      | 
 | ------ | ----------------------------- | --------------- | --------------- | 
-| 4-Jan  | [Welcome](slides/01-intro)  | [Ch 2 TA](https://www.google.com/books/edition/_/8dKKCwAAQBAJ?hl=en&gbpv=1&pg=PA1)   |
+| 4-Jan  | [Welcome](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg)   |
 | 9-Jan  |  [Grammar of graphics](slides/02-grammar-of-graphics)  | [EG: Ch 13](https://ggplot2-book.org/mastery.html)| [hwk 1](/assignments/assign1/)   |     
 | 11-Jan | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) |                 |
 | 16-Jan | [geoms](slides/04-geoms) 	|     [EG: Ch 14](https://ggplot2-book.org/layers.html)          ||
