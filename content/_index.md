@@ -44,8 +44,8 @@ You can see our tentative topics below.
 
 
 ## TA & Office Hours 
-TA: Zihua Chen <br>
-Prof: Jean Clipperton
+TA: **Zihua Chen** OH Mondays [3-4pm via zoom]( https://uchicago.zoom.us/j/4346795521?pwd=bXNIdW00NWRoRWRMWnVWdDVGR1BxQT09) and Thursdays 2-3pm in-person in 140C (tentative location)  <br>
+Prof: Jean Clipperton OH Mondays 2-3pm (in person or zoom) and Tuesdays 9am-10am. [Please sign up here!](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
 
 # Syllabus and policies
 See the [course syllabus in the side menu](/course-syllabus/)
