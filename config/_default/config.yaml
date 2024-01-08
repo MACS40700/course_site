@@ -3,8 +3,8 @@
 # Hugo Documentation: https://gohugo.io/getting-started/configuration/#all-configuration-settings
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
-title: Computing for the Social Sciences # Website name
-baseURL: "computing-soc-sci.netlify.app" # Website URL
+title: Data Visualization # Website name
+baseURL: "macs40700.netlify.app/" # Website URL
 
 ############################
 ## LANGUAGE
