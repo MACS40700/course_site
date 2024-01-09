@@ -629,7 +629,7 @@ Finally, use a discrete color scale that is designed to be perceived by viewers 
 ## Argument names
 
 .tip[
-You can omit the names of first two arguments when building plots with `ggplot()`.
+You can omit the names of the first two arguments when building plots with `ggplot()`.
 ]
 
 .pull-left[
@@ -1184,3 +1184,11 @@ knitr::include_graphics("https://geekd-out.com/wp-content/uploads/2018/08/sugar-
 ---
 
 # Recap
+
+Parts of a graph:
+* aesthetics
+* color
+* shape
+* size
+* alpha (transparency)
+* faceting
