@@ -978,7 +978,7 @@ The values are percentage of hires of that type of faculty for each year.
 staff <- read_csv("data/instructional-staff.csv")
 staff
 ```
-
+.footnote[https://uchicago.box.com/s/eqk73widao74ysdd172ob81jac38ecjx]
 ---
 
 ## Recreate the visualization
