@@ -252,7 +252,7 @@ class: middle, inverse
 
 ```{r}
 library(tidyverse)
-# remotes::install_github("uc-cfss/rcis")
+# remotes::install_github("cis-ds/rcis")
 library(rcis)
 
 glimpse(scorecard)
