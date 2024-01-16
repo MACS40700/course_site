@@ -144,7 +144,6 @@ class: middle, inverse
 ---
 
 ## Activity: Spot the difference I
-
 .task[
 Do you expect the following plots to be the same or different? If different, how? Discuss in a pair (or group) without running the code and sketch the resulting plots based on what you think the code will produce.
 ]
@@ -170,9 +169,6 @@ countdown(minutes = 3, bottom = 0)
 
 ## Activity: Spot the difference I
 
-.task[
-Do you expect the following plots to be the same or different? If different, how? Discuss in a pair (or group) without running the code and sketch the resulting plots based on what you think the code will produce.
-]
 
 .panelset[
 .panel[.panel-name["Plot A"]
@@ -220,6 +216,38 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 countdown(minutes = 3, bottom = 0)
 ```
 
+---
+
+
+## Activity: Spot the difference II
+
+.panelset[
+.panel[.panel-name["Plot A"]
+
+```{r }
+# Plot A
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(aes(color = pctpell_cat))
+
+```
+]
+
+.panel[.panel-name["Plot B"]
+```{r}
+# Plot B
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(color = "blue")
+```
+]
+.panel[.panel-name["Plot C"]
+
+```{r}
+# Plot C
+ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
+  geom_point(color = "#a493ba")
+```
+]
+]
 ---
 
 class: middle, inverse
@@ -823,8 +851,9 @@ class: inverse, middle
 - Start with a research question / topic area / theme
 - Work on how the graphs will fit together
 - Can submit in groups (prep for assignment 3 + final) or separately (you can change your mind later as well!)
-- Cannot have all the same graph type
+- Three graphs cannot have all the same graph type
 - Can potentially resubmit if you get a check-minus (determined on a case-by-case basis -- basically this should be a good faith effort) 
+- Include what you're hoping the takeaway will be from each graph
 
 
 ---
