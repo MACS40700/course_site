@@ -11,7 +11,7 @@ output:
       ratio: 16:9
       countIncrementalSlides: false
 ---
----
+
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
@@ -47,7 +47,8 @@ class: middle, inverse
 ---
 
 ## Announcements
-
+* Assignment deadlines (T/W)
+* Contrast Ed discussion: memorable vs preferable
 
 ---
 
