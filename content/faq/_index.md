@@ -12,3 +12,5 @@ This section contains common questions and general information about the course.
 Specifically, you can get information on the following: 
 
 * [Choosing a dataset / finding data](finding-data/)
+* [Information on our rubric](homework-evaluations/)
+* [Effectively asking for help](asking-questions/)
