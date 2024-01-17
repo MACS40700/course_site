@@ -8,3 +8,7 @@ weight: 1
 ---
 
 This section contains common questions and general information about the course.
+
+Specifically, you can get information on the following: 
+
+* [Choosing a dataset / finding data](finding-data/)
