@@ -12,7 +12,7 @@ aliases: "/finding-data.html"
 Below you can see a partial list -- please reach out if you have some to add!
 
 * [Harvard’s Data Repository](https://dataverse.harvard.edu/dataverse/harvard?q=&fq0=subject_ss%3A%22Social%20Sciences%22&types=dataverses%3Adatasets&sort=dateSort&order=desc)
-* [ICPSR Data Repository](https://www.icpsr.umich.edu/web/pages/ICPSR/index.html)\
+* [ICPSR Data Repository](https://www.icpsr.umich.edu/web/pages/ICPSR/index.html)
 * [Google’s Dataset Search](https://datasetsearch.research.google.com/)
 * [Kaggle datasets](https://www.kaggle.com/)
 * [Components Datasets](https://components.one/datasets)
