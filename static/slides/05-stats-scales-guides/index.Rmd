@@ -643,7 +643,7 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
 # Guides exercise
 
 .task[In groups of two-to-three:
-* Identify a relevant R dataset that has your assigned variable type (e.g. continuous/continuous)
+* Identify a relevant R dataset (*hint: data()*) that has your assigned variable type (e.g. continuous/continuous)
 * Create a simple plot
 * Rework the scales using at least one per category of the following:
   * Scales (x axis): adding breaks, limits, labels transformations
@@ -652,9 +652,65 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
   * Legend and labs: polish
 ]
 
-Post this graph and code on Ed -- it should be reproducible as-is!!
+Post this graph and code on Ed -- it should be reproducible based on the code you submit!! Provide approx 2-3 sentences explaining why/how you made the choices you did. 
 
+---
+# Bonus: Merging Legends!
+.panelset[
+.panel[.panel-name[Easy Fix]
+```{r easy}
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = factor(year), shape = factor(year)), size = 5) + 
+    scale_colour_brewer("year", type = "qual", palette = 5) 
+```
+]
+
+.panel[.panel-name[Easy Fixed]
+```{r easy-fixed}
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = factor(year), shape = factor(year)), size = 5) + 
+    scale_colour_brewer("year", type = "qual", palette = 5) +
+    labs(colour = "year", shape = "year")
+```
+]
+
+.panel[.panel-name[ARGGHHH]
+```{r not-easy}
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = factor(year), shape = factor(cyl)), size = 5) + 
+    scale_colour_brewer("year", type = "qual", palette = 5) 
+```
+]
+
+.panel[.panel-name[ARGGHHH2]
+```{r not-easy-fixed, fig.show="hide"}
+legend <- mpg %>% distinct(year, cyl) %>% 
+  mutate(
+    shape = case_when(  cyl == 4 ~ 15, cyl == 5 ~ 17, cyl == 6 ~ 18, cyl == 8 ~ 19  ),
+    colour = case_when( year == 1999 ~ "gray", year == 2008 ~ "black" ),
+    label = paste0(year, " Year, ", cyl, " cyl"))
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = interaction(as.factor(year), as.factor(cyl)), 
+                   shape = interaction(as.factor(year), as.factor(cyl))), size = 5) + 
+  scale_colour_discrete(name = "Combined", labels = legend %>% distinct(cyl, label) %>% pull(label), type = legend %>% distinct(cyl, colour) %>% pull(colour)) +
+  scale_shape_manual(name = "Combined", 
+    labels = legend %>% distinct(year, label) %>% pull(label),
+    values = legend %>% distinct(year, shape) %>% pull(shape)) +
+  geom_point()
+```
+]
+
+.panel[.panel-name[ARGGHHH2 plot]
+*(why would we want / not want to do this?)*
+```{r ref.label = "not-easy-fixed", echo = FALSE, out.width = "55%"}
+```
+]
+]
 
 ---
 
 # Recap
+
+* Assignment 2 (TOMORROW!)
+* Scales can help you rework how the axis labels appear
+* Guides: pulling together legends / axes

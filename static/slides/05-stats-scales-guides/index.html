@@ -289,7 +289,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
   scale_x_continuous(name = "Percent of students receiving a Pell grant") 
 ```
 
-<div class="countdown" id="timer_5a55dd75" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_ddb2e3dc" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -379,7 +379,7 @@ ggplot(
 ]
 ]
 
-<div class="countdown" id="timer_fa0ae9c2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_b88cfa13" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -513,7 +513,7 @@ ggplot(scorecard,
 ]
 ]
 ]
-<div class="countdown" id="timer_08b19ef6" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_059331ca" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -730,7 +730,7 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
 # Guides exercise
 
 .task[In groups of two-to-three:
-* Identify a relevant R dataset that has your assigned variable type (e.g. continuous/continuous)
+* Identify a relevant R dataset (*hint: data()*) that has your assigned variable type (e.g. continuous/continuous)
 * Create a simple plot
 * Rework the scales using at least one per category of the following:
   * Scales (x axis): adding breaks, limits, labels transformations
@@ -739,12 +739,77 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
   * Legend and labs: polish
 ]
 
-Post this graph and code on Ed -- it should be reproducible as-is!!
+Post this graph and code on Ed -- it should be reproducible based on the code you submit!! Provide approx 2-3 sentences explaining why/how you made the choices you did. 
 
+---
+# Bonus: Merging Legends!
+.panelset[
+.panel[.panel-name[Easy Fix]
+
+```r
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = factor(year), shape = factor(year)), size = 5) + 
+    scale_colour_brewer("year", type = "qual", palette = 5) 
+```
+
+&lt;img src="index_files/figure-html/easy-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Easy Fixed]
+
+```r
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = factor(year), shape = factor(year)), size = 5) + 
+    scale_colour_brewer("year", type = "qual", palette = 5) +
+    labs(colour = "year", shape = "year")
+```
+
+&lt;img src="index_files/figure-html/easy-fixed-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[ARGGHHH]
+
+```r
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = factor(year), shape = factor(cyl)), size = 5) + 
+    scale_colour_brewer("year", type = "qual", palette = 5) 
+```
+
+&lt;img src="index_files/figure-html/not-easy-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[ARGGHHH2]
+
+```r
+legend &lt;- mpg %&gt;% distinct(year, cyl) %&gt;% 
+  mutate(
+    shape = case_when(  cyl == 4 ~ 15, cyl == 5 ~ 17, cyl == 6 ~ 18, cyl == 8 ~ 19  ),
+    colour = case_when( year == 1999 ~ "gray", year == 2008 ~ "black" ),
+    label = paste0(year, " Year, ", cyl, " cyl"))
+ggplot(mpg, aes(displ, hwy)) + 
+    geom_point(aes(colour = interaction(as.factor(year), as.factor(cyl)), 
+                   shape = interaction(as.factor(year), as.factor(cyl))), size = 5) + 
+  scale_colour_discrete(name = "Combined", labels = legend %&gt;% distinct(cyl, label) %&gt;% pull(label), type = legend %&gt;% distinct(cyl, colour) %&gt;% pull(colour)) +
+  scale_shape_manual(name = "Combined", 
+    labels = legend %&gt;% distinct(year, label) %&gt;% pull(label),
+    values = legend %&gt;% distinct(year, shape) %&gt;% pull(shape)) +
+  geom_point()
+```
+]
+
+.panel[.panel-name[ARGGHHH2 plot]
+*(why would we want / not want to do this?)*
+&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+]
+]
 
 ---
 
 # Recap
+
+* Assignment 2 (TOMORROW!)
+* Scales can help you rework how the axis labels appear
+* Guides: pulling together legends / axes
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
