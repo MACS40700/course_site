@@ -37,7 +37,15 @@ class: middle, inverse
 * Guides
   * Legends
   * Axes (incl ticks)
+---
 
+# Announcements
+
+* Website updated!
+  * dates
+  * FAQ with data links
+* Assignments on Canvas for submission
+* Post on Ed for any questions!
 
 <!-----
 
@@ -73,11 +81,11 @@ ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
 
 # set default figure parameters for knitr
 knitr::opts_chunk$set(
-  fig.width = 8, # 8"
+  fig.width = 7, # 7"
   fig.asp = 0.618, # the golden ratio
   fig.retina = 2, # dpi multiplier for displaying HTML output on retina
   dpi = 150, # higher dpi, sharper image
-  out.width = "60%"
+  out.width = "50%"
 )
 ```
 
@@ -397,7 +405,7 @@ ggplot(scorecard,
 ## Scale transform vs. data transform
 
 .task[
-How are the following two plots different, how are they similar? What does this say about how scale transformations work.
+How are the following three plots different, how are they similar? What does this say about how scale transformations work.
 ]
 
 .panelset[
@@ -405,8 +413,10 @@ How are the following two plots different, how are they similar? What does this 
 .pull-left[
 ```{r data-transform, fig.show = "hide"}
 scorecard %>%
-  mutate(avgfacsal_log10 = log(avgfacsal, base = 10)) %>%
-  ggplot(aes(x = pctpell, y = avgfacsal_log10)) + 
+  mutate(avgfacsal_log10 = 
+           log(avgfacsal, base = 10)) %>%
+  ggplot(aes(x = pctpell, 
+             y = avgfacsal_log10)) + 
   geom_point(alpha = 0.5)
 ```
 ]
@@ -418,7 +428,8 @@ scorecard %>%
 .panel[.panel-name[Plot B]
 .pull-left[
 ```{r scale-transform, fig.show = "hide"}
-ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) + 
+ggplot(scorecard, 
+       aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_y_log10()
 ```
@@ -428,8 +439,22 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) +
 ```
 ]
 ]
+.panel[.panel-name[Plot C]
+.pull-left[
+```{r scale-transform-label, fig.show = "hide"}
+ggplot(scorecard, 
+       aes(x = pctpell, y = avgfacsal)) + 
+  geom_point(alpha = 0.5) +
+  scale_y_log10(
+    labels = scales::label_comma())
+```
 ]
-
+.pull-right[
+```{r ref.label = "scale-transform-label", echo = FALSE, out.width = "100%"}
+```
+]
+]
+]
 ```{r echo = FALSE, cache = FALSE}
 countdown(minutes = 5, bottom = 0, left = 0)
 ```

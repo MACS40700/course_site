@@ -34,7 +34,15 @@ class: middle, inverse
 * Guides
   * Legends
   * Axes (incl ticks)
+---
 
+# Announcements
+
+* Website updated!
+  * dates
+  * FAQ with data links
+* Assignments on Canvas for submission
+* Post on Ed for any questions!
 
 &lt;!-----
 
@@ -71,11 +79,11 @@ ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
 
 # set default figure parameters for knitr
 knitr::opts_chunk$set(
-  fig.width = 8, # 8"
+  fig.width = 7, # 7"
   fig.asp = 0.618, # the golden ratio
   fig.retina = 2, # dpi multiplier for displaying HTML output on retina
   dpi = 150, # higher dpi, sharper image
-  out.width = "60%"
+  out.width = "50%"
 )
 ```
 
@@ -89,21 +97,21 @@ glimpse(scorecard)
 ```
 
 ```
-## Rows: 1,721
+## Rows: 1,719
 ## Columns: 14
 ## $ unitid    &lt;dbl&gt; 100654, 100663, 100706, 100724, 100751, 100830, 100858, 1009…
 ## $ name      &lt;chr&gt; "Alabama A &amp; M University", "University of Alabama at Birmin…
 ## $ state     &lt;chr&gt; "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", "AL", …
 ## $ type      &lt;fct&gt; "Public", "Public", "Public", "Public", "Public", "Public", …
-## $ admrate   &lt;dbl&gt; 0.8965, 0.8060, 0.7711, 0.9888, 0.8039, 0.9555, 0.8507, 0.60…
-## $ satavg    &lt;dbl&gt; 959, 1245, 1300, 938, 1262, 1061, 1302, 1202, 1068, NA, 1101…
-## $ cost      &lt;dbl&gt; 23445, 25542, 24861, 21892, 30016, 20225, 32196, 32514, 3483…
-## $ netcost   &lt;dbl&gt; 15529, 16530, 17208, 19534, 20917, 13678, 24018, 19808, 2050…
-## $ avgfacsal &lt;dbl&gt; 68391, 102420, 87273, 64746, 93141, 69561, 96498, 62649, 533…
-## $ pctpell   &lt;dbl&gt; 0.7095, 0.3397, 0.2403, 0.7368, 0.1718, 0.4654, 0.1343, 0.22…
-## $ comprate  &lt;dbl&gt; 0.2866, 0.6117, 0.5714, 0.3177, 0.7214, 0.3040, 0.7870, 0.70…
+## $ admrate   &lt;dbl&gt; 0.7160, 0.8854, 0.7367, 0.9799, 0.7890, 0.9680, 0.7118, 0.65…
+## $ satavg    &lt;dbl&gt; 954, 1266, 1300, 955, 1244, 1069, NA, 1214, 1042, NA, 1111, …
+## $ cost      &lt;dbl&gt; 21924, 26248, 24869, 21938, 31050, 20621, 32678, 33920, 3645…
+## $ netcost   &lt;dbl&gt; 13057, 16585, 17250, 13593, 21534, 13689, 23258, 21098, 2037…
+## $ avgfacsal &lt;dbl&gt; 79011, 104310, 88380, 69309, 94581, 70965, 99837, 68724, 564…
+## $ pctpell   &lt;dbl&gt; 0.6853, 0.3253, 0.2377, 0.7205, 0.1712, 0.4821, 0.1301, 0.21…
+## $ comprate  &lt;dbl&gt; 0.2807, 0.6245, 0.6072, 0.2843, 0.7223, 0.3569, 0.8088, 0.69…
 ## $ firstgen  &lt;dbl&gt; 0.3658281, 0.3412237, 0.3101322, 0.3434343, 0.2257127, 0.381…
-## $ debt      &lt;dbl&gt; 15250, 15085, 14000, 17500, 17671, 12000, 17500, 16000, 1425…
+## $ debt      &lt;dbl&gt; 16600, 15832, 13905, 17500, 17986, 13119, 17750, 16000, 1500…
 ## $ locale    &lt;fct&gt; City, City, City, City, City, City, City, City, City, Suburb…
 ```
 
@@ -151,7 +159,7 @@ ggplot(scorecard, aes(x = type, y = avgfacsal)) +
                color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -165,7 +173,7 @@ ggplot(scorecard, aes(x = type, y = avgfacsal)) +
              color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -205,7 +213,7 @@ ggplot(PlantGrowth, aes(x = group, y = weight))  +
                   color = "darkgreen", size = 5, pch = 4, stroke = 2)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -247,7 +255,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
 ```
 ]
 .panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -281,7 +289,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
   scale_x_continuous(name = "Percent of students receiving a Pell grant") 
 ```
 
-<div class="countdown" id="timer_4327182e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_5a55dd75" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -320,7 +328,7 @@ What happens if you pair a discrete variable with a continuous scale? What happe
 ggplot(scorecard, aes(type)) + geom_bar(stat = "count")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Plots]
 .pull-left[
@@ -365,13 +373,13 @@ ggplot(
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/incorrect-scale-discrete-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/incorrect-scale-discrete-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
 ]
 
-<div class="countdown" id="timer_030ca8d0" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_fa0ae9c2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -455,7 +463,7 @@ ggplot(scorecard,
 ## Scale transform vs. data transform
 
 .task[
-How are the following two plots different, how are they similar? What does this say about how scale transformations work.
+How are the following three plots different, how are they similar? What does this say about how scale transformations work.
 ]
 
 .panelset[
@@ -464,8 +472,10 @@ How are the following two plots different, how are they similar? What does this 
 
 ```r
 scorecard %&gt;%
-  mutate(avgfacsal_log10 = log(avgfacsal, base = 10)) %&gt;%
-  ggplot(aes(x = pctpell, y = avgfacsal_log10)) + 
+  mutate(avgfacsal_log10 = 
+           log(avgfacsal, base = 10)) %&gt;%
+  ggplot(aes(x = pctpell, 
+             y = avgfacsal_log10)) + 
   geom_point(alpha = 0.5)
 ```
 ]
@@ -477,7 +487,8 @@ scorecard %&gt;%
 .pull-left[
 
 ```r
-ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) + 
+ggplot(scorecard, 
+       aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_y_log10()
 ```
@@ -486,9 +497,23 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) +
 &lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ]
-]
+.panel[.panel-name[Plot C]
+.pull-left[
 
-<div class="countdown" id="timer_706e0483" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+```r
+ggplot(scorecard, 
+       aes(x = pctpell, y = avgfacsal)) + 
+  geom_point(alpha = 0.5) +
+  scale_y_log10(
+    labels = scales::label_comma())
+```
+]
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+]
+]
+<div class="countdown" id="timer_08b19ef6" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -534,7 +559,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -555,7 +580,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -574,7 +599,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -594,7 +619,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -615,7 +640,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
     labels = label_dollar() )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -633,7 +658,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   scale_y_continuous( name = "Average faculty salary (USD)", labels = label_dollar()) 
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -649,7 +674,7 @@ p_pctpell_avgfacsal_type &lt;- ggplot(scorecard, aes(x = pctpell, y = avgfacsal)
 p_pctpell_avgfacsal_type
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -665,7 +690,7 @@ p_pctpell_avgfacsal_type +
   scale_shape_discrete(name = "College type") 
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -682,7 +707,7 @@ p_pctpell_avgfacsal_type + labs( x = "Percent of students receiving a Pell grant
     color = "College type")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 .panel[.panel-name[Combined]
@@ -695,7 +720,7 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
     shape = "College type", )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 ]
