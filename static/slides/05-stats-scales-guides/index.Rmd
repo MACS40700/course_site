@@ -469,6 +469,9 @@ countdown(minutes = 5, bottom = 0, left = 0)
   * Transformation
 ]
 
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 2, bottom = 0)
+```
 ---
 
 class: middle, inverse
