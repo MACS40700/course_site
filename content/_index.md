@@ -29,7 +29,7 @@ You can see our tentative topics below.
 | 15-Feb | [interactive reporting](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
 | 20-Feb | [interactive visualization](slides/16-interactive-visualization)  | |     |
 | 22-Feb |  [presentation-ready plots](slides/09-presentation-ready-plots)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) |   [hwk 4 (due 28-Feb)](/assignments/assign4/)      |
-| 27-Feb | lightning talks: preliminary results + feedback ||      project progress report|
+| 27-Feb | lightning talks: preliminary results + feedback ||      project progress report (will submit in class)|
 | 05-Mar | Final project due             |  | [final project](/assignments/final-project/)|
 
 ### Readings:
