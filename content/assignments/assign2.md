@@ -48,7 +48,8 @@ In addition to the visualization and accompanying narrative, write an approximat
 
 -   What is the story?
 -   Why did you select this graphical form?
--   What is the role of interactivity? How does it enhance your ability to tell the story and communicate the data?
+-   What are the advantages / disadvantages of the choices you made?
+-   How can it be improved (helpful to work through the principles above of beauty, etc.)?
 
 ## Submission details
 
