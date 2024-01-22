@@ -19,7 +19,7 @@ You can see our tentative topics below.
 | 11-Jan | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) |                 |
 | 16-Jan | [geoms](slides/04-geoms) 	|     [EG: Ch 14](https://ggplot2-book.org/layers.html)          ||
 | 18-Jan | [stats + scales + guides ](slides/05-stats-scales-guides)    |[EG: CH 15](https://ggplot2-book.org/scales-guides.html)| [hwk 2 (due 19-Jan)](/assignments/assign2/)       |
-| 23-Jan  &nbsp; &nbsp;| [coordinate systems + faceting](slides/06-coordinates-facets)  &nbsp; &nbsp; | [EG:16](https://ggplot2-book.org/coord.html) and [EG:17](https://ggplot2-book.org/facet.html)|
+| 23-Jan| [coordinate systems + faceting](slides/06-coordinates-facets) | [EG:16](https://ggplot2-book.org/coord.html) and [EG:17](https://ggplot2-book.org/facet.html)|
 | 25-Jan | [optimizing color spaces ](slides/07-optimizing-color-spaces)       |  [DV: Ch 4](https://clauswilke.com/dataviz/color-basics.html) *Opt* [DIY palette](https://blog.datawrapper.de/colors-for-data-vis-style-guides/)       |
 | 30-Jan | [themes + axes + annotation](slides/08-themes-axes-annotations)  |[EG: Ch 18](https://ggplot2-book.org/polishing.html) and [EG: Ch 8](https://ggplot2-book.org/annotations.html) and [DV: Ch 22](https://clauswilke.com/dataviz/figure-titles-captions.html) &nbsp; &nbsp; |[hwk 3 (due 31-Jan)](/assignments/assign3/)   |
 | 1-Feb  |[visualizing spatial data ](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| |
