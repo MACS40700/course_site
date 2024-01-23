@@ -1,7 +1,7 @@
 ---
-date: 2023-12-10T13:30:00-06:00 
+title: ''
 draft: false
-title: ""
+date: "2023-12-10T13:30:00-06:00"
 toc: true
 type: book
 weight: 1
@@ -12,7 +12,7 @@ weight: 1
 # Schedule 
 You can see our tentative topics below. 
 
-| Date &emsp;  | Topic (Slides linked)   | Readings (complete BEFORE class)  |   Assignment      | 
+| Date &emsp; &emsp;  | Topic (Slides linked)   | Readings (complete BEFORE class)  |   Assignment      | 
 | ------ | ----------------------------- | --------------- | --------------- | 
 | 4-Jan  | [Welcome](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg)   |
 | 9-Jan  |  [Grammar of graphics](slides/02-grammar-of-graphics)  | [EG: Ch 13](https://ggplot2-book.org/mastery.html)| [hwk 1](/assignments/assign1/)   |     
