@@ -207,9 +207,9 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
 # DIDN'T WE SHOW THE OPPOSITE LAST WEEK?!!
 
 .panelset[
-.panel[.panel-name[Limits]
+.panel[.panel-name[Breaks]
 .pull-left[
-```{r limits, fig.show = "hide"}
+```{r breaks, fig.show = "hide"}
 library(rcis)
 ggplot(scorecard, 
        aes(x = netcost, 
@@ -223,14 +223,14 @@ ggplot(scorecard,
 ```
 ]
 .pull-right[
-```{r ref.label="limits", echo = FALSE, out.width="90%"}
+```{r ref.label="breaks", echo = FALSE, out.width="90%"}
 ```
 ]
 ]
-.panel[.panel-name[Breaks]
+.panel[.panel-name[Limits]
 
 .pull-left[
-```{r breaks, fig.show = "hide"}
+```{r limits, fig.show = "hide"}
 library(rcis)
 ggplot(scorecard, 
        aes(x = netcost, 
@@ -243,7 +243,7 @@ ggplot(scorecard,
 ]
 
 .pull-right[
-```{r ref.label="breaks", echo = FALSE, out.width="90%"}
+```{r ref.label="limits", echo = FALSE, out.width="90%"}
 ```
 ]
 ]
