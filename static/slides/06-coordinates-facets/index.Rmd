@@ -15,11 +15,38 @@ output:
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-#rcfss::xaringan_theme()
+style_xaringan(
+  text_color = "#464A53",
+  header_color = "#586891",
+  background_color = "#F1F3F2",
+  title_slide_background_color = "#586891",
+  title_slide_text_color = "#F1F3F2",
+  table_row_even_background_color = "#B3A6A3",
+  link_color= "#586891",
+  text_bold_color= "#586891",
+  #code_highlight_color= rgba(255,255,0,0.5),
+  inverse_text_color= "#464A53",
+  inverse_background_color= "#B3A6A3",
+  inverse_header_color= "#464A53",
+  inverse_link_color= "#586891",
+  header_background_color= "#586891",
+  header_background_text_color= "#F1F3F2",
+  code_highlight_color = "#9ab7c4",
+  text_font_family = "Nunito",
+  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
+  header_font_google = google_font("Afacad"),
+  base_font_size= "28px",
+  text_font_size= "1rem",
+  code_font_size= "20px",
+  footnote_font_size = "0.75em",
+  code_inline_font_size= "1em",
+  header_h1_font_size= "1.75rem",
+  header_h2_font_size= "1.5rem",
+  header_h3_font_size= "1.1rem")
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
-knitr::opts_chunk$set(fig.align = "default")
+knitr::opts_chunk$set(fig.align = "default", out.width = "30%")
 
 # enable panelsets and default theme
 xaringanExtra::use_panelset()
@@ -36,13 +63,17 @@ class: middle, inverse
 
 # Agenda:
 * Coordinate systems
-* Facets
-* Group collaboration
+* Aspect ratios
+* `r emo::ji("no_good_woman")` Pie charts
+* Coord maps
+* Themes
 
 ---
 
 ## Announcements
 
+* Assignment 2 grading underway: releasing in blocks 
+* Additional OH -- let me know if you want to meet and weren't able to find time!
 
 
 
@@ -99,12 +130,26 @@ class: middle, inverse
 
 1. **Linear coordinate systems:** preserve the shape of geoms
 
+
+--
+2. **Non-linear coordinate systems:** can change the shapes -- a straight line may no longer be straight. The closest distance between two points may no longer be a straight line.
+
+
+
+---
+
+## Coordinate systems: Linear
+
+ **Linear coordinate systems:** preserve the shape of geoms
+
   - `coord_cartesian()`: the default Cartesian coordinate system, where the 2d position of an element is given by the combination of the x and y positions.
   - `coord_flip()`: Cartesian coordinate system with x and y axes flipped *(won't be using much now that geoms can take aesthetic mappings in x and y axes)*
   - `coord_fixed()`: Cartesian coordinate system with a fixed aspect ratio. *(useful only in limited circumstances)*
 
---
-2. **Non-linear coordinate systems:** can change the shapes -- a straight line may no longer be straight. The closest distance between two points may no longer be a straight line.
+---
+
+## Coordinate systems: Non-linear
+ **Non-linear coordinate systems:** can change the shapes -- a straight line may no longer be straight. The closest distance between two points may no longer be a straight line.
 
   - `coord_trans()`: Apply arbitrary transformations to x and y positions, after the data has been processed by the stat
   - `coord_polar()`: Polar coordinates
@@ -113,23 +158,16 @@ class: middle, inverse
 ---
 
 ## Setting limits: what the plots say
-
-.task[
-Identify the differences between each plot. Focus on the range of the `x` and `y` axes<br>as well as the contents of the plots.
-]
-
+Identify the differences: focus on the range of the `x` and `y` axes and the plots.
 ```{r cache = FALSE, echo = FALSE}
 countdown(minutes = 5, top = 0)
 ```
-
 .tiny[
-```{r set-limits, out.width = "25%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
+```{r set-limits, out.width = "20%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() + labs(title = "Plot 1")
 
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() + scale_x_continuous(limits = c(190, 220)) + 
-  scale_y_continuous(limits = c(4000, 5000)) + labs(title = "Plot 2")
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) + geom_point() + geom_smooth() +    scale_x_continuous(limits = c(190, 220)) + scale_y_continuous(limits = c(4000, 5000)) + labs(title = "Plot 2")
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() + xlim(190, 220) + ylim(4000, 5000) + labs(title = "Plot 3")
@@ -139,6 +177,12 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
 ```
 ]
 
+---
+
+## Setting limits: what the plots say (plot closeup)
+
+```{r ref.label = "set-limits", echo = FALSE, out.width= "35%"}
+```
 ---
 
 ## Setting limits: what the warnings say
@@ -160,13 +204,58 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   - `coord_cartesian()`, `xlim` and `ylim` arguments
 
 ---
+# DIDN'T WE SHOW THE OPPOSITE LAST WEEK?!!
+
+.panelset[
+.panel[.panel-name[Limits]
+.pull-left[
+```{r limits, fig.show = "hide"}
+library(rcis)
+ggplot(scorecard, 
+       aes(x = netcost, 
+           y = avgfacsal)) + 
+  geom_point(alpha = 0.5) +
+  scale_x_continuous(
+    name = "Net cost of attendance",
+    breaks = seq(from = 0, 
+                 to = 30000, 
+                 by = 10000) )
+```
+]
+.pull-right[
+```{r ref.label="limits", echo = FALSE, out.width="90%"}
+```
+]
+]
+.panel[.panel-name[Breaks]
+
+.pull-left[
+```{r breaks, fig.show = "hide"}
+library(rcis)
+ggplot(scorecard, 
+       aes(x = netcost, 
+           y = avgfacsal)) + 
+  geom_point(alpha = 0.5) +
+  scale_x_continuous( 
+    name = "Net cost of attendance" ) + 
+  xlim(0,30000)
+```
+]
+
+.pull-right[
+```{r ref.label="breaks", echo = FALSE, out.width="90%"}
+```
+]
+]
+]
+---
 
 ## Fixing aspect ratio with `coord_fixed()`
 
 Useful when having an aspect ratio of 1 makes sense, e.g. scores on two tests (reading and writing) on the same scale (0 to 100 points)
 
 .tiny[
-```{r out.width = "40%", fig.show = "hold", message = FALSE}
+```{r out.width = "20%", fig.show = "hold", message = FALSE}
 ggplot(hsb2, aes(x = read, y = write)) +
   geom_point() + geom_smooth(method = "lm") +
   geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray") +
@@ -178,6 +267,21 @@ ggplot(hsb2, aes(x = read, y = write)) +
   coord_fixed() + labs(title = "Fixed")
 ```
 ]
+
+---
+# Plot closeup
+
+```{r out.width = "50%", fig.show = "hold", message = FALSE, echo = FALSE}
+ggplot(hsb2, aes(x = read, y = write)) +
+  geom_point() + geom_smooth(method = "lm") +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray") +
+  labs(title = "Not fixed")
+
+ggplot(hsb2, aes(x = read, y = write)) +
+  geom_point() + geom_smooth(method = "lm") +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray") +
+  coord_fixed() + labs(title = "Fixed")
+```
 
 ---
 
@@ -429,21 +533,21 @@ class: middle, inverse
 
 ## `coord_quickmap()`
 
-.pull-left-narrow[
-- Approximation sets aspect ratio: 1m of latitude \& 1m of longitude are same distance in middle of plot
+.pull-left[
+- Approximation sets aspect ratio: 1m of latitude & 1m of longitude are same distance in middle of plot
 - Reasonable for smaller regions
 - Fast
 ]
-.pull-right-wide[
+.pull-right[
 .panelset[
 .panel[.panel-name[Cartesian]
-```{r out.width = "45%"}
+```{r out.width = "80%"}
 ggplot(map_data("italy"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#008c45") +labs(x = NULL, y = NULL)
 ```
 ]
 .panel[.panel-name[Quickmap]
-```{r out.width = "45%"}
+```{r out.width = "80%"}
 ggplot(map_data("italy"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#008c45") + labs(x = NULL, y = NULL) +
   coord_quickmap()
@@ -456,12 +560,14 @@ ggplot(map_data("italy"), aes(long, lat, group = group)) +
 
 ## `coord_map()`
 
-.pull-left-narrow[
 - Uses the [**mapproj**](https://cran.r-project.org/package=mapproj) package
 - Uses [Mercator projection](https://en.wikipedia.org/wiki/Mercator_projection) by default, with many other options via  `mapproj::mapproject() `
 - Slower than `coord_quickmap()`
-]
-.pull-right-wide[
+
+
+---
+
+## `coord_map()`
 .panelset[
 .panel[.panel-name[Cartesian]
 ```{r out.width = "45%"}
@@ -617,14 +723,14 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
 # Discussion: TS
 
 .pull-left[
-```{r echo = FALSE, out.width="100%"}
+```{r echo = FALSE, out.width="95%"}
 knitr::include_graphics("images/ts_sentiment_arc.png")
 ```
 
 ]
 
 .pull-right[
-```{r echo = FALSE, out.width="100%"}
+```{r echo = FALSE, out.width="95%"}
 knitr::include_graphics("images/ts_sentiment_arc_facet.png")
 ```
 ]
@@ -681,8 +787,11 @@ p +
     plot.background = element_rect(color = "red", fill = "mistyrose")
   )
 ```
+---
+
 
 --- 
+
 # Custom themes!
 
 * Can tweak existing
@@ -692,4 +801,62 @@ p +
 
 ---
 
+# examples: starting with TS and blues
+
+```{r}
+library(taylor)
+library(ggplot2)
+library(RColorBrewer)
+
+reputation <- subset(taylor_album_songs, album_name == "reputation")
+reputation$track_name <- factor(reputation$track_name, levels = reputation$track_name)
+
+
+# Define the number of colors you want
+nb.cols <- 17
+blues17 <- colorRampPalette(brewer.pal(8, "Blues"))(nb.cols)
+
+```
+.footnote[[source](https://www.datanovia.com/en/blog/easy-way-to-expand-color-palettes-in-r/)]
+---
+
+# Same plot, different ways!
+
+
+.panelset[
+.panel[.panel-name[Blues Code]
+
+```{r "blues", echo = TRUE, fig.show = "hide"}
+
+p <- ggplot(reputation, aes(x = valence, y = track_name, fill = track_name)) +
+  geom_col(show.legend = FALSE) +
+  expand_limits(x = c(0, 1)) +
+  labs(y = NULL) +
+  theme_minimal() + 
+  scale_fill_manual(values = blues17)
+p
+```
+]
+.panel[.panel-name[Blues Plot]
+```{r blues, echo = FALSE, fig.show = TRUE}
+```
+]
+
+
+.panel[.panel-name[Custom Code]
+
+```{r "tv", echo = TRUE, fig.show = "hide"}
+
+p + scale_fill_taylor_d(album = "reputation")
+```
+]
+.panel[.panel-name[Custom Plot]
+```{r tv, echo = FALSE, fig.show = TRUE}
+```
+]
+]
+
+---
 # Recap
+
+* Coord systems: 
