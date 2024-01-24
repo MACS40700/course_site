@@ -27,6 +27,19 @@ class: center, middle, inverse, title-slide
 
 
 
+# Agenda / heads up:
+
+
+```r
+# install if necessary
+install.packages(c("tidyverse", "here", "colorspace",
+                   "scales", "ggthemes", "usethis", "cowplot"))
+
+usethis::use_course("MACS40700/choosing-colors")
+```
+
+---
+
 # Uses of color in data visualization
 
 --
@@ -255,6 +268,8 @@ Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reill
 
 # Highlight example
 
+.panelset[
+.panel[.panel-name[Gray]
 &lt;img src="index_files/figure-html/Aus-athletes-track-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 Palette name: Grays with accents
@@ -263,10 +278,19 @@ Palette name: Grays with accents
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
+]
+.panel[.panel-name[Gray2]
+&lt;img src="index_files/figure-html/grays-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
-# Highlight example
+Palette name: Grays with accents
 
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+]
+
+.panel[.panel-name[OkabeIto]
 &lt;img src="index_files/figure-html/Aus-athletes-track2-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 Palette name: Okabe-Ito accent
@@ -274,10 +298,8 @@ Palette name: Okabe-Ito accent
 ???
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
----
-
-# Highlight example
+]
+.panel[.panel-name[Accent]
 
 &lt;img src="index_files/figure-html/Aus-athletes-track3-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
@@ -286,7 +308,7 @@ Palette name: ColorBrewer accent
 ???
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
+]]
 ---
 
 # Uses of color in data visualization
@@ -910,9 +932,9 @@ Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.
 ```r
 # install if necessary
 install.packages(c("tidyverse", "here", "colorspace",
-                   "scales", "ggthemes", "usethis"))
+                   "scales", "ggthemes", "usethis", "cowgrid"))
 
-usethis::use_course("uc-dataviz/choosing-colors")
+usethis::use_course("MACS40700/choosing-colors")
 ```
 
 ---

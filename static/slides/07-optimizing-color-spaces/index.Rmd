@@ -83,6 +83,19 @@ set.seed(123)
 #theme_set(theme_minimal(base_size = rcfss::base_size - 2))
 ```
 
+# Agenda / heads up:
+
+
+```r
+# install if necessary
+install.packages(c("tidyverse", "here", "colorspace",
+                   "scales", "ggthemes", "usethis", "cowplot"))
+
+usethis::use_course("MACS40700/choosing-colors")
+```
+
+---
+
 # Uses of color in data visualization
 
 --
@@ -490,6 +503,8 @@ Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reill
 
 # Highlight example
 
+.panelset[
+.panel[.panel-name[Gray]
 ```{r Aus-athletes-track, out.width = "70%"}
 male_Aus <- ggridges::Aus_athletes %>%
   filter(sex == "m") %>%
@@ -533,10 +548,39 @@ Palette name: Grays with accents
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
----
+]
+.panel[.panel-name[Gray2]
+```{r grays, out.width = "70%"}
 
-# Highlight example
+male_Aus$sport <- factor(male_Aus$sport, levels = c("field", "water polo", "basketball", "swimming", "track"))
 
+p2 <- ggplot(male_Aus, aes(x=height, y=pcBfat, shape=sport, color = sport, fill = sport)) +
+  geom_point(size = 3) +
+  scale_shape_manual(values = 21:25) +
+  xlab("height (cm)") +
+  ylab("% body fat") +
+  theme_minimal_grid(14)
+
+colors <- c( "gray20", "gray35", "gray50", "lightgray", "#BD3828" )
+fills <- c(
+  alpha(colors[1:4], .4),
+  alpha(colors[5], .8)
+)
+
+p2 + 
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = fills)
+```
+
+Palette name: Grays with accents
+
+???
+
+Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+]
+
+.panel[.panel-name[OkabeIto]
 ```{r Aus-athletes-track2, out.width = "70%"}
 
 accent_OkabeIto <- c("#E69F00", "#56B4E9", "#CC79A7", "#F0E442", "#0072B2", "#009E73", "#D55E00")
@@ -559,10 +603,8 @@ Palette name: Okabe-Ito accent
 ???
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
----
-
-# Highlight example
+]
+.panel[.panel-name[Accent]
 
 ```{r Aus-athletes-track3, out.width = "70%"}
 
@@ -581,7 +623,7 @@ Palette name: ColorBrewer accent
 ???
 
 Figure redrawn from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
-
+]]
 ---
 
 # Uses of color in data visualization
@@ -1247,9 +1289,9 @@ Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.
 ```r
 # install if necessary
 install.packages(c("tidyverse", "here", "colorspace",
-                   "scales", "ggthemes", "usethis"))
+                   "scales", "ggthemes", "usethis", "cowgrid"))
 
-usethis::use_course("uc-dataviz/choosing-colors")
+usethis::use_course("MACS40700/choosing-colors")
 ```
 
 ---

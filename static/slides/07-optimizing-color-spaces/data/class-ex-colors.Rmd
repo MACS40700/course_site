@@ -1,0 +1,79 @@
+
+
+```{r setup}
+library(tidyverse)
+library(cowplot)
+```
+
+# Class examples: choosing-colors
+
+These are starter examples to enable you to follow along and play around on your own. 
+
+```{r}
+temps_months <- read_csv("data/tempnormals.csv") %>%
+  group_by(location, month_name) %>%
+  summarize(mean = mean(temperature)) %>%
+  mutate(
+    month = factor(
+      month_name,
+      levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+    ),
+    location = factor(
+      location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
+    )
+  ) %>%
+  select(-month_name)
+
+p <- ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
+  geom_tile(width = .95, height = 0.95) + 
+  scale_y_discrete(name = NULL) +
+  coord_fixed(expand = FALSE) +
+  theme_half_open() +
+  theme(
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    legend.title = element_text(size = 12)
+  )
+
+p + scale_fill_viridis_c(
+    option = "D",
+    name = "temperature (°F)"
+  )
+```
+
+```{r data-sports}
+male_Aus <- ggridges::Aus_athletes %>%
+  filter(sex == "m") %>%
+  filter(
+    sport %in% c("basketball", "field", "swimming", "track (400m)", "track (sprint)", "water polo")
+  ) %>%
+  mutate(
+    sport = 
+      case_when(
+        sport == "track (400m)" ~ "track",
+        sport == "track (sprint)" ~ "track",
+        TRUE ~ sport
+      ),
+    sport = factor(
+      sport,
+      levels = c("track", "field", "water polo", "basketball", "swimming")
+    )
+  )
+
+p <- ggplot(male_Aus, aes(x=height, y=pcBfat, shape=sport, color = sport, fill = sport)) +
+  geom_point(size = 3) +
+  scale_shape_manual(values = 21:25) +
+  xlab("height (cm)") +
+  ylab("% body fat") +
+  theme_minimal_grid(14)
+
+colors <- c("#BD3828", rep("#808080", 4))
+fills <- c(
+  alpha(colors[1], .815),
+  alpha(colors[2:5], .5)
+)
+
+p + 
+  scale_color_manual(values = colors) +
+  scale_fill_manual(values = fills)
+```
