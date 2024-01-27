@@ -56,8 +56,20 @@ library(knitr)
 library(here)
 library(countdown)
 library(patchwork)
+library(showtext)
+
+font_add_google("Roboto Condensed", 'Roboto Condensed')
+font_add_google("Roboto", "roboto")
+font_add_google("Schoolbell", "bell") 
+font_add_google("Miltonian", "miltonian")
+font_add_google("Comic Neue", 'comic neue')
 ```
 
+```{css, echo=FALSE}
+.task{
+  background-color: #9eafd9
+}
+```
 class: inverse, middle
 
 # Agenda
@@ -202,12 +214,6 @@ library(ggpomological)
 library(showtext)
 
 font_add_google("Homemade Apple")
-font_add_google("Roboto Condensed", 'Roboto Condensed')
-font_add_google("Roboto", "roboto")
-font_add_google("Schoolbell", "bell") 
-font_add_google("Miltonian", "miltonian")
-font_add_google("Comic Neue", 'comic neue')
-
 showtext_auto() #load fonts
 
 
@@ -330,7 +336,7 @@ class: inverse, middle
 How can the following figure be improved with custom breaks in axes, if at all?
 ]
 
-```{r echo = FALSE, message = FALSE, out.width = "70%"}
+```{r echo = FALSE, message = FALSE, out.width = "60%"}
 library(taylor)
 library(tidyverse)
 midnights <- taylor_album_songs %>% 
@@ -426,7 +432,7 @@ Steve Jobs in *Fortune*, as quoted in [Alice Rawsthorn, *Hello World: Where Desi
 
 ---
 
-# Graph details: Redundant coding
+# Graph details: Color coding
 
 ```{r include = FALSE, cache = FALSE}
 # switch back to minimal theme
@@ -446,7 +452,7 @@ penguins_bad <- ggplot(palmerpenguins::penguins, aes(x = bill_depth_mm, y = flip
     fill = NULL
   )
 
-cowplot::stamp_bad(penguins_bad)
+cowplot::stamp(penguins_bad, "less good", color = "red3")
 ```
 
 ]
@@ -467,7 +473,7 @@ penguins_good <- ggplot(penguins, aes(x = bill_depth_mm, y = flipper_length_mm, 
     shape = NULL
   )
 
-cowplot::stamp_good(penguins_good)
+cowplot::stamp(penguins_good, "better", color = "green4")
 ```
 ]
 
@@ -824,7 +830,8 @@ ggplot(gapminder_europe,
   # This is evil though!!! #<<
   # We just invented a point #<<
   annotate(geom = "point", #<<
-           x = 40000, y = 76, color = "red3")
+           x = 40000, y = 76, 
+           color = "red3")
 ```
 ]
 
@@ -1031,8 +1038,8 @@ set.seed(123)
 
 ggplot( #<<
   data = co2_rankings, #<<
-  mapping = aes(x = rank_1995, y = rank_2014) #<<
-) #<<
+  mapping = aes(x = rank_1995, 
+                y = rank_2014)) #<<
 ```
 ]
 ]
@@ -1056,8 +1063,8 @@ set.seed(123)
 
 ggplot(
   data = co2_rankings,
-  mapping = aes(x = rank_1995, y = rank_2014)
-) +
+  mapping = aes(x = rank_1995, 
+                y = rank_2014)) +
   geom_point(aes(color = better_big_change)) #<<
 ```
 ]
@@ -1082,14 +1089,13 @@ set.seed(123)
 
 ggplot(
   data = co2_rankings,
-  mapping = aes(x = rank_1995, y = rank_2014)
-) +
+  mapping = aes(x = rank_1995, 
+                y = rank_2014)) +
   geom_point(aes(color = better_big_change)) +
   geom_label_repel( #<<
     data = filter(co2_rankings, big_change == TRUE), #<<
     aes(label = country, fill = better_big_change), #<<
-    color = "white", family = "bell" #<<
-  ) #<<
+    color = "white", family = "bell") #<<
 ```
 ]
 ]
@@ -1118,8 +1124,10 @@ base <- ggplot(
   annotate(geom = "segment", x = 0, xend = 172, y = 0, yend = 178) + #<<
   geom_point(aes(color = better_big_change)) +
   geom_label_repel(
-    data = filter(co2_rankings, big_change == TRUE),
-    aes(label = country, fill = better_big_change),
+    data = filter(co2_rankings, 
+                  big_change == TRUE),
+    aes(label = country, 
+        fill = better_big_change),
     color = "white", family = "comic neue")
 
 base
@@ -1146,9 +1154,12 @@ set.seed(123)
 
 base +
   annotate( #<<
-    geom = "text", x = 170, y = 6, label = "Outliers improving", #<<
-    family = "comic neue", fontface = "italic", hjust = 1, color = "grey50" #<<
-  ) #<<
+    geom = "text", x = 170, y = 6, #<<
+    label = "Outliers improving", #<<
+    family = "comic neue", #<<
+    fontface = "italic", #<<
+    hjust = 1, #<<
+    color = "grey50" ) #<<
 ```
 ]
 ]
@@ -1202,7 +1213,9 @@ Choose a custom color palette to highlight the outliers.
 set.seed(123)
 
 base2 +
-  scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) #<<
+  scale_color_manual( #<<
+    values = c("grey50", #<<
+               "#0074D9", "#FF4136")) #<<
 ```
 ]
 ]
@@ -1225,8 +1238,11 @@ Use the same colors for the labels. Only need the last two values in the origina
 set.seed(123)
 
 base2 + 
-  scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
-  scale_fill_manual(values = c("#0074D9", "#FF4136")) #<<
+  scale_color_manual(
+    values = c("grey50", 
+               "#0074D9", "#FF4136")) +
+  scale_fill_manual(#<<
+    values = c("#0074D9", "#FF4136")) #<<
 ```
 ]
 ]
@@ -1251,8 +1267,10 @@ set.seed(123)
 base2 +
   scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
   scale_fill_manual(values = c("#0074D9", "#FF4136")) +
-  scale_x_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) + #<<
-  scale_y_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) #<<
+  scale_x_continuous(expand = c(0, 0), #<<
+                     breaks = seq(0, 175, 25)) + #<<
+  scale_y_continuous(expand = c(0, 0), #<<
+                     breaks = seq(0, 175, 25)) #<<
 ```
 ]
 ]
@@ -1364,7 +1382,7 @@ Use HTML and Markdown syntax to customize the visual appearance of the title and
 ```{r pretty-plot-14, fig.show = "hide", warning = FALSE}
 set.seed(123)
 
-base3 + 
+base4 <- base3 + 
   labs(
     x = "Rank in 1995", y = "Rank in 2014",
     title = "Changes in CO<sub>2</sub> emission rankings between 1995 and 2014", #<<
@@ -1372,7 +1390,8 @@ base3 +
     caption = "Source: The World Bank.\nCountries with populations of less than 200,000 excluded."
   ) +
   guides(color = "none", fill = "none") +
-  theme_bw(base_family = "Roboto Condensed")
+  theme_bw(base_family = "comic neue")
+base4 
 ```
 ]
 ]
@@ -1394,29 +1413,7 @@ Ensure rendering of HTML/Markdown syntax with `ggtext::element_markdown()`.
 ```{r pretty-plot-15, fig.show = "hide", warning = FALSE}
 set.seed(123)
 
-ggplot(
-  data = co2_rankings,
-  mapping = aes(x = rank_1995, y = rank_2014)
-) +
-  annotate(geom = "segment", x = 0, xend = 172, y = 0, yend = 178) +
-  geom_point(aes(color = better_big_change)) +
-  geom_label_repel(
-    data = filter(co2_rankings, big_change == TRUE),
-    aes(label = country, fill = better_big_change),
-    color = "white", family = "comic neue"
-  ) +
-  annotate(
-    geom = "text", x = 170, y = 6, label = "Outliers improving",
-    family = "comic neue", fontface = "italic", hjust = 1, color = "grey50"
-  ) +
-  annotate(
-    geom = "text", x = 2, y = 170, label = "Outliers worsening",
-    family = "comic neue", fontface = "italic", hjust = 0, color = "grey50"
-  ) +
-  scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
-  scale_fill_manual(values = c("#0074D9", "#FF4136")) +
-  scale_x_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) +
-  scale_y_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) +
+base4 +
   labs(
     x = "Rank in 1995", y = "Rank in 2014",
     title = "Changes in CO<sub>2</sub> emission rankings between 1995 and 2014",
@@ -1490,4 +1487,5 @@ ggplot(
 # Recap
 
 * Thinking about how to customize your plots to provide clear information for readers
-* Fonts can be finnick
+* Select themes that work best with your data and narrative
+* Fonts can be finnicky!!

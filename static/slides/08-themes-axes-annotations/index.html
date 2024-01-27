@@ -25,6 +25,11 @@ class: center, middle, inverse, title-slide
 
 
 
+&lt;style type="text/css"&gt;
+.task{
+  background-color: #9eafd9
+}
+&lt;/style&gt;
 class: inverse, middle
 
 # Agenda
@@ -107,7 +112,7 @@ ggplot(penguins, aes(x = bill_depth_mm,
 ```
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -128,7 +133,7 @@ ggplot(penguins, aes(x = bill_depth_mm,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -150,7 +155,7 @@ ggplot(penguins, aes(x = bill_depth_mm,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -164,12 +169,6 @@ library(ggpomological)
 library(showtext)
 
 font_add_google("Homemade Apple")
-font_add_google("Roboto Condensed", 'Roboto Condensed')
-font_add_google("Roboto", "roboto")
-font_add_google("Schoolbell", "bell") 
-font_add_google("Miltonian", "miltonian")
-font_add_google("Comic Neue", 'comic neue')
-
 showtext_auto() #load fonts
 
 
@@ -183,7 +182,7 @@ ggplot(penguins, aes(x = bill_depth_mm,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -289,7 +288,7 @@ class: inverse, middle
 How can the following figure be improved with custom breaks in axes, if at all?
 ]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -303,7 +302,7 @@ m_plot_imp &lt;- m_plot + scale_y_discrete(label=abbreviate(midnights$track_name
 m_plot_imp
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -315,7 +314,7 @@ m_plot_imp +
   scale_x_continuous(breaks = seq(0, 200, 50))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -328,7 +327,7 @@ m_plot_imp +
 * labs(x = "Tempo (bpm)")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -372,19 +371,19 @@ Steve Jobs in *Fortune*, as quoted in [Alice Rawsthorn, *Hello World: Where Desi
 
 ---
 
-# Graph details: Redundant coding
+# Graph details: Color coding
 
 
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 --
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -392,13 +391,13 @@ Steve Jobs in *Fortune*, as quoted in [Alice Rawsthorn, *Hello World: Where Desi
 # Graph details: Consistent ordering
 
 .pull-left[
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 --
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ???
@@ -465,7 +464,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -484,7 +483,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -505,7 +504,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -525,7 +524,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -556,7 +555,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -586,7 +585,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -617,7 +616,7 @@ ggplot(gapminder_highlighted,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -651,7 +650,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -671,7 +670,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -687,12 +686,13 @@ ggplot(gapminder_europe,
 * # This is evil though!!!
 * # We just invented a point
 * annotate(geom = "point",
-           x = 40000, y = 76, color = "red3")
+           x = 40000, y = 76, 
+           color = "red3")
 ```
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -713,7 +713,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -742,7 +742,7 @@ ggplot(gapminder_europe,
 ]
 
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -9951,13 +9951,13 @@ set.seed(123)
 
 *ggplot(
 * data = co2_rankings,
-* mapping = aes(x = rank_1995, y = rank_2014)
-*) 
+  mapping = aes(x = rank_1995, 
+*               y = rank_2014))
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -9976,14 +9976,14 @@ set.seed(123)
 
 ggplot(
   data = co2_rankings,
-  mapping = aes(x = rank_1995, y = rank_2014)
-) +
+  mapping = aes(x = rank_1995, 
+                y = rank_2014)) +
 * geom_point(aes(color = better_big_change))
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10002,19 +10002,18 @@ set.seed(123)
 
 ggplot(
   data = co2_rankings,
-  mapping = aes(x = rank_1995, y = rank_2014)
-) +
+  mapping = aes(x = rank_1995, 
+                y = rank_2014)) +
   geom_point(aes(color = better_big_change)) +
 * geom_label_repel(
 *   data = filter(co2_rankings, big_change == TRUE),
 *   aes(label = country, fill = better_big_change),
-*   color = "white", family = "bell"
-* )
+*   color = "white", family = "bell")
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10038,8 +10037,10 @@ base &lt;- ggplot(
 * annotate(geom = "segment", x = 0, xend = 172, y = 0, yend = 178) +
   geom_point(aes(color = better_big_change)) +
   geom_label_repel(
-    data = filter(co2_rankings, big_change == TRUE),
-    aes(label = country, fill = better_big_change),
+    data = filter(co2_rankings, 
+                  big_change == TRUE),
+    aes(label = country, 
+        fill = better_big_change),
     color = "white", family = "comic neue")
 
 base
@@ -10047,7 +10048,7 @@ base
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10066,14 +10067,17 @@ set.seed(123)
 
 base +
 * annotate(
-*   geom = "text", x = 170, y = 6, label = "Outliers improving",
-*   family = "comic neue", fontface = "italic", hjust = 1, color = "grey50"
-* )
+*   geom = "text", x = 170, y = 6,
+*   label = "Outliers improving",
+*   family = "comic neue",
+*   fontface = "italic",
+*   hjust = 1,
+*   color = "grey50" )
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10104,7 +10108,7 @@ base2
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10122,12 +10126,14 @@ Choose a custom color palette to highlight the outliers.
 set.seed(123)
 
 base2 +
-* scale_color_manual(values = c("grey50", "#0074D9", "#FF4136"))
+* scale_color_manual(
+*   values = c("grey50",
+*              "#0074D9", "#FF4136"))
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10145,13 +10151,16 @@ Use the same colors for the labels. Only need the last two values in the origina
 set.seed(123)
 
 base2 + 
-  scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
-* scale_fill_manual(values = c("#0074D9", "#FF4136"))
+  scale_color_manual(
+    values = c("grey50", 
+               "#0074D9", "#FF4136")) +
+* scale_fill_manual(
+*   values = c("#0074D9", "#FF4136"))
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10171,13 +10180,15 @@ set.seed(123)
 base2 +
   scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
   scale_fill_manual(values = c("#0074D9", "#FF4136")) +
-* scale_x_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) +
-* scale_y_continuous(expand = c(0, 0), breaks = seq(0, 175, 25))
+* scale_x_continuous(expand = c(0, 0),
+*                    breaks = seq(0, 175, 25)) +
+* scale_y_continuous(expand = c(0, 0),
+*                    breaks = seq(0, 175, 25))
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10209,7 +10220,7 @@ base2 +
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10244,7 +10255,7 @@ base3
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10267,7 +10278,7 @@ base3 +
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10284,7 +10295,7 @@ Use HTML and Markdown syntax to customize the visual appearance of the title and
 ```r
 set.seed(123)
 
-base3 + 
+base4 &lt;- base3 + 
   labs(
     x = "Rank in 1995", y = "Rank in 2014",
 *   title = "Changes in CO&lt;sub&gt;2&lt;/sub&gt; emission rankings between 1995 and 2014",
@@ -10292,12 +10303,13 @@ base3 +
     caption = "Source: The World Bank.\nCountries with populations of less than 200,000 excluded."
   ) +
   guides(color = "none", fill = "none") +
-  theme_bw(base_family = "Roboto Condensed")
+  theme_bw(base_family = "comic neue")
+base4 
 ```
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -10314,29 +10326,7 @@ Ensure rendering of HTML/Markdown syntax with `ggtext::element_markdown()`.
 ```r
 set.seed(123)
 
-ggplot(
-  data = co2_rankings,
-  mapping = aes(x = rank_1995, y = rank_2014)
-) +
-  annotate(geom = "segment", x = 0, xend = 172, y = 0, yend = 178) +
-  geom_point(aes(color = better_big_change)) +
-  geom_label_repel(
-    data = filter(co2_rankings, big_change == TRUE),
-    aes(label = country, fill = better_big_change),
-    color = "white", family = "comic neue"
-  ) +
-  annotate(
-    geom = "text", x = 170, y = 6, label = "Outliers improving",
-    family = "comic neue", fontface = "italic", hjust = 1, color = "grey50"
-  ) +
-  annotate(
-    geom = "text", x = 2, y = 170, label = "Outliers worsening",
-    family = "comic neue", fontface = "italic", hjust = 0, color = "grey50"
-  ) +
-  scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
-  scale_fill_manual(values = c("#0074D9", "#FF4136")) +
-  scale_x_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) +
-  scale_y_continuous(expand = c(0, 0), breaks = seq(0, 175, 25)) +
+base4 +
   labs(
     x = "Rank in 1995", y = "Rank in 2014",
     title = "Changes in CO&lt;sub&gt;2&lt;/sub&gt; emission rankings between 1995 and 2014",
@@ -10354,22 +10344,23 @@ ggplot(
 ]
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-45-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-45-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-47-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 ---
 
 # Recap
 
 * Thinking about how to customize your plots to provide clear information for readers
-* Fonts can be finnick
+* Select themes that work best with your data and narrative
+* Fonts can be finnicky!!
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
