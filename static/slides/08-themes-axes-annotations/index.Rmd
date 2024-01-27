@@ -76,6 +76,7 @@ class: inverse, middle
 
 * Themes
 * Axes
+* Walk-through of in-depth example
 
 ---
 
