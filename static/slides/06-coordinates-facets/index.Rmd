@@ -24,7 +24,6 @@ style_xaringan(
   table_row_even_background_color = "#B3A6A3",
   link_color= "#586891",
   text_bold_color= "#586891",
-  #code_highlight_color= rgba(255,255,0,0.5),
   inverse_text_color= "#464A53",
   inverse_background_color= "#B3A6A3",
   inverse_header_color= "#464A53",

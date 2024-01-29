@@ -23,6 +23,8 @@ class: center, middle, inverse, title-slide
 ---
 
 
+class: inverse, middle
+
 
 
 &lt;style type="text/css"&gt;
@@ -30,7 +32,9 @@ class: center, middle, inverse, title-slide
   background-color: #9eafd9
 }
 &lt;/style&gt;
-class: inverse, middle
+
+
+
 
 # Agenda
 
@@ -303,7 +307,7 @@ m_plot_imp &lt;- m_plot + scale_y_discrete(label=abbreviate(midnights$track_name
 m_plot_imp
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -315,7 +319,7 @@ m_plot_imp +
   scale_x_continuous(breaks = seq(0, 200, 50))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -687,8 +691,8 @@ ggplot(gapminder_europe,
 * # This is evil though!!!
 * # We just invented a point
 * annotate(geom = "point",
-           x = 40000, y = 76, 
-           color = "red3")
+*          x = 40000, y = 76,
+*          color = "red3")
 ```
 ]
 
@@ -707,9 +711,9 @@ ggplot(gapminder_europe,
        aes(x = gdpPercap, y = lifeExp)) +
   geom_point() +
 * annotate(geom = "rect",
-           xmin = 30000, xmax = 50000,
-           ymin = 78, ymax = 82,
-           fill = "red", alpha = 0.2)
+*          xmin = 30000, xmax = 50000,
+*          ymin = 78, ymax = 82,
+*          fill = "red", alpha = 0.2)
 ```
 ]
 
@@ -731,14 +735,14 @@ ggplot(gapminder_europe,
            xmin = 30000, xmax = 50000,
            ymin = 78, ymax = 82,
            fill = "red", alpha = 0.2) +
-  annotate(geom = "label",
-           x = 40000, y = 76.5,
-           label = "Rich and long-living") +
-  annotate(geom = "segment", 
-           x = 40000, xend = 40000, 
-           y = 76.8, yend = 77.8,
-           arrow = arrow(
-             length = unit(0.1, "in")))
+* annotate(geom = "label",
+*          x = 40000, y = 76.5,
+*          label = "Rich and long-living") +
+* annotate(geom = "segment",
+*          x = 40000, xend = 40000,
+*          y = 76.8, yend = 77.8,
+*          arrow = arrow(
+*            length = unit(0.1, "in")))
 ```
 ]
 
@@ -766,12 +770,10 @@ class: inverse, middle
 indicators &lt;- c(
   "SP.POP.TOTL", # Population
   "EN.ATM.CO2E.PC", # CO2 emissions
-  "NY.GDP.PCAP.KD"
-) # GDP per capita
+  "NY.GDP.PCAP.KD") # GDP per capita
 wdi_co2_raw &lt;- WDI::WDI(
   country = "all", indicators, extra = TRUE,
-  start = 1995, end = 2015
-)
+  start = 1995, end = 2015)
 ```
 
 
@@ -782,8 +784,7 @@ wdi_clean &lt;- wdi_co2_raw %&gt;%
     population = SP.POP.TOTL,
     co2_emissions = EN.ATM.CO2E.PC,
     gdp_per_cap = NY.GDP.PCAP.KD,
-    region, income
-  )
+    region, income )
 
 wdi_clean
 ```
@@ -9839,16 +9840,25 @@ co2_rankings &lt;- wdi_clean %&gt;%
   drop_na(co2_emissions) %&gt;%
   # Look at each year individually and rank countries based on their emissions that year
   group_by(year) %&gt;%
-  mutate(ranking = rank(co2_emissions)) %&gt;%
-  ungroup() %&gt;%
+  mutate(ranking = rank(co2_emissions)) %&gt;% ungroup() %&gt;%
   # Only select required columns
   select(iso3c, country, year, region, income, ranking) %&gt;%
-  # pivot long
   pivot_wider(names_from = year, names_prefix = "rank_", values_from = ranking) %&gt;%
   # Find the difference in ranking between 2014 and 1995
   mutate(rank_diff = rank_2014 - rank_1995) %&gt;%
   # Remove all rows where there's a missing value in the rank_diff column
-  drop_na(rank_diff) %&gt;%
+  drop_na(rank_diff) 
+```
+]
+
+---
+
+## Clean and reshape data
+
+.tiny[
+
+```r
+co2_rankings &lt;- co2_rankings %&gt;%
   # Make an indicator variable that is true of the absolute value of the
   # difference in rankings is greater than 25
   mutate(big_change = ifelse(abs(rank_diff) &gt;= 25, TRUE, FALSE)) %&gt;%
@@ -9864,12 +9874,10 @@ co2_rankings &lt;- wdi_clean %&gt;%
 
 ---
 
-## Clean and reshape data
-
-.small[
+.pull-left[ 
 
 ```r
-head(wdi_clean)
+head(wdi_clean) 
 ```
 
 ```
@@ -9888,7 +9896,9 @@ head(wdi_clean)
 ## 5 Low income
 ## 6 Low income
 ```
+]
 
+.pull-right[ 
 
 ```r
 head(co2_rankings)
