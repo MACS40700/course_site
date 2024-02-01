@@ -267,15 +267,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-.panelset[
-```{r panelset = c(output = "Plot", source = "Code"), out.width = "70%", cache = TRUE}
+```{r panelset = TRUE, out.width = "70%", cache = TRUE}
   leaflet() %>%
     fitBounds(-87.936287, 41.679835, -87.447052,42.060835) %>%
     addMarkers(lng=-87.597086, lat=41.785958, popup="You are here") %>%
     setView(lng = -87.597, lat = 41.787, zoom = 8) %>%
     addTiles()  
 ```
-]
+
 
 
 ---
@@ -312,18 +311,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-.panelset[
 ```{r panelset = c(output = "Plot", source = "Code"), out.width = "70%"}
-chi_bb <- c(
-  left = -87.936287, #<<
-  bottom = 41.679835, #<<
-  right = -87.447052, #<<
-  top = 42.060835 #<<
-)
-chicago <- get_stadiamap(
-  bbox = chi_bb,
-  zoom = 11
-)
+chi_bb <- c( left = -87.936287, bottom = 41.679835, right = -87.447052, top = 42.060835) #<<
+
+chicago <- get_stadiamap( bbox = chi_bb, zoom = 11)
+
 ggmap(chicago)
 ```
 
