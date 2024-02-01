@@ -35,10 +35,8 @@ library(patchwork)
 class: inverse, middle
 
 # Announcements
-
----
-
-## Announcements
+* Career services event: tonight
+* Homework due tomorrow
 
 ---
 
@@ -54,10 +52,15 @@ class: inverse, middle
 # load packages
 library(tidyverse)
 library(sf)
-library(ggmap)
+library(leaflet)
 library(geofacet)
 library(rnaturalearth)
 library(lubridate)
+library(scico)
+library(maps)
+library(ggmap)
+library(rworldmap)
+library(taylor)
 
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
@@ -119,66 +122,22 @@ include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/
 ## Large-scale map
 
 ```{r large-scale}
-# establish bounding box, get map, and plot
-c(
-  left = -128.364258,
-  bottom = 11.480025,
-  right = -65.742188,
-  top = 55.329144
-) %>%
-  get_stadiamap(zoom = 5) %>%
-  ggmap()
+leaflet() %>%
+  addTiles()  %>%
+  setView(lng = -87.597, lat = 41.787, zoom = 2) 
 ```
+
 
 ---
 
 ## Small-scale map
 
 ```{r small-scale}
-# establish bounding box, get map, and plot
-c(
-  left = -87.612448,
-  bottom = 41.783393,
-  right = -87.581871,
-  top = 41.803470
-) %>%
-  get_stadiamap(zoom = 15) %>%
-  ggmap()
-```
-
----
-
-class: inverse
-
-.pull-left[
-
-## Asgard
-
-
-```{r out.width = "95%"}
-include_graphics(path = "images/asgard.jpeg")
-```
-
-]
-
---
-
-.pull-right[
-
-## Midgard
-
-```{r out.width = "95%"}
-include_graphics(path = "images/midgard.png")
-```
-
-]
-
----
-
-## Not flat
-
-```{r out.width = "50%"}
-include_graphics(path = "https://images.theconversation.com/files/218823/original/file-20180514-100722-1yxg7ip.jpg")
+# establish view, get map, and plot
+leaflet() %>%
+  setView(lng = -87.597, lat = 41.787, zoom = 16) %>%
+  addMarkers(lng=-87.597086, lat=41.785958, popup="You are here") %>%
+  addTiles() 
 ```
 
 ---
@@ -211,7 +170,7 @@ world <- ne_countries(returnclass = "sf")
 world %>%
   #st_transform("+proj=merc") %>%
   ggplot() +
-  geom_sf(clip = "on") +
+  geom_sf() +
   ggtitle("Mercator projection")
 ```
 
@@ -253,29 +212,25 @@ world %>%
 
 ---
 
-## Symbols
+## Gall-Peters (AKA variant of equal area cylindrical)
 
-```{r bb-hydepark-stamen}
-# store bounding box coordinates
-hydepark_bb <- c(
-  left = -87.612448,
-  bottom = 41.783393,
-  right = -87.581871,
-  top = 41.803470
-)
+```{r gp , dependson = "import-world"}
 
-hydepark_stamen <- get_stadiamap(
-  bbox = hydepark_bb,
-  zoom = 16
-)
-ggmap(hydepark_stamen)
+world %>% 
+  st_transform("+proj=cea +lat_ts=45") %>% 
+  ggplot() + 
+  geom_sf()  +
+    ggtitle("Gall Peters projection")  
+    
+
 ```
+
 
 ---
 
 class: inverse, middle
 
-# `ggmap` for raster maps
+# raster maps
 
 ---
 
@@ -286,10 +241,62 @@ class: inverse, middle
 - Focus on incorporating data into existing maps
 - Severely limits ability to change the appearance of the geographic map
 - Don't have to worry about the maps, just the data to go on top
+- **NEED API**
+
+---
+## `leaflet` (has both R and javascript availabilty)
+
+- similar to `ggmap` but no API needed! 
+
+
+
+---
+# Bounding boxes: `leaflet`
+  
+```{r cache = FALSE, include = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE
+)
+```
+
+.panelset[
+```{r panelset = c(output = "Plot", source = "Code"), out.width = "70%", cache = TRUE}
+  leaflet() %>%
+    fitBounds(-87.936287, 41.679835, -87.447052,42.060835) %>%
+    addMarkers(lng=-87.597086, lat=41.785958, popup="You are here") %>%
+    setView(lng = -87.597, lat = 41.787, zoom = 8) %>%
+    addTiles()  
+```
+]
+
+
+---
+## Level of detail: zoom = 12 vs 10
+
+.pull-left[ 
+```{r bb-chicago-zoom_l, echo = FALSE, out.width="80%"}
+leaflet() %>%
+  addTiles()  %>%
+  fitBounds(-87.936287, 41.679835, -87.447052,42.060835) %>%
+  addMarkers(lng=-87.597086, lat=41.785958, popup="You are here") %>%
+  setView(lng = -87.624003, lat = 41.876823, zoom = 12)  
+```
+]
+
+.pull-right[ 
+```{r bb-chicago-zoom_l2, echo = FALSE, out.width="80%"}
+leaflet() %>%
+  addTiles()  %>%
+  fitBounds(-87.936287, 41.679835, -87.447052,42.060835) %>%
+  addMarkers(lng=-87.597086, lat=41.785958, popup="You are here") %>%
+  setView(lng = -87.624003, lat = 41.876823, zoom = 10)  
+```
+]
+
 
 ---
 
-## Bounding box
+## Bounding box: `ggmap`
 
 ```{r cache = FALSE, include = FALSE}
 knitr::opts_chunk$set(
@@ -311,67 +318,61 @@ chicago <- get_stadiamap(
 )
 ggmap(chicago)
 ```
-]
+
+
 
 ---
-
-## Level of detail
-
-```{r bb-chicago-stamen-zoom, echo = FALSE}
-{
-  get_stadiamap(
-    bbox = chi_bb,
-    zoom = 12
-  ) %>%
-    ggmap() +
-    ggtitle("Zoom = 12")
-} + {
-  get_stadiamap(
-    bbox = chi_bb,
-    zoom = 10
-  ) %>%
-    ggmap() +
-    ggtitle("Zoom = 10")
-}
-```
-
----
-
 ## Identifying bounding box
-
-> Use [bboxfinder.com](http://bboxfinder.com/#0.000000,0.000000,0.000000,0.000000) to determine the exact longitude/latitude coordinates for the bounding box you wish to obtain.
-
+  
+  > Use [bboxfinder.com](http://bboxfinder.com/#0.000000,0.000000,0.000000,0.000000) to determine the exact longitude/latitude coordinates for the bounding box you wish to obtain.
+    
 ---
 
 ## Types of map tiles
 
-```{r stamen-maptype, echo = FALSE}
-stamen_maptype <- tibble(maptype = c(
-  "stamen_terrain", "stamen_toner", "stamen_toner_lite", "stamen_terrain_background", 
-  "stamen_toner_background", "stamen_terrain_labels", "stamen_terrain_lines", "stamen_toner_labels", "stamen_toner_lines" #note issue w/watercolor: "stamen_watercolor", https://docs.stadiamaps.com/guides/migrating-from-stamen-map-tiles/
-)) %>%
-  mutate(
-    bb = map(maptype, ~ get_stadiamap(bbox = chi_bb, zoom = 10, maptype = .x)),
-    ggmap = map2(bb, maptype, ~ ggmap(.x) +
-      ggtitle(.y) +
-      theme_minimal())#base_size = rcfss::base_size * 0.4))
-    )
-
-wrap_plots(stamen_maptype$ggmap)
+```{r maptype, echo = FALSE, out.width = "20%"}
+m <- leaflet() %>% setView(lng = -87.624003, lat = 41.876823, zoom = 10)  %>% addTiles()
+m
 ```
 
+```{r, out.width = "20%"}
+m %>% addProviderTiles(providers$CartoDB.Positron)
+```
+
+```{r, out.width = "20%"}
+m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
+```
+
+```{r}
+leaflet() %>% setView(lng = -87.624003, lat = 41.876823, zoom = 8)  %>% addTiles()%>% 
+  addWMSTiles(
+    "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+    layers = "nexrad-n0r-900913",
+    options = WMSTileOptions(format = "image/png", transparent = TRUE),
+    attribution = "Weather data © 2012 IEM Nexrad"
+  )
+
+```
+
+
+
+---
+class: inverse, middle
+                         
+ ```{r echo = FALSE}
+ include_graphics(path = "https://media.giphy.com/media/oOK9AZGnf9b0c/giphy.gif")
+ ```
+                         
+                         
 ---
 
 class: inverse, middle
 
-```{r echo = FALSE}
-include_graphics(path = "https://media.giphy.com/media/oOK9AZGnf9b0c/giphy.gif")
-```
+# Example: using `ggmap`
 
 ---
-
 ## Import crime data
-
+ 
 * City of Chicago open data portal
 * [Crime data from 2017](https://data.cityofchicago.org/Public-Safety/Crimes-2017/d62x-nvdr)
 
@@ -515,11 +516,12 @@ ggmap(chicago) +
 
 - City of Chicago data portal
 - 311 service requests
+- API key: https://docs.stadiamaps.com/tutorials/getting-started-in-r-with-ggmap/#set-up-api-key-authentication 
 
 ```r
 # install ggmap if necessary
 # install.packages("ggmap")
-usethis::use_course("uc-dataviz/raster-maps")
+usethis::use_course("MACS40700/spatial")
 ```
 
 ```{r cache = FALSE, echo = FALSE}
@@ -707,3 +709,7 @@ us_state_vaccinations %>%
 ---
 
 # Recap
+
+* Homework tomorrow!
+* Lots we can do spatially
+* Maps can require a LOT and options vary / update all the time
