@@ -42,7 +42,15 @@ class: inverse, middle
 
 class: inverse, middle
 
-# Setup
+# For today:
+
+- API key: https://docs.stadiamaps.com/tutorials/getting-started-in-r-with-ggmap/#set-up-api-key-authentication 
+
+```r
+# install ggmap if necessary
+# install.packages("ggmap")
+usethis::use_course("MACS40700/spatial")
+```
 
 ---
 
@@ -328,18 +336,24 @@ ggmap(chicago)
     
 ---
 
-## Types of map tiles
+## Types of map tiles: Leaflet
 
-```{r maptype, echo = FALSE, out.width = "20%"}
-m <- leaflet() %>% setView(lng = -87.624003, lat = 41.876823, zoom = 10)  %>% addTiles()
+```{r maptype, echo = FALSE, out.width = "60%"}
+m <- leaflet() %>% addTiles() %>% setView(lng = -87.624003, lat = 41.876823, zoom = 10)  
 m
 ```
 
-```{r, out.width = "20%"}
+---
+## B&W
+```{r, out.width = "60%"}
 m %>% addProviderTiles(providers$CartoDB.Positron)
 ```
 
-```{r, out.width = "20%"}
+---
+
+## Nat Geo
+
+```{r, out.width = "60%"}
 m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
 ```
 
