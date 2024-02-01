@@ -360,7 +360,27 @@ leaflet() %>% setView(lng = -87.624003, lat = 41.876823, zoom = 8)  %>% addTiles
 
 ```
 
+---
+## Types of map tiles: `ggmap`  
 
+```{r stamen-maptype, echo = FALSE, eval = FALSE}
+stamen_maptype <- tibble(maptype = c(
+  "stamen_terrain", "stamen_toner", "stamen_toner_lite", "stamen_terrain_background", 
+  "stamen_toner_background", "stamen_terrain_labels", "stamen_terrain_lines", "stamen_toner_labels", "stamen_toner_lines" #note issue w/watercolor: "stamen_watercolor", https://docs.stadiamaps.com/guides/migrating-from-stamen-map-tiles/
+)) %>%
+  mutate(
+    bb = map(maptype, ~ get_stadiamap(bbox = chi_bb, zoom = 10, maptype = .x)),
+    ggmap = map2(bb, maptype, ~ ggmap(.x) +
+      ggtitle(.y) +
+      theme_minimal())#base_size = rcfss::base_size * 0.4))
+    )
+
+wrap_plots(stamen_maptype$ggmap)
+```
+
+```{r stamen-maptype-out, echo = FALSE}
+include_graphics("images/map_tile.png")
+```
 
 ---
 class: inverse, middle
