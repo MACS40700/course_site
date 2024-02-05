@@ -1,0 +1,129 @@
+---
+title: "Practice drawing vector maps"
+output: html_document
+---
+
+```{r packages}
+library(tidyverse)
+library(sf)
+library(colorspace) # for better color palettes
+library(here) # for specifying directory location
+
+theme_set(theme_minimal()) # could choose something better for maps
+```
+
+## Import information on median household income in 2020 for Cook County, IL at the tract-level using the ACS
+
+```{r}
+cook_county_path <- here("data", "cook-county-inc.geojson")
+cook_inc <- st_read(dsn = cook_county_path)
+cook_inc
+```
+
+## Draw a choropleth using the median household income data
+
+- Use a continuous color gradient to identify each tract's median household income
+
+```{r}
+# use fill channel
+ggplot(data = cook_inc) +
+  geom_sf(mapping = aes(fill = estimate)) +
+  scale_fill_continuous_sequential(palette = "viridis", rev = FALSE)
+
+# use fill and color channels - what is the difference?
+ggplot(data = cook_inc) +
+  geom_sf(mapping = aes(fill = estimate, color = estimate)) +
+  scale_fill_continuous_sequential(palette = "viridis", rev = FALSE, aesthetics = c("fill", "color"))
+```
+
+```{r}
+# fully labeled
+ggplot(data = cook_inc) +
+  geom_sf(mapping = aes(fill = estimate, color = estimate)) +
+  scale_fill_continuous_sequential(
+    palette = "viridis",
+    rev = FALSE,
+    aesthetics = c("fill", "color"),
+    labels = scales::label_dollar(),
+    name = NULL
+  ) +
+  labs(
+    title = "Median household income in 2020",
+    subtitle = "Cook County, by census tract"
+  ) +
+  ggthemes::theme_map()
+```
+
+## Draw the same choropleth for Cook County, but convert median household income into a discrete variable with 6 levels
+
+- Using `cut_interval()`
+
+```{r}
+cook_inc %>%
+  mutate(inc_cut = cut_interval(estimate, n = 6)) %>%
+  ggplot() +
+  geom_sf(mapping = aes(fill = inc_cut, color = inc_cut)) +
+  scale_fill_discrete_sequential(palette = "viridis", rev = FALSE, aesthetics = c("fill", "color"))
+```
+        
+- Using `cut_number()`
+
+```{r}
+cook_inc %>%
+  mutate(inc_cut = cut_number(estimate, n = 6)) %>%
+  ggplot() +
+  geom_sf(mapping = aes(fill = inc_cut, color = inc_cut)) +
+  scale_fill_discrete_sequential(palette = "viridis", rev = FALSE, aesthetics = c("fill", "color"))
+```
+
+- Using `binned_scale()`
+
+```{r}
+# default breaks
+ggplot(data = cook_inc) +
+  geom_sf(mapping = aes(fill = estimate, color = estimate)) +
+  scale_fill_binned_sequential(
+    palette = "viridis",
+    rev = FALSE,
+    aesthetics = c("fill", "color"),
+    labels = scales::label_dollar()
+  )
+
+# quartiles
+ggplot(data = cook_inc) +
+  geom_sf(mapping = aes(fill = estimate, color = estimate)) +
+  scale_fill_binned_sequential(
+    palette = "viridis",
+    rev = FALSE,
+    aesthetics = c("fill", "color"),
+    n.breaks = 4, nice.breaks = FALSE,
+    labels = scales::label_dollar()
+  )
+```
+
+## Draw a choropleth of median household income for each US county
+
+- Adjust to use Albers equal-area projection
+
+```{r}
+usa_inc <- st_read(dsn = here("data", "usa-inc.geojson"))
+usa_inc
+```
+
+```{r}
+ggplot(data = usa_inc) +
+  geom_sf(mapping = aes(fill = estimate, color = estimate)) +
+  scale_fill_continuous_sequential(
+    palette = "viridis",
+    rev = FALSE,
+    aesthetics = c("fill", "color"),
+    labels = scales::label_dollar()
+  ) +
+  coord_sf(crs = 2163)
+```
+
+## Session Info
+
+```{r}
+sessioninfo::session_info()
+```

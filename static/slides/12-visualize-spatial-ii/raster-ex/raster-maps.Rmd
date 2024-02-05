@@ -1,0 +1,122 @@
+---
+title: "Practice drawing raster maps"
+output: html_document
+---
+
+```{r packages}
+library(tidyverse)
+library(ggmap)
+library(here)   # for specifying directory location
+```
+
+```{r apis}
+# go here for mroe info: https://docs.posit.co/how-to-guides/pre-tasks/api-keys-renv/
+# uncomment below to use and edit
+# usethis::edit_r_environ() #only need to do once and NEED TO RESTART R
+# i saved my key as stadia_key = "apikeyhere"
+
+register_stadiamaps(key = Sys.getenv("stadia_key")) 
+# alternatively, can use the following to stop having to re-enter:
+# register_stadiamaps(key = Sys.getenv("stadia_key"), write = TRUE) 
+```
+
+## Import 311 service requests
+
+```{r}
+chi_311 <- read_csv(file = here("data", "chicago-311.csv"))
+chi_311
+```
+
+## Obtain map tiles using `ggmap` for the city of Chicago
+
+```{r}
+# store bounding box coordinates
+chi_bb <- c(
+  left = _______,
+  bottom = _______,
+  right = _______,
+  top = _______
+)
+
+# retrieve bounding box
+chicago <- get_stamenmap(
+  bbox = chi_bb,
+  zoom = _______
+)
+
+# plot the raster map
+ggmap(chicago)
+```
+
+## Generate a scatterplot of complaints about potholes in streets
+
+```{r}
+ggmap(chicago) +
+  geom_point(
+    data = _______,
+    mapping = aes(
+      x = _______,
+      y = _______
+    ),
+    size = _______,
+    alpha = _______
+  )
+```
+
+## Generate a heatmap of complaints about potholes in streets. Do you see any unusual patterns or clusterings?
+
+```{r}
+ggmap(chicago) +
+  stat_density_2d(
+    data = _______,
+    mapping = aes(
+      x = _______,
+      y = _______,
+      fill = _______
+    ),
+    alpha = _______,
+    bins = _______,
+    geom = _______
+  )
+```
+
+## Obtain map tiles for Hyde Park using the toner map tiles
+
+```{r}
+# store bounding box coordinates
+hp_bb <- c(
+  left = _______,
+  bottom = _______,
+  right = _______,
+  top = _______
+)
+
+# retrieve bounding box
+hyde_park <- get_stamenmap(
+  bbox = hp_bb,
+  zoom = _______,
+  ______ = ______
+)
+
+# plot the raster map
+ggmap(hyde_park)
+```
+
+## Generate a scatterplot of requests to pick up dead animals in Hyde Park
+
+```{r}
+ggmap(hyde_park) +
+  geom_point(
+    data = _______,
+    mapping = aes(
+      x = _______,
+      y = _______
+    )
+  )
+```
+
+## Session Info
+
+```{r}
+sessioninfo::session_info()
+```

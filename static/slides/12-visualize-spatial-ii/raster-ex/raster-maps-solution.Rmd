@@ -1,0 +1,130 @@
+---
+title: "Practice drawing raster maps"
+output: html_document
+---
+
+```{r packages}
+library(tidyverse)
+library(ggmap)
+library(here)   # for specifying directory location
+```
+
+```{r apis}
+# go here for mroe info: https://docs.posit.co/how-to-guides/pre-tasks/api-keys-renv/
+# uncomment below to use and edit
+# usethis::edit_r_environ() #only need to do once and NEED TO RESTART R
+# i saved my key as stadia_key = "apikeyhere"
+
+register_stadiamaps(key = Sys.getenv("stadia_key")) 
+# alternatively, can use the following to stop having to re-enter:
+# register_stadiamaps(key = Sys.getenv("stadia_key"), write = TRUE) 
+```
+
+
+## Import 311 service requests
+
+```{r}
+chi_311 <- read_csv(file = here("data", "chicago-311.csv"))
+chi_311
+```
+
+## Obtain map tiles using `ggmap` for the city of Chicago.
+
+```{r}
+# store bounding box coordinates
+chi_bb <- c(
+  left = -87.936287,
+  bottom = 41.679835,
+  right = -87.447052,
+  top = 42.000835
+)
+
+# retrieve bounding box
+chicago <- get_stadiamap(
+  bbox = chi_bb,
+  zoom = 11
+)
+
+# plot the raster map
+ggmap(chicago)
+```
+
+## Generate a scatterplot of complaints about potholes in streets.
+
+```{r}
+# initialize map
+ggmap(chicago) +
+  # add layer with scatterplot
+  # use alpha to show density of points
+  geom_point(
+    data = filter(chi_311, sr_short_code == "PHF"),
+    mapping = aes(
+      x = longitude,
+      y = latitude
+    ),
+    size = .25,
+    alpha = .05
+  )
+```
+
+## Generate a heatmap of complaints about potholes in streets. Do you see any unusual patterns or clusterings?
+
+```{r}
+# initialize the map
+ggmap(chicago) +
+  # add the heatmap
+  stat_density_2d(
+    data = filter(chi_311, sr_short_code == "PHF"),
+    mapping = aes(
+      x = longitude,
+      y = latitude,
+      fill = stat(level)
+    ),
+    alpha = .1,
+    bins = 50,
+    geom = "polygon"
+  )
+```
+
+## Obtain map tiles for Hyde Park using the toner map tiles
+
+```{r}
+# store bounding box coordinates
+hp_bb <- c(
+  left = -87.608221,
+  bottom = 41.783249,
+  right = -87.577643,
+  top = 41.803038
+)
+
+# retrieve bounding box
+hyde_park <- get_stadiamap(
+  bbox = hp_bb,
+  zoom = 15,
+  maptype = "stamen_toner"
+)
+
+# plot the raster map
+ggmap(hyde_park)
+```
+
+## Generate a scatterplot of requests to pick up dead animals in Hyde Park
+
+```{r}
+# initialize the map
+ggmap(hyde_park) +
+  # add a scatterplot layer
+  geom_point(
+    data = filter(chi_311, sr_short_code == "SGQ"),
+    mapping = aes(
+      x = longitude,
+      y = latitude
+    )
+  )
+```
+
+## Session Info
+
+```{r}
+sessioninfo::session_info()
+```
