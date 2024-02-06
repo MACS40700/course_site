@@ -1,0 +1,3 @@
+```{r cache = FALSE}
+sessioninfo::session_info()
+```
