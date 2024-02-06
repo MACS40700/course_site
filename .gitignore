@@ -25,6 +25,7 @@
 # Additional files
 resources/*
 *static/slides/old/*
+content/notes/*
 
 # produced vignettes
 vignettes/*.html
