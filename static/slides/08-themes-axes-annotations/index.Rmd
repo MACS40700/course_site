@@ -387,7 +387,7 @@ m_plot_imp +
 
 ```{r message = FALSE, warning = FALSE, out.width = "60%"}
 m_plot_imp +
-  scale_x_continuous(breaks = seq(0, 200, 50)) +
+  scale_x_continuous(breaks = seq(0, 200, 25)) +
   labs(x = "Tempo (bpm)") #<<
 ```
 
@@ -422,6 +422,16 @@ https://commons.wikimedia.org/wiki/File:Steve_Jobs_Headshot_2010-CROP.jpg
 
 https://en.wikipedia.org/wiki/Apple_IIe#/media/File:Iie-system.jpg
 
+
+---
+
+```{r taylor-plot}
+ggplot(midnights, aes(x = tempo, y = reorder(track_name, tempo, sum))) +
+  geom_col(show.legend = FALSE, fill = 'lightgray') +
+  expand_limits(x = c(0, 1)) +
+  labs(y = NULL) +
+  theme_minimal()
+```
 
 ---
 

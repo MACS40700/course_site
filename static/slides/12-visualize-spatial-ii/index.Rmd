@@ -510,14 +510,14 @@ countdown(minutes = 18)
 ## Illinois examples
 
 ```{r echo = FALSE, out.width = "70%"}
-include_graphics("vector_examples/images/il_counties_cities.png")
+include_graphics("vector_maps/images/il_counties_cities.png")
 ```
 
 ---
 ## SWITZERLAND
 
 ```{r echo = FALSE, out.width = "70%"}
-include_graphics("vector_examples/images/switzerland.png")
+include_graphics("vector_maps/images/switzerland.png")
 ```
 
 
