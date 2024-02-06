@@ -7,6 +7,8 @@
     <script src="slides/header-attrs/header-attrs.js"></script>
     <link href="slides/panelset/panelset.css" rel="stylesheet" />
     <script src="slides/panelset/panelset.js"></script>
+    <link href="slides/countdown/countdown.css" rel="stylesheet" />
+    <script src="slides/countdown/countdown.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -68,15 +70,15 @@ class: middle
 
 ## Text as data
 
-Text can be represented as data in a variery of ways:
+Text can be represented as data in a variety of ways:
 
-- String: Character vector
+- **String**: Character vector
 
-- Corpus: Raw strings annotated with additional metadata and details
+- **Corpus**: Raw strings annotated with additional metadata and details
 
-- Document-term matrix: Sparse matrix describing a collection (i.e., a corpus) of documents with one row for each document and one column for each term, with word counts (or another measure of how common the word is in that text) as values
+- **Document-term matrix**: Sparse matrix describing a collection (i.e., a corpus) of documents with one row for each document and one column for each term, with word counts (or another measure of how common the word is in that text) as values
 
-- Word embeddings: A dense array structure (typically a 3D array) describing a collection of documents where each word is projected onto an `\(n\)`-dimensional feature space that encodes the meaning of the words based on their semantic similarity
+- **Word embeddings**: A dense array structure (typically a 3D array) describing a collection of documents where each word is projected onto an `\(n\)`-dimensional feature space that encodes the meaning of the words based on their semantic similarity
 
 ---
 
@@ -488,6 +490,20 @@ love_actually %&gt;%
 ]
 
 ---
+### Beyond our scope: TD-IDF
+
+There are additional measures of 'uniqueness' for words. 
+
+&lt;img src="images/ts_idf_words.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+## Skillz combo!
+
+&lt;img src="https://static01.nyt.com/images/2020/11/12/learning/ThanksgivingMapLN/ThanksgivingMapLN-superJumbo.png?quality=75&amp;auto=webp" width="75%" style="display: block; margin: auto;" /&gt;
+
+.footnote[[Source: NYTimes 2020](https://www.nytimes.com/2020/11/12/learning/whats-going-on-in-this-graph-thanksgiving-side-dishes.html)]
+
+---
 
 ## Wordclouds
 
@@ -497,7 +513,7 @@ Using `ggwordcloud::geom_text_wordcloud()`:
 .panel[.panel-name[Code]
 
 ```r
-set.seed(1234)
+set.seed(42)
 love_actually %&gt;%
   unnest_tokens(output = word, input = dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -514,7 +530,7 @@ love_actually %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -527,7 +543,7 @@ love_actually %&gt;%
 .panel[.panel-name[Code]
 
 ```r
-set.seed(1234)
+set.seed(42)
 love_actually %&gt;%
   unnest_tokens(output = word, input = dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -545,7 +561,37 @@ love_actually %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+---
+
+## Wordclouds, with color (dark = popular)
+
+.panelset.sideways[
+.panel[.panel-name[Code]
+
+```r
+set.seed(42)
+love_actually %&gt;%
+  unnest_tokens(output = word, input = dialogue) %&gt;%
+  anti_join(stop_words) %&gt;%
+  count(word, sort = TRUE) %&gt;%
+  filter(n &gt; 5) %&gt;%
+  ggplot(aes(label = word, size = n)) +
+* geom_text_wordcloud(aes(color = n)) +
+  scale_size_area(max_size = 10) +
+* scale_color_distiller(palette = "Reds", direction = 1)
+```
+
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -562,6 +608,12 @@ class: inverse, center, middle
   * If you are struggling -- you can use The Office data: 
 - Remove stopwords
 - Create a relevant visualization (e.g. top words)
+
+<div class="countdown" id="timer_fb602e04" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
 ---
 
 ## Activity: finding relevant data
@@ -663,7 +715,7 @@ office_words %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -970,7 +1022,7 @@ bigrams_united %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -1007,9 +1059,9 @@ bigram_graph
 ```
 
 ```
-## IGRAPH e9e67cd DN-- 83 62 -- 
+## IGRAPH 6b3a350 DN-- 83 62 -- 
 ## + attr: name (v/c), n (e/n)
-## + edges from e9e67cd (vertex names):
+## + edges from 6b3a350 (vertex names):
 ##  [1] prime    -&gt;minister  bye      -&gt;bye       baby     -&gt;baby     
 ##  [4] merry    -&gt;christmas uncle    -&gt;jamie     baby     -&gt;bye      
 ##  [7] billy    -&gt;mack      bye      -&gt;baby      goodbye  -&gt;baby     
@@ -1027,7 +1079,7 @@ bigram_graph
 
 Common bigrams in Love Actually that occurred more than once and where neither word was a stop word
 
-&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1037,11 +1089,11 @@ Step 1. Set up the plot object with `ggraph::ggraph()`:
 
 
 ```r
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1051,12 +1103,12 @@ Step 2. Add edges
 
 
 ```r
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1066,13 +1118,13 @@ Step 3. Add nodes
 
 
 ```r
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link() +
   geom_node_point()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1082,14 +1134,14 @@ Step 4. Add text
 
 
 ```r
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link() +
   geom_node_point() +
   geom_node_text(aes(label = name))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1097,9 +1149,9 @@ ggraph(bigram_graph) +
 
 Step 5. Consider layouts
 
-&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-40-2.png" width="35%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-43-2.png" width="35%" /&gt;
 
-&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-41-2.png" width="35%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="35%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-44-2.png" width="35%" /&gt;
 
 ---
 
@@ -1109,14 +1161,14 @@ Step 6. Pick a layout
 
 
 ```r
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
   geom_node_point() +
   geom_node_text(aes(label = name))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-45-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1126,14 +1178,14 @@ Step 7. Adjust text
 
 
 ```r
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
   geom_node_point() +
   geom_node_text(aes(label = name), hjust = 1, vjust = 1)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1147,7 +1199,7 @@ Step 8. Add more context with `edge_alpha = n`
 ```r
 a &lt;- grid::arrow(type = "closed", length = unit(0.1, "inches"))
 
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link(aes(edge_alpha = n), show.legend = FALSE,
                  arrow = a, end_cap = circle(0.01, "inches")) +
@@ -1161,7 +1213,7 @@ ggraph(bigram_graph, layout = "fr") +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-47-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -1203,7 +1255,7 @@ ggraph(bigram_graph_office, layout = "fr") +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-49-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -1326,7 +1378,7 @@ character_scene_counts %&gt;%
   geom_path(aes(group = scene))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-52-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-55-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1384,7 +1436,7 @@ character_scene_counts %&gt;%
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-54-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-57-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -1917,9 +1969,9 @@ cooccur_graph
 ```
 
 ```
-## IGRAPH 783d8b7 UNW- 20 37 -- 
+## IGRAPH d7733a0 UNW- 20 37 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from 783d8b7 (vertex names):
+## + edges from d7733a0 (vertex names):
 ##  [1] Billy (Bill Nighy)   --Joe (Gregor Fisher)         
 ##  [2] Jamie (Colin Firth)  --Karen (Emma Thompson)       
 ##  [3] Jamie (Colin Firth)  --Harry (Alan Rickman)        
@@ -1940,7 +1992,7 @@ cooccur_graph
 .panel[.panel-name[Code]
 
 ```r
-set.seed(1234)
+set.seed(42)
 ggraph(cooccur_graph, layout = "fr") +
   geom_edge_link(color = "gray") +
   geom_node_point(color = "lightpink", size = 3) +
@@ -1953,7 +2005,7 @@ ggraph(cooccur_graph, layout = "fr") +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-61-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-64-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -1961,6 +2013,8 @@ ggraph(cooccur_graph, layout = "fr") +
 ---
 ### Co-occurences: The Office
 
+.panelset.sideways[
+.panel[.panel-name[Code]
 
 ```r
 char_names &lt;- c("michael", "jim", "dwight", "pam", "angela", "bob", "phyllis", "oscar", "creed", "kevin", "stanley", "andy", "kelly", "toby", "robert", "nellie", "todd", "jan", "carol", "ryan", "meredith", "holly", "david", "karen", "jo") 
@@ -1974,7 +2028,16 @@ character_scene_counts_office %&gt;% filter(speaker %in% str_to_sentence(char_na
   geom_path(aes(group = scene))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-62-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-65-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+]
 
 ---
 ### Co-occurences: The Office
@@ -2023,13 +2086,47 @@ ggraph(cooccur_office, layout = "fr") +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-64-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-67-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+# `set.seed()` 
+Play around setting different values for the seed for your visualization
+
+
+.panelset.sideways[
+.panel[.panel-name[Code]
+
+```r
+set.seed(13)
+ggraph(cooccur_office, layout = "fr") +
+  geom_edge_link(color = "gray") +
+  geom_node_point(color = "#2B152C", size = 3) +
+  geom_node_text(aes(label = name), hjust = 0.2, vjust = 1, repel = TRUE)
+```
+
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-68-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
 
 ---
 # Recap
+
+* WORDCLOUDS ARE NOT ANALYSIS
+* Think about your data structure for what makes sense for your analysis
+* Networks are good for connections
+* Language plays a key role when doing text analysis -- how do you think about what does/not have meaning? 
+
 
 ---
 
@@ -2038,6 +2135,8 @@ ggraph(cooccur_office, layout = "fr") +
 - [Analyzing networks of characters in 'Love Actually'](http://varianceexplained.org/r/love-actually-network/) by David Robinson
 
 - [Text Mining with R](https://www.tidytextmining.com/) by Julia Silge and David Robinson
+
+- [Office Dataset](https://www.kaggle.com/datasets/nehaprabhavalkar/the-office-dataset/versions/5?resource=download)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -79,15 +79,15 @@ include_graphics("images/ts_positive_words_album_track.png")
 
 ## Text as data
 
-Text can be represented as data in a variery of ways:
+Text can be represented as data in a variety of ways:
 
-- String: Character vector
+- **String**: Character vector
 
-- Corpus: Raw strings annotated with additional metadata and details
+- **Corpus**: Raw strings annotated with additional metadata and details
 
-- Document-term matrix: Sparse matrix describing a collection (i.e., a corpus) of documents with one row for each document and one column for each term, with word counts (or another measure of how common the word is in that text) as values
+- **Document-term matrix**: Sparse matrix describing a collection (i.e., a corpus) of documents with one row for each document and one column for each term, with word counts (or another measure of how common the word is in that text) as values
 
-- Word embeddings: A dense array structure (typically a 3D array) describing a collection of documents where each word is projected onto an $n$-dimensional feature space that encodes the meaning of the words based on their semantic similarity
+- **Word embeddings**: A dense array structure (typically a 3D array) describing a collection of documents where each word is projected onto an $n$-dimensional feature space that encodes the meaning of the words based on their semantic similarity
 
 ---
 
@@ -312,6 +312,24 @@ love_actually %>%
 ]
 
 ---
+### Beyond our scope: TD-IDF
+
+There are additional measures of 'uniqueness' for words. 
+
+```{r ts-idf, echo = FALSE}
+knitr::include_graphics("images/ts_idf_words.png")
+```
+
+---
+## Skillz combo!
+
+```{r, echo = FALSE, out.width = "75%"}
+knitr::include_graphics("https://static01.nyt.com/images/2020/11/12/learning/ThanksgivingMapLN/ThanksgivingMapLN-superJumbo.png?quality=75&auto=webp")
+```
+
+.footnote[[Source: NYTimes 2020](https://www.nytimes.com/2020/11/12/learning/whats-going-on-in-this-graph-thanksgiving-side-dishes.html)]
+
+---
 
 ## Wordclouds
 
@@ -319,7 +337,7 @@ Using `ggwordcloud::geom_text_wordcloud()`:
 
 .panelset.sideways[
 ```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
-set.seed(1234)
+set.seed(42)
 love_actually %>%
   unnest_tokens(output = word, input = dialogue) %>%
   anti_join(stop_words) %>%
@@ -337,7 +355,7 @@ love_actually %>%
 
 .panelset.sideways[
 ```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
-set.seed(1234)
+set.seed(42)
 love_actually %>%
   unnest_tokens(output = word, input = dialogue) %>%
   anti_join(stop_words) %>%
@@ -347,6 +365,24 @@ love_actually %>%
   geom_text_wordcloud(aes(color = n)) + #<<
   scale_size_area(max_size = 10) +
   scale_color_distiller(palette = "Reds") #<<
+```
+]
+---
+
+## Wordclouds, with color (dark = popular)
+
+.panelset.sideways[
+```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
+set.seed(42)
+love_actually %>%
+  unnest_tokens(output = word, input = dialogue) %>%
+  anti_join(stop_words) %>%
+  count(word, sort = TRUE) %>%
+  filter(n > 5) %>%
+  ggplot(aes(label = word, size = n)) +
+  geom_text_wordcloud(aes(color = n)) + #<<
+  scale_size_area(max_size = 10) +
+  scale_color_distiller(palette = "Reds", direction = 1) #<<
 ```
 ]
 
@@ -362,6 +398,11 @@ class: inverse, center, middle
   * If you are struggling -- you can use The Office data: 
 - Remove stopwords
 - Create a relevant visualization (e.g. top words)
+
+```{r cache = FALSE, echo = FALSE}
+countdown(minutes = 8)
+```
+
 ---
 
 ## Activity: finding relevant data
@@ -638,7 +679,7 @@ bigram_graph
 Common bigrams in Love Actually that occurred more than once and where neither word was a stop word
 
 ```{r echo = FALSE, out.width = "75%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
   geom_node_point() +
@@ -652,7 +693,7 @@ ggraph(bigram_graph, layout = "fr") +
 Step 1. Set up the plot object with `ggraph::ggraph()`:
 
 ```{r out.width = "75%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph)
 ```
 
@@ -663,7 +704,7 @@ ggraph(bigram_graph)
 Step 2. Add edges
 
 ```{r out.width = "50%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link()
 ```
@@ -675,7 +716,7 @@ ggraph(bigram_graph) +
 Step 3. Add nodes
 
 ```{r out.width = "50%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link() +
   geom_node_point()
@@ -688,7 +729,7 @@ ggraph(bigram_graph) +
 Step 4. Add text
 
 ```{r out.width = "45%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link() +
   geom_node_point() +
@@ -702,14 +743,14 @@ ggraph(bigram_graph) +
 Step 5. Consider layouts
 
 ```{r out.width = "35%", echo = FALSE, fig.align = "default"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "stress") +
   geom_edge_link() +
   geom_node_point() +
   geom_node_text(aes(label = name)) +
   labs(title = "layout: stress")
 
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
   geom_node_point() +
@@ -718,14 +759,14 @@ ggraph(bigram_graph, layout = "fr") +
 ```
 
 ```{r out.width = "35%", echo = FALSE, fig.align = "default"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "lgl") +
   geom_edge_link() +
   geom_node_point() +
   geom_node_text(aes(label = name)) +
   labs(title = "layout: lgl")
 
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "graphopt") +
   geom_edge_link() +
   geom_node_point() +
@@ -740,7 +781,7 @@ ggraph(bigram_graph, layout = "graphopt") +
 Step 6. Pick a layout
 
 ```{r out.width = "50%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
   geom_node_point() +
@@ -754,7 +795,7 @@ ggraph(bigram_graph, layout = "fr") +
 Step 7. Adjust text
 
 ```{r out.width = "50%"}
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
   geom_node_point() +
@@ -771,7 +812,7 @@ Step 8. Add more context with `edge_alpha = n`
 ```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
 a <- grid::arrow(type = "closed", length = unit(0.1, "inches"))
 
-set.seed(1015)
+set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link(aes(edge_alpha = n), show.legend = FALSE,
                  arrow = a, end_cap = circle(0.01, "inches")) +
@@ -1013,7 +1054,7 @@ cooccur_graph
 
 .panelset.sideways[
 ```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
-set.seed(1234)
+set.seed(42)
 ggraph(cooccur_graph, layout = "fr") +
   geom_edge_link(color = "gray") +
   geom_node_point(color = "lightpink", size = 3) +
@@ -1024,7 +1065,9 @@ ggraph(cooccur_graph, layout = "fr") +
 ---
 ### Co-occurences: The Office
 
-```{r}
+.panelset.sideways[
+```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
+
 char_names <- c("michael", "jim", "dwight", "pam", "angela", "bob", "phyllis", "oscar", "creed", "kevin", "stanley", "andy", "kelly", "toby", "robert", "nellie", "todd", "jan", "carol", "ryan", "meredith", "holly", "david", "karen", "jo") 
 character_scene_counts_office <- office %>% 
     count(scene, speaker, season, episode) 
@@ -1035,6 +1078,7 @@ character_scene_counts_office %>% filter(speaker %in% str_to_sentence(char_names
   geom_point() +
   geom_path(aes(group = scene))
 ```
+]
 
 ---
 ### Co-occurences: The Office
@@ -1075,8 +1119,30 @@ ggraph(cooccur_office, layout = "fr") +
 ```
 ]
 
+
+---
+# `set.seed()` 
+Play around setting different values for the seed for your visualization
+
+
+.panelset.sideways[
+```{r panelset = c(source = "Code", output = "Plot"), out.width = "100%", message = FALSE}
+set.seed(13)
+ggraph(cooccur_office, layout = "fr") +
+  geom_edge_link(color = "gray") +
+  geom_node_point(color = "#2B152C", size = 3) +
+  geom_node_text(aes(label = name), hjust = 0.2, vjust = 1, repel = TRUE)
+```
+]
+
 ---
 # Recap
+
+* WORDCLOUDS ARE NOT ANALYSIS
+* Think about your data structure for what makes sense for your analysis
+* Networks are good for connections
+* Language plays a key role when doing text analysis -- how do you think about what does/not have meaning? 
+
 
 ---
 
@@ -1085,3 +1151,5 @@ ggraph(cooccur_office, layout = "fr") +
 - [Analyzing networks of characters in 'Love Actually'](http://varianceexplained.org/r/love-actually-network/) by David Robinson
 
 - [Text Mining with R](https://www.tidytextmining.com/) by Julia Silge and David Robinson
+
+- [Office Dataset](https://www.kaggle.com/datasets/nehaprabhavalkar/the-office-dataset/versions/5?resource=download)
