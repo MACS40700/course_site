@@ -23,6 +23,7 @@ In this assignment, you need to provide:
 -   A sketch of the three graphs (literal sketches -- does not need to be with real data aside from the first plot).
 -   Any challenges you are anticipating
 -   Code that generated your plots
+-   BE SURE TO RUN YOUR FILE FROM A CLEAN WORKSPACE PLEASE!
 
 Note that this is open-ended and you can choose your difficulty level to match your skills. If you are newer to R / programming, you may want to choose an 'off the shelf' dataset that does not require much cleaning (see [finding data in the FAQ for more info](https://macs40700.netlify.app/faq/)). If you are a more experienced programmer, working on your own research, you can use something that might need a bit more cleaning.
 
