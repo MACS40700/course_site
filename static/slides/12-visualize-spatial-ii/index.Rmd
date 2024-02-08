@@ -467,11 +467,10 @@ library(patchwork)
     count() %>%
     ggplot() +
     geom_sf(mapping = aes(fill = n)) +
-    scale_fill_continuous_sequential(palette = "viridis") +
+    scale_fill_continuous_sequential(palette = "viridis", rev = FALSE) +
     labs(title = "Choropleth")
 } + {
   ggplot() +
-    geom_sf(data = chi_json) +
     stat_density_2d(
       data = crimes_homicide,
       mapping = aes(
@@ -483,6 +482,7 @@ library(patchwork)
       bins = 25,
       geom = "polygon"
     ) +
+    geom_sf(data = chi_json, fill = "transparent") +
     scale_fill_continuous_sequential(palette = "viridis") +
     labs(title = "Heatmap", x = NULL, y = NULL)
 }
