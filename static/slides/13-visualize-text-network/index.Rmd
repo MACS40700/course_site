@@ -431,7 +431,7 @@ office <- read_csv(here::here("13-visualize-text-network", "data/The-Office-Line
 
 ```
 
-Data source: [Kaggle Office data]("https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript")
+Data source: [Kaggle Office data](https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript)
 
 ```{r}
 office_words <- office %>%
