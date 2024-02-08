@@ -392,7 +392,7 @@ class: inverse, center, middle
 # Your turn!
 
 ---
-# Activity: testing out text analysis
+# Activity: Make a visualization
 
 - Find relevant data (see next slides for more detail)
   * If you are struggling -- you can use The Office data: 
@@ -416,8 +416,23 @@ countdown(minutes = 8)
 # Activity: guided (The Office) [step 1: load]
 
 ```{r echo = FALSE, message = FALSE}
+library(tidyverse)
+library(showtext)
+library(tidytext)
+
+font_import()
+
+font_add_google("Courier Prime", "courier prime")
+font_add_google("Miltonian", "miltonian")
+showtext_auto()
+
+
 office <- read_csv(here::here("13-visualize-text-network", "data/The-Office-Lines-V4.csv"))
+
 ```
+
+Data source: [Kaggle Office data]("https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript")
+
 ```{r}
 office_words <- office %>%
   unnest_tokens(
@@ -459,12 +474,13 @@ office_words %>%
   labs(
     x = "Count", y = NULL,
     title = "<span style = 'color:#808080'>Most common words in</span>",  
-    subtitle ="<span style = 'font-weight:strong; font-family: Courier New'><b>The Office</b></span>"  
+    subtitle ="<b>The Office</b>"  
   ) +
   theme(
     plot.title = element_textbox_simple(halign = 1),  
-    plot.subtitle = element_textbox_simple(size = 30, halign = 1),  
+    plot.subtitle = element_textbox_simple(size = 30, halign = 1, family = "courier prime"),  
     plot.title.position = "plot"  
+    
     )
 ```
 ]
