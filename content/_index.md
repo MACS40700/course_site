@@ -25,7 +25,7 @@ You can see our tentative topics below.
 | 1-Feb  |[visualizing spatial data ](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| |
 | 6-Feb  | [visualizing spatial data](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) [Leaflet](https://rstudio.github.io/leaflet/)|            |
 | 8-Feb  |  [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          |
-| 13-Feb |[animation  ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  final proposal  |
+| 13-Feb |[animation  ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  [final proposal (due 2/15)](https://canvas.uchicago.edu/courses/53144/assignments/635268)  |
 | 15-Feb | [interactive reporting](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
 | 20-Feb | [interactive visualization](slides/16-interactive-visualization)  | |     |
 | 22-Feb |  [presentation-ready plots](slides/09-presentation-ready-plots)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) |   [hwk 4 (due 28-Feb)](/assignments/assign4/)      |
