@@ -70,11 +70,9 @@ class: inverse, middle
 
 ## Announcements
 
-- Project #2 proposals due yesterday
+- Final proposals due Thursday
 
-- Team peer evaluations due by end of Fri, May 13 (but who wants to work super late on a Friday night? `r emo::ji("face_with_raised_eyebrow")`)
-
-- Homework #3 distributed, due by the start of class on Tue, May 17
+- Clarity around Assignment #3 (sorry!)
 
 ---
 
@@ -838,7 +836,7 @@ As $n \rightarrow \infty$, $\tilde{g_n}(x) \leadsto \text{E}[g(x)]$.
 ---
 
 ```{r mc-sim-data, eval = FALSE, echo = FALSE}
-set.seed(123)
+set.seed(13)
 
 rerun(.n = 10, tibble(x = rnorm(1000))) %>%
   bind_rows(.id = "id") %>%
@@ -852,7 +850,7 @@ rerun(.n = 10, tibble(x = rnorm(1000))) %>%
 ---
 
 ```{r include = FALSE}
-set.seed(123)
+set.seed(13)
 
 mc_sim <- rerun(.n = 10, tibble(x = rnorm(1000))) %>%
   bind_rows(.id = "id") %>%
