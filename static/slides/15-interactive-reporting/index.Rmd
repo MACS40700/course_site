@@ -71,8 +71,13 @@ class: inverse
 * What is Shiny
 * Examples
 * NEED THE FOLLOWING:
-  * relevant packages: `shiny`, `tayloR`
+  * relevant packages: `shiny`, `vidiris`, `ggrepel`, `shinythemes`
   * github repo for exercises: 
+
+```r
+usethis::use_course("MACS40700/shiny")
+```
+
   * start with **sandbox**
 ---
 
@@ -86,7 +91,10 @@ class: middle, inverse
 
 ```{r message = FALSE, warning = FALSE}
 # load packages
+library(viridis) 
 library(tidyverse)
+library(ggrepel)
+library(shinythemes)
 library(shiny)
 
 # set default theme for ggplot2
@@ -247,7 +255,7 @@ include_tweet(tweet_url = "https://x.com/stpierreceline/status/14606801194549452
 .pull-left[
 
 ```r
-usethis::use_course("uc-dataviz/shiny")
+usethis::use_course("MACS40700/shiny")
 ```
 
 .task[
