@@ -554,6 +554,10 @@ include_graphics(path = "https://media.giphy.com/media/14jQC2AONxNBHq/giphy.gif?
 * What role is this going to serve?
 * You lose control (users can play around): think HARD about what to include and how to visualize/convey
 
+```{r echo = FALSE, out.width = "35%"} 
+include_graphics(path = "https://media.giphy.com/media/jL0c2TrfDUz9S/giphy.gif?cid=790b7611j2e6l95hb8bbvbisuzyisfabrww0mjdo0lg29ly2&ep=v1_gifs_search&rid=giphy.gif&ct=g")
+```
+
 <!-- class: inverse, middle -->
 
 <!-- ```{r echo = FALSE, out.width = "70%"} -->
