@@ -493,8 +493,16 @@ shinyApp(ui = ui, server = server)
 ```
 
 ---
+class: center, middle
 
 # Application: Baby Names!
+
+---
+# Baby Names
+
+```{r echo = FALSE, fig.align = "center", out.width = "100%"}
+knitr::include_app("https://jclip.shinyapps.io/baby-names/", height = "650px")
+```
 
 ---
 
@@ -519,7 +527,6 @@ include_graphics(path = "https://media.giphy.com/media/14jQC2AONxNBHq/giphy.gif?
 ---
 # Recap
 
-* THINK AHEAD
 * Shiny is yet another layer-ish
 * **How**: User Interface: how it is going to look (overall structure)
   * Getting info:
@@ -532,6 +539,10 @@ include_graphics(path = "https://media.giphy.com/media/14jQC2AONxNBHq/giphy.gif?
     * Menu options and placement
     * Themes and color
 * **What**: Server: The things that 'make' it -- visualizations
+
+---
+## Cautionary tales:
+
 * What role is this going to serve?
 * You lose control (users can play around): think HARD about what to include and how to visualize/convey
 

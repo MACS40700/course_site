@@ -392,7 +392,14 @@ shinyApp(ui = ui, server = server)
 ```
 
 ---
+class: center, middle
 
+# Application: Baby Names!
+
+---
+# Baby Names
+
+&lt;iframe src="https://jclip.shinyapps.io/baby-names/?showcase=0" width="100%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
@@ -405,8 +412,8 @@ shinyApp(ui = ui, server = server)
 .pull-right[
 * Make a plan
 * Sketch it out
-* Start with the 'chunks' of where things will go
-* Test plots in ggplot before putting in (you don't want to be tweaking plots while reloading an app. it's not difficult, just annoying)
+* Start with the 'chunks' of where things will go (ui)
+* Test plots in ggplot before putting in 
 * Figure out an indenting strategy that works for you
 * Understand that it's a different land from 'typical' R in that the order of operations is different
 * PATIENCE
@@ -415,7 +422,24 @@ shinyApp(ui = ui, server = server)
 ---
 # Recap
 
-* THINK AHEAD
+* Shiny is yet another layer-ish
+* **How**: User Interface: how it is going to look (overall structure)
+  * Getting info:
+    * Slider
+    * Drop-down menus
+    * Entry box
+    * Check box
+  * Shaping interactions:
+    * Structure: one page vs many
+    * Menu options and placement
+    * Themes and color
+* **What**: Server: The things that 'make' it -- visualizations
+
+---
+## Cautionary tales:
+
+* What role is this going to serve?
+* You lose control (users can play around): think HARD about what to include and how to visualize/convey
 
 &lt;!-- class: inverse, middle --&gt;
 
