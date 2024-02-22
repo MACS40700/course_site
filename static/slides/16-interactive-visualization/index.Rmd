@@ -15,7 +15,7 @@ output:
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-rcfss::xaringan_theme()
+
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -40,54 +40,127 @@ class: inverse, middle
 ---
 
 ## Announcements
+* Tuesday: in-class lightning talks
+* Thursday: office hours (open work time)
+* 3/5 final due!!
 
-- Revised project #2 proposals have been submitted
 
-- Project #2 presentation times - [fill out the Doodle poll by the end of the day](https://doodle.com/meeting/participate/id/e1wRpERb)
+---
 
-- Homework 3 has been submitted
+# Building on our successes
 
-- Homework 4 is distributed and due by 11:59pm on Tuesday May 24th
+```{r, echo = FALSE}
+knitr::include_graphics("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWFtZzRtYmFlOHo0MnM1NWV1NjV4bTNyYTVzMnU1b3M5YTdxdm43aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/izspP6uMbMeti/giphy.gif" )
+```
 
 ---
 
 ## Interactive visualizations with Shiny
 
-We will build an app with
+We will continue to build a dashboard today!
 
-- Data pre-processing
-- Dynamic UI elements
-- Linked brushing
+<!-- #- Data pre-processing -->
+<!-- #- Dynamic UI elements -->
+<!-- #- Linked brushing -->
+
+
+---
+# Starting point:
+
+
+```{r, eval = FALSE}
+## app.R ##
+library(shiny)
+library(shinydashboard)
+
+ui <- dashboardPage(
+  dashboardHeader(),
+  dashboardSidebar(),
+  dashboardBody()
+)
+
+server <- function(input, output) { }
+
+shinyApp(ui, server)
+
+```
+---
+
+# Additional Skills:
+
+* Incorporating css files
+* Building from ui and server files
+* Brushing
+
+
+---
+# CSS files vs packages
+
+* [Great jumping off point](https://shiny.posit.co/r/articles/build/css/)
+* `fresh` package can be helpful also 
+* put custom css in subfolder named `www`
+
+---
+# Example
+
+```{css ex, eval = FALSE}
+/* app-specific css */
+
+.main-header .logo {
+  font-family: "Georgia", Times, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+  body {
+  background-color: #ffefc8;
+  color: #8300a5; /* text color */
+}
+
+.irs--shiny .irs-bar, .irs--shiny .irs-single {
+  border: #8300a5;
+  background: #8300a5;
+}
+)
+
+/* Make text visible on inputs */
+.shiny-input-container {
+  color: #8300a5;
+}
+```
+
 
 ---
 
-class: center, middle
+# Building from ui and server files
+* Put all ui elements in file -- need ui to be last object
+* put all server elements in file -- need server to be last object
 
-[https://bensoltoff.shinyapps.io/manager-survey/](https://bensoltoff.shinyapps.io/manager-survey/)
+---
+# How to decide to build
 
-```{r echo = FALSE}
-knitr::include_app("https://bensoltoff.shinyapps.io/manager-survey/", height ="550px")
+* Overall complexity
+* Purpose of design
+* Length of use
+
+---
+# Sample example
+
+```{r web}
+include_url("https://jclip.shinyapps.io/sep_files/")
 ```
 
 ---
+# Let's see what we have!
 
-class: middle
-
-.large[.hand[livecoding]]
-
-.task[
-```r
-usethis::use_course("uc-dataviz/shiny")
+``` 
+usethis::use_course("MACS40700/shiny-sep")
 ```
 
-- Navigate to the `manager-survey-server` folder, and launch the app by opening the `app.R` file and clicking on *Run App*. This includes our completed UI plus starter code for the basic plots in the app.
+--- 
+# Recap
 
-]
-
-(See next slide for code developed during live coding session)
-
----
-
-class: middle
-
-The code for the app can be found [here](https://github.com/uc-dataviz/slides/blob/main/16-interactive-visualization/manager-survey/app.R).
+* Shiny can be wonderful
+* Work outside the app for plots
+* Shiny can be not wonderful
+* Dashboard vs shiny: think about workload
