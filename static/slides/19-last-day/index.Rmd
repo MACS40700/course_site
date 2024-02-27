@@ -1,0 +1,108 @@
+---
+title: "Lightning presentations"
+author: "MACS 40700 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+# generate CSS file
+library(xaringanthemer)
+
+
+# source in the default knitr options
+source(here::here("R", "slide-opts.R"))
+
+# enable panelsets and default theme
+xaringanExtra::use_panelset()
+# ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
+
+# load basic packages
+library(knitr)
+library(here)
+library(countdown)
+library(patchwork)
+library(flipbookr)
+library(scales)
+```
+
+class: inverse, middle
+
+# Announcements
+
+---
+
+## Announcements
+* TODAY!! in-class lightning talks
+* Thursday: office hours (open work time)
+* 3/5 final due!!
+
+
+---
+# Learning Objectives
+*By the end of the course, students will be able to:*
+
+1. Understand the principles of designing and creating effective data visualizations.
+2. Evaluate, critique, and improve upon one’s own and others’ data visualizations based on how good a job the visualization does for communicating a message clearly and correctly.
+3. Post-process and refine plots for effective communication.
+4. Use visualizations for evaluating statistical models and for statistical inference.
+5. Master using R and a variety of modern data visualization packages to create data visualizations.
+6. Work reproducibly individually and collaboratively using Git and GitHub.
+
+---
+
+# What we did
+
+* Assignments on github (items 5 and 6)
+* In-class applications and analysis (items 1,2, 3, 4)
+* Final project (items 1-6)
+* Lightning talks (items 2 and 3)
+
+
+---
+
+# How we did it 
+
+* Build a community of inquiry -- can offer feedback and critique
+* Strong engagement
+* Challenging ourselves to think through beyond the superficial
+* Continuing to build, scaffold, and refine
+
+
+---
+
+# Looking ahead: evaluations
+Role of evaluations to help understand how the course contributes to your learning. 
+
+* Please fill them out!
+* Be specific!
+  * NO: 'I didn't like this class'
+  * YES: 'I didn't like this class because I wanted more assignments'
+* Think about elements that were/not helpful for learning -- I tried to build a course that would meet people where they were with their level of experience and allow them to deepen their skillset in a meaningful way
+
+---
+
+# Specific questions on evals (extra Qs)
+
+* What were the most helpful skills/topics that we covered in the course and why?
+
+* What additional skills or topics do you wish we had covered? Please be specific.
+
+* This courses had a project-based course design. Do you feel this was helpful for your learning and skill mastery (vs completing standard problem sets?). Why or why not?
+
+* We used specs grading for the course (vs traditional points). Do you feel this was helpful for your learning in comparison to a 'traditional' grading scale? Please explain.
+
+---
+
+class: center, middle, inverse
+
+# Thank you and good luck on your final project!
+## Open office hours here Thursday
+
