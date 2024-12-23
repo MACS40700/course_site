@@ -102,7 +102,7 @@ class: middle, inverse
 
 ### Teaching assistant
 
-* Zihua Chen - zihuachen@uchicago.edu
+* Yangyu Wang - wangyd@uchicago.edu
 
 ---
 
@@ -162,7 +162,7 @@ class: middle, inverse
 - I'll assume that you've read an announcement by the next "business" day
 
 .center[
-<iframe width="900" height="450" src="https://edstem.org/us/courses/49641/discussion/" frameborder="0" style="background:white;"></iframe>  
+<iframe width="900" height="450" src="https://edstem.org/us/courses/70315/discussion/" frameborder="0" style="background:white;"></iframe>  
 ]
 
 ---
@@ -231,7 +231,7 @@ class: middle, inverse
 
 - AI: if you use AI, you need to include a statement about what asked, your original code, and the issues you fixed / resolved. 
 
-.task[If you don't understand what the code is doing and are not prepared to explain it in detail, you should not submit it.]
+.task[**If you don't understand what the code is doing and are not prepared to explain it in detail, you should not submit it.**]
 
 
 ---
