@@ -54,4 +54,4 @@ In addition to the visualization and accompanying narrative, write an approximat
 
 ## Submission details
 
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/YW1Ypwo_)
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/r_vTsv6J)
