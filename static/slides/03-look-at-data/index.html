@@ -320,7 +320,7 @@ glimpse(scorecard)
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(alpha = 0.5, size = 2) +
   geom_smooth(method = "lm", se = FALSE, size = 0.7) +
@@ -406,7 +406,7 @@ scorecard %&gt;%
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5, show.legend = FALSE) +
@@ -726,7 +726,7 @@ This is Minard’s visualization of Napoleon’s retreat. Discuss in a pair (or 
 
 .footnote[Source: [Wikipedia](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#/media/File:Minard.png)]
 
-<div class="countdown" id="timer_705c327f" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_24568aee" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -822,7 +822,7 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 ]
 ]
 
-<div class="countdown" id="timer_aee88079" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_7a22461a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -839,11 +839,23 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 
 ---
 
-## Wrap up
+## What's memorable? 
 
 .task[
 Think back to all the plots you saw in the lecture, without flipping back through the slides. Which plot first comes to mind? Describe it in words.
 ]
+
+
+---
+class: center, middle, inverse
+# Finding data: how to identify data for this course / your reesarch questions
+
+---
+## Finding data!
+
+* Post on Ed (sometimes people have seen relevant data!
+* 'Data is plural' newsletter
+* Google 'thing-you-care-about' + 'dataset'
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

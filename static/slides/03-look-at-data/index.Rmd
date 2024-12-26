@@ -733,8 +733,20 @@ countdown(minutes = 3, bottom = 0)
 
 ---
 
-## Wrap up
+## What's memorable? 
 
 .task[
 Think back to all the plots you saw in the lecture, without flipping back through the slides. Which plot first comes to mind? Describe it in words.
 ]
+
+
+---
+class: center, middle, inverse
+# Finding data: how to identify data for this course / your reesarch questions
+
+---
+## Finding data!
+
+* Post on Ed (sometimes people have seen relevant data!
+* 'Data is plural' newsletter
+* Google 'thing-you-care-about' + 'dataset'

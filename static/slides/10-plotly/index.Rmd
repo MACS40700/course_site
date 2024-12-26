@@ -61,6 +61,10 @@ class: middle, inverse
 
 # Data visualization: Agenda for today
 
+* Basics of plotly
+* Graphic applications
+* Converting a ggplot graphic
+
 
 ---
 
@@ -193,7 +197,6 @@ Just like in ggplot, you can color by variables.
 
 ```{r}
 plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species, height = 300)
-
 ```
 
 ---
@@ -283,6 +286,29 @@ plot_ly(
   * Spatial maps
   * Etc. 
 
+
+---
+# Application: Try converting a ggplot graph
+
+.panelset[
+.panel[.panel-name[ggplot version]
+```{r, out.width='500px'}
+ggplot(penguins, aes(x = bill_depth_mm,  y = bill_length_mm,
+                     color = species), ) + geom_point(size = 2)
+```
+]
+.panel[.panel-name[plotly version]
+```{r}
+p <- ggplot(penguins, aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point(size = 2)
+
+ggplotly(p, height = 220)
+
+```
+]
+]
 ---
 
 # Recap
