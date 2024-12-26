@@ -1,0 +1,299 @@
+---
+title: "Plotly Party"
+author: "MACS 40700 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+# generate CSS file
+library(xaringanthemer)
+style_xaringan(
+  text_color = "#464A53",
+  header_color = "#586891",
+  background_color = "#F1F3F2",
+  title_slide_background_color = "#586891",
+  title_slide_text_color = "#F1F3F2",
+  table_row_even_background_color = "#B3A6A3",
+  link_color= "#586891",
+  text_bold_color= "#586891",
+  #code_highlight_color= rgba(255,255,0,0.5),
+  inverse_text_color= "#464A53",
+  inverse_background_color= "#B3A6A3",
+  inverse_header_color= "#464A53",
+  inverse_link_color= "#586891",
+  header_background_color= "#586891",
+  header_background_text_color= "#F1F3F2",
+  code_highlight_color = "#9ab7c4",
+  text_font_family = "Nunito",
+  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
+  header_font_google = google_font("Afacad"),
+  base_font_size= "28px",
+  text_font_size= "1rem",
+  code_font_size= "20px",
+  footnote_font_size = "0.75em",
+  code_inline_font_size= "1em",
+  header_h1_font_size= "2rem",
+  header_h2_font_size= "1.75rem",
+  header_h3_font_size= "1.5rem")
+
+source(here::here("R", "slide-opts.R"))
+
+xaringanExtra::use_panelset()
+ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
+```
+
+```{r pkgs, include = FALSE, cache = FALSE}
+library(knitr)
+library(here)
+library(tidyverse)
+library(plotly)
+```
+
+class: middle, inverse
+
+# Data visualization: Agenda for today
+
+
+---
+
+# Plotly
+
+plotly is an R package for creating interactive web-based graphs via the open source JavaScript graphing library plotly.js.
+
+
+As of version 2.0 (November 17, 2015), graphs created with the plotly R package are rendered locally through the htmlwidgets framework.
+
+
+Plotly graphs are great as they have a nice interactive/mouseover component. 
+
+
+
+---
+
+# Plotly: getting started
+
+```{r, eval = FALSE}
+install.packages("plotly")
+```
+
+```{r}
+library(plotly)
+
+fig <- plot_ly(midwest, x = ~percollege, color = ~state, type = "box", height = 250) 
+fig
+```
+
+---
+
+# Plotly: options
+
+* Bar plots
+* Scatter plots
+* Line plots
+* Dot plots
+* Barbel plots
+* Boxplots
+
+
+
+---
+# Bar
+
+```{r}
+fig <- plot_ly(
+  x = c("giraffes", "orangutans", "monkeys"),
+  y = c(20, 14, 23),
+  name = "SF Zoo",
+  type = "bar", height = 150
+)
+
+fig
+```
+
+---
+# Scatter plots
+```{r}
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, height = 400)
+```
+
+
+---
+## Line plots
+
+```{r}
+trace_0 <- rnorm(100, mean = 5)
+trace_1 <- rnorm(100, mean = 0)
+trace_2 <- rnorm(100, mean = -5)
+x <- c(1:100)
+
+data <- data.frame(x, trace_0, trace_1, trace_2)
+
+fig <- plot_ly(data, x = ~x, height = 200)
+fig <- fig %>% add_trace(y = ~trace_0, name = 'trace 0',mode = 'lines')
+fig <- fig %>% add_trace(y = ~trace_1, name = 'trace 1', mode = 'lines+markers')
+fig <- fig %>% add_trace(y = ~trace_2, name = 'trace 2', mode = 'markers')
+
+fig
+```
+
+---
+## Dot plots
+```{r}
+p <-    
+ ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+  geom_dotplot(stackgroups = TRUE, binwidth = 1, binpositions = "all")
+
+ggplotly(p, height = 325) 
+
+
+```
+
+---
+##  Barbel/Dumbell plots
+
+.panelset[
+.panel[.panel-name[Dumbell plots]
+```{r dumbell, fig.show = "hide"}
+gapminder <- read_csv("https://raw.githubusercontent.com/datavizpyr/data/master/gapminder-FiveYearData.csv")
+df <- gapminder %>%
+  filter(year %in% c(1952,2007)) %>%
+  filter(continent=="Asia") 
+
+df <- df %>%
+  mutate(paired = rep(1:(n()/2),each=2),
+         year=factor(year))
+
+p <- df %>% 
+  group_by(paired) %>%
+  ggplot(aes(x= lifeExp, y= reorder(country,lifeExp))) +
+  geom_line(aes(group = paired),color="grey")+
+    geom_point(aes(color=year), size=2) +
+  labs(y="country") + theme(text = element_text(size = 10))
+
+ggplotly(p, height = 450)
+```
+]
+.panel[.panel-name[Plot]
+```{r ref.label="dumbell", echo = FALSE, out.width="70%"}
+```
+]
+]
+
+---
+## Colorscales 
+Just like in ggplot, you can color by variables. 
+
+```{r}
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species, height = 300)
+
+```
+
+---
+## Colorscales 
+
+```{r}
+library(palmerpenguins)
+plot_ly(data = penguins, x = ~bill_length_mm , y = ~body_mass_g, color = ~sex,
+        height = 300)
+
+```
+
+---
+## ColorBrewer Palette Names
+```{r}
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species, 
+        colors = "Set1", height = 300)
+
+```
+
+---
+## Custom Color Scales
+```{r}
+pal <- c("red", "blue", "orange")
+
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species, 
+        colors = pal, height = 300)
+
+```
+
+---
+## Mapping Data to Symbols
+```{r}
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, type = 'scatter',
+  mode = 'markers', symbol = ~Species, symbols = c('circle','x','o'),
+  color = I('black'), marker = list(size = 10), height = 300)
+```
+
+---
+## Data labels on hover
+```{r}
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+
+plot_ly(
+  d, x = ~carat, y = ~price,
+  # Hover text:
+  text = ~paste("Price: ", price, '$<br>Cut:', cut),
+  color = ~carat, size = ~carat, height = 300)
+ 
+```
+
+
+---
+# Boxplots
+
+```{r}
+set.seed(1234)
+dat <- data.frame(cond = factor(rep(c("A","B"), each=200)), rating = c(rnorm(200),rnorm(200, mean=.8)))
+
+p <- ggplot(dat, aes(x=cond, y=rating, fill=cond)) + geom_boxplot() 
+
+ggplotly(p, height = 350)  
+```
+
+---
+## Data labels on hover
+```{r}
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+
+plot_ly(
+  dat, x = ~cond, y = ~rating,
+  # Hover text:
+  text = ~paste("Price: ", cond),
+  color = ~cond, type = "box", height = 200)
+```
+
+---
+
+## Additional plot types
+
+* Just about any other plot type can be done -- try it on your own
+  * Animated plots
+  * Area plots
+  * Bubble plots
+  * Contour plots
+  * Heatmaps
+  * Spatial maps
+  * Etc. 
+
+---
+
+# Recap
+
+* Plotly is another way to plot things as it offers interactivity. It can be used in R or Python and the plots can be quite nice if you're making slides or anything that's going to be online in some way. 
+
+* Sometimes you can incorporate ggplot elements and then render in ggplot
+
+* Just about any plot you make in ggplot you can make in plotly
+  * Boxplots
+  * Bar plots
+  * Scatter plots
+  * Line plots
+  * ... etc. ...
