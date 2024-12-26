@@ -1,0 +1,140 @@
+---
+title: "Other options: Tableau and dashboards"
+author: "MACS 40700 <br /> University of Chicago"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: magula
+      highlightLines: true
+      highlightLanguage: r
+      ratio: 16:9
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE, cache = FALSE}
+# generate CSS file
+library(xaringanthemer)
+
+
+# source in the default knitr options
+source(here::here("R", "slide-opts.R"))
+
+# enable panelsets and default theme
+xaringanExtra::use_panelset()
+# ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
+
+# load basic packages
+library(knitr)
+library(here)
+library(tidyverse)
+```
+
+class: inverse, middle
+
+# Announcements
+
+---
+
+## Announcements
+
+
+---
+# What is Tableau
+
+* Public vs not
+* Sharing and saving
+
+---
+## Starting a visualization
+
+
+---
+## Integrating Tableau into a workflow
+
+* Use coding platform of choice to get data cleaned and sorted
+* Can use as a standalone or integrate into workflow
+  * For our purposes, we will only focus on Tableau public (not connecting to servers)
+
+
+---
+## Getting started:
+
+* Apply the same design principles we've come to know and love so far: 
+  * think through the sketch
+  * know your data
+  * consider what you are trying to do
+
+
+---
+# Dashboards
+Offers an opportunity to get a high-level view of your data. 
+
+```{r, echo = FALSE}
+include_url("https://www.tableau.com/dashboard/what-is-dashboard")
+```
+
+---
+## Comparisons
+
+```{r, echo = FALSE}
+include_url("https://www.tableau.com/data-insights/dashboard-showcase/portland-office-community-civic-life-p-card-report-dashboard")
+```
+
+
+---
+# Think about how to provide overall summary
+
+* What is your data source? 
+* What is your question? 
+
+---
+## Exercise: baby name data
+
+You can choose any year -- today's examples will cover 2023 and 1880. You can follow along or choose a different year!
+
+[Source](https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-data)
+
+---
+## Basic visual: 2023
+
+Start from a rule of threes with a general focus on getting a handle on what is happening. Think about these questions and the best way to visualize!
+
+1) Overall stats: how many babies are born and genders?
+2) Top names -- overall and by gender
+3) How much 'space' does the most popular name take up (e.g. proportion of all names)?
+
+--
+
+Now, replicate with 1880 (separately).
+
+
+---
+
+## Intermediate visuals: 2023 vs 1880
+Adding a second year allows us to open up new possibilities using comparison (changes, what is new/old/constant, etc.)
+
+--
+
+* Consistency: names that were popular in both time periods?
+* Names that were popular but aren't any more?
+* Names that are `new'? 
+* Names moving from one gender to another? 
+
+---
+# ADVANCED 
+*Note: I haven't done this yet, but could be very helpful*
+
+```{r, echo = FALSE}
+include_url("https://help.tableau.com/current/prep/en-us/prep_scripts.htm")
+```
+
+
+
+---
+# Recap
+
+* Tableau can be a powerful tool
+* Options to integrate with R or Python
+* Design principles still apply
+
