@@ -1,21 +1,48 @@
 ---
 title: "Assignment 3"
-date: 2024-01-31T13:30:00-06:00  # Schedule page publish date
+date: 2025-01-31T13:30:00-06:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 
-summary: "Portfolio 1: providing clear portfolio that looks at one question using summary stats and capstone image that brings all the items together."
+summary: "Plotly assignment: informative plots"
 ---
 
-# Portfolio
+# Tasks
 
-This is a smaller scale version of the final project to give practice and feedback before you commit to a larger project. You may work in groups of up to three individuals for this assignment.
+For this assignment, you will submit **SIX** plots: a 'rough draft and a 'final' version. See the description here for the final version, with the drafts described below.
 
-You will need to provide a minimum of three graphs and a maximum of five. All graphs should be essential for understanding your research question of interest, well-designed, polished, and clear to an outside reader. There will be an accompanying writeup that has two components: a discussion of the findings in the graphs and an assessment of the overall design.
+**Final plots** Complete two plots in plotly, each using at least two, if not three, variables from the dataset in each plot: one plot needs continuous-y data and the other should involve categorical data. This means that, for example, you might have one plot to showcase continuous data, such as a boxplot. You could include categorical variables to include the continuous data by variable, separating out the plots. Similarly, you could do a scatterplot where you color-code the points by a secondary variable. For categorical data, you could have a bar plot where you showcase the proportion of each category aligns with a secondary variable. You could also focus on the categories for a box plot -- e.g. the key emphasis is on the categorical variable. You need two different types of plots for this assignment.
+
+You can use any data for this assignment but the dataset should be the same for both and there should be some connection between the two plots -- some narrative of some sort. You need to customize the plots -- the exes should be properly labeled, you need a color scheme that makes sense, a title, etc. The final plots should be professional quality--something we could expect to see in a final report, thesis, etc.
+
+## Components
+
+You will first want to describe your data and provide some summary of the relevant variables to describe what they are, etc. Be sure to include your source for the data. BE WISE in how you select your data.
+
+For each plot, you will provide three plots:
+1. **The final plot**. This is the plot that you selected to represent the data most effecitvely.
+2. **The rough draft / initial plot**. This is the initial version of your final plot with all 'defaults' -- e.g. not at all customized.
+3. **The alternative plot**. This is a second plot option you tried before committing to the final form. For example, maybe you were debating between histograms, dot plots, and box plots. Include one version you tried.
+
+### Continuous-y plot
+
+Describe the plot type you selected and what it tells us about the data. Your plot should be appropriate for the data (e.g. don't use a plot for nominal data with continuous data), and be customized to showcase some finding. Effective graphs are ones that make your intended takeaway obvious.
+
+Secondly, describe the plot you chose, alternatives you considered, and why this was the selected form.
+
+Finally, describe the customizations (scales, labels, colors, titles, etc.) that you made to improve the graph from the original baseline.
+
+### Categorical plot
+
+Describe the plot type you selected and what it tells us about the data. Your plot should be appropriate for the data (e.g. don't use a plot for continuous data with categorical data), and be customized to showcase some finding. Effective graphs are ones that make your intended takeaway obvious.
+
+Secondly, describe the plot you chose, alternatives you considered, and why this was the selected form.
+
+Finally, describe the customizations (scales, labels, colors, titles, etc.) that you made to improve the graph from the original baseline.
 
 ## Assessment
 
-Your project will be assessed on the following criteria:[^1]
+Your plots will be assessed on the following criteria:[^1]
 
 -   Is it truthful?
 -   Is it functional?
@@ -23,22 +50,8 @@ Your project will be assessed on the following criteria:[^1]
 -   Is it insightful?
 -   Is it enlightening?
 
-## Final Deliverables
-
-Submit final deliverables to your GitHub repo.
-
-The final deliverables include:
-
--   **Visualization**: the final product of your project. This could be a Markdown/HTML/PDF file of your research paper, a link to a Shiny app or web page hosting your visualization, etc. If this is located outside of the GitHub repository, make sure to include a link in your `README.md` file. If you are wanting to use a Shiny app but are waiting until we cover it later in the course, you can provide some prototypes instead (coordinate this with us.)
--   **Paper**: a 2-3 page paper (approx 750 words give or take 150 words) to supplement your visualization explaining your major design choices. Expected components are:
-    -   **Introduction** - an explanation of the problem/research question and the motivation for solving it.
-    -   **Methods** - a detailed explanation of the visualization techniques you employed to solve the problem/answer the question.
-    -   **Results/discussion** - what has the audience learned from your work? How is the visualization truthful, functional, beautiful, insightful, and/or enlightening?
--   **Readme**: In the repository's `README.md`, include a brief project description and instructions for a user to execute your code on their own computer (e.g. what software/packages to install, instructions to obtain data if not included in repo). Aim for your project to be *reproducible*. If you work with a partner, include a description of which components each of you contributed to the project.
--   **Code**: an implementation of your source code. Make sure your code is well-documented and interpretable to outsiders.
-
 ## Getting started
 
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/-2jxXYJ2)
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/NWf40EhJ)
 
 [^1]: Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps for communication* by Alberto Cairo.
