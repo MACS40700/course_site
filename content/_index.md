@@ -27,8 +27,7 @@ You can see our tentative topics below.
 | 11-Feb  |  [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) [Leaflet](https://rstudio.github.io/leaflet/)|            |
 | 13-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          |
 | 18-Feb | [animation  ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  [final proposal (due 2/15)](https://canvas.uchicago.edu/courses/53144/assignments/635268)  |
-| 20-Feb |    Websites |||
-
+| 20-Feb |    Websites ||| |
 | 25-Feb | [Shiny, part I](slides/15-interactive-reporting)  | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
 | 27-Feb |  [Shiny, part II](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) |   [hwk 4 (due 28-Feb)](/assignments/assign4/)      |
 | 4-Mar |  [Shiny, part II](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
