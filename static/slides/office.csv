@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>The Office (US) - Complete Dialogue/Transcript | Kaggle</title>
+  <meta charset="utf-8" />
+    <meta name="robots" content="index, follow" />
+  <meta name="description" content="45,000&#x2B; lines of dialogue from 9 seasons of The Office" />
+  <meta name="turbolinks-cache-control" content="no-cache" />
+    <meta name="keywords" content="arts and entertainment" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta name="theme-color" content="#008ABC" />
+  <script nonce="VyOqoFMGSq8XNwrAxzBciA==" type="text/javascript">
+    window["pageRequestStartTime"] = 1707413806582;
+    window["pageRequestEndTime"] = 1707413806671;
+    window["initialPageLoadStartTime"] = new Date().getTime();
+  </script>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" /><link rel="preconnect" href="https://stats.g.doubleclick.net" /><link rel="preconnect" href="https://storage.googleapis.com" /><link rel="preconnect" href="https://apis.google.com" />
+  <link href="/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="manifest" href="/static/json/manifest.json" crossorigin="use-credentials">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+
+  <link href="https://fonts.googleapis.com/icon?family=Google+Material+Icons&display=block"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i&display=swap"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Symbols&display=block"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/icon?family=Google+Material+Icons&display=block"
+    rel="stylesheet" media="print" id="async-google-font-1" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i&display=swap"
+    rel="stylesheet" media="print" id="async-google-font-2" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Symbols&display=block"
+    rel="stylesheet" media="print" id="async-google-font-3" />
+  <script nonce="VyOqoFMGSq8XNwrAxzBciA==" type="text/javascript">
+    const styleSheetIds = ["async-google-font-1", "async-google-font-2", "async-google-font-3"];
+    styleSheetIds.forEach(function (id) {
+      document.getElementById(id).addEventListener("load", function() {
+        this.media = "all";
+      });
+    });
+  </script>
+
+  <script nonce="VyOqoFMGSq8XNwrAxzBciA==" src="https://www.google.com/recaptcha/enterprise.js?render=6LcW02cpAAAAAJlaJemsQQEwAiTEYB4aR6FYE_rD&waf=session" async defer></script>
+   <style>.grecaptcha-badge { visibility: hidden; }</style>
+
+    <link rel="canonical" href="https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript" />
+    <link rel="stylesheet" type="text/css" href="/static/assets/vendor.css?v=66bd3412594800e8bfeb" />
+    <link rel="stylesheet" type="text/css" href="/static/assets/app.css?v=5ce84b0c951d07edead5" />
+  
+    
+ 
+      <script nonce="VyOqoFMGSq8XNwrAxzBciA==">
+        try{(function(a,s,y,n,c,h,i,d,e){d=s.createElement("style");
+        d.appendChild(s.createTextNode(""));s.head.appendChild(d);d=d.sheet;
+        y=y.map(x => d.insertRule(x + "{ opacity: 0 !important }"));
+        h.start=1*new Date;h.end=i=function(){y.forEach(x => x<d.cssRules.length ? d.deleteRule(x) : {})};
+        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+        })(window,document,['.site-header-react__nav'],'dataLayer',2000,{'GTM-52LNT9S':true});}catch(ex){}
+    </script>
+    <script nonce="VyOqoFMGSq8XNwrAxzBciA==">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-T7QHS60L4Q', {
+            'optimize_id': 'GTM-52LNT9S',
+            'displayFeaturesTask': null,
+            'send_page_view': false,
+            'content_group1': 'Datasets'
+        });
+    </script>
+    <script nonce="VyOqoFMGSq8XNwrAxzBciA==" async src="https://www.googletagmanager.com/gtag/js?id=G-T7QHS60L4Q"></script>
+
+  
+    
+    <meta property="og:url" content="https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript" />
+    <meta property="og:title" content="The Office (US) - Complete Dialogue/Transcript" />
+    <meta property="og:description" content="45,000&#x2B; lines of dialogue from 9 seasons of The Office" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/kaggle-datasets-images/767912/1323938/bdc89b7e7e18f8f575f930b46be3ff46/dataset-card.png?t=2020-07-10-14-13-57" />
+    <meta property="fb:app_id" content="2665027677054710" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kaggledatasets" />
+
+
+  <meta name="twitter:site" content="@Kaggle" /> 
+  
+    
+            <script nonce="VyOqoFMGSq8XNwrAxzBciA==" type="application/ld+json">{"@context":"http://schema.org/","@type":"Dataset","name":"The Office (US) - Complete Dialogue/Transcript","description":"Data mined from transcripts of the show. \n\n\n### Content\n\n**Season**: Season Number\n**Episode**: Episode Number\n**Title**: Name of the Episode\n**Scene**: Scene number (running value from start of dataset)\n**Speaker**: Character name\n**Line**: Dialogue of character\n\nVersion 3 Updates - based on feedback from @saradata\n\n- Added the missing lines from S9E4 and S7E17\n- Fixed the issue with the running scene number\n- Remove some censoring and special characters (ex: *, Ä etc)\n- Cleaned up some lines that had scene context artifacts (ex: [on phone])","url":"https://www.kaggle.com/nasirkhalid24/the-office-us-complete-dialoguetranscript","version":4,"keywords":["subject, arts and entertainment"],"license":{"@type":"CreativeWork","name":"Database: Open Database, Contents: © Original Authors","url":"http://opendatacommons.org/licenses/odbl/1.0/"},"identifier":["767912"],"includedInDataCatalog":{"@type":"DataCatalog","name":"Kaggle","url":"https://www.kaggle.com"},"creator":{"@type":"Person","name":"Nasir Khalid","url":"https://www.kaggle.com/nasirkhalid24","image":"https://storage.googleapis.com/kaggle-avatars/thumbnails/2830398-kg.jpeg"},"distribution":[{"@type":"DataDownload","requiresSubscription":true,"encodingFormat":"zip","fileFormat":"zip","contentUrl":"https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript/download?datasetVersionNumber=4","contentSize":"1437620 bytes"}],"commentCount":3,"dateModified":"2021-01-18T06:50:12.14Z","discussionUrl":"https://www.kaggle.com/nasirkhalid24/the-office-us-complete-dialoguetranscript/discussion","alternateName":"45,000+ lines of dialogue from 9 seasons of The Office","isAccessibleForFree":true,"thumbnailUrl":"https://storage.googleapis.com/kaggle-datasets-images/767912/1323938/bdc89b7e7e18f8f575f930b46be3ff46/dataset-card.png?t=2020-07-10-14-13-57","interactionStatistic":[{"@type":"InteractionCounter","interactionType":"http://schema.org/CommentAction","userInteractionCount":3},{"@type":"InteractionCounter","interactionType":"http://schema.org/DownloadAction","userInteractionCount":1542},{"@type":"InteractionCounter","interactionType":"http://schema.org/ViewAction","userInteractionCount":15427},{"@type":"InteractionCounter","interactionType":"http://schema.org/LikeAction","userInteractionCount":40}]}</script>
+        
+
+  
+    
+
+  
+    
+
+
+    <script nonce="VyOqoFMGSq8XNwrAxzBciA==">window['useKaggleAnalytics'] = true;</script>
+
+  <script id="gapi-target" nonce="VyOqoFMGSq8XNwrAxzBciA==" src="https://apis.google.com/js/api.js" defer
+    async></script>
+  <script nonce="VyOqoFMGSq8XNwrAxzBciA==" src="/static/assets/runtime.js?v=14b3d772196dc85ea6f1" data-turbolinks-track="reload"></script>
+  <script nonce="VyOqoFMGSq8XNwrAxzBciA==" src="/static/assets/vendor.js?v=4104c7a62fb4b4e98f4f" data-turbolinks-track="reload"></script>
+  <script nonce="VyOqoFMGSq8XNwrAxzBciA==" src="/static/assets/app.js?v=b01e0a48e5e4b73854bc" data-turbolinks-track="reload"></script>
+    <script nonce="VyOqoFMGSq8XNwrAxzBciA==" type="text/javascript">
+      window.kaggleStackdriverConfig = {
+        key: 'AIzaSyA4eNqUdRRskJsCZWVz-qL655Xa5JEMreE',
+        projectId: 'kaggle-161607',
+        service: 'web-fe',
+        version: 'ci',
+        userId: '0'
+      }
+    </script>
+</head>
+
+<body data-turbolinks="false">
+  <main>
+    
+
+
+
+
+
+<div id="site-container"></div>
+
+<div id="site-body" class="hide">
+    
+
+
+<script nonce="VyOqoFMGSq8XNwrAxzBciA==" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    preferredFont: "TeX",
+    availableFonts: ["STIX", "TeX"],
+    linebreaks: {
+    automatic: true
+    },
+    EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+    inlineMath: [["\\(", "\\)"], ["\\\\(", "\\\\)"]],
+    displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+    processEscapes: true,
+    ignoreClass: "tex2jax_ignore|dno"
+    },
+    TeX: {
+    noUndefined: {
+    attributes: {
+    mathcolor: "red",
+    mathbackground: "#FFEEEE",
+    mathsize: "90%"
+    }
+    }
+    },
+    Macros: {
+    href: "{}"
+    },
+    skipStartupTypeset: true,
+    messageStyle: "none",
+    extensions: ["Safe.js"],
+    });
+</script>
+<script type="text/javascript" nonce="VyOqoFMGSq8XNwrAxzBciA==">
+  window.addEventListener("DOMContentLoaded", () => {
+    const head = document.getElementsByTagName("head")[0];
+    const useProdHosts = ["www.kaggle.com", "admin.kaggle.com"];
+    const subdomain = useProdHosts.includes(window.location.hostname) ? "www" : "staging";
+
+    const lib = document.createElement("script");
+    lib.type = "text/javascript";
+    lib.src = `https://${subdomain}.kaggleusercontent.com/static/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML`;
+    head.appendChild(lib);
+  });
+</script>
+
+
+
+
+
+
+</div>
+
+
+
+
+  </main>
+</body>
+
+</html>
