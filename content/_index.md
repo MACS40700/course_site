@@ -10,7 +10,7 @@ weight: 1
 **Welcome to Data Visualization!** 
 
 # Schedule 
-You can see our tentative topics below. 
+You can see our topics below. See the assignments linked to the side -- if you have any questions, please check in!
 
 | Date &emsp; &emsp; <br> | Topic (Slides linked) <br> | Readings <br> (complete BEFORE class)  |   Assignment  <br>    | 
 | ------ | ----------------------------- | --------------- | --------------- | 
@@ -34,7 +34,7 @@ You can see our tentative topics below.
 | 6-Mar | [lightning talks: preliminary results + feedback](slides/19-last-day) ||      project progress report (will submit in class)|
 | 12-Mar | Final project due             |  | [Final Project (due 12-Mar)](/assignments/final-project/)|
 
-### Readings:
+## Readings
 * *The Truthful Art* by Alberto Cairo (abbreviated TA)
 * *ggplot2: Elegant Graphics for Data Analysis (3e)* by Hadley Wickham et al (abbreviated EG): https://ggplot2-book.org/ 
 * *Data Visualization* by Claus O. Wilke (abbreviated DV): https://clauswilke.com/dataviz/
@@ -49,5 +49,5 @@ You can see our tentative topics below.
 TA: **Yangyu Wang**  wangyd@uchicago.edu, OH TBD  <br>
 Prof: **Jean Clipperton** clipperton@uchicago.edu, OH Mondays 12-2pm (in person or zoom) and Wednesdays 12pm-1pm (Weds is zoom only). [Please sign up here for OH w/Prof Clipperton](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
 
-# Syllabus and policies
+## Syllabus and policies
 See the [course syllabus in the side menu](/course-syllabus/)
