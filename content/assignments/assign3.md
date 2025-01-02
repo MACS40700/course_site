@@ -13,14 +13,14 @@ For this assignment, you will submit **SIX** plots: a 'rough draft and a 'final'
 
 **Final plots** Complete two plots in plotly, each using at least two, if not three, variables from the dataset in each plot: one plot needs continuous-y data and the other should involve categorical data. This means that, for example, you might have one plot to showcase continuous data, such as a boxplot. You could include categorical variables to include the continuous data by variable, separating out the plots. Similarly, you could do a scatterplot where you color-code the points by a secondary variable. For categorical data, you could have a bar plot where you showcase the proportion of each category aligns with a secondary variable. You could also focus on the categories for a box plot -- e.g. the key emphasis is on the categorical variable. You need two different types of plots for this assignment.
 
-You can use any data for this assignment but the dataset should be the same for both and there should be some connection between the two plots -- some narrative of some sort. You need to customize the plots -- the exes should be properly labeled, you need a color scheme that makes sense, a title, etc. The final plots should be professional quality--something we could expect to see in a final report, thesis, etc.
+You can use any data for this assignment but the dataset should be the same for both and there should be some connection between the two plots -- some narrative of some sort. This assignment should be able to stand alone, meaning that all information needed to understand and interpret the plots is provided by you in your writeup. Keep the writing to approximately 500-750 words. The final plots should be professional quality--something we could expect to see in a final report, thesis, etc.
 
 ## Components
 
 You will first want to describe your data and provide some summary of the relevant variables to describe what they are, etc. Be sure to include your source for the data. BE WISE in how you select your data.
 
-For each plot, you will provide three plots:
-1. **The final plot**. This is the plot that you selected to represent the data most effecitvely.
+For each data type, you will provide three plots:
+1. **The final plot**. This is the plot that you selected to represent the data most effectively.
 2. **The rough draft / initial plot**. This is the initial version of your final plot with all 'defaults' -- e.g. not at all customized.
 3. **The alternative plot**. This is a second plot option you tried before committing to the final form. For example, maybe you were debating between histograms, dot plots, and box plots. Include one version you tried.
 
