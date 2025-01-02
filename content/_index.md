@@ -48,7 +48,8 @@ You can see our topics below. See the assignments linked to the side -- if you h
 ## TA & Office Hours 
 TA: **Yangyu Wang** 
   * Email: wangyd@uchicago.edu
-  * OH TBD  <br>
+  * OH TBD  
+
 Prof: **Jean Clipperton** 
   * Email: clipperton@uchicago.edu
   * OH: 
