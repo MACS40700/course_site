@@ -40,7 +40,7 @@ class: middle, inverse
 
 ---
 
-## Announcements \& Misc
+## Announcements & Misc
 
 * Websites: if you want to play around with Jekyll
   * https://jekyllrb.com/docs/installation/macos/
@@ -481,31 +481,6 @@ BA_degrees_other %>%
 ```
 ]
 
----
-
-## Final formatting
-
-.tiny[
-```{r sparklines-final, fig.show = "hide"}
-BA_degrees_other %>%
-  pivot_wider(names_from = year, values_from = perc) %>%
-  mutate(ggplot = NA, .after = field) %>%
-  gt() %>%
-  text_transform(
-    locations = cells_body(columns = ggplot),
-    fn = function(x) {
-      map(
-        .x = BA_degrees_other_plots$plot, .f = ggplot_image,
-        height = px(15), aspect_ratio = 4  ) }  ) %>%
-  cols_width(ggplot ~ px(300)) %>%
-  cols_align(align = "left", columns = field) %>%
-  fmt_percent(columns = where(is.numeric), decimals = 0) %>%
-  cols_label(field = "Field", ggplot = "Trend") %>%
-  tab_spanner(  label = "Popular Bachelor's degrees over the years",
-    columns = everything()) %>%  tab_style( style = cell_text(weight = "bold"),
-    locations = cells_column_spanners() )
-```
-]
 
 ---
 
@@ -594,24 +569,27 @@ class: center, middle, inverse
 
 ## Let's get this party started: steps
 
-1) Download sample page repo: https://github.com/jmclip/jmclip.github.io
+1) Download sample page repo: https://github.com/jmclip/jmclip.github.io  
+
 2) Make new github repo (see next slide) and push updates
+
+
 3) Update at will :) 
   * compile Rmd to make new html files
-  * can linke to other pages in navbar
+  * can link to other pages in navbar
 
-
+4) BRING YOUR PATIENCE
 
 ---
 
 # Getting going with a simple github page
 
-cd to place
-gh repo create jmclip.github.io --public
-git init
-git branch -M main
-git remote add origin https://github.com/jmclip/jmclip.github.io.git
-git push -u origin main
+cd to place  
+gh repo create jmclip.github.io --public  
+git init 
+git branch -M main  
+git remote add origin https://github.com/jmclip/jmclip.github.io.git  
+git push -u origin main  
 
 
 ---
@@ -634,34 +612,65 @@ class: center, middle, inverse
 ### Jekyll: 
 LOTS of startup but TONS of flexibility!
 
-1) Download everything here: https://jekyllrb.com/docs/installation/macos/
+1) Download everything here: https://jekyllrb.com/docs/installation/macos/  
 2) Navigate to where you want to store the site: 
   * gem install bundler jekyll 
   * jekyll new my-awesome-site 
   * cd my-awesome-site 
   * bundle exec jekyll serve
 3) I suggest creating an R project to make your life easier
+4) Check on it:
+  * bundle exec jekyll serve --safe
+  * (visit the location given, e.g.: http://127.0.0.1:4000/)
 
 
 ---
+#### Jekyll: start it up, basic
+Follow: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll 
 
-#### Jekyll: start it up
+cd to place 
+gh repo create jekyll --public 
+git init 
+mkdir docs 
+cd docs 
+git checkout --orphan gh-pages 
+jekyll new --skip-bundle . **(DO THIS EXACTLY)**   
+(items 9 and 10 in items) 
+bundle install  
+(add to gitignore (open .gitignore)) 
+git remote add origin git remote add origin https://github.com/jmclip/jekyll 
+git add, commit, push 
 
-cd to place
-gh repo create jmclip-jekyll --public
-git init
-git branch -M main
-git remote add origin https://github.com/jmclip/jmclip-jekyll
-git push -u origin main
+  
+---
+#### Jekyll: you can change the themes
+
+* I suggest choosing a theme FIRST
+* THIS CAN BE TIME-CONSUMING
+* Test on machine locally 
+* BUDGET 4X time you think it will take..
+
+https://pages.github.com/themes/ 
+
+  
+---
+### Jekyll:Netlify
+
+cd to place 
+gh repo create jmclip-jekyll --public  
+git init  
+git branch -M main  
+
+git remote add origin https://github.com/jmclip/jmclip-jekyll  
+git push -u origin main  
   
 
---- 
-
+---
 # Hosting: Netlify
 
-1) link to github
-2) may need to resolve connections
-3) I have NEVER had this work seamlessly the first time....
+1) link to github  
+2) may need to resolve connections  
+3) I have NEVER had this work seamlessly the first time....  
 
 ---
 
@@ -671,5 +680,14 @@ git push -u origin main
 * Really nice overall
 * BUT TOTAL PAIN and pretty clunky
 
+
+---
+
+### Troubleshooting:
+
+* Ruby and writable issues: sudo chmod go-w
+* Ruby and version on machine (MAC): brew install ruby OR have ruby in different place
+  * export PATH="/usr/local/bin:$PATH"
+* Ruby and version on Netlify: 
 
 
