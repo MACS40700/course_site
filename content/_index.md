@@ -46,8 +46,15 @@ You can see our topics below. See the assignments linked to the side -- if you h
 
 
 ## TA & Office Hours 
-TA: **Yangyu Wang**  wangyd@uchicago.edu, OH TBD  <br>
-Prof: **Jean Clipperton** clipperton@uchicago.edu, OH Mondays 12-2pm (in person or zoom) and Wednesdays 12pm-1pm (Weds is zoom only). [Please sign up here for OH w/Prof Clipperton](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
+TA: **Yangyu Wang** 
+  * Email: wangyd@uchicago.edu
+  * OH TBD  <br>
+Prof: **Jean Clipperton** 
+  * Email: clipperton@uchicago.edu
+  * OH: 
+    * Mondays 12-2pm (in person or zoom)  
+    * Wednesdays 12pm-1pm (Weds is zoom only)
+    * [Please sign up here for OH w/Prof Clipperton](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
 
 ## Syllabus and policies
 See the [course syllabus in the side menu](/course-syllabus/)
