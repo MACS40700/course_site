@@ -1,7 +1,7 @@
 ---
 title: ''
 draft: false
-date: "2025-01-02T13:30:00-06:00"
+date: "2025-01-01T03:30:00-06:00"
 toc: true
 type: book
 weight: 1
@@ -12,7 +12,7 @@ weight: 1
 # Schedule 
 You can see our tentative topics below. 
 
-| Date &emsp; &emsp;  | Topic (Slides linked)   | Readings (complete BEFORE class)  |   Assignment      | 
+| Date &emsp; &emsp;  | Topic (Slides linked)   | Readings <br> (complete BEFORE class)  |   Assignment      | 
 | ------ | ----------------------------- | --------------- | --------------- | 
 | 7-Jan  | [Welcome + Grammar of Graphics](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg), [EG: Ch 13](https://ggplot2-book.org/mastery.html)  |
 | 9-Jan  | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) | [A1: analyze (due 13-Jan)](/assignments/assign1/)   |     
