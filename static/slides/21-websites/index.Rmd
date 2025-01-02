@@ -668,9 +668,10 @@ git push -u origin main
 ---
 # Hosting: Netlify
 
-1) link to github  
-2) may need to resolve connections  
-3) I have NEVER had this work seamlessly the first time....  
+1) Link to github  
+2) May need to resolve connections  
+3) I have NEVER had this work seamlessly the *first* time....  
+4) Allows more options than github pages
 
 ---
 
@@ -678,7 +679,8 @@ git push -u origin main
 
 * Pretty sophisticated options for design
 * Really nice overall
-* BUT TOTAL PAIN and pretty clunky
+* BUT TOTAL PAIN and pretty clunky to work with
+* Once you get it up and going, you don't have to mess with it much
 
 
 ---
@@ -690,4 +692,16 @@ git push -u origin main
   * export PATH="/usr/local/bin:$PATH"
 * Ruby and version on Netlify: 
 
+
+---
+
+# Recap: Tables and websites
+
+* Tables: 
+  * Think about overall structure
+  * Consider screen readers
+* Websites: lots of pre-planning can save you effort later
+  * Consider structure and desired format
+  * For this class, probably just github pages
+  * If Jekyll, probably host on netlify or elsewhere
 
