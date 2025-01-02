@@ -12,7 +12,7 @@ weight: 1
 # Schedule 
 You can see our tentative topics below. 
 
-| Date &emsp; &emsp; <br> | Topic (Slides linked) &emsp; &emsp;   <br> | Readings <br> (complete BEFORE class)  |   Assignment  <br>    | 
+| Date &emsp; &emsp; <br> | Topic (Slides linked) <br> | Readings <br> (complete BEFORE class)  |   Assignment  <br>    | 
 | ------ | ----------------------------- | --------------- | --------------- | 
 | 7-Jan  | [Welcome + Grammar of Graphics](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg), [EG: Ch 13](https://ggplot2-book.org/mastery.html)  |
 | 9-Jan  | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) | [A1: analyze (due 13-Jan)](/assignments/assign1/)   |     
@@ -21,7 +21,7 @@ You can see our tentative topics below.
 | 21-Jan | [coordinate systems + faceting](slides/06-coordinates-facets)  &nbsp; &nbsp; | [EG:16](https://ggplot2-book.org/coord.html) and [EG:17](https://ggplot2-book.org/facet.html)|
 | 23-Jan | [optimizing color spaces ](slides/07-optimizing-color-spaces)       |  [DV: Ch 4](https://clauswilke.com/dataviz/color-basics.html) *Opt* [DIY palette](https://blog.datawrapper.de/colors-for-data-vis-style-guides/)       | [A2: EDA (due 23-Jan)](/assignments/assign2/) |
 | 28-Jan | [Plotly](slides/10-plotly) | [Plotly overview](https://plotly.com/ggplot2/)| | 
-| 30-Jan | [themes + axes + annotation](slides/08-themes-axes-annotations)  |[EG: Ch 18](https://ggplot2-book.org/polishing.html) and [EG: Ch 8](https://ggplot2-book.org/annotations.html) and [DV: Ch 22](https://clauswilke.com/dataviz/figure-titles-captions.html) &emsp; &nbsp; |[A3: Plotly (due 30-Jan)](/assignments/assign3/)   |
+| 30-Jan | [themes + axes + annotation](slides/08-themes-axes-annotations)  |[EG: Ch 18](https://ggplot2-book.org/polishing.html) and [EG: Ch 8](https://ggplot2-book.org/annotations.html) and [DV: Ch 22](https://clauswilke.com/dataviz/figure-titles-captions.html) &emsp; &nbsp; |[A3: Plotly (due 3-Feb)](/assignments/assign3/)   |
 | 4-Feb  | [Tableau + Dashboards](slides/20-tableau) | [download Tableau public](https://www.tableau.com/products/public/download)| 
 | 6-Feb  | [visualizing spatial data I](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| |
 | 11-Feb | [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) & [Leaflet](https://rstudio.github.io/leaflet/)|            |
