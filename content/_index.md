@@ -12,7 +12,7 @@ weight: 1
 # Schedule 
 You can see our tentative topics below. 
 
-| Date &emsp; &emsp;  | Topic (Slides linked)   | Readings <br> (complete BEFORE class)  |   Assignment      | 
+| Date &emsp; &emsp; <br> | Topic (Slides linked) &emsp; &emsp;   <br> | Readings <br> (complete BEFORE class)  |   Assignment  <br>    | 
 | ------ | ----------------------------- | --------------- | --------------- | 
 | 7-Jan  | [Welcome + Grammar of Graphics](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg), [EG: Ch 13](https://ggplot2-book.org/mastery.html)  |
 | 9-Jan  | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) | [A1: analyze (due 13-Jan)](/assignments/assign1/)   |     
@@ -47,7 +47,7 @@ You can see our tentative topics below.
 
 ## TA & Office Hours 
 TA: **Yangyu Wang**  wangyd@uchicago.edu, OH TBD  <br>
-Prof: **Jean Clipperton** OH Mondays 2-3pm (in person or zoom) and Tuesdays 9am-10am. [Please sign up here for OH w/Prof Clipperton](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
+Prof: **Jean Clipperton** clipperton@uchicago.edu, OH Mondays 12-2pm (in person or zoom) and Wednesdays 12pm-1pm (Weds is zoom only). [Please sign up here for OH w/Prof Clipperton](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
 
 # Syllabus and policies
 See the [course syllabus in the side menu](/course-syllabus/)
