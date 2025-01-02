@@ -1,7 +1,7 @@
 ---
 title: ''
 draft: false
-date: "2024-12-10T13:30:00-06:00"
+date: "2025-1-2T13:30:00-06:00"
 toc: true
 type: book
 weight: 1
@@ -26,13 +26,13 @@ You can see our tentative topics below.
 | 6-Feb  | [visualizing spatial data I](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| |
 | 11-Feb | [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) & [Leaflet](https://rstudio.github.io/leaflet/)|            |
 | 13-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          [A4: Tableau (due 13-Feb)](/assignments/assign4/)  |
-| 18-Feb | [animation ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  [final proposal (due 27-Feb)](https://canvas.uchicago.edu/courses/53144/assignments/635268)  |
+| 18-Feb | [animation ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  [Final Proposal (due 27-Feb)](https://canvas.uchicago.edu/courses/53144/assignments/635268)  |
 | 20-Feb | [Websites and tables](slides/21-websites) |[download jekyll if desired](https://macs40700.netlify.app/slides/21-websites/#51) | |
 | 25-Feb | [Shiny, part I](slides/15-interactive-reporting)  | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
 | 27-Feb |  [Shiny, part II](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) |   [A5: Shiny (due 6-Mar)](/assignments/assign5/)      |
 | 4-Mar |  [Shiny, part II](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
 | 6-Mar | [lightning talks: preliminary results + feedback](slides/19-last-day) ||      project progress report (will submit in class)|
-| 12-Mar | Final project due             |  | [final project](/assignments/final-project/)|
+| 12-Mar | Final project due             |  | [Final Project (due 12-Mar)](/assignments/final-project/)|
 
 ### Readings:
 * *The Truthful Art* by Alberto Cairo (abbreviated TA)
