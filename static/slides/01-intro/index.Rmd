@@ -302,6 +302,16 @@ Some brief advice about selecting your account names (particularly for GitHub),
 - Personal questions (e.g., extensions, illnesses, specific code, etc.) should be via private message
 
 
+--- 
+# Workflow
+
+Here will be your workflow for class:
+
+* Start on on the website: read over the assignment description.
+* Click the github link to accept the assignment: this will create a repo with the proper format/setup for the assignment. The permissions are set so that it will be private to all except you and me/the TA
+* Connect to the github repo and push your work to it
+* When complete, go to Canvas, submit the github repo link. (we can't push grades from github to Canvas, unfortunately)
+
 ---
 
 class: center middle inverse
@@ -1784,3 +1794,18 @@ class: middle, inverse
 - Complete the [reading](https://macs40700.netlify.app/)
 
 - Make sure you have working installations of R and RStudio
+
+--- 
+
+---
+
+# Reminder: Workflow
+
+Here will be your workflow for class:
+
+* Start on on the website: read over the assignment description.
+* Click the github link to accept the assignment: this will create a repo with the proper format/setup for the assignment. The permissions are set so that it will be private to all except you and me/the TA
+* Connect to the github repo and push your work to it
+* When complete, go to Canvas, submit the github repo link. (we can't push grades from github to Canvas, unfortunately)
+
+
