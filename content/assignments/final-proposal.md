@@ -13,12 +13,13 @@ This is a check-point for your final project. The final project needs to contain
 
 You have two options for this assignment and only need to submit one of the following:
 
-1.  Submit your assignment 3 writeup with the following information added in a new section: (ideally you are building on a previous work, but you can choose to focus on a brief summary).
+1.  Submit your assignment 2 writeup with the following information added in a new section: (ideally you are building on a previous work, but you can choose to focus on a brief summary).
 
-What feedback you received
-How you will incorporate that feedback
-How you will expand the project for the final -- include a sketch or prototype of your expansion.
-OR
+-   What feedback you received
+-   How you will incorporate that feedback
+-   How you will expand the project for the final -- include a sketch or prototype of your expansion.
+
+**OR**
 
 1.  A new project proposal. For this, complete the assignment 2 objectives (providing one graph and at least THREE prototypes). The same criteria apply as above (must have animation or interactive element). The project scope needs to be of sufficient size as well.
 

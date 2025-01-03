@@ -14,15 +14,15 @@ The purpose of the final project is to apply principles of visual design and tec
 -   A research paper with a substantial visualization component
 -   A web site with a substantial (static) visualization component
 -   An interactive web page built using [R Markdown](http://rmarkdown.rstudio.com/), [Shiny](https://shiny.rstudio.com/), or [Tableau](https://public.tableau.com/).
- 
+    <!-- [D3](https://d3js.org/) -->
 
-Expectations are high for this project: you need a clear question you are asking and graphics that address it in a meaningful way. The prompt is open-ended so that you can find something that is relevant to your interests. Of the class topics we cover, you should have plots that have a more challenging aspect to them, such as interactivity, geographic location, networks, in-depth analysis of some kind, or some other in-depth exploration of your data.
+Expectations are high for this project: you need a clear question you are asking and graphics that address it in a meaningful way. The prompt is open-ended so that you can find something that is relevant to your interests. Of the class topics we cover, you should have plots that have a more challenging aspect to them, such as geographic location, networks, in-depth analysis of some kind, or some other in-depth exploration of your data. Regardless of how you incorporate graphics, there must be at least one plot that is interactive in some way.
 
 We are more than happy to talk at any point about your project and your data!
 
 ## Deadlines
 
-By the end of the fifth week, students should select a topic and submit a proposal (see Project Proposal). <!--Students will present their projects to the class on **Wednesday, March 31**. Projects must be fully complete and submitted for grading by **Sunday, June 4 at 11:59 pm**. -->
+The second assignment contains an assignment EDA and you will submit a proposal prior to the final project. <!--Students will present their projects to the class on **Wednesday, March 31**. Projects must be fully complete and submitted for grading by **Sunday, June 4 at 11:59 pm**. -->
 
 ## Assessment
 
