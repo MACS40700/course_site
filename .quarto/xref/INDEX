@@ -40,5 +40,26 @@
   },
   "public/notes/basics-of-graphics/index.qmd": {
     "index.md": "3b15abb8"
+  },
+  "public/old_assignments/final-project.qmd": {
+    "final-project.md": "30c1fa44"
+  },
+  "public/old/old_assignments/final-project.qmd": {
+    "final-project.md": "54ccd52f"
+  },
+  "content/assignments/assign3_port.qmd": {
+    "assign3_port.md": "5e1be29c"
+  },
+  "content/assignments/assign6.qmd": {
+    "assign6.md": "660c7cf1"
+  },
+  "public/assignments/assign3_port.qmd": {
+    "assign3_port.md": "74b46871"
+  },
+  "public/assignments/assign6.qmd": {
+    "assign6.md": "b576238b"
+  },
+  "content/assignments/final-proposal.qmd": {
+    "final-proposal.md": "2443db84"
   }
 }
