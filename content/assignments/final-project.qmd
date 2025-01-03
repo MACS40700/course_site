@@ -9,15 +9,20 @@ summary: "Final project details and expectations"
 
 # Final project
 
-The purpose of the final project is to apply principles of visual design and technical skills rendering graphics in R and/or D3 to a topic of your own substantive interests. Student may work individually or in teams of up to three. Students should identify early in the term a research question or topic of substantive importance to themselves, then use the skills developed in this course to design and present a visualization which explains the results. The form of this deliverable can take any number of forms:
+The purpose of the final project is to apply principles of visual design and technical skills rendering graphics to a topic of your own substantive interests. Student may work individually or in teams of up to three. Students should identify early in the term a research question or topic of substantive importance to themselves, then use the skills developed in this course to design and present a visualization which explains the results. The form of this deliverable can take any number of forms:
 
 * A research paper with a substantial visualization component
 * A web site with a substantial (static) visualization component
-* An interactive web page built using [R Markdown](http://rmarkdown.rstudio.com/), [Shiny](https://shiny.rstudio.com/), or [D3](https://d3js.org/)
+* An interactive web page built using [R Markdown](http://rmarkdown.rstudio.com/), [Shiny](https://shiny.rstudio.com/), or [Tableau](https://public.tableau.com/).
+<!-- [D3](https://d3js.org/) -->
+
+Expectations are high for this project: you need a clear question you are asking and graphics that address it in a meaningful way. The prompt is open-ended so that you can find something that is relevant to your interests. Of the class topics we cover, you should have plots that have a more challenging aspect to them, such as interactivity, geographic location, networks, in-depth analysis of some kind, or some other in-depth exploration of your data. 
+
+We are more than happy to talk at any point about your project and your data!
 
 ## Deadlines
 
-By the end of the fifth week, students should select a topic and submit a proposal (see Assignment 3). <!--Students will present their projects to the class on **Wednesday, March 31**. Projects must be fully complete and submitted for grading by **Sunday, June 4 at 11:59 pm**. -->
+By the end of the fifth week, students should select a topic and submit a proposal (see Project Proposal). <!--Students will present their projects to the class on **Wednesday, March 31**. Projects must be fully complete and submitted for grading by **Sunday, June 4 at 11:59 pm**. -->
 
 ## Assessment
 
@@ -37,7 +42,7 @@ Submit final deliverables to your GitHub repo by **March 5 at 11:59 pm**.
 The final deliverables include:
 
 * **Visualization**: the final product of your project. This could be a Markdown/HTML/PDF file of your research paper, a link to a Shiny app or web page hosting your visualization, etc. If this is located outside of the GitHub repository, make sure to include a link in your `README.md` file.
-* **Paper**: a 4-6 page paper to supplement your visualization explaining your major design choices. Expected components are:
+* **Paper**: a 4-6 page paper to supplement your visualization explaining your major design choices. This can be a formal paper or can be incorporated into your webpages in some way. Expected components are:
   * **Introduction** - an explanation of the problem/research question and the motivation for solving it.
   * **Methods** - a detailed explanation of the visualization techniques you employed to solve the problem/answer the question.
   * **Results/discussion** - what has the audience learned from your work? How is the visualization truthful, functional, beautiful, insightful, and/or enlightening?
