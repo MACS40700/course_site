@@ -1,5 +1,5 @@
 ---
-date: "2022-09-26T00:00:00-05:00"
+date: "2025-01-07T00:00:00-05:00"
 draft: false
 weight: 10
 title: "Start here: Software Options"
@@ -30,8 +30,8 @@ I encourage students to use R on their machines for this course as we are presup
 If you want to avoid installing anything on your computer and access R and RStudio through your web browser, follow these instructions. Make sure to follow them in the provided order:
 
 * R
-    * [Why R?](/setup/what-is-r/)
-    * [Accessing RStudio Workbench](/setup/r-server/)
+    * [Why R?](/setup/what-is-r/) 
+    
 * Git
     * [What is Git?](/setup/what-is-git/)
     * [Configure Git](/setup/git-configure/)

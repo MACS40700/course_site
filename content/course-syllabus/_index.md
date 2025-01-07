@@ -59,7 +59,7 @@ Additional readings will be assigned as necessary and will either be free electr
 ## Assignments / grading
 You can see our assignments listed out above with their respective deadlines. Generally speaking, you can expect the assignments and deadlines to be constant. 
 
-* Each assignment is graded along a check / check-plus / check-minus with most assignments getting a 'check', this includes the final assignment. 
+* Each assignment is largely graded along a check / check-plus / check-minus with most assignments getting a 'check', this includes the final assignment. 
 * Getting all checks is sufficient for a B+ in the course. 
 * A check-plus on the final is required for an A- in the course. 
 * Distinctions between and A and A- come from overall quality of work (at least two homework assignments at the check-plus level in addition to the final exam), and general engagement in the course. 
