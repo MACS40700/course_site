@@ -45,7 +45,7 @@ Class sessions are a mix of lecture, demonstration, and live coding. It is essen
 R - easiest approach is to select a pre-compiled binary appropriate for your operating system.
 RStudio IDE - this is a powerful user interface for programming in R. You could use base R, but you would regret it.
 Git - Git is a version control system which is used to manage projects and track changes in computer files. Once installed, it can be integrated into RStudio to manage your course assignments and other projects.
-Comprehensive instructions for downloading and setting up this software can be found here.
+Comprehensive instructions for downloading and [setting up this software can be found here](/setup).
 
 ### Textbooks
 We will draw from a variety of sources in this class. Primarily we will utilize the following textbooks. All are available electronically via open-source license.
