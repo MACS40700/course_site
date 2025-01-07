@@ -25,18 +25,8 @@ I encourage students to use R on their machines for this course as we are presup
 
 {{% /callout %}}
 
-## Option 1 - use RStudio Workbench
 
-If you want to avoid installing anything on your computer and access R and RStudio through your web browser, follow these instructions. Make sure to follow them in the provided order:
-
-* R
-    * [Why R?](/setup/what-is-r/) 
-    
-* Git
-    * [What is Git?](/setup/what-is-git/)
-    * [Configure Git](/setup/git-configure/)
-
-## Option 2 - install the software locally
+## Installing R on your machine 
 
 If you want to run R and R studio on your own computer, follow these instructions, in the provided order:
 
