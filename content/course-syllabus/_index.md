@@ -1,5 +1,5 @@
 ---
-date: "2023-11/20T00:00:00-05:00"
+date: "2025-01-07T00:00:00-05:00"
 draft: false
 title: "Syllabus"
 toc: true
@@ -50,9 +50,10 @@ Comprehensive instructions for downloading and setting up this software can be f
 ### Textbooks
 We will draw from a variety of sources in this class. Primarily we will utilize the following textbooks. All are available electronically via open-source license.
 
-Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. ggplot2: Elegant Graphics for Data Analysis. (in progress) 3rd edition. Springer, 2021.
-Claus O. Wilke. Fundamentals of Data Visualization. O’Reilly Media, 2019.
-Kieran Healy. Data Visualization: A Practical Introduction. Princeton University Press, 2018.
+* Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen. ggplot2: Elegant Graphics for Data Analysis. (in progress) 3rd edition. Springer, 2021.
+* Claus O. Wilke. Fundamentals of Data Visualization. O’Reilly Media, 2019.
+* Kieran Healy. Data Visualization: A Practical Introduction. Princeton University Press, 2018.
+
 Additional readings will be assigned as necessary and will either be free electronically or on electronic course reserve via the UChicago library. All course reserves can be accessed through the course Canvas site.
 
 ## Assignments / grading
