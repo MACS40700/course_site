@@ -46,7 +46,7 @@ style_xaringan(
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
-#knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
 
 # enable panelsets and default theme
 xaringanExtra::use_panelset()
@@ -227,7 +227,7 @@ class: middle, inverse
 
 - Unless explicitly stated otherwise, this course's policy is that you may make use of any online resources (e.g. RStudio Community, StackOverflow, etc.) but you must explicitly cite where you obtained any code you directly use or use as inspiration in your solution(s).
 
-- Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism, regardless of source
+- Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism, regardless of its source
 
 - AI: if you use AI, you need to include a statement about what asked, your original code, and the issues you fixed / resolved. 
 
@@ -303,6 +303,9 @@ Some brief advice about selecting your account names (particularly for GitHub),
 
 
 --- 
+
+---
+
 # Workflow
 
 Here will be your workflow for class:
@@ -350,9 +353,9 @@ cor(my_data$x, my_data$y)
 
 class: center
 
-# oh no
+# oh no: all these data have the same summary stats!
 
-```{r datasaurus-graph, echo = FALSE, warning = FALSE}
+```{r datasaurus-graph, echo=FALSE, warning=FALSE}
 ggplot(datasaurus_dozen, aes(x = x, y = y))+
   geom_point() +
   coord_fixed() +
@@ -379,7 +382,7 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 
 .center[
 
-```{r fig.cap = "Pattern processing"}
+```{r echo=FALSE, fig.cap="Pattern processing"}
 include_graphics(path = "images/01/pattern-processing.png")
 ```
 
@@ -401,7 +404,7 @@ include_graphics(path = "images/01/pattern-processing.png")
 
 .pull-left[
 
-```{r out.width = "80%"}
+```{r echo=FALSE, out.width="80%"}
 include_graphics(path = "images/01/pareidolia-1.jpg")
 ```
 
@@ -409,7 +412,7 @@ include_graphics(path = "images/01/pareidolia-1.jpg")
 
 .pull-right[
 
-```{r out.width = "80%"}
+```{r echo=FALSE, out.width="80%"}
 include_graphics(path = "images/01/pareidolia-3.jpg")
 ```
 
@@ -421,7 +424,7 @@ include_graphics(path = "images/01/pareidolia-3.jpg")
 
 .pull-left[
 
-```{r out.width = "80%", fig.alt = "Amount donated table"}
+```{r echo=FALSE, fig.alt="Amount donated table", out.width="80%"}
 include_graphics(path = "images/01/amount-diffs-table.png")
 ```
 
@@ -431,7 +434,7 @@ include_graphics(path = "images/01/amount-diffs-table.png")
 
 .pull-right[
 
-```{r out.width = "80%", fig.alt = "Amount donated graph"}
+```{r echo=FALSE, fig.alt="Amount donated graph", out.width="80%"}
 include_graphics(path = "images/01/amount-diffs.png")
 ```
 
@@ -511,7 +514,7 @@ Alberto Cairo, *The Truthful Art*:
 
 .right-column[
 
-```{r out.width = "75%"}
+```{r echo=FALSE, out.width="75%"}
 include_graphics(path = "images/01/pie-genus.png")
 ```
 
@@ -857,7 +860,7 @@ glimpse(penguins)
 ]
 .panel[.panel-name[Code]
 
-```{r penguins, fig.show = "hide"}
+```{r penguins, fig.show = "hide", echo = TRUE}
 ggplot(data = penguins, 
        mapping = aes(x = bill_depth_mm, y = bill_length_mm,
                      color = species)) +
@@ -883,7 +886,7 @@ class: middle, inverse
 ]
 
 .pull-left[
-```{r penguins-0, fig.show = "hide", warning = FALSE}
+```{r penguins-0, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins) #<<  
 ```
 ]
@@ -900,7 +903,7 @@ ggplot(data = penguins) #<<
 ]
 
 .pull-left[
-```{r penguins-1, fig.show = "hide", warning = FALSE}
+```{r penguins-1, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm)) #<<  
 ```
@@ -919,7 +922,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-2, fig.show = "hide", warning = FALSE}
+```{r penguins-2, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm)) #<< 
@@ -940,7 +943,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-3, fig.show = "hide", warning = FALSE}
+```{r penguins-3, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm)) + 
@@ -963,7 +966,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-4, fig.show = "hide", warning = FALSE}
+```{r penguins-4, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -988,7 +991,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-5, fig.show = "hide", warning = FALSE}
+```{r penguins-5, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1015,7 +1018,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-6, fig.show = "hide", warning = FALSE}
+```{r penguins-6, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1044,7 +1047,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-7, fig.show = "hide", warning = FALSE}
+```{r penguins-7, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1075,7 +1078,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-8, fig.show = "hide", warning = FALSE}
+```{r penguins-8, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1108,7 +1111,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-9, fig.show = "hide", warning = FALSE}
+```{r penguins-9, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1143,7 +1146,7 @@ ggplot(data = penguins,
 ]
 
 .pull-left[
-```{r penguins-10, fig.show = "hide", warning = FALSE}
+```{r penguins-10, fig.show = "hide", warning = FALSE, echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1171,7 +1174,7 @@ ggplot(data = penguins,
 ]
 .panel[.panel-name[Code]
 
-```{r penguins-10-nohighlight, fig.show = "hide"}
+```{r penguins-10-nohighlight, fig.show = "hide", echo = TRUE}
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -1226,7 +1229,7 @@ ggplot(data = penguins,
 ```
 ]
 .pull-right[
-```{r not-named-args, eval = FALSE}
+```{r not-named-args, eval = FALSE, echo = TRUE}
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm,
@@ -1416,7 +1419,7 @@ class: middle, inverse
 ]
 .panel[.panel-name[Code]
 
-```{r facet, fig.show = "hide"}
+```{r facet, fig.show = "hide", echo = TRUE}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
   facet_grid(rows = vars(species), cols = vars(island)) #<< 
@@ -1496,7 +1499,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ]
 .panel[.panel-name[Code]
 
-```{r facet-color-legend, fig.show = "hide"}
+```{r facet-color-legend, fig.show = "hide", echo = TRUE}
 ggplot(
   penguins, 
   aes(x = bill_depth_mm, 
@@ -1520,7 +1523,7 @@ ggplot(
 ]
 .panel[.panel-name[Code]
 
-```{r facet-color-no-legend, fig.show = "hide"}
+```{r facet-color-no-legend, fig.show = "hide", echo = TRUE}
 ggplot(
   penguins, 
   aes(x = bill_depth_mm, 
@@ -1722,7 +1725,7 @@ staff_long %>%
 
 .panel[.panel-name[Code]
 
-```{r ref.label = "instructor-lines", fig.show = "hide"}
+```{r ref.label = "instructor-lines", fig.show = "hide", echo = TRUE}
 ```
 
 ]]

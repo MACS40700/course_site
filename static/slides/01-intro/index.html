@@ -166,7 +166,7 @@ class: middle, inverse
 
 - Unless explicitly stated otherwise, this course's policy is that you may make use of any online resources (e.g. RStudio Community, StackOverflow, etc.) but you must explicitly cite where you obtained any code you directly use or use as inspiration in your solution(s).
 
-- Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism, regardless of source
+- Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism, regardless of its source
 
 - AI: if you use AI, you need to include a statement about what asked, your original code, and the issues you fixed / resolved. 
 
@@ -242,6 +242,9 @@ Some brief advice about selecting your account names (particularly for GitHub),
 
 
 --- 
+
+---
+
 # Workflow
 
 Here will be your workflow for class:
@@ -321,12 +324,9 @@ cor(my_data$x, my_data$y)
 
 class: center
 
-# oh no
+# oh no: all these data have the same summary stats!
 
-
-```
-## NULL
-```
+&lt;img src="index_files/figure-html/datasaurus-graph-1.gif" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -339,11 +339,6 @@ class: center
 # Humans love patterns
 
 .center[
-
-
-``` r
-include_graphics(path = "images/01/pattern-processing.png")
-```
 
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="images/01/pattern-processing.png" alt="Pattern processing" width="80%" /&gt;
@@ -368,21 +363,11 @@ include_graphics(path = "images/01/pattern-processing.png")
 
 .pull-left[
 
-
-``` r
-include_graphics(path = "images/01/pareidolia-1.jpg")
-```
-
 &lt;img src="images/01/pareidolia-1.jpg" width="80%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 .pull-right[
-
-
-``` r
-include_graphics(path = "images/01/pareidolia-3.jpg")
-```
 
 &lt;img src="images/01/pareidolia-3.jpg" width="80%" style="display: block; margin: auto;" /&gt;
 
@@ -394,11 +379,6 @@ include_graphics(path = "images/01/pareidolia-3.jpg")
 
 .pull-left[
 
-
-``` r
-include_graphics(path = "images/01/amount-diffs-table.png")
-```
-
 &lt;img src="images/01/amount-diffs-table.png" alt="Amount donated table" width="80%" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -406,11 +386,6 @@ include_graphics(path = "images/01/amount-diffs-table.png")
 --
 
 .pull-right[
-
-
-``` r
-include_graphics(path = "images/01/amount-diffs.png")
-```
 
 &lt;img src="images/01/amount-diffs.png" alt="Amount donated graph" width="80%" style="display: block; margin: auto;" /&gt;
 
@@ -490,11 +465,6 @@ Alberto Cairo, *The Truthful Art*:
 
 .right-column[
 
-
-``` r
-include_graphics(path = "images/01/pie-genus.png")
-```
-
 &lt;img src="images/01/pie-genus.png" width="75%" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -522,11 +492,6 @@ include_graphics(path = "images/01/pie-genus.png")
 
 .right-column[
 
-
-``` r
-include_graphics(path = "images/01/changing-face-of-america.png")
-```
-
 &lt;img src="images/01/changing-face-of-america.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -553,11 +518,6 @@ include_graphics(path = "images/01/changing-face-of-america.png")
 
 .right-column[
 
-
-``` r
-include_graphics(path = "images/death_penalty.jpg")
-```
-
 &lt;img src="images/death_penalty.jpg" width="60%" style="display: block; margin: auto;" /&gt;
 
 ]
@@ -576,51 +536,6 @@ include_graphics(path = "images/death_penalty.jpg")
 ]
 
 .right-column[
-
-
-``` r
-high_mean &lt;- 12
-high_sd &lt;- 4
-flat_mean &lt;- 35
-flat_sd &lt;- 12
-
-ggplot(tibble(x = c(0, 70)), aes(x = x)) +
-  stat_function(geom = "area", fun = dnorm, n = 1000, 
-                args = list(mean = high_mean, sd = high_sd),
-                fill = "#FF4136", alpha = 0.8) +
-  stat_function(geom = "area", fun = dnorm, n = 1000, 
-                args = list(mean = flat_mean, sd = flat_sd),
-                fill = "#0074D9", alpha = 0.8) +
-  geom_hline(yintercept = dnorm(flat_mean, flat_mean, flat_sd), 
-             linetype = "61", color = "grey75") +
-  annotate(geom = "text", x = qnorm(0.5, high_mean, high_sd), 
-           y = dnorm(qnorm(0.5, high_mean, high_sd), high_mean, high_sd) / 2, 
-           label = "Without\nprotective\nmeasures", color = "white", size = 3,
-           family = "Fira Sans Condensed", fontface = "bold") +
-  annotate(geom = "text", x = qnorm(0.5, flat_mean, sd = flat_sd), 
-           y = dnorm(qnorm(0.5, flat_mean, sd = flat_sd), flat_mean, sd = flat_sd) / 2, 
-           label = "With protective\nmeasures", color = "white", size = 3,
-           family = "Fira Sans Condensed", fontface = "bold") +
-  annotate(geom = "text", x = 45, y = dnorm(flat_mean, flat_mean, sd = flat_sd), 
-           label = "Healthcare system capacity", vjust = -0.5, hjust = 0, size = 3,
-           family = "Fira Sans Condensed", fontface = "bold") +
-  labs(x = "Time since first case", 
-       y = "# of\ncases",
-       title = "Flatten the curve!", 
-       subtitle = "Slow down community spread by social distancing",
-       caption = "Adapted from the CDC and The Economist\nVisit flattenthecurve.com") +
-  scale_x_continuous(expand = c(0, 0)) +
-  scale_y_continuous(expand = c(0, 0)) +
-  theme_minimal(base_family = "Fira Sans Condensed Light") +
-  theme(panel.grid = element_blank(),
-        axis.line = element_line(color = "black"),
-        axis.text = element_blank(),
-        axis.title = element_text(family = "Fira Sans Condensed", face = "bold"),
-        axis.title.y = element_text(angle = 0, vjust = 0.5),
-        plot.title = element_text(family = "Fira Sans Condensed", face = "bold", size = rel(1.7)),
-        plot.subtitle = element_text(size = rel(1.2), color = "grey50"),
-        plot.caption = element_text(color = "grey50"))
-```
 
 &lt;img src="index_files/figure-html/flatten-the-curve-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
@@ -692,19 +607,10 @@ Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-gramm
 - Structure of the code for plots can be summarized as
 
 
-``` r
-ggplot(data = [dataset], 
-       mapping = aes(x = [x-variable], y = [y-variable])) +
-   geom_xxx() +
-   other options
-```
 
 - The ggplot2 package comes with the tidyverse
 
 
-``` r
-library(tidyverse)
-```
 
 - For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
 
@@ -726,27 +632,11 @@ class: middle, inverse
 ## Anscombe's quartet
 
 
-``` r
-library(Tmisc)
-quartet %&gt;% slice_head(n = 15)
-```
 
 ---
 
 ## Summary statistics for Anscombe's quartet
 
-
-``` r
-quartet %&gt;%
-  group_by(set) %&gt;%
-  summarise(
-    mean_x = mean(x), 
-    mean_y = mean(y),
-    sd_x = sd(x),
-    sd_y = sd(y),
-    r = cor(x, y)
-  )
-```
 
 ```
 ## # A tibble: 4 × 6
@@ -813,13 +703,6 @@ class: middle, inverse
 - Structure of the code for plots can be summarized as
 
 
-``` r
-ggplot(data = [dataset], 
-       mapping = aes(x = [x-variable], 
-                     y = [y-variable])) +
-   geom_xxx() +
-   other options
-```
 ]
 
 ---
@@ -832,11 +715,6 @@ Measurements for penguin species, island in Palmer Archipelago, size (flipper le
 &lt;img src="images/penguins.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
-
-``` r
-library(palmerpenguins)
-glimpse(penguins)
-```
 
 ```
 ## Rows: 344
@@ -1221,14 +1099,6 @@ You can omit the names of the first two arguments when building plots with `ggpl
 
 .pull-left[
 
-``` r
-ggplot(data = penguins,
-       mapping = aes(x = bill_depth_mm,
-                     y = bill_length_mm,
-                     color = species)) +
-  geom_point() +
-  scale_color_viridis_d()
-```
 ]
 .pull-right[
 
@@ -1265,14 +1135,6 @@ Commonly used characteristics of plotting characters that can be **mapped to a s
 
 .pull-left[
 
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm,
-*          color = species)) +
-  geom_point() +
-  scale_color_viridis_d()
-```
 ]
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -1286,15 +1148,6 @@ Mapped to a different variable than `color`
 
 .pull-left[
 
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm,
-           color = species,
-*          shape = island)) +
-  geom_point() +
-  scale_color_viridis_d()
-```
 ]
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -1308,15 +1161,6 @@ Mapped to same variable as `color`
 
 .pull-left[
 
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm,
-           color = species,
-*          shape = species)) +
-  geom_point() +
-  scale_color_viridis_d()
-```
 ]
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -1328,16 +1172,6 @@ ggplot(penguins,
 
 .pull-left[
 
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm,
-           color = species,
-           shape = species,
-*          size = body_mass_g)) +
-  geom_point() +
-  scale_color_viridis_d()
-```
 ]
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -1349,17 +1183,6 @@ ggplot(penguins,
 
 .pull-left[
 
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm,
-           color = species,
-           shape = species,
-           size = body_mass_g,
-*          alpha = flipper_length_mm)) +
-  geom_point() +
-  scale_color_viridis_d()
-```
 ]
 .pull-right[
 &lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="100%" style="display: block; margin: auto;" /&gt;
@@ -1370,28 +1193,10 @@ ggplot(penguins,
 .pull-left[
 **Mapping**
 
-
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm,
-*          size = body_mass_g,
-*          alpha = flipper_length_mm)) +
-  geom_point()
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 **Setting**
-
-
-``` r
-ggplot(penguins,
-       aes(x = bill_depth_mm,
-           y = bill_length_mm)) + 
-* geom_point(size = 2, alpha = 0.5)
-```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
@@ -1449,56 +1254,21 @@ But you should always label your plots!
 
 ---
 
-
-``` r
-ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
-  geom_point() +
-* facet_grid(rows = vars(species), cols = vars(sex))
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
-
-
-``` r
-ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
-  geom_point() +
-* facet_grid(rows = vars(sex), cols = vars(species))
-```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-
-``` r
-ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
-  geom_point() +
-* facet_wrap(facets = vars(species))
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-
-``` r
-ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
-  geom_point() +
-* facet_grid(rows = NULL, cols = vars(species))
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
-
-
-``` r
-ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
-  geom_point() +
-* facet_wrap(facets = vars(species), ncol = 2)
-```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
@@ -1583,11 +1353,6 @@ Each row in this dataset represents a faculty type, and the columns are the year
 The values are percentage of hires of that type of faculty for each year.
 
 
-``` r
-staff &lt;- read_csv("data/instructional-staff.csv")
-staff
-```
-
 ```
 ## # A tibble: 5 × 12
 ##   faculty_type    `1975` `1989` `1993` `1995` `1999` `2001` `2003` `2005` `2007`
@@ -1629,9 +1394,6 @@ class: center, middle
 ## `pivot_longer()`
 
 
-``` r
-pivot_longer(data, cols, names_to = "name", values_to = "value")
-```
 
 - The first argument is `data` as usual.
 - The second argument, `cols`, is where you specify which columns to pivot 
@@ -1644,17 +1406,6 @@ into longer format -- in this case all columns except for the `faculty_type`
 ## Pivot instructor data
 
 .small[
-
-``` r
-library(tidyverse)
-
-staff_long &lt;- staff %&gt;%
-  pivot_longer(cols = -faculty_type, names_to = "year", 
-               values_to = "percentage") %&gt;%
-  mutate(percentage = as.numeric(percentage))
-
-staff_long
-```
 
 ```
 ## # A tibble: 55 × 3
@@ -1681,26 +1432,12 @@ This doesn't look quite right, how would you fix it?
 ]
 
 .small[
-
-``` r
-staff_long %&gt;%
-  ggplot(aes(x = percentage, y = year, color = faculty_type)) +
-  geom_col(position = "dodge")
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-52-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
 .small[
-
-``` r
-staff_long %&gt;%
-  ggplot(aes(x = percentage, y = year, fill = faculty_type)) +
-  geom_col(position = "dodge")
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-53-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
@@ -1709,13 +1446,6 @@ staff_long %&gt;%
 ## Some improvement...
 
 .small[
-
-``` r
-staff_long %&gt;%
-  ggplot(aes(x = percentage, y = year, fill = faculty_type)) +
-  geom_col()
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-54-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 
@@ -1724,15 +1454,6 @@ staff_long %&gt;%
 ## More improvement
 
 .small[
-
-``` r
-staff_long %&gt;%
-  ggplot(aes(x = year, y = percentage, group = faculty_type, 
-             color = faculty_type)) +
-  geom_line() +
-  theme_minimal()
-```
-
 &lt;img src="index_files/figure-html/unnamed-chunk-55-1.png" width="85%" style="display: block; margin: auto;" /&gt;
 ]
 
