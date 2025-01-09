@@ -16,6 +16,35 @@ output:
 # generate CSS file
 library(xaringanthemer)
 #rcis::xaringan_theme()
+library(xaringanthemer)
+style_xaringan(
+  text_color = "#464A53",
+  header_color = "#586891",
+  background_color = "#F1F3F2",
+  title_slide_background_color = "#586891",
+  title_slide_text_color = "#F1F3F2",
+  table_row_even_background_color = "#B3A6A3",
+  link_color= "#586891",
+  text_bold_color= "#586891",
+  #code_highlight_color= rgba(255,255,0,0.5),
+  inverse_text_color= "#464A53",
+  inverse_background_color= "#B3A6A3",
+  inverse_header_color= "#464A53",
+  inverse_link_color= "#586891",
+  header_background_color= "#586891",
+  header_background_text_color= "#F1F3F2",
+  code_highlight_color = "#9ab7c4",
+  text_font_family = "Nunito",
+  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
+  header_font_google = google_font("Afacad"),
+  base_font_size= "28px",
+  text_font_size= "1rem",
+  code_font_size= "20px",
+  footnote_font_size = "0.75em",
+  code_inline_font_size= "1em",
+  header_h1_font_size= "2rem",
+  header_h2_font_size= "1.75rem",
+  header_h3_font_size= "1.5rem")
 
 source(here::here("R", "slide-opts.R"))
 
@@ -29,7 +58,20 @@ library(knitr)
 library(here)
 library(readr)
 library(countdown)
+library(tidyverse)
 ```
+
+
+# Agenda
+
+* Faceting
+* Data and graphic improvement
+* Data-to-ink
+* Working with data
+
+
+
+---
 
 class: middle, inverse
 
@@ -44,7 +86,7 @@ and other academic professionals.
 by the AAUP shows trends in instructional staff employees between 1975 
 and 2011, and contains an image very similar to the one given below.
 
-```{r echo=FALSE,out.width="80%",fig.align="center"}
+```{r echo=FALSE,out.width="70%",fig.align="center"}
 include_graphics("images/staff-employment.png")
 ```
 
@@ -53,11 +95,13 @@ include_graphics("images/staff-employment.png")
 Each row in this dataset represents a faculty type, and the columns are the years for which we have data. 
 The values are percentage of hires of that type of faculty for each year.
 
+Download file: https://github.com/MACS40700/class_ex/blob/main/instructional-staff.csv
+
 ```{r load-data-staff, message=FALSE}
 staff <- read_csv("data/instructional-staff.csv")
 staff
 ```
-
+.footnote[alt link: https://uchicago.box.com/s/eqk73widao74ysdd172ob81jac38ecjx]
 ---
 
 ## Recreate the visualization
@@ -76,6 +120,20 @@ class: center, middle
 
 ```{r echo = FALSE, out.width = "80%", fig.align = "center"}
 include_graphics("images/pivot.gif")
+```
+
+---
+
+# Brief aside: tidy data
+
+```{r echo = FALSE, out.width = "80%", fig.align = "center"}
+include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453")
+```
+---
+# Brief aside: tidy data
+
+```{r echo = FALSE, out.width = "80%", fig.align = "center"}
+include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/fc9b748b-db96-4ed4-aa23-f6e0ffc866ee_rw_1920.jpg?h=8fa394b572089354aa87b1d602b0f887")
 ```
 
 ---
@@ -123,16 +181,18 @@ staff_long
 This doesn't look quite right, how would you fix it?
 ]
 
-```{r out.width = "70%"}
+.small[
+```{r fig.height=1.5}
 staff_long %>%
   ggplot(aes(x = percentage, y = year, color = faculty_type)) +
   geom_col(position = "dodge")
 ```
+]
 
 ---
 
 .small[
-```{r fig.height=2}
+```{r fig.height=1.5}
 staff_long %>%
   ggplot(aes(x = percentage, y = year, fill = faculty_type)) +
   geom_col(position = "dodge")
@@ -156,7 +216,7 @@ staff_long %>%
 ## More improvement
 
 .small[
-```{r out.width = "100%", fig.asp = 0.4, fig.width = 7}
+```{r out.width = "85%", fig.asp = 0.4, fig.width = 7}
 staff_long %>%
   ggplot(aes(x = year, y = percentage, group = faculty_type, 
              color = faculty_type)) +
@@ -194,22 +254,22 @@ include_graphics("images/sketch.png")
 library(scales)
 
 staff_long %>%
-  mutate( #<<
-    part_time = if_else(faculty_type == "Part-Time Faculty", #<<
-                        "Part-Time Faculty", "Other Faculty"), #<<
-    year = as.numeric(year) #<<
-    ) %>% #<<
+  mutate( #<< 
+    part_time = if_else(faculty_type == "Part-Time Faculty", #<< 
+                        "Part-Time Faculty", "Other Faculty"), #<< 
+    year = as.numeric(year) #<< 
+    ) %>% #<< 
   ggplot(aes(x = year, y = percentage/100, group = faculty_type, 
              color = part_time)) +
   geom_line() +
-  scale_color_manual(values = c("gray", "red")) + #<<
-  scale_y_continuous(labels = label_percent(accuracy = 1)) + #<<
+  scale_color_manual(values = c("gray", "red")) + #<< 
+  scale_y_continuous(labels = label_percent(accuracy = 1)) + #<< 
   theme_minimal() +
   labs(
     title = "Instructional staff employment trends",
     x = "Year", y = "Percentage", color = NULL
   ) +
-  theme(legend.position = "bottom") #<<
+  theme(legend.position = "bottom") #<< 
 ```
 
 ]
@@ -219,11 +279,24 @@ staff_long %>%
 ```{r ref.label = "instructor-lines", fig.show = "hide"}
 ```
 
-]
-]
+]]
+
+
 
 ---
 
+# Recap
+
+Parts of a graph:
+* aesthetics
+* color
+* shape
+* size
+* alpha (transparency)
+* faceting
+
+
+---
 class: middle, inverse
 
 # A/B testing
@@ -750,3 +823,22 @@ class: center, middle, inverse
 * Post on Ed (sometimes people have seen relevant data!
 * 'Data is plural' newsletter
 * Google 'thing-you-care-about' + 'dataset'
+
+
+---
+
+---
+class: inverse
+
+# Assignment 1
+
+You need to find a graph and **critique** it (don't totally trash it -- this is an academic exercise). If you want you can work to make it better if you can get your hands on similar data. But if not, that's OK! 
+
+---
+
+# Speaking of: doing well on assignments
+
+```{r echo = FALSE, out.width="65%"}
+
+knitr::include_graphics("https://geekd-out.com/wp-content/uploads/2018/08/sugar-rush-featured-image.jpg")
+```
