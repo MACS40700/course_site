@@ -233,7 +233,7 @@ staff_long %>%
 I want to achieve the following look but I have no idea how!
 ]
 
-```{r instructor-lines-for-show, echo = FALSE, out.width = "70%"}
+```{r instructor-lines-for-show, echo = FALSE, out.width = "60%"}
 include_graphics("images/sketch.png")
 ```
 
@@ -337,7 +337,7 @@ glimpse(scorecard)
 ## A simple visualization
 
 .panelset[
-```{r panelset = c(output = "Plot", source = "Code"), out.width = "70%"}
+```{r panelset = c(output = "Plot", source = "Code"), out.width = "60%"}
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(alpha = 0.5, size = 2) +
   geom_smooth(method = "lm", se = FALSE, size = 0.7) +
@@ -380,7 +380,7 @@ scorecard %>%
 ## A slightly more complex visualization
 
 .panelset[
-```{r panelset = c(output = "Plot", source = "Code"), out.width = "90%", fig.asp = 0.5, fig.width = 10}
+```{r panelset = c(output = "Plot", source = "Code"), out.width = "80%", fig.asp = 0.5, fig.width = 10}
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5, show.legend = FALSE) +
@@ -408,7 +408,7 @@ In the next two slides, the same plots are created with different "cosmetic" cho
 
 .panelset[
 .panel[.panel-name[Plot A]
-```{r test-1-a, echo = FALSE, out.width = "90%", fig.asp = 0.5, fig.width = 10}
+```{r test-1-a, echo = FALSE, out.width = "80%", fig.asp = 0.5, fig.width = 10}
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5, show.legend = FALSE) +
@@ -428,7 +428,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
 ```
 ]
 .panel[.panel-name[Plot B]
-```{r test-1-b, echo = FALSE, out.width = "90%", fig.asp = 0.5, fig.width = 10}
+```{r test-1-b, echo = FALSE, out.width = "80%", fig.asp = 0.5, fig.width = 10}
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5, show.legend = FALSE) +
@@ -451,11 +451,11 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
 
 .panelset[
 .panel[.panel-name[Plot A]
-```{r ref.label = "test-1-b", echo = FALSE, out.width = "90%", fig.asp = 0.5, fig.width = 10}
+```{r ref.label = "test-1-b", echo = FALSE, out.width = "80%", fig.asp = 0.5, fig.width = 10}
 ```
 ]
 .panel[.panel-name[Plot B]
-```{r test-2-b, echo = FALSE, out.width = "90%", fig.asp = 0.5, fig.width = 10}
+```{r test-2-b, echo = FALSE, out.width = "80%", fig.asp = 0.5, fig.width = 10}
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5, show.legend = FALSE) +
@@ -488,7 +488,7 @@ a deeper look at the plotting code...
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r ref.label = "test-1-b", out.width = "90%", fig.asp = 0.5, fig.width = 10, echo = FALSE}
+```{r ref.label = "test-1-b", out.width = "80%", fig.asp = 0.5, fig.width = 10, echo = FALSE}
 ```
 ]
 .panel[.panel-name[Code]
@@ -503,7 +503,7 @@ a deeper look at the plotting code...
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r ref.label = "test-2-b", out.width = "90%", fig.asp = 0.5, fig.width = 10, echo = FALSE}
+```{r ref.label = "test-2-b", out.width = "80%", fig.asp = 0.5, fig.width = 10, echo = FALSE}
 ```
 ]
 .panel[.panel-name[Code]
@@ -518,7 +518,7 @@ a deeper look at the plotting code...
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r ref.label = "test-1-a", out.width = "90%", fig.asp = 0.5, fig.width = 10, echo = FALSE}
+```{r ref.label = "test-1-a", out.width = "80%", fig.asp = 0.5, fig.width = 10, echo = FALSE}
 ```
 ]
 .panel[.panel-name[Code]
@@ -537,24 +537,22 @@ class: middle, inverse
 
 ## Bad taste
 
-```{r ref.label = "test-1-a", echo = FALSE, out.width = "90%", fig.asp = 0.5, fig.width = 10}
+```{r ref.label = "test-1-a", echo = FALSE, out.width = "80%", fig.asp = 0.5, fig.width = 10}
 ```
 
 ---
 
 ## Data-to-ink ratio
 
-.pull-left-wide[
 Tufte strongly recommends maximizing the **data-to-ink ratio** this in the Visual Display of Quantitative Information (Tufte, 1983).
 
-> Graphical excellence is the well-designed presentation of interesting data—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space … [It] is nearly always multivariate … And graphical excellence requires telling the truth about the data. (Tufte, 1983, p. 51).
+>Graphical excellence is the well-designed presentation of interesting data—a matter of substance, of statistics, and of design … [It] consists of complex ideas communicated with clarity, precision, and efficiency. … [It] is that which gives to the viewer the greatest number of ideas in the shortest time with the least ink in the smallest space … [It] is nearly always multivariate … And graphical excellence requires telling the truth about the data. (Tufte, 1983, p. 51).
 
-]
-.pull-right-narrow[
-```{r echo=FALSE, out.width = "100%", fig.align = "right", fig.alt = "Cover of Visual Display of Quantitative Information, Tufte (1983)."}
+
+```{r echo=FALSE, out.width = "15%", fig.align = "right", fig.alt = "Cover of Visual Display of Quantitative Information, Tufte (1983)."}
 knitr::include_graphics("images/tufte-visual-display-cover.png")
 ```
-]
+
 
 ---
 
@@ -572,7 +570,7 @@ mean_netcost_pctpell
 
 .panelset[
 .panel[.panel-name[Plot A]
-```{r mean-netcost-pctpell-a, out.width = "70%", echo = FALSE}
+```{r mean-netcost-pctpell-a, out.width = "60%", echo = FALSE}
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
   geom_col() + #<<
   labs(
@@ -583,7 +581,7 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 ```
 ]
 .panel[.panel-name[Plot B]
-```{r mean-netcost-pctpell-b, out.width = "70%", echo = FALSE}
+```{r mean-netcost-pctpell-b, out.width = "60%", echo = FALSE}
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
   geom_point(size = 4) + #<<
   labs(
@@ -618,11 +616,11 @@ a deeper look at the plotting code...
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r ref.label = "mean-netcost-pctpell-a", out.width = "70%", echo = FALSE}
+```{r ref.label = "mean-netcost-pctpell-a", out.width = "60%", echo = FALSE}
 ```
 ]
 .panel[.panel-name[Code]
-```{r ref.label = "mean-netcost-pctpell-a", out.width = "70%", fig.show = "hide"}
+```{r ref.label = "mean-netcost-pctpell-a", out.width = "60%", fig.show = "hide"}
 ```
 ]
 ]
@@ -634,7 +632,7 @@ a deeper look at the plotting code...
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r ref.label = "mean-netcost-pctpell-b", out.width = "70%", echo = FALSE}
+```{r ref.label = "mean-netcost-pctpell-b", out.width = "60%", echo = FALSE}
 ```
 ]
 .panel[.panel-name[Code]
@@ -649,7 +647,7 @@ a deeper look at the plotting code...
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r mean-netcost-pctpell-lollipop, out.width = "70%", echo = FALSE}
+```{r mean-netcost-pctpell-lollipop, out.width = "60%", echo = FALSE}
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
   geom_point(size = 4) +
   geom_segment( #<<
@@ -710,6 +708,7 @@ knitr::include_graphics("images/healy-democracy-voeten-version-2.png")
 ]
 ]
 
+
 .footnote[
 Healy, Data Visualization: A practical introduction. [Chapter 1](https://socviz.co/lookatdata.html). Figures 1.8 and 1.9.
 ]
@@ -738,7 +737,7 @@ class: middle, inverse
 
 .panelset[
 .panel[.panel-name[Plot]
-```{r mean-netcost-pctpell-lollipop-layer, out.width = "70%", echo = FALSE}
+```{r mean-netcost-pctpell-lollipop-layer, out.width = "60%", echo = FALSE}
 ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
   geom_point(size = 4) +
   geom_segment(
@@ -824,8 +823,6 @@ class: center, middle, inverse
 * 'Data is plural' newsletter
 * Google 'thing-you-care-about' + 'dataset'
 
-
----
 
 ---
 class: inverse
