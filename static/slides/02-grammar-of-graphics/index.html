@@ -90,7 +90,7 @@ Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-gramm
 - Structure of the code for plots can be summarized as
 
 
-```r
+``` r
 ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], y = [y-variable])) +
    geom_xxx() +
@@ -100,7 +100,7 @@ ggplot(data = [dataset],
 - The ggplot2 package comes with the tidyverse
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -124,7 +124,7 @@ class: middle, inverse
 ## Anscombe's quartet
 
 
-```r
+``` r
 library(Tmisc)
 quartet %&gt;% slice_head(n = 15)
 ```
@@ -134,7 +134,7 @@ quartet %&gt;% slice_head(n = 15)
 ## Summary statistics for Anscombe's quartet
 
 
-```r
+``` r
 quartet %&gt;%
   group_by(set) %&gt;%
   summarise(
@@ -197,7 +197,9 @@ Source: [New York Times](https://www.nytimes.com/interactive/2020/us/covid-19-va
 
 class: middle, inverse
 
-# ggplot2 ❤️ 🐧
+# ggplot2 `emoji('heart')` `emoji('penguin')`
+
+	U+1F427
 
 ---
 
@@ -211,7 +213,7 @@ class: middle, inverse
 - Structure of the code for plots can be summarized as
 
 
-```r
+``` r
 ggplot(data = [dataset], 
        mapping = aes(x = [x-variable], 
                      y = [y-variable])) +
@@ -231,22 +233,25 @@ Measurements for penguin species, island in Palmer Archipelago, size (flipper le
 ]
 .pull-right[
 
-```r
-library(palmerpenguins)
-glimpse(penguins)
+``` r
+# uncomment to install: 
+# install.packages("palmerpenguins")
+data(palmerpenguins) # loads it into your environment
+
+head(penguins)
 ```
 
 ```
-## Rows: 344
-## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+## # A tibble: 6 × 8
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7               181        3750
+## 2 Adelie  Torgersen           39.5          17.4               186        3800
+## 3 Adelie  Torgersen           40.3          18                 195        3250
+## 4 Adelie  Torgersen           NA            NA                  NA          NA
+## 5 Adelie  Torgersen           36.7          19.3               193        3450
+## 6 Adelie  Torgersen           39.3          20.6               190        3650
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
 ```
 ]
 
@@ -259,7 +264,7 @@ glimpse(penguins)
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 ggplot(data = penguins, 
        mapping = aes(x = bill_depth_mm, y = bill_length_mm,
                      color = species)) +
@@ -286,7 +291,7 @@ class: middle, inverse
 
 .pull-left[
 
-```r
+``` r
 *ggplot(data = penguins)
 ```
 ]
@@ -303,7 +308,7 @@ class: middle, inverse
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
 *      mapping = aes(x = bill_depth_mm))
 ```
@@ -322,7 +327,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
 *                    y = bill_length_mm))
@@ -343,7 +348,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm)) + 
@@ -366,7 +371,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -391,7 +396,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -418,7 +423,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -447,7 +452,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -478,7 +483,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -511,7 +516,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -546,7 +551,7 @@ ggplot(data = penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -573,7 +578,7 @@ ggplot(data = penguins,
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -619,7 +624,7 @@ You can omit the names of the first two arguments when building plots with `ggpl
 
 .pull-left[
 
-```r
+``` r
 ggplot(data = penguins,
        mapping = aes(x = bill_depth_mm,
                      y = bill_length_mm,
@@ -630,7 +635,7 @@ ggplot(data = penguins,
 ]
 .pull-right[
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm,
@@ -663,7 +668,7 @@ Commonly used characteristics of plotting characters that can be **mapped to a s
 
 .pull-left[
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
@@ -684,7 +689,7 @@ Mapped to a different variable than `color`
 
 .pull-left[
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
@@ -706,7 +711,7 @@ Mapped to same variable as `color`
 
 .pull-left[
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
@@ -726,7 +731,7 @@ ggplot(penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
@@ -747,7 +752,7 @@ ggplot(penguins,
 
 .pull-left[
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm, 
            y = bill_length_mm,
@@ -769,7 +774,7 @@ ggplot(penguins,
 **Mapping**
 
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm,
@@ -784,7 +789,7 @@ ggplot(penguins,
 **Setting**
 
 
-```r
+``` r
 ggplot(penguins,
        aes(x = bill_depth_mm,
            y = bill_length_mm)) + 
@@ -826,7 +831,7 @@ class: middle, inverse
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_grid(rows = vars(species), cols = vars(island))
@@ -848,7 +853,7 @@ But you should always label your plots!
 ---
 
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_grid(rows = vars(species), cols = vars(sex))
@@ -859,7 +864,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ---
 
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_grid(rows = vars(sex), cols = vars(species))
@@ -870,7 +875,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ---
 
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_wrap(facets = vars(species))
@@ -881,7 +886,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ---
 
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_grid(rows = NULL, cols = vars(species))
@@ -892,7 +897,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 ---
 
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
   geom_point() +
 * facet_wrap(facets = vars(species), ncol = 2)
@@ -921,7 +926,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 ggplot(
   penguins, 
   aes(x = bill_depth_mm, 
@@ -945,7 +950,7 @@ ggplot(
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 ggplot(
   penguins, 
   aes(x = bill_depth_mm, 
@@ -981,7 +986,7 @@ Each row in this dataset represents a faculty type, and the columns are the year
 The values are percentage of hires of that type of faculty for each year.
 
 
-```r
+``` r
 staff &lt;- read_csv("data/instructional-staff.csv")
 staff
 ```
@@ -1027,7 +1032,7 @@ class: center, middle
 ## `pivot_longer()`
 
 
-```r
+``` r
 pivot_longer(data, cols, names_to = "name", values_to = "value")
 ```
 
@@ -1043,7 +1048,7 @@ into longer format -- in this case all columns except for the `faculty_type`
 
 .small[
 
-```r
+``` r
 library(tidyverse)
 
 staff_long &lt;- staff %&gt;%
@@ -1080,7 +1085,7 @@ This doesn't look quite right, how would you fix it?
 
 .small[
 
-```r
+``` r
 staff_long %&gt;%
   ggplot(aes(x = percentage, y = year, color = faculty_type)) +
   geom_col(position = "dodge")
@@ -1093,7 +1098,7 @@ staff_long %&gt;%
 
 .small[
 
-```r
+``` r
 staff_long %&gt;%
   ggplot(aes(x = percentage, y = year, fill = faculty_type)) +
   geom_col(position = "dodge")
@@ -1108,7 +1113,7 @@ staff_long %&gt;%
 
 .small[
 
-```r
+``` r
 staff_long %&gt;%
   ggplot(aes(x = percentage, y = year, fill = faculty_type)) +
   geom_col()
@@ -1123,7 +1128,7 @@ staff_long %&gt;%
 
 .small[
 
-```r
+``` r
 staff_long %&gt;%
   ggplot(aes(x = year, y = percentage, group = faculty_type, 
              color = faculty_type)) +
@@ -1164,7 +1169,7 @@ I want to achieve the following look but I have no idea how!
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 library(scales)
 
 staff_long %&gt;%
@@ -1237,6 +1242,7 @@ Parts of a graph:
 "highlightStyle": "magula",
 "highlightLines": true,
 "highlightLanguage": "r",
+"ratio": "16:9",
 "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {

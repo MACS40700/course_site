@@ -53,6 +53,7 @@ ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 ```{r pkgs, include = FALSE, cache = FALSE}
 library(knitr)
 library(here)
+library(emojifont)
 ```
 
 class: middle, inverse
@@ -223,7 +224,9 @@ Source: [New York Times](https://www.nytimes.com/interactive/2020/us/covid-19-va
 
 class: middle, inverse
 
-# ggplot2 `r emo::ji("heart")` `r emo::ji("penguin")`
+# ggplot2 `emoji('heart')` `emoji('penguin')`
+
+	U+1F427
 
 ---
 
@@ -260,8 +263,11 @@ include_graphics("images/penguins.png")
 ]
 .pull-right[
 ```{r}
-library(palmerpenguins)
-glimpse(penguins)
+# uncomment to install: 
+# install.packages("palmerpenguins")
+data(palmerpenguins) # loads it into your environment
+
+head(penguins)
 ```
 ]
 

@@ -851,6 +851,19 @@ glimpse(penguins)
 ```
 ]
 
+
+---
+
+# Penguins and you: common datasets
+
+```{r, echo = T}
+# uncomment to install: 
+# install.packages("palmerpenguins")
+data(palmerpenguins) # loads it into your environment
+
+head(penguins)
+```
+
 ---
 
 .panelset[
