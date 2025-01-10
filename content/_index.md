@@ -48,7 +48,7 @@ You can see our topics below. See the assignments linked to the side -- if you h
 ## TA & Office Hours 
 TA: **Yangyu Wang** 
   * Email: wangyd@uchicago.edu
-  * OH TBD  
+  * OH Weds 1-3 in person: 226-A in 1155 (near student lounge) and Thurs 7-8 pm on [zoom via link](https://us04web.zoom.us/j/4776353211?pwd=RlJvulbkddndST4kXPU3snQ1Zbdr2X.1#success)
 
 Prof: **Jean Clipperton** 
   * Email: clipperton@uchicago.edu
