@@ -29,7 +29,7 @@ Note that this is open-ended and you can choose your difficulty level to match y
 
 # Part 2: EDA + critique
 
-While you don't you need to provide a clear vision for each of the plots, you will provide a rough draft of your first plot here.
+While you don't need to provide a detailed vision for each of the plots, you will provide a draft of your first plot here.
 
 In this, provide the graph and approximately 200 words on the plot, why it is designed the way it is, and what feedback you would like. If there are elements you are stuck on / need help with, mention that, too!
 
