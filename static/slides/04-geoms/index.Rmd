@@ -47,7 +47,7 @@ class: middle, inverse
 ---
 
 ## Announcements
-* Assignment deadlines (T/W)
+* Assignment deadlines (primarily Thursdays)
 * Contrast Ed discussion: memorable vs preferable
 
 ---
@@ -63,8 +63,8 @@ class: middle, inverse
 ```{r}
 # load packages
 library(tidyverse)
-# remotes::install_github("cis-ds/rcis")
-library(rcis)
+# remotes::install_github("MACS40700/c3s2")
+library(c3s2)
 ```
 
 ---
@@ -736,6 +736,7 @@ countdown(minutes = 3, bottom = 0)
 ```
 
 ---
+class: center, inverse, middle 
 
 ## Let's clean things up a bit!
 
@@ -747,10 +748,19 @@ library(scales)
 
 ---
 
+# Scales
+
+We need one mapping from our aesthetic layer to our mapping function (e.g. aes). Scales can help with that transformation (use of guides)!
+
+https://scales.r-lib.org/
+---
+
 ## Let's clean things up a bit!
 
 .panelset[
 ```{r panelset = c(output = "Plot", source = "Code"), fig.show = "hold"}
+library(tidyverse)
+library(c3s2)
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(alpha = 0.4, size = 2, color = "#012169") +
   scale_x_continuous(labels = label_number(big.mark = ",")) +
@@ -844,6 +854,8 @@ class: inverse, middle
 - Part 2: EDA (first graph): rough draft of your first plot + critique
 ]
 
+
+https://macs40700.netlify.app/assignments/assign2/ 
 --
 
 ### Tips
@@ -859,4 +871,9 @@ class: inverse, middle
 ---
 
 # Recap
+
+* Geoms: consider the layering options
+* Jitter: consider different seeds
+* Scales: way to format axes nicely
+* Work on narrative for A2
 

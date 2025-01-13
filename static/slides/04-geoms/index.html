@@ -39,7 +39,7 @@ class: middle, inverse
 ---
 
 ## Announcements
-* Assignment deadlines (T/W)
+* Assignment deadlines (primarily Thursdays)
 * Contrast Ed discussion: memorable vs preferable
 
 ---
@@ -53,11 +53,11 @@ class: middle, inverse
 ## Packages
 
 
-```r
+``` r
 # load packages
 library(tidyverse)
-# remotes::install_github("cis-ds/rcis")
-library(rcis)
+# remotes::install_github("MACS40700/c3s2")
+library(c3s2)
 ```
 
 ---
@@ -65,7 +65,7 @@ library(rcis)
 ## ggplot2 theme
 
 
-```r
+``` r
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
 ```
@@ -80,7 +80,7 @@ For more on including figures in R Markdown documents with the right size, resol
 - [Tips and tricks for working with images and figures in R Markdown documents](https://www.zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/)
 
 
-```r
+``` r
 # set default figure parameters for knitr
 knitr::opts_chunk$set(
   fig.width = 8, # 8"
@@ -98,7 +98,7 @@ knitr::opts_chunk$set(
 From last class...
 
 
-```r
+``` r
 scorecard &lt;- scorecard %&gt;%
   mutate(pctpell_cat = cut_interval(x = pctpell, n = 6)) %&gt;%
   drop_na(pctpell_cat)
@@ -111,12 +111,12 @@ scorecard %&gt;%
 ## # A tibble: 6 × 2
 ##   pctpell_cat       n
 ##   &lt;fct&gt;         &lt;int&gt;
-## 1 [0,0.167]       169
-## 2 (0.167,0.333]   630
-## 3 (0.333,0.5]     609
-## 4 (0.5,0.667]     205
-## 5 (0.667,0.833]    73
-## 6 (0.833,1]        31
+## 1 [0,0.163]       164
+## 2 (0.163,0.326]   657
+## 3 (0.326,0.489]   591
+## 4 (0.489,0.652]   209
+## 5 (0.652,0.816]    68
+## 6 (0.816,0.979]    26
 ```
 
 ---
@@ -126,7 +126,7 @@ scorecard %&gt;%
 From last class...
 
 
-```r
+``` r
 mean_netcost_pctpell &lt;- scorecard %&gt;%
   group_by(pctpell_cat) %&gt;%
   summarise(mean_netcost = mean(netcost, na.rm = TRUE))
@@ -138,12 +138,12 @@ mean_netcost_pctpell
 ## # A tibble: 6 × 2
 ##   pctpell_cat   mean_netcost
 ##   &lt;fct&gt;                &lt;dbl&gt;
-## 1 [0,0.167]           29919.
-## 2 (0.167,0.333]       22579.
-## 3 (0.333,0.5]         19171.
-## 4 (0.5,0.667]         16966.
-## 5 (0.667,0.833]       15572.
-## 6 (0.833,1]           10138.
+## 1 [0,0.163]           28713.
+## 2 (0.163,0.326]       21525.
+## 3 (0.326,0.489]       18660.
+## 4 (0.489,0.652]       17087.
+## 5 (0.652,0.816]       14771.
+## 6 (0.816,0.979]        8466.
 ```
 
 ---
@@ -170,21 +170,21 @@ Do you expect the following plots to be the same or different? If different, how
 ]
 
 
-```r
+``` r
 # Plot A
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5)
 ```
 
-```r
+``` r
 # Plot B
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(aes(color = pctpell_cat), alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5)
 ```
 
-<div class="countdown" id="timer_3d52f8ca" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_10a41269" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -198,7 +198,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 .panelset[
 .panel[.panel-name["Plot A"]
 
-```r
+``` r
 # Plot A
 ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
   geom_point(alpha = 0.7) +
@@ -209,7 +209,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost, color = pctpell_cat)) +
 ] 
 .panel[.panel-name["Plot B"]
 
-```r
+``` r
 # Plot B
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(aes(color = pctpell_cat), alpha = 0.7) +
@@ -229,25 +229,25 @@ Do you expect the following plots to be the same or different? If different, how
 ]
 
 
-```r
+``` r
 # Plot A
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(aes(color = pctpell_cat))
 ```
 
-```r
+``` r
 # Plot B
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(color = "blue")
 ```
 
-```r
+``` r
 # Plot C
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(color = "#a493ba")
 ```
 
-<div class="countdown" id="timer_9cafdb54" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_e0ad52cb" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -261,7 +261,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 .panel[.panel-name["Plot A"]
 
 
-```r
+``` r
 # Plot A
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(aes(color = pctpell_cat))
@@ -272,7 +272,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 
 .panel[.panel-name["Plot B"]
 
-```r
+``` r
 # Plot B
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(color = "blue")
@@ -283,7 +283,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 .panel[.panel-name["Plot C"]
 
 
-```r
+``` r
 # Plot C
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(color = "#800000")
@@ -334,7 +334,7 @@ Always use "typewriter text" (monospace font) when writing function names, and f
 ## `geom_bar()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = pctpell_cat)) +
   geom_bar()
 ```
@@ -346,7 +346,7 @@ ggplot(scorecard, aes(x = pctpell_cat)) +
 ## `geom_bar()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(y = pctpell_cat)) +
   geom_bar()
 ```
@@ -358,7 +358,7 @@ ggplot(scorecard, aes(y = pctpell_cat)) +
 ## `geom_histogram()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_histogram()
 ```
@@ -372,7 +372,7 @@ ggplot(scorecard, aes(x = netcost)) +
 .panelset[
 .panel[.panel-name[2K]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_histogram(binwidth = 2000)
 ```
@@ -381,7 +381,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[5K]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_histogram(binwidth = 5000)
 ```
@@ -390,7 +390,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[10K]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_histogram(binwidth = 10000)
 ```
@@ -399,7 +399,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[20K]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_histogram(binwidth = 20000)
 ```
@@ -413,7 +413,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ## `geom_density()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density()
 ```
@@ -427,7 +427,7 @@ ggplot(scorecard, aes(x = netcost)) +
 .panelset[
 .panel[.panel-name[1]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(bw = 1)
 ```
@@ -436,7 +436,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[100]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(bw = 100)
 ```
@@ -445,7 +445,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[1000]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(bw = 1000)
 ```
@@ -454,7 +454,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[10000]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(bw = 10000)
 ```
@@ -470,7 +470,7 @@ ggplot(scorecard, aes(x = netcost)) +
 .panelset[
 .panel[.panel-name[full]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(outline.type = "full")
 ```
@@ -479,7 +479,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[both]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(outline.type = "both")
 ```
@@ -488,7 +488,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[upper]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(outline.type = "upper")
 ```
@@ -497,7 +497,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ]
 .panel[.panel-name[lower]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_density(outline.type = "lower")
 ```
@@ -515,14 +515,14 @@ What does each point represent? How are their locations determined? What do the 
 ]
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_dotplot(binwidth = 418)
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-<div class="countdown" id="timer_123c918d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_adacbfa5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -532,7 +532,7 @@ ggplot(scorecard, aes(x = netcost)) +
 ## `geom_freqpoly()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost)) +
   geom_freqpoly(binwidth = 1000)
 ```
@@ -546,7 +546,7 @@ ggplot(scorecard, aes(x = netcost)) +
 .panelset[
 .panel[.panel-name[Histogram]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
   geom_histogram(binwidth = 5000)
 ```
@@ -555,7 +555,7 @@ ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
 ]
 .panel[.panel-name[Frequency polygon]
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost, color = pctpell_cat)) +
   geom_freqpoly(binwidth = 5000, size = 1)
 ```
@@ -579,7 +579,7 @@ ggplot(scorecard, aes(x = netcost, color = pctpell_cat)) +
 ## `geom_rug()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point() +
   geom_rug(alpha = 0.1)
@@ -592,7 +592,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 ## `geom_rug()` on the outside
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point() +
   geom_rug(alpha = 0.1, outside = TRUE) +
@@ -606,7 +606,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 ## `geom_rug()` on the outside, but better
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point() +
   geom_rug(alpha = 0.1, outside = TRUE, sides = "tr") +
@@ -621,7 +621,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 ## `geom_text()`
 
 
-```r
+``` r
 sample_n(scorecard, size = 50) %&gt;%
   ggplot(aes(x = avgfacsal, y = netcost)) +
   geom_text(aes(label = type))
@@ -635,7 +635,7 @@ sample_n(scorecard, size = 50) %&gt;%
 ## `geom_text()` and more
 
 
-```r
+``` r
 sample_n(scorecard, size = 50) %&gt;%
   ggplot(aes(x = avgfacsal, y = netcost)) +
   geom_text(aes(label = type, color = type))
@@ -648,7 +648,7 @@ sample_n(scorecard, size = 50) %&gt;%
 ## `geom_text()` and even more
 
 
-```r
+``` r
 sample_n(scorecard, size = 50) %&gt;%
   ggplot(aes(x = avgfacsal, y = netcost)) +
   geom_text(aes(label = type, color = type),
@@ -671,7 +671,7 @@ sample_n(scorecard, size = 50) %&gt;%
 ## `geom_hex()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_hex()
 ```
@@ -685,7 +685,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 - Requires installing the [**hexbin**](https://cran.r-project.org/web/packages/hexbin/index.html) package separately!
 
 
-```r
+``` r
 install.packages("hexbin")
 ```
 
@@ -719,7 +719,7 @@ How are the following three plots different?
 .panelset[
 .panel[.panel-name[Plot A]
 
-```r
+``` r
 ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_point()
 ```
@@ -728,7 +728,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 ]
 .panel[.panel-name[Plot B]
 
-```r
+``` r
 ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
@@ -737,7 +737,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 ]
 .panel[.panel-name[Plot C]
 
-```r
+``` r
 ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
@@ -746,7 +746,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 ]
 ]
 
-<div class="countdown" id="timer_37b70c54" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_64c8b2a3" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -758,7 +758,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 .panelset[
 .panel[.panel-name[Plot A]
 
-```r
+``` r
 set.seed(123)
 ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
@@ -768,7 +768,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 ]
 .panel[.panel-name[Plot B]
 
-```r
+``` r
 set.seed(123)
 ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
@@ -778,7 +778,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 ]
 .panel[.panel-name[Plot C]
 
-```r
+``` r
 set.seed(234)
 ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
@@ -811,7 +811,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
 ## Average net cost per Pell grant recipient
 
 
-```r
+``` r
 mean_netcost_pctpell &lt;- scorecard %&gt;%
   mutate(pctpell = round(pctpell, digits = 2)) %&gt;%
   group_by(pctpell) %&gt;%
@@ -829,12 +829,12 @@ mean_netcost_pctpell %&gt;% head(6)
 ## # A tibble: 6 × 4
 ##   pctpell     n mean_netcost sd_netcost
 ##     &lt;dbl&gt; &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;
-## 1    0.08     2        8334       2493.
-## 2    0.09     5       34389.      3211.
-## 3    0.1      9       35855.      8615.
-## 4    0.11    17       29528.      8323.
-## 5    0.12    15       32092.      9152.
-## 6    0.13    18       31172.      6811.
+## 1    0.01     1        2640         NA 
+## 2    0.07     3       17447.     12883.
+## 3    0.08     3       16578      11709.
+## 4    0.1      8       32568.     10281.
+## 5    0.12    11       31959       8336.
+## 6    0.13    14       29326.      9716.
 ```
 
 ---
@@ -842,7 +842,7 @@ mean_netcost_pctpell %&gt;% head(6)
 ## `geom_line()`
 
 
-```r
+``` r
 ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_line()
 ```
@@ -854,7 +854,7 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
 ## `geom_area()`
 
 
-```r
+``` r
 ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_area()
 ```
@@ -866,7 +866,7 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
 ## `geom_step()`
 
 
-```r
+``` r
 ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_step()
 ```
@@ -884,7 +884,7 @@ Describe how this plot is constructed and what the points and the lines (error b
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_point() +
   geom_errorbar(aes(
@@ -898,22 +898,30 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
 ]
 ]
 
-<div class="countdown" id="timer_19949fa5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_5aafa397" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
+class: center, inverse, middle 
 
 ## Let's clean things up a bit!
 
 Meet your new best friend, the [**scales**](https://scales.r-lib.org/) package!
 
 
-```r
+``` r
 library(scales)
 ```
 
+---
+
+# Scales
+
+We need one mapping from our aesthetic layer to our mapping function (e.g. aes). Scales can help with that transformation (use of guides)!
+
+https://scales.r-lib.org/
 ---
 
 ## Let's clean things up a bit!
@@ -921,7 +929,9 @@ library(scales)
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
+library(tidyverse)
+library(c3s2)
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(alpha = 0.4, size = 2, color = "#012169") +
   scale_x_continuous(labels = label_number(big.mark = ",")) +
@@ -964,7 +974,7 @@ class: middle, inverse
 ## `geom_tile()`
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = type, y = locale)) +
  geom_tile(aes(fill = netcost))
 ```
@@ -979,7 +989,7 @@ ggplot(scorecard, aes(x = type, y = locale)) +
 .panel[.panel-name[Summarize]
 .small[
 
-```r
+``` r
 mean_netcost_type_locale &lt;- scorecard %&gt;%
   group_by(type, locale) %&gt;%
   summarize(mean_netcost = mean(netcost, na.rm = TRUE), .groups = "drop")
@@ -991,22 +1001,22 @@ mean_netcost_type_locale %&gt;% head(10)
 ## # A tibble: 10 × 3
 ##    type                locale mean_netcost
 ##    &lt;fct&gt;               &lt;fct&gt;         &lt;dbl&gt;
-##  1 Public              City         14007.
-##  2 Public              Suburb       15946.
-##  3 Public              Town         14692.
-##  4 Public              Rural        13390.
-##  5 Public              &lt;NA&gt;          7999 
-##  6 Private, nonprofit  City         24485.
-##  7 Private, nonprofit  Suburb       23018.
-##  8 Private, nonprofit  Town         21785.
-##  9 Private, nonprofit  Rural        22533.
-## 10 Private, for-profit City         28005.
+##  1 Public              City         13428.
+##  2 Public              Suburb       14726.
+##  3 Public              Town         14433.
+##  4 Public              Rural        13040.
+##  5 Public              &lt;NA&gt;          3567 
+##  6 Private, nonprofit  City         23443.
+##  7 Private, nonprofit  Suburb       22024.
+##  8 Private, nonprofit  Town         21581.
+##  9 Private, nonprofit  Rural        22389.
+## 10 Private, for-profit City         28311.
 ```
 ]
 ]
 .panel[.panel-name[Plot]
 
-```r
+``` r
 ggplot(mean_netcost_type_locale, aes(x = type, y = locale)) +
   geom_point(aes(color = mean_netcost), size = 30, pch = "square")
 ```
@@ -1028,7 +1038,7 @@ For each of the following problems, suggest a useful geom:
 1. Label outlying points in a single variable
 ]
 
-<div class="countdown" id="timer_ad1984e7" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_35402f1a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1049,6 +1059,8 @@ class: inverse, middle
 - Part 2: EDA (first graph): rough draft of your first plot + critique
 ]
 
+
+https://macs40700.netlify.app/assignments/assign2/ 
 --
 
 ### Tips
@@ -1064,6 +1076,11 @@ class: inverse, middle
 ---
 
 # Recap
+
+* Geoms: consider the layering options
+* Jitter: consider different seeds
+* Scales: way to format axes nicely
+* Work on narrative for A2
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
