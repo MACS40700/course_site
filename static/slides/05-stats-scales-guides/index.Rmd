@@ -15,7 +15,7 @@ output:
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
 library(xaringanthemer)
-#rcfss::xaringan_theme()
+##c3s2::xaringan_theme()
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -41,10 +41,6 @@ class: middle, inverse
 
 # Announcements
 
-* Website updated!
-  * dates
-  * FAQ with data links
-* Assignments on Canvas for submission
 * Post on Ed for any questions!
 
 <!-----
@@ -74,7 +70,7 @@ class: inverse, middle
 ```{r cache = FALSE}
 # load packages
 library(tidyverse)
-library(rcis)
+library(c3s2)
 
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
@@ -131,26 +127,30 @@ knitr::include_url("https://ggplot2.tidyverse.org/reference/geom_boxplot.html#su
 ```
 
 
+
 ---
 
 ## Layering with stats
 
-```{r}
-ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
-  geom_point(alpha = 0.5) + 
-  stat_summary(geom = "point", fun = "median", 
-               color = "red", size = 5, pch = 4, stroke = 2) 
-```
-
----
-
-## Alternate layering with stats
 
 ```{r}
 ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
   geom_point(alpha = 0.5) + 
   geom_point(stat = "summary", fun = "median", 
              color = "red", size = 5, pch = 4, stroke = 2) 
+```
+
+---
+
+
+
+## Alternate layering with stats
+
+```{r}
+ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
+  geom_point(alpha = 0.5) + 
+  stat_summary(geom = "point", fun = "median", 
+               color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
 ---
@@ -177,6 +177,8 @@ ggplot(scorecard, aes(sample = avgfacsal)) +
 
 --
 
+.panelset[
+.panel[.panel-name[Stat]
 .small[
 
 ```{r}
@@ -186,6 +188,20 @@ ggplot(PlantGrowth, aes(x = group, y = weight))  +
      stat_summary(geom = "point", fun = "mean", 
                   color = "darkgreen", size = 5, pch = 4, stroke = 2)
 ```
+]
+]
+.panel[.panel-name[Geom]
+.small[
+
+```{r}
+data("PlantGrowth")
+ggplot(PlantGrowth, aes(x = group, y = weight))  +
+     geom_boxplot() +
+     geom_point(stat = "summary", fun = "mean", 
+                  color = "darkgreen", size = 5, pch = 4, stroke = 2)
+```
+]
+]
 ]
 
 ---
@@ -499,9 +515,7 @@ Source: ggplot2: Elegant Graphics for Data Analysis, [Chp 15](https://ggplot2-bo
 ```{r}
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
-  scale_x_continuous(
-    name = "Net cost of attendance" 
-  )
+  scale_x_continuous( name = "Net cost of attendance"  )
 ```
 
 ---
@@ -518,8 +532,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   geom_point(alpha = 0.5) +
   scale_x_continuous(
     name = "Net cost of attendance",
-    breaks = seq(from = 0, to = 60000, by = 10000) 
-  )
+    breaks = seq(from = 0, to = 60000, by = 10000) )
 ```
 ]
 
@@ -714,6 +727,6 @@ ggplot(mpg, aes(displ, hwy)) +
 
 # Recap
 
-* Assignment 2 (TOMORROW!)
+* Assignment 2 (Next week!)
 * Scales can help you rework how the axis labels appear
 * Guides: pulling together legends / axes

@@ -38,10 +38,6 @@ class: middle, inverse
 
 # Announcements
 
-* Website updated!
-  * dates
-  * FAQ with data links
-* Assignments on Canvas for submission
 * Post on Ed for any questions!
 
 &lt;!-----
@@ -69,10 +65,10 @@ class: inverse, middle
 ## Packages + figures
 
 
-```r
+``` r
 # load packages
 library(tidyverse)
-library(rcis)
+library(c3s2)
 
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
@@ -147,30 +143,34 @@ class: middle, inverse
 &lt;iframe src="https://ggplot2.tidyverse.org/reference/geom_boxplot.html#summary-statistics" width="85%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 
 
+
 ---
 
 ## Layering with stats
 
 
-```r
+
+``` r
 ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
   geom_point(alpha = 0.5) + 
-  stat_summary(geom = "point", fun = "median", 
-               color = "red", size = 5, pch = 4, stroke = 2) 
+  geom_point(stat = "summary", fun = "median", 
+             color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
+
+
 ## Alternate layering with stats
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = type, y = avgfacsal)) + 
   geom_point(alpha = 0.5) + 
-  geom_point(stat = "summary", fun = "median", 
-             color = "red", size = 5, pch = 4, stroke = 2) 
+  stat_summary(geom = "point", fun = "median", 
+               color = "red", size = 5, pch = 4, stroke = 2) 
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-5-1.png" width="50%" style="display: block; margin: auto;" /&gt;
@@ -202,6 +202,8 @@ ggplot(scorecard, aes(sample = avgfacsal)) +
 
 --
 
+.panelset[
+.panel[.panel-name[Stat]
 .small[
 
 
@@ -214,6 +216,23 @@ ggplot(PlantGrowth, aes(x = group, y = weight))  +
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
+.panel[.panel-name[Geom]
+.small[
+
+
+``` r
+data("PlantGrowth")
+ggplot(PlantGrowth, aes(x = group, y = weight))  +
+     geom_boxplot() +
+     geom_point(stat = "summary", fun = "mean", 
+                  color = "darkgreen", size = 5, pch = 4, stroke = 2)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+]
 ]
 
 ---
@@ -239,13 +258,13 @@ Every aesthetic in your plot is associated with exactly one scale:
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 # automatic scales
 ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) + 
   geom_point(alpha = 0.8)
 ```
 
-```r
+``` r
 # manual scales
 ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) + 
   geom_point(alpha = 0.8) +
@@ -255,7 +274,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
 ```
 ]
 .panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -282,14 +301,14 @@ What will the x-axis label of the following plot say?
 ]
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) + 
   geom_point(alpha = 0.8) +
   scale_x_continuous(name = "pctpell") +
   scale_x_continuous(name = "Percent of students receiving a Pell grant") 
 ```
 
-<div class="countdown" id="timer_e273e95a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_1b8bcec6" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -299,7 +318,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
 ## "Address" messages
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) + 
   geom_point(alpha = 0.8) +
   scale_x_continuous(name = "pctpell") +
@@ -311,7 +330,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
 ## Adding another scale for x, which will replace the existing scale.
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -324,16 +343,16 @@ What happens if you pair a discrete variable with a continuous scale? What happe
 .panelset[
 .panel[.panel-name[Type]
 
-```r
+``` r
 ggplot(scorecard, aes(type)) + geom_bar(stat = "count")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Plots]
 .pull-left[
 
-```r
+``` r
 ggplot(
   data = scorecard,
   mapping = aes(
@@ -348,7 +367,7 @@ ggplot(
 
 .pull-right[
 
-```r
+``` r
 ggplot(
   data = scorecard,
   mapping = aes(
@@ -367,8 +386,9 @@ ggplot(
 .pull-left[
 
 ```
-## Error in `train_continuous()`:
-## ! Discrete value supplied to a continuous scale
+## Error in `scale_x_continuous()`:
+## ! Discrete values supplied to continuous scale.
+## ℹ Example values: Public, Public, Public, Public, and Public
 ```
 ]
 
@@ -379,7 +399,7 @@ ggplot(
 ]
 ]
 
-<div class="countdown" id="timer_6d7540b5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_e4a7d9a1" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -393,22 +413,22 @@ When working with continuous data, the default is to map linearly from the data 
 .panelset[
 .panel[.panel-name[Linear]
 
-```r
+``` r
 ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Transformed]
 
-```r
+``` r
 ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_y_continuous(trans = "log10")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -437,25 +457,25 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) +
 
 .pull-left[
 
-```r
+``` r
 ggplot(scorecard, 
        aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_y_continuous(trans = "log10")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 
-```r
+``` r
 ggplot(scorecard, 
        aes(x = pctpell, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_y_log10(labels = scales::label_comma())
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -480,7 +500,7 @@ scorecard %&gt;%
 ```
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 .panel[.panel-name[Plot B]
@@ -494,7 +514,7 @@ ggplot(scorecard,
 ```
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 .panel[.panel-name[Plot C]
@@ -509,11 +529,11 @@ ggplot(scorecard,
 ```
 ]
 .pull-right[
-&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-22-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 ]
-<div class="countdown" id="timer_b63d68c8" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
+<div class="countdown" id="timer_c6d964c3" data-update-every="1" tabindex="0" style="bottom:0;left:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -528,7 +548,7 @@ ggplot(scorecard,
   * Transformation
 ]
 
-<div class="countdown" id="timer_92b96d2a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_d3d9dae2" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -555,15 +575,13 @@ Source: ggplot2: Elegant Graphics for Data Analysis, [Chp 15](https://ggplot2-bo
 ## Customizing axes
 
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
-  scale_x_continuous(
-    name = "Net cost of attendance" 
-  )
+  scale_x_continuous( name = "Net cost of attendance"  )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-25-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -575,16 +593,15 @@ Why does 60000 not appear on the x-axis?
 
 .small[
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_x_continuous(
     name = "Net cost of attendance",
-    breaks = seq(from = 0, to = 60000, by = 10000) 
-  )
+    breaks = seq(from = 0, to = 60000, by = 10000) )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -593,33 +610,13 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
 
 .small[
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_x_continuous(
     name = "Net cost of attendance",
     breaks = seq(from = 0, to = 60000, by = 10000),
     limits = c(0, 60000)  
-  )
-```
-
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Customizing axes
-
-.small[
-
-```r
-ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
-  geom_point(alpha = 0.5) +
-  scale_x_continuous(
-    name = "Net cost of attendance",
-    breaks = seq(from = 0, to = 60000, by = 10000),
-    limits = c(0, 60000),
-    labels = c("$0", "$10,000", "$20,000", "$30,000", "$40,000", "$50,000", "$60,000") 
   )
 ```
 
@@ -632,7 +629,27 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
 
 .small[
 
-```r
+``` r
+ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
+  geom_point(alpha = 0.5) +
+  scale_x_continuous(
+    name = "Net cost of attendance",
+    breaks = seq(from = 0, to = 60000, by = 10000),
+    limits = c(0, 60000),
+    labels = c("$0", "$10,000", "$20,000", "$30,000", "$40,000", "$50,000", "$60,000") 
+  )
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Customizing axes
+
+.small[
+
+``` r
 library(scales)
 
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
@@ -644,7 +661,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
     labels = label_dollar() )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="45%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -653,7 +670,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
 
 .small[
 
-```r
+``` r
 ggplot(scorecard, aes(x = netcost, y = avgfacsal)) + 
   geom_point(alpha = 0.5) +
   scale_x_continuous(
@@ -662,7 +679,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   scale_y_continuous( name = "Average faculty salary (USD)", labels = label_dollar()) 
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -670,7 +687,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
 ## Aside: storing a plot
 .small[
 
-```r
+``` r
 set.seed(1234)
 p_pctpell_avgfacsal_type &lt;- ggplot(scorecard, aes(x = pctpell, y = avgfacsal)) +
   geom_jitter(aes(color = type, shape = type), size = 2)
@@ -678,7 +695,7 @@ p_pctpell_avgfacsal_type &lt;- ggplot(scorecard, aes(x = pctpell, y = avgfacsal)
 p_pctpell_avgfacsal_type
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ---
 
@@ -686,7 +703,7 @@ p_pctpell_avgfacsal_type
 
 .small[
 
-```r
+``` r
 p_pctpell_avgfacsal_type +
   scale_x_continuous(name = "Percent of students receiving a Pell grant") + 
   scale_y_continuous(name = "Average faculty salary (USD)") + 
@@ -694,7 +711,7 @@ p_pctpell_avgfacsal_type +
   scale_shape_discrete(name = "College type") 
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -705,26 +722,26 @@ p_pctpell_avgfacsal_type +
 .panel[.panel-name[Separate]
 .small[
 
-```r
+``` r
 p_pctpell_avgfacsal_type + labs( x = "Percent of students receiving a Pell grant",
     y = "Average faculty salary (USD)",
     color = "College type")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 .panel[.panel-name[Combined]
 .small[
 
-```r
+``` r
 p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell grant", 
     y = "Average faculty salary (USD)", 
     color = "College type", 
     shape = "College type", )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-34-1.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="50%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 ]
@@ -803,7 +820,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 .panel[.panel-name[ARGGHHH2 plot]
 *(why would we want / not want to do this?)*
-&lt;img src="index_files/figure-html/unnamed-chunk-35-1.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="55%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -811,7 +828,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 # Recap
 
-* Assignment 2 (TOMORROW!)
+* Assignment 2 (Next week!)
 * Scales can help you rework how the axis labels appear
 * Guides: pulling together legends / axes
     </textarea>
