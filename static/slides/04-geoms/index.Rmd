@@ -457,6 +457,13 @@ ggplot(scorecard, aes(x = netcost, color = pctpell_cat)) +
   geom_freqpoly(binwidth = 5000, size = 1)
 ```
 ]
+
+.panel[.panel-name[Hisogram (identity)]
+```{r}
+ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
+  geom_histogram(binwidth = 5000, position = "identity")
+```
+]
 ]
 
 ---
