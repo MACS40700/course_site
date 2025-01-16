@@ -48,13 +48,39 @@ class: inverse, middle
 ---
 ## Starting a visualization
 
+```{r}
+library(c3s2)
+write.table(c3s2::yob2023, file = "yob2023.txt") # pulling out the data we want to use!
+# note: can export as other data types, too
+```
 
+--- 
+
+# Tableau: downloads, etc.
+
+Today assumes you've gone through the post on Ed and completed the download steps there:
+* Sign into an existing Tableau.com account, or create a new account using your school-issued email
+* Once signed in, visit the TFT Activation page to download the latest versions of Tableau Desktop and Tableau Prep Builder
+* Activate with product key:    TC6P-A348-35B0-D0BF-5666       
+  * Already have a copy of Tableau Desktop installed? Update the license key in the application: Help menu → Manage Product Keys
+
+
+---
+# Switch to Tableau
+* Go to Tableau Desktop
+* Load yob2023
+
+---
+
+class: middle, center, inverse
+
+# Tableau: learning + takeaways
 ---
 ## Integrating Tableau into a workflow
 
 * Use coding platform of choice to get data cleaned and sorted
 * Can use as a standalone or integrate into workflow
-  * For our purposes, we will only focus on Tableau public (not connecting to servers)
+  * For this session, we will only focus on Tableau Desktop (not connecting to servers)
 
 
 ---
@@ -100,12 +126,47 @@ You can choose any year -- today's examples will cover 2023 and 1880. You can fo
 
 Start from a rule of threes with a general focus on getting a handle on what is happening. Think about these questions and the best way to visualize!
 
-1) Overall stats: how many babies are born and genders?
-2) Top names -- overall and by gender
-3) How much 'space' does the most popular name take up (e.g. proportion of all names)?
+1. Overall stats: how many babies are born and genders?
+2. Top names -- overall and by gender
+3. How much 'space' does the most popular name take up (e.g. proportion of all names)?
+
+
+
+
+
+---
+### Basic visual: 2023
+.tiny[
+Start from a rule of threes with a general focus on getting a handle on what is happening. Think about these questions and the best way to visualize!
+
+1. Overall stats: how many babies are born and genders?
+2. Top names -- overall and by gender
+3. How much 'space' does the most popular name take up (e.g. proportion of all names)?
+
+]
+
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2024-12-26 at 3.35.41 PM.png")
+```
+
+
+
+
+---
+
+# Tableau: 2023 plots
+
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2024-12-26 at 3.38.05 PM.png")
+```
+
+
+---
+# Tableau
 
 --
-
 Now, replicate with 1880 (separately).
 
 
@@ -120,6 +181,20 @@ Adding a second year allows us to open up new possibilities using comparison (ch
 * Names that were popular but aren't any more?
 * Names that are `new'? 
 * Names moving from one gender to another? 
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2024-12-26 at 4.01.04 PM.png")
+```
+
+
+--- 
+# Tableau
+
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2024-12-26 at 4.01.23 PM.png")
+```
+
 
 ---
 # ADVANCED 
