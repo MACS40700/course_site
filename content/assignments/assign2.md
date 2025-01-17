@@ -29,7 +29,7 @@ Note that this is open-ended and you can choose your difficulty level to match y
 
 # Part 2: EDA + critique
 
-While you don't need to provide a detailed vision for each of the plots, you will provide a draft of your first plot here.
+While you don't need to provide a detailed vision for each of the plots, you will provide a refined draft of your first plot here.
 
 In this, provide the graph and approximately 200 words on the plot, why it is designed the way it is, and what feedback you would like. If there are elements you are stuck on / need help with, mention that, too!
 
@@ -51,6 +51,8 @@ In addition to the visualization and accompanying narrative, write an approximat
 -   Why did you select this graphical form?
 -   What are the advantages / disadvantages of the choices you made?
 -   How can it be improved (helpful to work through the principles above of beauty, etc.)?
+
+Finally, you need to have a well-designed and clearly structured github repository. Your main page should be clear, have nice headings, include images (rather than links to them), and have everything necessary to replicate ALL of your work. See notes when you accept the A2 repo from github classroom.
 
 ## Submission details
 

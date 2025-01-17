@@ -22,7 +22,8 @@ source(here::here("R", "slide-opts.R"))
 
 # enable panelsets and default theme
 xaringanExtra::use_panelset()
-# ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
+knitr::opts_chunk$set(out.width = "50%")
+#ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
 
 # load basic packages
 library(knitr)
@@ -38,43 +39,47 @@ class: inverse, middle
 
 ## Announcements
 
+* Assignment!
 
 ---
 # What is Tableau
 
-* Public vs not
-* Sharing and saving
+* Public vs not (public vs desktop)
+* Sharing and saving (cloud vs private)
 
 ---
 ## Starting a visualization
 
 ```{r}
 library(c3s2)
-write.table(c3s2::yob2023, file = "yob2023.txt") # pulling out the data we want to use!
+write.csv(yob2023, file = 'yob2023.csv', row.names = FALSE) # pulling out the data we want to use!
 # note: can export as other data types, too
 ```
 
---- 
+---
 
 # Tableau: downloads, etc.
 
 Today assumes you've gone through the post on Ed and completed the download steps there:
-* Sign into an existing Tableau.com account, or create a new account using your school-issued email
-* Once signed in, visit the TFT Activation page to download the latest versions of Tableau Desktop and Tableau Prep Builder
-* Activate with product key:    TC6P-A348-35B0-D0BF-5666       
-  * Already have a copy of Tableau Desktop installed? Update the license key in the application: Help menu → Manage Product Keys
+* **Sign in** to an existing Tableau.com account, or create a new account using your **school-issued email**
+* Once signed in, visit the **TFT Activation page** to **download** the latest versions of Tableau Desktop and Tableau Prep Builder
+* **Activate** with product key:    TC6P-A348-35B0-D0BF-5666       
+  * Already have a copy of Tableau Desktop installed? **Update the license key** in the application: Help menu → Manage Product Keys
 
 
 ---
+class: center, middle 
+
 # Switch to Tableau
-* Go to Tableau Desktop
-* Load yob2023
+Go to Tableau Desktop 
+
+Load **yob2023**
 
 ---
 
 class: middle, center, inverse
 
-# Tableau: learning + takeaways
+# Tableau 
 ---
 ## Integrating Tableau into a workflow
 
@@ -97,27 +102,85 @@ class: middle, center, inverse
 Offers an opportunity to get a high-level view of your data. 
 
 ```{r, echo = FALSE}
-include_url("https://www.tableau.com/dashboard/what-is-dashboard")
+
+include_graphics("images/Screenshot 2025-01-16 at 11.15.58 AM.png")
 ```
+For more info: https://www.tableau.com/dashboard/what-is-dashboard
 
 ---
-## Comparisons
+## Dashboards
 
 ```{r, echo = FALSE}
-include_url("https://www.tableau.com/data-insights/dashboard-showcase/portland-office-community-civic-life-p-card-report-dashboard")
+include_graphics("images/Screenshot 2025-01-16 at 11.18.29 AM.png")
 ```
 
+https://www.tableau.com/data-insights/dashboard-showcase/portland-office-community-civic-life-p-card-report-dashboard
 
 ---
-# Think about how to provide overall summary
+## Getting to know Tableau:
 
-* What is your data source? 
-* What is your question? 
+* Bottom of screen: lower left is your data source
+* Next to that are 'sheets' for your visualizations. 
+
+```{r, echo = FALSE, out.width = "70%"}
+include_graphics("images/Screenshot 2025-01-16 at 3.13.35 PM.png")
+```
 
 ---
-## Exercise: baby name data
+### Components in Tableau
+
+* **Worksheet** A worksheet is a single view in a workbook. You can add shelves, cards, legends, visualizations, and more in a worksheet
+* **Dashboard** A collection of multiple worksheets used to display multiple views simultaneously
+* **Story** A story is a collection of multiple dashboards and/or sheets that describe a data story
+
+Source: https://www.datacamp.com/cheat-sheet/tableau-cheat-sheet 
+
+---
+### Anatomy of a Tableau 
+* **Sidebar**: panes for working with data
+* **Data**: can set up data types
+* **Canvas**: home for the viz you'll make
+
+---
+### Anatomy of Tableau: Sidebar
+
+**Sidebar**: Panes for working with data
+  * **Data**: The data pane on the left-hand side contains all of the fields in the currently selected data source;
+  * **Analytics**: The analytics pane on the left-hand side lets you add useful insights like trend lines, error bars, and other useful summaries to visualizations
+
+---
+### Anatomy of a Tableau: Data 
+**Data**: When working with data in Tableau, there are multiple definitions to be mindful of. 
+  * **Fields**: Fields are all of the different columns or values in a data source or that are calculated in the workbook. They show up in the data pane and can either be dimension or measure field
+  * **Dimensions**: A dimension is a type of field that contains qualitative values (e.g. locations, names, and departments). Dimensions dictate the amount of granularity in visualizations and help reveal nuanced details in the data
+  * **Measures**: A measure is a type of field that contains quantitative values (e.g. revenue, costs, and market sizes). When dragged into a view, this data is aggregated, which is determined by the dimensions in the view
+  * **Data types**: Every field has a data type which is determined by the type of information it contains. The available data types in Tableau include text, date values, date & time values, numerical values,boolean values, geographical values, and cluster groups
+
+---
+### Anatomy of Tableau: The Canvas
+Where you create your data visualizations.
+
+* **Tableau Canvas**: The canvas takes up most of the screen on Tableau and is where you can add visualizations
+
+* **Rows and columns**: Rows and columns dictate how the data is displayed in the canvas. When dimensions are placed, they create headers for the rows or columns while measures add quantitative values 
+
+* **Marks card**: The marks card allows users to add visual details such as color, size, labels, etc. to rows and columns. This is done by dragging fields from the data pane into the marks card 
+
+---
+class: center, middle, inverse
+# Exercise: baby name data
+
+---
+
+## 2023 Baby name data
 
 You can choose any year -- today's examples will cover 2023 and 1880. You can follow along or choose a different year!
+
+Any babies with more than four births in a year will be included. 
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2025-01-16 at 4.21.34 PM.png")
+```
 
 [Source](https://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-data)
 
@@ -126,11 +189,9 @@ You can choose any year -- today's examples will cover 2023 and 1880. You can fo
 
 Start from a rule of threes with a general focus on getting a handle on what is happening. Think about these questions and the best way to visualize!
 
-1. Overall stats: how many babies are born and genders?
-2. Top names -- overall and by gender
-3. How much 'space' does the most popular name take up (e.g. proportion of all names)?
-
-
+1. **Overall stats**: breakdown by gender
+2. **Top names** -- top N baby names
+3. How much 'space' does the most **popular name** take up (e.g. proportion of all names)?
 
 
 
@@ -139,16 +200,35 @@ Start from a rule of threes with a general focus on getting a handle on what is 
 .tiny[
 Start from a rule of threes with a general focus on getting a handle on what is happening. Think about these questions and the best way to visualize!
 
-1. Overall stats: how many babies are born and genders?
-2. Top names -- overall and by gender
-3. How much 'space' does the most popular name take up (e.g. proportion of all names)?
+1. **Overall stats**: breakdown by gender
+2. **Top names** -- top N baby names
+3. How much 'space' does the most **popular name** take up (e.g. proportion of all names)?
 
 ]
+
 
 
 ```{r, echo = FALSE}
 include_graphics("images/Screenshot 2024-12-26 at 3.35.41 PM.png")
 ```
+
+---
+### Basic visual: 2023
+.tiny[
+Start from a rule of threes with a general focus on getting a handle on what is happening. Think about these questions and the best way to visualize!
+
+1. **Overall stats**: breakdown by gender
+2. **Top names** -- top N baby names
+3. How much 'space' does the most **popular name** take up (e.g. proportion of all names)?
+
+]
+
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2024-12-26 at 3.38.05 PM.png")
+```
+
+
 
 
 
@@ -157,18 +237,51 @@ include_graphics("images/Screenshot 2024-12-26 at 3.35.41 PM.png")
 
 # Tableau: 2023 plots
 
-
 ```{r, echo = FALSE}
-include_graphics("images/Screenshot 2024-12-26 at 3.38.05 PM.png")
+include_graphics("images/Screenshot 2025-01-16 at 4.37.53 PM.png")
 ```
 
 
+
 ---
-# Tableau
+# Tableau: 2023 plots 
+Change to percents
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2025-01-16 at 4.41.12 PM.png")
+```
 
 --
 Now, replicate with 1880 (separately).
 
+
+---
+# MERGES ("Joins") vs "Relationships"
+
+* Load both dataframes
+* New union
+* Match on name
+
+> Relationships keep datasets separate while joins are bringing them together into one frame. 
+
+
+---
+# Tableau: Relationship
+
+
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2024-12-26 at 4.01.23 PM.png")
+```
+
+---
+# Join our dataframes
+
+* Match on name AND gender (why?)
+
+
+```{r, echo = FALSE, out.width="72%"}
+include_graphics("images/Screenshot 2025-01-17 at 11.25.29 AM.png")
+```
 
 ---
 
@@ -180,29 +293,88 @@ Adding a second year allows us to open up new possibilities using comparison (ch
 * Consistency: names that were popular in both time periods?
 * Names that were popular but aren't any more?
 * Names that are `new'? 
-* Names moving from one gender to another? 
+* Names moving from one gender to another?
+
+
+---
+### Consistency: names that were popular in both time periods?
+What criteria for our join? 
+
+--
+Names popular in BOTH (inner join!)
 
 ```{r, echo = FALSE}
-include_graphics("images/Screenshot 2024-12-26 at 4.01.04 PM.png")
+include_graphics("images/Screenshot 2025-01-17 at 1.27.12 PM.png")
 ```
 
+---
 
---- 
-# Tableau
-
-
+### Names that were popular but aren't any more?
+.panelset[.panel-name[Old pop]
 ```{r, echo = FALSE}
-include_graphics("images/Screenshot 2024-12-26 at 4.01.23 PM.png")
+include_graphics("images/Screenshot 2025-01-17 at 1.39.21 PM.png")
+include_graphics("images/Screenshot 2025-01-17 at 1.40.46 PM.png")
 ```
+]
+.panel-name[New pop][
+
+]]
+
+---
+### Names that are `new'? 
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2025-01-17 at 1.44.53 PM.png")
+```
+
+---
+### Names moving from one gender to another? 
+```{r, echo = FALSE}
+include_graphics("images/Screenshot 2025-01-17 at 1.44.53 PM.png")
+```
+---
+
+# Dashboards
+
+---
+
+# Making your dashboard
+
+---
+
+# Formatting / fine-tuning 
+
+
+---
+
+# Tableau Cloud
 
 
 ---
 # ADVANCED 
-*Note: I haven't done this yet, but could be very helpful*
+.tiny[*Note: I haven't used this much yet, but could be very helpful*]
 
-```{r, echo = FALSE}
-include_url("https://help.tableau.com/current/prep/en-us/prep_scripts.htm")
+```{r, echo = FALSE, out.width="68%"}
+include_graphics("images/Screenshot 2025-01-16 at 3.41.08 PM.png")
 ```
+
+https://help.tableau.com/current/prep/en-us/prep_scripts.htm 
+
+---
+# Tableau: learning + takeaways
+---
+## Integrating Tableau into a workflow
+
+* Use coding platform of choice to get data cleaned and sorted
+* Can use as a standalone or integrate into workflow
+  * For this session, we will only focus on Tableau Desktop (not connecting to servers)
+
+
+
+---
+# Think about how to provide overall summary
+
+* What is your data source? 
+* What is your question? 
 
 
 
