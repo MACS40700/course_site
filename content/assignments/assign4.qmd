@@ -12,13 +12,20 @@ knitr::opts_chunk$set()
 ```
 
 # Assignment 4: Tableau dashboard
-For this assignment
+For this assignment, you need to make and publish an interactive dashboard using the SSA name data.
+
+You need at least two tabs, one that is temporally focused and one that focuses upon a different aspect (for example, name gender). 
+
+Within each tab, you need clear labeling and explanations, interactivity, and a mixture of graphics and tables, as appropriate (e.g. you cannot have only one graph, or only one graph type). 
+
+This needs to allow readers to answer a particular question. 
+
 
 
 
 ## Can I use different data?
 
-YES! If you have another dataset around which you want to build an interactive visualization, go ahead! Just check in with me before you proceed.
+YES! If you have another dataset around which you want to build an interactive visualization, go ahead! Just check in with us before you proceed.
 
 ## Grading
 
@@ -38,5 +45,5 @@ In addition to the visualization and accompanying narrative, write an approximat
 
 ## Submission details
 
-Submit your visualization and analysis as a single R Markdown document rendered using the `html_document` output format. If you build a Shiny app, deploy it on [Tableau Public](http://www.shinyapps.io) and include a link to it in your submission on [github classroom](https://classroom.github.com/a/VXiJO03N). Include your design explanation a document on GitHub. Note that expectations remain the same regarding an explantion of your data, github organization, etc. 
+Submit your visualization and analysis, including a link to your Tableau site and a PDF to ensure we have access in case something goes awry. Include your design explanation within the document (you can include an additional tab, if needed). Note that expectations remain the same regarding an explanation of your data, organization, etc. 
 
