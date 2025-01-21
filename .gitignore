@@ -28,6 +28,8 @@ resources/*
 content/notes/*
 *.quarto/_freeze*
 *.quarto/idx/*
+public
+
 *.quarto/xref/*
 
 # produced vignettes
