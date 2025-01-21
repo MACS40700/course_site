@@ -32,7 +32,7 @@ class: middle, inverse
 # Agenda:
 * Coordinate systems
 * Aspect ratios
-* 🙅 Pie charts
+* 🙅‍♀️ Pie charts
 * Coord maps
 * Themes
 
@@ -52,7 +52,7 @@ class: middle, inverse
 
 .small[
 
-```r
+``` r
 # load packages
 library(tidyverse)
 library(knitr)
@@ -128,13 +128,13 @@ class: middle, inverse
 
 ## Setting limits: what the plots say
 Identify the differences: focus on the range of the `x` and `y` axes and the plots.
-<div class="countdown" id="timer_79fb417a" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_96725ada" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 .tiny[
 
-```r
+``` r
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() + labs(title = "Plot 1")
 
@@ -161,25 +161,33 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
 
 .tiny[
 
-```r
+``` r
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() + labs(title = "Plot 1")
-## Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
-## Warning: Removed 2 rows containing missing values (`geom_point()`).
+## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
+## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) + geom_point() + geom_smooth() +    scale_x_continuous(limits = c(190, 220)) + scale_y_continuous(limits = c(4000, 5000)) + labs(title = "Plot 2")
-## Warning: Removed 235 rows containing non-finite values (`stat_smooth()`).
-## Warning: Removed 235 rows containing missing values (`geom_point()`).
+## Warning: Removed 235 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
+## Warning: Removed 235 rows containing missing values or values outside the scale range
+## (`geom_point()`).
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() + xlim(190, 220) + ylim(4000, 5000) + labs(title = "Plot 3")
-## Warning: Removed 235 rows containing non-finite values (`stat_smooth()`).
-## Removed 235 rows containing missing values (`geom_point()`).
+## Warning: Removed 235 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
+## Removed 235 rows containing missing values or values outside the scale range
+## (`geom_point()`).
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plot 4")
-## Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
-## Warning: Removed 2 rows containing missing values (`geom_point()`).
+## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
+## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_point()`).
 ```
 ]
 
@@ -201,8 +209,8 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
 .panel[.panel-name[Breaks]
 .pull-left[
 
-```r
-library(rcis)
+``` r
+library(c3s2)
 ggplot(scorecard, 
        aes(x = netcost, 
            y = avgfacsal)) + 
@@ -222,8 +230,8 @@ ggplot(scorecard,
 
 .pull-left[
 
-```r
-library(rcis)
+``` r
+library(c3s2)
 ggplot(scorecard, 
        aes(x = netcost, 
            y = avgfacsal)) + 
@@ -247,7 +255,7 @@ Useful when having an aspect ratio of 1 makes sense, e.g. scores on two tests (r
 
 .tiny[
 
-```r
+``` r
 ggplot(hsb2, aes(x = read, y = write)) +
   geom_point() + geom_smooth(method = "lm") +
   geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray") +
@@ -275,7 +283,7 @@ ggplot(hsb2, aes(x = read, y = write)) +
 .panel[.panel-name[Code]
 
 
-```r
+``` r
 data(solubility_test, package = "modeldata")
 
 p &lt;- ggplot(solubility_test, aes(x = solubility, y = prediction)) +
@@ -286,7 +294,7 @@ p &lt;- ggplot(solubility_test, aes(x = solubility, y = prediction)) +
 
 .panel[.panel-name[`coord_cartesian()`]
 
-```r
+``` r
 p + coord_cartesian()
 ```
 
@@ -295,7 +303,7 @@ p + coord_cartesian()
 
 .panel[.panel-name[`coord_fixed()`]
 
-```r
+``` r
 p + coord_fixed()
 ```
 
@@ -304,7 +312,7 @@ p + coord_fixed()
 
 .panel[.panel-name[`coord_obs_pred()`]
 
-```r
+``` r
 p + tune::coord_obs_pred()
 ```
 
@@ -318,7 +326,7 @@ p + tune::coord_obs_pred()
 
 .tiny[
 
-```r
+``` r
 ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
   geom_point() + geom_smooth(method = "lm") + labs(title = "Plot 1")
 
@@ -330,7 +338,7 @@ ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
   geom_point() + geom_smooth(method = "lm") + coord_trans(x = "log10", y = "log10") + 
   labs(title = "Plot 3")
 
-ggplot(penguins, aes(x = log(bill_depth_mm, base = 10), y = log(body_mass_g, base = 10))) + #&lt;&lt;
+*ggplot(penguins, aes(x = log(bill_depth_mm, base = 10), y = log(body_mass_g, base = 10))) +
   geom_point() + geom_smooth(method = "lm") + labs(title = "Plot 4")
 ```
 
@@ -343,7 +351,7 @@ ggplot(penguins, aes(x = log(bill_depth_mm, base = 10), y = log(body_mass_g, bas
 
 .small[
 
-```r
+``` r
 ggplot(penguins, aes(x = 1, fill = species)) +
   geom_bar() +
   labs(title = "Stacked bar chart")
@@ -415,7 +423,7 @@ What do you know about pie charts and data visualization best practices? Love 'e
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 *library(waffle)
 
 penguins %&gt;%
@@ -437,7 +445,7 @@ penguins %&gt;%
 .panelset[
 .panel[.panel-name[Code]
 
-```r
+``` r
 penguins %&gt;%
   count(species) %&gt;%
   ggplot(aes(fill = species, values = n)) +
@@ -470,7 +478,7 @@ class: middle, inverse
 .panelset[
 .panel[.panel-name[Cartesian]
 
-```r
+``` r
 ggplot(map_data("italy"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#008c45") +labs(x = NULL, y = NULL)
 ```
@@ -479,7 +487,7 @@ ggplot(map_data("italy"), aes(long, lat, group = group)) +
 ]
 .panel[.panel-name[Quickmap]
 
-```r
+``` r
 ggplot(map_data("italy"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#008c45") + labs(x = NULL, y = NULL) +
   coord_quickmap()
@@ -505,7 +513,7 @@ ggplot(map_data("italy"), aes(long, lat, group = group)) +
 .panelset[
 .panel[.panel-name[Cartesian]
 
-```r
+``` r
 ggplot(map_data("state"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL)
 ```
@@ -514,7 +522,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
 ]
 .panel[.panel-name[Mercator]
 
-```r
+``` r
 ggplot(map_data("state"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL) +
   coord_map()
@@ -524,7 +532,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
 ]
 .panel[.panel-name[Stereographic]
 
-```r
+``` r
 ggplot(map_data("state"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL) +
   coord_map(projection = "stereographic")
@@ -543,7 +551,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
 
 --
 
-```r
+``` r
 ggplot(map_data("county", "iowa"), aes(long, lat, group = group)) +
      geom_polygon(fill = "gray75", color = "black") + labs(x = NULL, y = NULL) +
      coord_map()
@@ -581,7 +589,7 @@ class: middle, inverse
 
 .small[
 
-```r
+``` r
 p &lt;- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 
@@ -602,7 +610,7 @@ p +
 
 .small[
 
-```r
+``` r
 p +
   facet_wrap(vars(species), scales = "free_x") +
   labs(title = "Free x scale")
@@ -622,7 +630,7 @@ Freeing the y scale improves the display, but it's still not satisfying. What's 
 
 .small[
 
-```r
+``` r
 ggplot(penguins, aes(y = species, x = body_mass_g, fill = species)) +
   geom_boxplot(show.legend = FALSE) +
   facet_grid(island ~ .) +
@@ -642,7 +650,7 @@ ggplot(penguins, aes(y = species, x = body_mass_g, fill = species)) +
 ## Free spaces
 
 
-```r
+``` r
 ggplot(penguins, aes(y = species, x = body_mass_g, fill = species)) +
   geom_boxplot(show.legend = FALSE) +
   facet_grid(island ~ ., scales = "free_y", space = "free") +
@@ -656,7 +664,7 @@ ggplot(penguins, aes(y = species, x = body_mass_g, fill = species)) +
 ## Highlighting across facets
 
 
-```r
+``` r
 penguins_sans_species &lt;- penguins %&gt;% select(-species)
 
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -701,7 +709,7 @@ class: middle, inverse
 ## Complete themes
 
 
-```r
+``` r
 p + theme_gray() + labs(title = "Gray")
 p + theme_void() + labs(title = "Void")
 p + theme_dark() + labs(title = "Dark")
@@ -714,7 +722,7 @@ p + theme_dark() + labs(title = "Dark")
 ## Themes from ggthemes
 
 
-```r
+``` r
 library(ggthemes)
 
 p + theme_fivethirtyeight() + labs(title = "FiveThirtyEight")
@@ -722,14 +730,15 @@ p + theme_economist() + labs(title = "Economist")
 p + theme_wsj() + labs(title = "Wall Street Journal")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="33%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-27-2.png" width="33%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-27-3.png" width="33%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="30%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-27-2.png" width="30%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-27-3.png" width="30%" /&gt;
 
 ---
 
 ## Themes and color scales from ggthemes
 
 
-```r
+``` r
+library(ggthemes)
 p + 
   aes(color = species) +
   scale_color_wsj() +
@@ -744,7 +753,7 @@ p +
 ## Modifying theme elements
 
 
-```r
+``` r
 p + 
   labs(title = "Palmer penguins") +
   theme(
@@ -754,7 +763,7 @@ p +
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="60%" /&gt;
----
+
 
 
 --- 
@@ -771,7 +780,7 @@ p +
 # examples: starting with TS and blues
 
 
-```r
+``` r
 library(taylor)
 library(ggplot2)
 library(RColorBrewer)
@@ -794,7 +803,7 @@ blues17 &lt;- colorRampPalette(brewer.pal(8, "Blues"))(nb.cols)
 .panel[.panel-name[Blues Code]
 
 
-```r
+``` r
 p &lt;- ggplot(reputation, aes(x = valence, y = track_name, fill = track_name)) +
   geom_col(show.legend = FALSE) +
   expand_limits(x = c(0, 1)) +
@@ -812,7 +821,7 @@ p
 .panel[.panel-name[Custom Code]
 
 
-```r
+``` r
 p + scale_fill_taylor_d(album = "reputation")
 ```
 ]
@@ -821,10 +830,20 @@ p + scale_fill_taylor_d(album = "reputation")
 ]
 ]
 
+
+---
+
+# Other options: alternate themes
+* https://emilhvitfeldt.github.io/paletteer/ 
+* https://matthewbjane.github.io/ThemePark/ 
+* https://datavizs24.classes.andrewheiss.com/resource/colors.html 
 ---
 # Recap
 
-* Coord systems: 
+* Coord systems: can change to linear/nonlinear
+  * Coord_polar also interesting
+* Geographic layer possible
+* Themes: delightful
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
