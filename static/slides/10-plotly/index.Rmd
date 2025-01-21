@@ -151,8 +151,7 @@ fig
 ---
 ## Dot plots
 ```{r}
-p <-    
- ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+p <- ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
   geom_dotplot(stackgroups = TRUE, binwidth = 1, binpositions = "all")
 
 ggplotly(p, height = 325) 
@@ -175,11 +174,10 @@ df <- df %>%
   mutate(paired = rep(1:(n()/2),each=2),
          year=factor(year))
 
-p <- df %>% 
-  group_by(paired) %>%
+p <- df %>% group_by(paired) %>%
   ggplot(aes(x= lifeExp, y= reorder(country,lifeExp))) +
   geom_line(aes(group = paired),color="grey")+
-    geom_point(aes(color=year), size=2) +
+    geom_point(aes(color=year), size=2) + scale_color_viridis_d(name = "Year", option = "turbo") +
   labs(y="country") + theme(text = element_text(size = 10))
 
 ggplotly(p, height = 450)
@@ -231,7 +229,7 @@ plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, color = ~Species,
 ## Mapping Data to Symbols
 ```{r}
 plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, type = 'scatter',
-  mode = 'markers', symbol = ~Species, symbols = c('circle','x','o'),
+  mode = 'markers', symbol = ~Species, symbols = c('circle','x','o'), alpha = 0.5,
   color = I('black'), marker = list(size = 10), height = 300)
 ```
 
