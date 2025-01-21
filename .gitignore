@@ -26,6 +26,9 @@
 resources/*
 *static/slides/old/*
 content/notes/*
+*.quarto/_freeze*
+*.quarto/idx/*
+*.quarto/xref/*
 
 # produced vignettes
 vignettes/*.html
