@@ -12,20 +12,20 @@ knitr::opts_chunk$set()
 ```
 
 # Assignment 4: Tableau dashboard
-For this assignment, you need to make and publish an interactive dashboard using the SSA name data.
+For this assignment, you need to make and publish an interactive dashboard using the SSA name data from our class examples. The data can be downloaded here: https://www.ssa.gov/oact/babynames/limits.html 
 
-You need at least two tabs, one that is temporally focused and one that focuses upon a different aspect (for example, name gender). 
+You need at least three plots, one that is temporally focused and one that focuses upon a different aspect (for example, name gender or state popularity). 
 
-Within each tab, you need clear labeling and explanations, interactivity, and a mixture of graphics and tables, as appropriate (e.g. you cannot have only one graph, or only one graph type). 
+Include clear labeling and explanations, interactivity, and a mixture of graphics and tables, as appropriate (e.g. you cannot have only one graph, or only one graph type). 
 
-This needs to allow readers to answer a particular question. 
+This needs to allow readers to answer a particular question -- for example, how name trends have changed or geographic trends. 
 
 
 
 
 ## Can I use different data?
 
-YES! If you have another dataset around which you want to build an interactive visualization, go ahead! Just check in with us before you proceed.
+YES! If you have another dataset around which you want to build an interactive visualization, go ahead! Just check in with us before you proceed. Note that as of right now, your visualization will need to be published to Tableau public, so you may wish to use publicly available data. 
 
 ## Grading
 
