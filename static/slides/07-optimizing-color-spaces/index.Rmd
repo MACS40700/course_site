@@ -94,6 +94,8 @@ install.packages(c("tidyverse", "here", "colorspace",
 usethis::use_course("MACS40700/choosing-colors")
 ```
 
+FYI for some plots, you may need to find them on their own and install separately, e.g.: https://github.com/UrbanInstitute/urbnmapr 
+
 ---
 
 # Uses of color in data visualization
@@ -741,7 +743,7 @@ pen_fig
 # Inspecting for color vision deficiency
 
 ```{r echo = TRUE, eval = FALSE}
-library(colorblindr)
+library(colorblindr) #https://www.rdocumentation.org/packages/colorblindr/versions/0.1.0 
 cvd_grid(plot = pen_fig)
 ```
 
@@ -841,15 +843,15 @@ include_graphics(path = "images/double-encode-lines.png")
 
 .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
 
----
+<!-- --- -->
 
-# Shades to distinguish subcategories
+<!-- # Shades to distinguish subcategories -->
 
-```{r}
-include_graphics(path = "images/subcategories.png")
-```
+<!-- ```{r} -->
+<!-- include_graphics(path = "images/subcategories.png") -->
+<!-- ``` -->
 
-.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+<!-- .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)] -->
 
 ---
 
@@ -1296,3 +1298,8 @@ usethis::use_course("MACS40700/choosing-colors")
 
 ---
 # Recap
+
+* Consider the palettes: balance saturation
+* Colors: 
+  * Qualitative: diverging
+  * Quantitative: scale

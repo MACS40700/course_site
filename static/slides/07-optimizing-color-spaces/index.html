@@ -38,6 +38,8 @@ install.packages(c("tidyverse", "here", "colorspace",
 usethis::use_course("MACS40700/choosing-colors")
 ```
 
+FYI for some plots, you may need to find them on their own and install separately, e.g.: https://github.com/UrbanInstitute/urbnmapr 
+
 ---
 
 # Uses of color in data visualization
@@ -407,8 +409,8 @@ class: inverse, middle
 # Inspecting for color vision deficiency
 
 
-```r
-library(colorblindr)
+``` r
+library(colorblindr) #https://www.rdocumentation.org/packages/colorblindr/versions/0.1.0 
 cvd_grid(plot = pen_fig)
 ```
 
@@ -474,13 +476,15 @@ cvd_grid(plot = pen_fig)
 
 .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
 
----
+&lt;!-- --- --&gt;
 
-# Shades to distinguish subcategories
+&lt;!-- # Shades to distinguish subcategories --&gt;
 
-&lt;img src="images/subcategories.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;!-- ```{r} --&gt;
+&lt;!-- include_graphics(path = "images/subcategories.png") --&gt;
+&lt;!-- ``` --&gt;
 
-.footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
+&lt;!-- .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)] --&gt;
 
 ---
 
@@ -939,6 +943,11 @@ usethis::use_course("MACS40700/choosing-colors")
 
 ---
 # Recap
+
+* Consider the palettes: balance saturation
+* Colors: 
+  * Qualitative: diverging
+  * Quantitative: scale
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
