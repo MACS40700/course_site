@@ -25,7 +25,7 @@ In this assignment, you need to provide:
 -   Code that generated your plots
 -   BE SURE TO RUN YOUR FILE FROM A CLEAN WORKSPACE PLEASE!
 -   Approx 700 words about your vision and description of the plots
-    -   Approx 200 words on the complete graph
+    -   Approx 200 words on the complete graph (see part 2)
     -   Approx 400 words on the other two draft graphs (they are drafts/sketches but should be faithful to your final vision)
 
 Note that this is open-ended and you can choose your difficulty level to match your skills. If you are newer to R / programming, you may want to choose an 'off the shelf' dataset that does not require much cleaning (see [finding data in the FAQ for more info](https://macs40700.netlify.app/faq/)). If you are a more experienced programmer, working on your own research, you can use something that might need a bit more cleaning.
@@ -34,7 +34,7 @@ Note that this is open-ended and you can choose your difficulty level to match y
 
 While you don't need to provide a detailed vision for each of the plots, you will provide a refined draft of your first plot here.
 
-In this, provide the graph and approximately 200 words on the plot, why it is designed the way it is, and what feedback you would like. If there are elements you are stuck on / need help with, mention that, too!
+In this, provide the graph and approximately 200 words on the plot (the 200 mentioned above), why it is designed the way it is, and what feedback you would like. If there are elements you are stuck on / need help with, mention that, too!
 
 Note that while this is a rough draft, it needs to have a title, labeled axes, etc.
 
