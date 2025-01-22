@@ -118,14 +118,14 @@ class: middle, inverse
 
 ---
 
-# Is that gray background okay?
+# Should you stick with defaults?
 .pull-left[
 ```{r standard-grey, echo = FALSE, out.width = "95%"}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
-  geom_point(size = 2)
+  geom_point(size = 2) + theme_grey()
 ```
 
-It adds contrast but some people just don't like it. 
+Some say these are good enough. Others want more thought. 
 ]
 
 --
@@ -326,6 +326,7 @@ install.packages(c("tidyverse", "here", "colorspace", "showtext",
 usethis::use_course("MACS40700/themes-annotations")
 ```
 
+# Note: might need to install ggtext (and others)
 
 ---
 
@@ -425,7 +426,7 @@ https://en.wikipedia.org/wiki/Apple_IIe#/media/File:Iie-system.jpg
 
 ---
 
-```{r taylor-plot}
+```{r taylor-plot, out.width="75%"}
 ggplot(midnights, aes(x = tempo, y = reorder(track_name, tempo, sum))) +
   geom_col(show.legend = FALSE, fill = 'lightgray') +
   expand_limits(x = c(0, 1)) +
@@ -467,7 +468,7 @@ penguins_bad <- ggplot(palmerpenguins::penguins, aes(x = bill_depth_mm, y = flip
     fill = NULL
   )
 
-cowplot::stamp(penguins_bad, "less good", color = "red3")
+cowplot::stamp(penguins_bad, "worse", color = "black")
 ```
 
 ]
@@ -525,7 +526,7 @@ price_plot_base <- ggplot(tech_stocks, aes(x = date, y = price_indexed, color = 
     expand = c(0,0)
   )
 
-cowplot::stamp_bad(price_plot_base)
+cowplot::stamp(price_plot_base, "less good", color = "black")
 ```
 ]
 
@@ -918,7 +919,7 @@ class: inverse, middle
 ```{r get-wdi-fake, include = FALSE, eval = FALSE}
 indicators <- c(
   "SP.POP.TOTL", # Population
-  "EN.ATM.CO2E.PC", # CO2 emissions
+  "EN.GHG.CO2.MT.CE.AR5", # CO2 emissions
   "NY.GDP.PCAP.KD") # GDP per capita
 
 wdi_co2_raw <- WDI::WDI(
@@ -934,7 +935,7 @@ wdi_co2_raw <- WDI::WDI(
 #wdi_co2_raw <- read_csv(here("data", "wdi_co2.csv"))
 indicators <- c(
   "SP.POP.TOTL", # Population
-  "EN.ATM.CO2E.PC", # CO2 emissions
+  "EN.GHG.CO2.MT.CE.AR5", # CO2 emissions
   "NY.GDP.PCAP.KD") # GDP per capita
 wdi_co2_raw <- WDI::WDI(
   country = "all", indicators, extra = TRUE,
@@ -946,7 +947,7 @@ wdi_clean <- wdi_co2_raw %>%
   filter(region != "Aggregates") %>%
   select(iso2c, iso3c, country, year,
     population = SP.POP.TOTL,
-    co2_emissions = EN.ATM.CO2E.PC,
+    co2_emissions = EN.GHG.CO2.MT.CE.AR5,
     gdp_per_cap = NY.GDP.PCAP.KD,
     region, income )
 
@@ -1035,7 +1036,7 @@ Set the random seed for reproducibility.
 .pull-left[
 .tiny[
 ```{r pretty-plot-0, fig.show = "hide", warning = FALSE}
-set.seed(123) #<<
+set.seed(13) #<<
 ```
 ]
 ]
@@ -1055,7 +1056,7 @@ Initialize the `ggplot()` object.
 .pull-left[
 .tiny[
 ```{r pretty-plot-1, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 ggplot( #<<
   data = co2_rankings, #<<
@@ -1080,7 +1081,7 @@ Create a basic scatterplot, color-coded based on rank changes.
 .pull-left[
 .tiny[
 ```{r pretty-plot-2, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 ggplot(
   data = co2_rankings,
@@ -1107,7 +1108,7 @@ Label points for countries with a "big" change.
 .pull-left[
 .tiny[
 ```{r pretty-plot-3, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 ggplot(
   data = co2_rankings,
@@ -1137,7 +1138,7 @@ Add a reference line in the background to show what it would look like if countr
 .pull-left[
 .tiny[
 ```{r pretty-plot-5, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base <- ggplot(
   data = co2_rankings,
@@ -1173,7 +1174,7 @@ Annotate the plot to clarify outliers that are improving.
 .pull-left[
 .tiny[
 ```{r pretty-plot-6, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base +
   annotate( #<<
@@ -1202,7 +1203,7 @@ Annotate the plot to clarify the outliers that are worsening.
 .pull-left[
 .tiny[
 ```{r pretty-plot-7, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base2 <-base + 
   annotate(
@@ -1233,7 +1234,7 @@ Choose a custom color palette to highlight the outliers.
 .pull-left[
 .tiny[
 ```{r pretty-plot-8, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base2 +
   scale_color_manual( #<<
@@ -1258,7 +1259,7 @@ Use the same colors for the labels. Only need the last two values in the origina
 .pull-left[
 .tiny[
 ```{r pretty-plot-9, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base2 + 
   scale_color_manual(
@@ -1285,7 +1286,7 @@ Adjust the axis labeling and remove the padding on both axes.
 .pull-left[
 .tiny[
 ```{r pretty-plot-10, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base2 +
   scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
@@ -1315,7 +1316,7 @@ Add human-readable titles, labels, etc.
 .pull-left[
 .tiny[
 ```{r pretty-plot-11, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base2 +
   scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
@@ -1347,7 +1348,7 @@ Get rid of the legends - unnecessary.
 .pull-left[
 .tiny[
 ```{r pretty-plot-12, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base3 <-base2 +
   scale_color_manual(values = c("grey50", "#0074D9", "#FF4136")) +
@@ -1382,7 +1383,7 @@ Change the base theme and font to match the text labels.
 .pull-left[
 .tiny[
 ```{r pretty-plot-13, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base3 + 
   theme_bw(base_family = "Roboto Condensed") #<<
@@ -1405,7 +1406,7 @@ Use HTML and Markdown syntax to customize the visual appearance of the title and
 .pull-left[
 .tiny[
 ```{r pretty-plot-14, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base4 <- base3 + 
   labs(
@@ -1436,7 +1437,7 @@ Ensure rendering of HTML/Markdown syntax with `ggtext::element_markdown()`.
 .pull-left[
 .tiny[
 ```{r pretty-plot-15, fig.show = "hide", warning = FALSE}
-set.seed(123)
+set.seed(13)
 
 base4 +
   labs(
@@ -1453,7 +1454,7 @@ base4 +
     plot.subtitle = element_markdown( #<<
       size = rel(1.3)), #<<
     plot.margin = unit(c(0.5, 1, 0.5, 0.5), #<<
-                       units = "lines") #<<
+                       units = "lines")) #<<
 ```
 ]
 ]
@@ -1470,7 +1471,7 @@ base4 +
 ---
 
 ```{r echo = FALSE, warning = FALSE, out.width = "90%"}
-set.seed(123)
+set.seed(13)
 
 ggplot(
   data = co2_rankings,
