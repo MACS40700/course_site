@@ -56,8 +56,9 @@ In addition to the visualization and accompanying narrative, write an approximat
 -   How can it be improved (helpful to work through the principles above of beauty, etc.)?
 
 Finally, you need to have a well-designed and clearly structured github repository. Your main page should be clear, have nice headings, include images (rather than links to them), and have everything necessary to replicate ALL of your work. See notes when you accept the A2 repo from github classroom. If you are dealing with large amounts of data, you can explore git's large file storage (LFS):
-\* [LFS intro](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage)
-\* [LFS downloading](https://git-lfs.com/)
+
+-   [LFS intro](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage)
+-   [LFS downloading](https://git-lfs.com/)
 
 ## Submission details
 
