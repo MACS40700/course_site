@@ -476,15 +476,6 @@ cvd_grid(plot = pen_fig)
 
 .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
 
-&lt;!-- --- --&gt;
-
-&lt;!-- # Shades to distinguish subcategories --&gt;
-
-&lt;!-- ```{r} --&gt;
-&lt;!-- include_graphics(path = "images/subcategories.png") --&gt;
-&lt;!-- ``` --&gt;
-
-&lt;!-- .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)] --&gt;
 
 ---
 
@@ -576,7 +567,7 @@ Scale function            | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp;   | Data ty
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
@@ -597,12 +588,12 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_gradient() #&lt;&lt;
+* scale_fill_gradient()
 ```
 ]
 ]
@@ -618,12 +609,12 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_viridis_c() #&lt;&lt;
+* scale_fill_viridis_c()
 ```
 ]
 ]
@@ -639,12 +630,12 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_viridis_c(option = "B", begin = 0.15) #&lt;&lt;
+* scale_fill_viridis_c(option = "B", begin = 0.15)
 ```
 ]
 ]
@@ -660,12 +651,12 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_distiller(palette = "YlGnBu") #&lt;&lt;
+* scale_fill_distiller(palette = "YlGnBu")
 ```
 ]
 ]
@@ -701,12 +692,12 @@ Scale function                       | Aesthetic &amp;nbsp;&amp;nbsp;&amp;nbsp; 
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_continuous_sequential(palette = "YlGnBu") #&lt;&lt;
+* scale_fill_continuous_sequential(palette = "YlGnBu")
 ```
 ]
 ]
@@ -722,12 +713,12 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_continuous_sequential(palette = "Viridis") #&lt;&lt;
+* scale_fill_continuous_sequential(palette = "Viridis")
 ```
 ]
 ]
@@ -743,12 +734,12 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(temps_months, aes(x = month, y = location, fill = mean)) + 
   geom_tile(width = 0.95, height = 0.95) + 
   coord_fixed(expand = FALSE) +
   theme_classic() +
-  scale_fill_continuous_sequential(palette = "Inferno", begin = 0.15) #&lt;&lt;
+* scale_fill_continuous_sequential(palette = "Inferno", begin = 0.15)
 ```
 ]
 ]
@@ -756,7 +747,7 @@ ggplot(temps_months, aes(x = month, y = location, fill = mean)) +
 ---
 
 
-```r
+``` r
 colorspace::hcl_palettes(type = "sequential", plot = TRUE) # all sequential palettes
 ```
 
@@ -765,7 +756,7 @@ colorspace::hcl_palettes(type = "sequential", plot = TRUE) # all sequential pale
 ---
 
 
-```r
+``` r
 colorspace::hcl_palettes(type = "diverging", plot = TRUE, n = 9) # all diverging palettes
 ```
 
@@ -774,7 +765,7 @@ colorspace::hcl_palettes(type = "diverging", plot = TRUE, n = 9) # all diverging
 ---
 
 
-```r
+``` r
 colorspace::divergingx_palettes(plot = TRUE, n = 9) # all divergingx palettes
 ```
 
@@ -789,7 +780,7 @@ class: inverse, middle
 ---
 
 
-```r
+``` r
 colorspace::hcl_palettes(type = "qualitative", plot = TRUE) # all qualitative palettes
 ```
 
@@ -806,7 +797,7 @@ colorspace::hcl_palettes(type = "qualitative", plot = TRUE) # all qualitative pa
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10()
@@ -826,11 +817,11 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
-  scale_color_hue() #&lt;&lt;
+* scale_color_hue()
 ```
 ]
 ]
@@ -846,12 +837,12 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
   # uses Pastel 1
-  scale_color_discrete_qualitative(palette = "Dark 2") #&lt;&lt;
+* scale_color_discrete_qualitative(palette = "Dark 2")
 ```
 ]
 ]
@@ -867,14 +858,14 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 library(ggthemes)  # for scale_color_colorblind()
 
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
   # uses Okabe-Ito colors
-  scale_color_colorblind() #&lt;&lt;
+* scale_color_colorblind()
 ```
 ]
 ]
@@ -890,16 +881,16 @@ ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
 
 .panel[.panel-name[Code]
 
-```r
+``` r
 ggplot(popgrowth, aes(x = pop2000, y = popgrowth, color = region)) +
   geom_point(size = 4) +
   scale_x_log10() +
-  scale_color_manual( #&lt;&lt;
-    values = c( #&lt;&lt;
-      West = "#E69F00", South = "#56B4E9", #&lt;&lt;
-      Midwest = "#009E73", Northeast = "#F0E442" #&lt;&lt;
-    ) #&lt;&lt;
-  ) #&lt;&lt;
+* scale_color_manual(
+*   values = c(
+*     West = "#E69F00", South = "#56B4E9",
+*     Midwest = "#009E73", Northeast = "#F0E442"
+*   )
+* )
 ```
 ]
 ]

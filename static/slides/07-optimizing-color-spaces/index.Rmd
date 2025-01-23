@@ -843,15 +843,6 @@ include_graphics(path = "images/double-encode-lines.png")
 
 .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)]
 
-<!-- --- -->
-
-<!-- # Shades to distinguish subcategories -->
-
-<!-- ```{r} -->
-<!-- include_graphics(path = "images/subcategories.png") -->
-<!-- ``` -->
-
-<!-- .footnote[Source: [Lisa Charlotte Muth](https://blog.datawrapper.de/category/color-in-data-vis/)] -->
 
 ---
 
