@@ -583,7 +583,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
     name = "Net cost of attendance",
     breaks = seq(from = 0, to = 60000, by = 10000),
     limits = c(0, 60000),
-    labels = label_dollar() )
+    labels = label_currency() )
 ```
 ]
 
@@ -597,8 +597,8 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   geom_point(alpha = 0.5) +
   scale_x_continuous(
     name = "Net cost of attendance", breaks = seq(from = 0, to = 60000, by = 10000),
-    limits = c(0, 60000), labels = label_dollar()) +
-  scale_y_continuous( name = "Average faculty salary (USD)", labels = label_dollar()) 
+    limits = c(0, 60000), labels = label_currency()) +
+  scale_y_continuous( name = "Average faculty salary (USD)", labels = label_currency()) 
 ```
 ]
 

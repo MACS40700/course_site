@@ -75,11 +75,6 @@ class: middle, inverse
 
 ## Announcements
 
-* Assignment 2 grading underway: releasing in blocks 
-* Additional OH -- let me know if you want to meet and weren't able to find time!
-
-
-
 
 ---
 
@@ -167,16 +162,17 @@ countdown(minutes = 5, top = 0)
 ```
 .tiny[
 ```{r set-limits, out.width = "20%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() + labs(title = "Plot 1")
+p <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() + geom_smooth() 
 
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) + geom_point() + geom_smooth() +    scale_x_continuous(limits = c(190, 220)) + scale_y_continuous(limits = c(4000, 5000)) + labs(title = "Plot 2")
+p + labs(title = "Plot 1")
 
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() + xlim(190, 220) + ylim(4000, 5000) + labs(title = "Plot 3")
+p + scale_x_continuous(limits = c(190, 220)) + 
+  scale_y_continuous(limits = c(4000, 5000)) + labs(title = "Plot 2")
 
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() + geom_smooth() + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plot 4")
+p + xlim(190, 220) + ylim(4000, 5000) + labs(title = "Plot 3")
+
+p + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plot 4")
 ```
 ]
 
@@ -328,16 +324,14 @@ p + tune::coord_obs_pred()
 
 .tiny[
 ```{r transformations, out.width = "25%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() + geom_smooth(method = "lm") + labs(title = "Plot 1")
+p<- ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
+  geom_point() + geom_smooth(method = "lm") 
+  
+  p + labs(title = "Plot 1")
 
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() + geom_smooth(method = "lm") + scale_x_log10() + scale_y_log10() + 
-  labs(title = "Plot 2")
+p + scale_x_log10() + scale_y_log10() + labs(title = "Plot 2")
 
-ggplot(penguins, aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point() + geom_smooth(method = "lm") + coord_trans(x = "log10", y = "log10") + 
-  labs(title = "Plot 3")
+p + coord_trans(x = "log10", y = "log10") +  labs(title = "Plot 3")
 
 ggplot(penguins, aes(x = log(bill_depth_mm, base = 10), y = log(body_mass_g, base = 10))) + #<<
   geom_point() + geom_smooth(method = "lm") + labs(title = "Plot 4")
@@ -770,7 +764,7 @@ p + theme_wsj() + labs(title = "Wall Street Journal")
 
 ## Themes and color scales from ggthemes
 
-```{r warning = FALSE, message = FALSE, out.width = "60%"}
+```{r warning = FALSE, message = FALSE, out.width = "40%"}
 library(ggthemes)
 p + 
   aes(color = species) +
