@@ -11,7 +11,7 @@ summary: "Graph critique"
 
 ## Visualization and critique
 
-Select a data visualization and write a (roughly) 1000 word critique of the visualization based on the five qualities of great visualizations:[^1]
+Select a data visualization and write a (roughly) 1000 word critique of the visualization based on the five qualities of great visualizations:[^1] You also need to provide a short paragraph summarizing how you would improve it (no plot needed -- a couple of sentences will suffice).
 
 -   Is it truthful?
 -   Is it functional?
@@ -35,6 +35,8 @@ Some good resources for finding visualizations to critique:
 All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/fLOfyUGC)
 
 Be sure to include a link to the original visualization in your critique. Submit your critique as a [Markdown](http://daringfireball.net/projects/markdown/basics) formatted document that can be read directly in the repo on GitHub. Write either in the original `.md` file or write it as an [R Markdown](http://rmarkdown.rstudio.com/) document rendered using the `github_output` format.
+
+The repo should be 'nice' in that you need good folder and file name conventions, nice headings for paragraphs, and it's easily readable.
 
 <!--## Part 2: `ggplot2` and the grammar of graphics (10 points)-->
 

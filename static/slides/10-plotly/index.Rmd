@@ -53,17 +53,20 @@ ggplot2::theme_set(ggplot2::theme_gray(base_size = 16))
 ```{r pkgs, include = FALSE, cache = FALSE}
 library(knitr)
 library(here)
+library(c3s2)
 library(tidyverse)
 library(plotly)
 ```
 
-class: middle, inverse
+class: inverse
 
 # Data visualization: Agenda for today
 
 * Basics of plotly
 * Graphic applications
 * Converting a ggplot graphic
+
+**NOTE** Tableau -- prep for next week!
 
 
 ---
@@ -127,6 +130,33 @@ fig
 ```{r}
 plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length, height = 400)
 ```
+
+---
+## Converting -- pretty easy to convert from prior plots
+.panelset[
+.pull-left[
+```{r score-ex, echo = FALSE, out.height="70%"}
+p <- ggplot(scorecard, 
+            aes(x = type, y = avgfacsal)) + 
+  geom_point(alpha = 0.5) + 
+  stat_summary(geom = "point", 
+               fun = "median",   
+               color = "red", size = 5, 
+               pch = 4, stroke = 2)
+ggplotly(p)
+```
+
+]
+
+.pull-right[
+
+```{r score-ex,eval=FALSE}
+```
+from https://macs40700.netlify.app/slides/05-stats-scales-guides/#11 
+]
+]
+
+
 
 
 ---
@@ -260,6 +290,21 @@ ggplotly(p, height = 350)
 ```
 
 ---
+### Boxplot conversion
+from: https://macs40700.netlify.app/slides/05-stats-scales-guides/?panelset_001=geom#14
+
+```{r}
+data("PlantGrowth")
+p<-ggplot(PlantGrowth, aes(x = group, y = weight))  +
+     geom_boxplot() +
+     stat_summary(geom = "point", fun = "mean", 
+                  color = "darkgreen", size = 5, pch = 4, stroke = 2)
+    
+ggplotly(p)
+
+```
+
+---
 ## Data labels on hover
 ```{r}
 d <- diamonds[sample(nrow(diamonds), 1000), ]
@@ -321,3 +366,11 @@ ggplotly(p, height = 220)
   * Scatter plots
   * Line plots
   * ... etc. ...
+  
+---
+# A3: Plotly
+
+* Six plots: two groups of three
+* Each group: one draft, one polished, one 'alternative option'
+  * This means displaying the exact same data in a different way -- can experiment with different facets or representations
+* **CAN BUILD** on prior work (it's ok to incorporate feedback on A2)
