@@ -367,6 +367,22 @@ ggplotly(p, height = 220)
   * Line plots
   * ... etc. ...
   
+  
+---
+## Other options: ggiraph
+
+```{r, echo = FALSE}
+include_url("https://davidgohel.github.io/ggiraph/")
+```
+
+
+---
+## Grading: how to interpret, focus, and improve
+
+* Look at rubric and comments. Focus on which 'bin' you are in and how to improve. 
+* Most people will mostly fall in 'satisfactory' bin. Few will be exceptional/excellent. 
+  * Think of satisfactory as meeting the mark and Excellent as being used as an example of what/how to do the assignment
+
 ---
 # A3: Plotly
 

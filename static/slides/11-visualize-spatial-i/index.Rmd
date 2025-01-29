@@ -127,6 +127,17 @@ include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/
 
 ---
 
+## Mapping options: 
+
+* maps -- map data
+* plotly -- old friend :) 
+* sf -- ways to visualize objects
+* ggmap -- nice way to render but need API
+* leaflet -- more interactive
+
+
+
+---
 ## Large-scale map
 
 ```{r large-scale}
@@ -309,6 +320,8 @@ leaflet() %>%
 knitr::opts_chunk$set(
   echo = TRUE
 )
+
+register_stadiamaps("2e9df7bf-c6b1-4fbc-85d9-53d19f369c3a", write = TRUE)
 ```
 
 ```{r panelset = c(output = "Plot", source = "Code"), out.width = "70%"}
@@ -368,12 +381,10 @@ stamen_maptype <- tibble(maptype = c(
   "stamen_terrain", "stamen_toner", "stamen_toner_lite", "stamen_terrain_background", 
   "stamen_toner_background", "stamen_terrain_labels", "stamen_terrain_lines", "stamen_toner_labels", "stamen_toner_lines" #note issue w/watercolor: "stamen_watercolor", https://docs.stadiamaps.com/guides/migrating-from-stamen-map-tiles/
 )) %>%
-  mutate(
-    bb = map(maptype, ~ get_stadiamap(bbox = chi_bb, zoom = 10, maptype = .x)),
+  mutate(bb = map(stamen_maptype, ~ get_stadiamap(bbox = chi_bb, zoom = 10, maptype = .x)),
     ggmap = map2(bb, maptype, ~ ggmap(.x) +
       ggtitle(.y) +
-      theme_minimal())#base_size = rcfss::base_size * 0.4))
-    )
+      theme_minimal()))  
 
 wrap_plots(stamen_maptype$ggmap)
 ```
@@ -732,10 +743,10 @@ us_state_vaccinations %>%
 
 
 
+
 ---
 
 # Recap
 
-* Homework tomorrow!
 * Lots we can do spatially
 * Maps can require a LOT and options vary / update all the time
