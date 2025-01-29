@@ -35,8 +35,7 @@ library(patchwork)
 class: inverse, middle
 
 # Announcements
-* Career services event: tonight
-* Homework due tomorrow
+
 
 ---
 
