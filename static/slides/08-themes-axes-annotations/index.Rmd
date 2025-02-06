@@ -377,7 +377,10 @@ m_plot_imp
 ## Conciseness matters
 
 ```{r message = FALSE, warning = FALSE, out.width = "55%"}
-m_plot_imp + 
+ggplot(midnights, aes(x = tempo, y = track_name, fill = track_name)) +
+  geom_col(show.legend = FALSE) + expand_limits(x = c(0, 1)) +
+  labs(y = NULL) +  theme_minimal() +
+  scale_fill_taylor_d(album = "Midnights")
   scale_x_continuous(breaks = seq(0, 200, 50))
 
 ```
@@ -393,7 +396,43 @@ m_plot_imp +
 ```
 
 ---
+# Zooming: comparison
 
+.panelset[.panel[
+.panel-name[Baseline]
+
+```{r message = FALSE, warning = FALSE, out.width = "45%"}
+ggplot( midnights, aes(x = tempo, color = tempo)) + coord_flip() +
+  geom_boxplot(show.legend = FALSE) +   labs(x = NULL) +  theme_minimal() +
+  scale_color_pomological() + theme_pomological_fancy() + scale_x_continuous(breaks = seq(0, 200, 10))
+
+``` 
+]
+.panel[
+.panel-name[Opt 1: subset]
+
+
+```{r message = FALSE, warning = FALSE, out.width = "45%"}
+midnights %>% filter(tempo > 125) %>%
+ggplot( aes(x = tempo, color = tempo)) + 
+  geom_boxplot(show.legend = FALSE) +   labs(x = NULL) +  theme_minimal() +
+  scale_color_pomological() + theme_pomological_fancy() + scale_x_continuous(breaks = seq(0, 200, 10)) + coord_flip() 
+
+```
+]
+.panel[.panel-name[Opt 2: limits]
+
+```{r message = FALSE, warning = FALSE, out.width = "45%"}
+ggplot( midnights, aes(x = tempo, color = tempo)) + 
+  geom_boxplot(show.legend = FALSE) +   labs(x = NULL) +  theme_minimal() +
+  scale_color_pomological() + theme_pomological_fancy() + xlim(125, 200) + scale_x_continuous(breaks = seq(125, 200, 10))+  coord_flip() 
+
+```
+]
+
+]
+
+---
 class: inverse, middle
 
 # Fretting the little things

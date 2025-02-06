@@ -129,10 +129,11 @@ include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/
 ## Mapping options: 
 
 * maps -- map data
-* plotly -- old friend :) 
-* sf -- ways to visualize objects
 * ggmap -- nice way to render but need API
 * leaflet -- more interactive
+* plotly -- old friend :) 
+* sf -- ways to visualize objects
+
 
 
 

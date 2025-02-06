@@ -58,7 +58,7 @@ write.csv(yob2023, file = 'yob2023.csv', row.names = FALSE) # pulling out the da
 Today assumes you've gone through the post on Ed and completed the download steps there:
 * **Sign in** to an existing Tableau.com account, or create a new account using your **school-issued email**
 * Once signed in, visit the **TFT Activation page** to **download** the latest versions of Tableau Desktop and Tableau Prep Builder
-* **Activate** with product key:    TC6P-A348-35B0-D0BF-5666       
+* **Activate** with product key:    **TC6P-A348-35B0-D0BF-5666**       
   * Already have a copy of Tableau Desktop installed? **Update the license key** in the application: Help menu → Manage Product Keys
 
 
@@ -80,7 +80,7 @@ class: middle, center, inverse
 
 * Use coding platform of choice to get data cleaned and sorted
 * Can use as a standalone or integrate into workflow
-  * For this session, we will only focus on Tableau Desktop (not connecting to servers)
+  * For this session, we will only focus on **Tableau Desktop** (not connecting to servers)
 
 
 ---
@@ -357,6 +357,10 @@ https://help.tableau.com/current/prep/en-us/prep_scripts.htm
 
 ---
 # Tableau: learning + takeaways
+
+* Accessibility: public around
+* Positions: many job postings ask for experience with Tableau (or Power BI, which is less intuitive IMO)
+
 ---
 ## Integrating Tableau into a workflow
 
@@ -373,13 +377,29 @@ https://help.tableau.com/current/prep/en-us/prep_scripts.htm
 * What is your question? 
 
 
+---
 
+# Maybe also option: Sketch (esquisse)
+
+&lt;iframe src="https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html" width="50%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+
+---
+# Esquisse demo
+
+
+``` r
+library(esquisse)
+library(babynames) #up to 2017
+esquisser(babynames)
+```
 ---
 # Recap
 
 * Tableau can be a powerful tool
 * Options to integrate with R or Python
 * Design principles still apply
+* Tableau-adjacent option esquisse in R
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

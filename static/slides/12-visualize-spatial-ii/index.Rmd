@@ -280,6 +280,23 @@ include_graphics(path = "https://imgs.xkcd.com/comics/contiguous_41_states.png")
 .footnote[Source: [xkcd](https://imgs.xkcd.com/comics/contiguous_41_states.png)]
 
 ---
+## Plotly: hello, old friend
+
+```{r}
+library(plotly)
+library(sf)
+
+nc <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+
+fig <- ggplotly(
+  ggplot(nc) +
+  geom_sf(aes(fill = AREA))
+) 
+
+fig
+```
+
+---
 ## Getting resourceful: getting what you need
 
 * Packages abound with additional information, data, files, availability 
