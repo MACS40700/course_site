@@ -7,6 +7,7 @@
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
+    <link href="index_files/htmltools-fill/fill.css" rel="stylesheet" />
     <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="index_files/jquery/jquery-3.6.0.min.js"></script>
     <link href="index_files/leaflet/leaflet.css" rel="stylesheet" />
@@ -16,7 +17,6 @@
     <script src="index_files/Proj4Leaflet/proj4leaflet.js"></script>
     <link href="index_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
     <script src="index_files/leaflet-binding/leaflet.js"></script>
-    <link href="index_files/htmltools-fill/fill.css" rel="stylesheet" />
     <script src="index_files/leaflet-providers/leaflet-providers_2.0.0.js"></script>
     <script src="index_files/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
     <link href="index_files/countdown/countdown.css" rel="stylesheet" />
@@ -65,17 +65,13 @@ usethis::use_course("MACS40700/spatial")
 
 ``` r
 # load packages
-library(tidyverse)
-library(sf)
 library(leaflet)
 library(geofacet)
 library(rnaturalearth)
-library(lubridate)
-library(scico)
 library(maps)
 library(ggmap)
-library(rworldmap)
-library(taylor)
+library(sf)
+library(tidyverse)
 
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
@@ -133,26 +129,27 @@ knitr::opts_chunk$set(
 ## Mapping options: 
 
 * maps -- map data
-* plotly -- old friend :) 
-* sf -- ways to visualize objects
 * ggmap -- nice way to render but need API
 * leaflet -- more interactive
+* plotly -- old friend :) 
+* sf -- ways to visualize objects
+
 
 
 
 ---
 ## Large-scale map
 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-51f6c0571dce2405bd71" style="width:80%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-51f6c0571dce2405bd71">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[41.787,-87.59699999999999],2,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-47edad9b4f14862a8708" style="width:80%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-47edad9b4f14862a8708">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[41.787,-87.59699999999999],2,[]]},"evals":[],"jsHooks":[]}</script>
 
 
 ---
 
 ## Small-scale map
 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-25f8ba15bef3115b86f5" style="width:80%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-25f8ba15bef3115b86f5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[41.787,-87.59699999999999],16,[]],"calls":[{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-c28df0960f4095e38c5e" style="width:80%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-c28df0960f4095e38c5e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[41.787,-87.59699999999999],16,[]],"calls":[{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -244,8 +241,8 @@ class: inverse, middle
 
 .panel[.panel-name[Output]
 
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-51f6c0571dce2405bd71" style="width:70%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-51f6c0571dce2405bd71">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]},"setView":[[41.787,-87.59699999999999],8,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-47edad9b4f14862a8708" style="width:70%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-47edad9b4f14862a8708">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]},"setView":[[41.787,-87.59699999999999],8,[]]},"evals":[],"jsHooks":[]}</script>
 
 ]
 
@@ -255,13 +252,13 @@ class: inverse, middle
 ## Level of detail: zoom = 12 vs 10
 
 .pull-left[ 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b4513a81fe918b683adf" style="width:80%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-b4513a81fe918b683adf">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]},"setView":[[41.876823,-87.624003],12,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-c28df0960f4095e38c5e" style="width:80%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-c28df0960f4095e38c5e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]},"setView":[[41.876823,-87.624003],12,[]]},"evals":[],"jsHooks":[]}</script>
 ]
 
 .pull-right[ 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-c538bf1f8193c5144f4a" style="width:80%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-c538bf1f8193c5144f4a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]},"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-4a847a11e3cd643422e8" style="width:80%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-4a847a11e3cd643422e8">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addMarkers","args":[41.785958,-87.597086,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"You are here",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.785958,41.785958],"lng":[-87.597086,-87.597086]},"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
 ]
 
 
@@ -302,33 +299,33 @@ ggmap(chicago)
 
 ## Types of map tiles: Leaflet
 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-887e32211f76de8f4298" style="width:60%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-887e32211f76de8f4298">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-5e1c96067637b3991190" style="width:60%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-5e1c96067637b3991190">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## B&amp;W
 
-```r
+``` r
 m %&gt;% addProviderTiles(providers$CartoDB.Positron)
 ```
 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-eedc2a98ce2bc9b81e48" style="width:60%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-eedc2a98ce2bc9b81e48">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-7e7f3302d9cc536f9932" style="width:60%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-7e7f3302d9cc536f9932">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
 
 ---
 
 ## Nat Geo
 
 
-```r
+``` r
 m %&gt;% addProviderTiles(providers$Esri.NatGeoWorldMap)
 ```
 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-66b803604e0e01df86f4" style="width:60%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-66b803604e0e01df86f4">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["Esri.NatGeoWorldMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-861a2f691201b540123d" style="width:60%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-861a2f691201b540123d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["Esri.NatGeoWorldMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[41.876823,-87.624003],10,[]]},"evals":[],"jsHooks":[]}</script>
 
 
-```r
+``` r
 leaflet() %&gt;% setView(lng = -87.624003, lat = 41.876823, zoom = 8)  %&gt;% addTiles()%&gt;% 
   addWMSTiles(
     "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
@@ -338,8 +335,8 @@ leaflet() %&gt;% setView(lng = -87.624003, lat = 41.876823, zoom = 8)  %&gt;% ad
   )
 ```
 
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-40f4b910f78321476157" style="width:80%;height:741.6px;"></div>
-<script type="application/json" data-for="htmlwidget-40f4b910f78321476157">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[41.876823,-87.624003],8,[]],"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-4a4e777aac1fc719ff5a" style="width:80%;height:741.6px;"></div>
+<script type="application/json" data-for="htmlwidget-4a4e777aac1fc719ff5a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[41.876823,-87.624003],8,[]],"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addWMSTiles","args":["http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",null,null,{"styles":"","format":"image/png","transparent":true,"version":"1.1.1","attribution":"Weather data © 2012 IEM Nexrad","layers":"nexrad-n0r-900913"}]}]},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Types of map tiles: `ggmap`  
@@ -367,7 +364,7 @@ class: inverse, middle
 * [Crime data from 2017](https://data.cityofchicago.org/Public-Safety/Crimes-2017/d62x-nvdr)
 
 
-```r
+``` r
 crimes &lt;- read_csv("data/chicago-crimes.csv")
 glimpse(crimes)
 ```
@@ -524,7 +521,7 @@ ggmap(chicago) +
     mapping = aes(
       x = Longitude,
       y = Latitude,
-*     fill = stat(level)
+*     fill = after_stat(level)
     ),
 *   geom = "polygon"
   )
@@ -541,6 +538,7 @@ ggmap(chicago) +
 ]
 ]
 
+https://ggplot2.tidyverse.org/reference/geom_density_2d.html 
 ---
 
 ## Using `stat_density_2d()`
@@ -555,7 +553,7 @@ ggmap(chicago) +
     mapping = aes(
       x = Longitude,
       y = Latitude,
-      fill = stat(level)
+      fill = after_stat(level)
     ),
 *   alpha = .2,
 *   bins = 25,
@@ -570,6 +568,40 @@ ggmap(chicago) +
 .panel[.panel-name[Plot]
 
 &lt;img src="index_files/figure-html/plot-crime-density-1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+---
+
+## Using `stat_density_2d()` but make it ~**FANCY**~
+
+.panelset[
+.panel[.panel-name[Code]
+
+``` r
+ggmap(chicago) +
+  stat_density_2d(
+    data = crimes,
+    mapping = aes(
+      x = Longitude,
+      y = Latitude,
+      fill = after_stat(level)
+    ),
+    alpha = .2, 
+    bins = 25, 
+    geom = "polygon"
+  ) + scale_fill_viridis_c(option = "inferno")
+```
+
+
+
+]
+
+.panel[.panel-name[Plot]
+
+&lt;img src="index_files/figure-html/plot-crime-density-f-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -592,7 +624,7 @@ ggmap(chicago) +
     mapping = aes(
       x = Longitude,
       y = Latitude,
-      fill = stat(level)
+      fill = after_stat(level)
     ),
     alpha = .4,
     bins = 10,
@@ -626,7 +658,7 @@ ggmap(chicago) +
 usethis::use_course("MACS40700/spatial")
 ```
 
-<div class="countdown" id="timer_e3320daf" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_c36c7186" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -651,12 +683,12 @@ class: middle, inverse
 
 .small[
 
-```r
+``` r
 us_state_vaccinations &lt;- read_csv(here::here("data/us_state_vaccinations.csv"))
 ```
 
 
-```r
+``` r
 glimpse(us_state_vaccinations)
 ```
 
@@ -719,7 +751,7 @@ ggplot(
 ## Data cleaning
 
 
-```r
+``` r
 us_state_vaccinations &lt;- us_state_vaccinations %&gt;%
   mutate(location = if_else(location == "New York State", "New York", location)) %&gt;%
   filter(location %in% c(state.name, "District of Columbia"))
@@ -769,7 +801,7 @@ ggplot(us_state_vaccinations,
 .panel[.panel-name[Code]
 .small[
 
-```r
+``` r
 ggplot(us_state_vaccinations, aes(x = date, y = people_fully_vaccinated_per_hundred, group = location)) +
   geom_area() +
   facet_geo(facets = vars(location)) +
@@ -802,12 +834,12 @@ ggplot(us_state_vaccinations, aes(x = date, y = people_fully_vaccinated_per_hund
 
 
 
-```r
+``` r
 election_2020 &lt;- read_csv(here::here("data/us-election-2020.csv"))
 ```
 
 
-```r
+``` r
 election_2020
 ```
 

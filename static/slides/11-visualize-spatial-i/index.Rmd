@@ -30,6 +30,9 @@ library(knitr)
 library(here)
 library(countdown)
 library(patchwork)
+library(showtext)
+font_add_google("Special Elite", family = "special")
+
 ```
 
 class: inverse, middle
@@ -57,17 +60,13 @@ usethis::use_course("MACS40700/spatial")
 
 ```{r pkgs, message = FALSE, cache = FALSE, echo = TRUE}
 # load packages
-library(tidyverse)
-library(sf)
 library(leaflet)
 library(geofacet)
 library(rnaturalearth)
-library(lubridate)
-library(scico)
 library(maps)
 library(ggmap)
-library(rworldmap)
-library(taylor)
+library(sf)
+library(tidyverse)
 
 # set default theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 16))
@@ -493,13 +492,14 @@ ggmap(chicago) +
     mapping = aes(
       x = Longitude,
       y = Latitude,
-      fill = stat(level) #<<
+      fill = after_stat(level) #<<
     ),
     geom = "polygon" #<<
   )
 ```
 ]
 
+https://ggplot2.tidyverse.org/reference/geom_density_2d.html 
 ---
 
 ## Using `stat_density_2d()`
@@ -512,12 +512,34 @@ ggmap(chicago) +
     mapping = aes(
       x = Longitude,
       y = Latitude,
-      fill = stat(level)
+      fill = after_stat(level)
     ),
     alpha = .2, #<<
     bins = 25, #<<
     geom = "polygon"
   )
+```
+]
+
+---
+---
+
+## Using `stat_density_2d()` but make it ~**FANCY**~
+
+.panelset[
+```{r plot-crime-density-f, dependson = "import-crimes", panelset = c(output = "Plot", source = "Code"), out.width = "70%"}
+ggmap(chicago) +
+  stat_density_2d(
+    data = crimes,
+    mapping = aes(
+      x = Longitude,
+      y = Latitude,
+      fill = after_stat(level)
+    ),
+    alpha = .2, 
+    bins = 25, 
+    geom = "polygon"
+  ) + scale_fill_viridis_c(option = "inferno")
 ```
 ]
 
@@ -537,7 +559,7 @@ ggmap(chicago) +
     mapping = aes(
       x = Longitude,
       y = Latitude,
-      fill = stat(level)
+      fill = after_stat(level)
     ),
     alpha = .4,
     bins = 10,
