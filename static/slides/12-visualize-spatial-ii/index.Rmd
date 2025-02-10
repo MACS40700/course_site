@@ -290,6 +290,7 @@ include_graphics(path = "https://imgs.xkcd.com/comics/contiguous_41_states.png")
 ---
 ## Plotly: hello, old friend
 
+.panelset[.panel-name["Code"
 ```{r}
 library(plotly)
 library(sf)
@@ -301,9 +302,14 @@ fig <- ggplotly(
   geom_sf(aes(fill = AREA))
 ) 
 
+```
+]
+
+[.panel-name[Plot]
+```{r}
 fig
 ```
-
+]
 ---
 ## Getting resourceful: getting what you need
 
