@@ -375,22 +375,26 @@ leaflet() %>% setView(lng = -87.624003, lat = 41.876823, zoom = 8)  %>% addTiles
 ---
 ## Types of map tiles: `ggmap`  
 
-```{r stamen-maptype, echo = FALSE, eval = FALSE}
-stamen_maptype <- tibble(maptype = c(
-  "stamen_terrain", "stamen_toner", "stamen_toner_lite", "stamen_terrain_background", 
-  "stamen_toner_background", "stamen_terrain_labels", "stamen_terrain_lines", "stamen_toner_labels", "stamen_toner_lines" #note issue w/watercolor: "stamen_watercolor", https://docs.stadiamaps.com/guides/migrating-from-stamen-map-tiles/
-)) %>%
-  mutate(bb = map(stamen_maptype, ~ get_stadiamap(bbox = chi_bb, zoom = 10, maptype = .x)),
+```{r stamen-maptype, echo = FALSE}
+stamen_maptype <- tibble(
+  maptype = c(
+    "stamen_terrain", "stamen_toner", "stamen_toner_lite", "stamen_terrain_background", 
+    "stamen_toner_background", "stamen_terrain_labels", "stamen_terrain_lines", "stamen_toner_labels", 
+    "stamen_toner_lines", "stamen_watercolor" # Note issue with watercolor: "stamen_watercolor", https://docs.stadiamaps.com/guides/migrating-from-stamen-map-tiles/
+  )
+)
+
+# Apply get_stadiamap and ggmap to the map types
+result <- stamen_maptype %>%
+  mutate(
+    bb = map(maptype, ~ get_stadiamap(bbox = chi_bb, zoom = 10, maptype = .x)),
     ggmap = map2(bb, maptype, ~ ggmap(.x) +
-      ggtitle(.y) +
-      theme_minimal()))  
+                    ggtitle(.y) + theme_minimal() + theme(title = element_text(size = 6)))
+  )
 
-wrap_plots(stamen_maptype$ggmap)
+wrap_plots(result$ggmap)
 ```
 
-```{r stamen-maptype-out, echo = FALSE}
-include_graphics("images/map_tile.png")
-```
 
 ---
 class: inverse, middle
@@ -521,7 +525,6 @@ ggmap(chicago) +
 ```
 ]
 
----
 ---
 
 ## Using `stat_density_2d()` but make it ~**FANCY**~
@@ -764,6 +767,11 @@ us_state_vaccinations %>%
 ]
 
 
+---
+# Leaflet vs ggmap
+
+* ggmap connects to google open street data
+* leaflet has interactive factor
 
 
 ---

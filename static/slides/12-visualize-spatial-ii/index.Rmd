@@ -86,6 +86,14 @@ knitr::opts_chunk$set(
   fig.width = 8, fig.asp = 0.618,
   fig.retina = 2, dpi = 150
 )
+
+
+```
+
+```{r, eval = FALSE}
+# install sf if necessary
+# install.packages("sf")
+usethis::use_course("MACS40700/vector-maps")
 ```
 
 ---
@@ -187,7 +195,7 @@ usa_shape <- st_read(dsn = here("12-visualize-spatial-ii", "data", "cb_2020_us_s
 ```
 
 ```{r import-usa-shape-fake,  eval = FALSE}
-usa_shape <- st_read(dsn = here("data", "cb_2020_us_state_5m", "cb_2020_us_state_5m.shp"))
+usa_shape <- st_read(dsn = here("data", "ex_shapefile.shp"))
 ```
 
 .tiny[
@@ -205,7 +213,7 @@ chi_json <- st_read(dsn = here("12-visualize-spatial-ii", "data", "community-are
 ```
 
 ```{r import-chi-json-fake, eval = FALSE}
-chi_json <- st_read(dsn = here("data", "community-area-boundaries.geojson"))
+chi_json <- st_read(dsn = here("data", "ex_file.geojson"))
 ```
 
 .tiny[
@@ -331,6 +339,8 @@ class: inverse, middle
 
 ```{r import-crimes}
 crimes <- read_csv("data/chicago-crimes.csv")
+#option, if latest version of c3s2
+#crimes <- c3s2::`chicago-crimes`
 ```
 
 ```{r chi-crimes}
@@ -475,7 +485,7 @@ chi_json %>%
 
 ## Comparison
 
-```{r crimes-agg-map-2, echo = FALSE, out.width = "95%", fig.width = 12}
+```{r crimes-agg-map-2, echo = FALSE, out.width = "90%", fig.width = 12}
 library(patchwork)
 {
   chi_json %>%
@@ -484,7 +494,7 @@ library(patchwork)
     count() %>%
     ggplot() +
     geom_sf(mapping = aes(fill = n)) +
-    scale_fill_continuous_sequential(palette = "viridis", rev = FALSE) +
+    scale_fill_continuous_sequential(palette = "viridis", rev = TRUE) +
     labs(title = "Choropleth")
 } + {
   ggplot() +
@@ -558,6 +568,18 @@ usa_fb %>%
   scale_fill_discrete_sequential(palette = "inferno")
 ```
 ]
+
+---
+
+# Slicing and dicing:
+
+* cut_number: divides range into set number of groups
+* cut_interval: divides range into set  number of equal groups
+* cut_width: divides range into set widths
+* binned scale: pretties it up
+
+
+https://ggplot2.tidyverse.org/reference/cut_interval.html 
 
 ---
 
