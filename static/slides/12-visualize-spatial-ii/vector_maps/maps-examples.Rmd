@@ -182,11 +182,12 @@ ggplot() + # set up basic plot (don't specify data b/c using two data sources)
 
 ## Awesome, add cities and fix representation of numbers
 
-```{r pop-color}
+```{r pop-color, fig.height="10%"}
 # plot
 ggplot() + # set up basic plot (don't specify data b/c using two data sources)
  geom_sf(data = county_pop, aes(fill = `2005`)) + # setup our county data
- scale_fill_continuous_sequential(palette = "viridis", rev = FALSE, trans = "log", breaks = c(20000, 160000, 1200000, 9000000 ),
+ scale_fill_continuous_sequential(palette = "viridis", rev = FALSE, trans = "log", 
+                                  breaks = c(20000, 160000, 1200000, 9000000 ),
                                   labels = c('20,000', '160,000', '1,200,000', '9,000,000' )) +
   labs(title = "Illinois population, 2005", subtitle = "Cities and county density", fill="2005 population", x = "Longitude", y = "Latitude") + 
  geom_point(data = illinois,  # bringing in our city data
