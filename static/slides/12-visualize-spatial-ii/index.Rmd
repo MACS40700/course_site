@@ -90,6 +90,10 @@ knitr::opts_chunk$set(
 
 ```
 
+
+---
+## Today's files
+
 ```{r, eval = FALSE}
 # install sf if necessary
 # install.packages("sf")
@@ -290,25 +294,23 @@ include_graphics(path = "https://imgs.xkcd.com/comics/contiguous_41_states.png")
 ---
 ## Plotly: hello, old friend
 
-.panelset[.panel-name["Code"
-```{r}
+.panelset[
+.panel[.panel-name[R Code]
+```{r oplot, fig.show='hide'}
 library(plotly)
 library(sf)
 
 nc <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
 
-fig <- ggplotly(
+ggplotly(
   ggplot(nc) +
-  geom_sf(aes(fill = AREA))
-) 
+  geom_sf(aes(fill = AREA))) 
 
 ```
 ]
-
-[.panel-name[Plot]
-```{r}
-fig
-```
+.panel[.panel-name[Plot]
+![](`r knitr::fig_chunk("oplot", ".png")`)
+]
 ]
 ---
 ## Getting resourceful: getting what you need
