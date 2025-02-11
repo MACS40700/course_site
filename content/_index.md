@@ -23,8 +23,8 @@ You can see our topics below. See the assignments linked to the side -- if you h
 | 28-Jan | [Plotly](slides/10-plotly) | [Plotly overview](https://plotly.com/ggplot2/)| | 
 | 30-Jan | [themes + axes + annotation](slides/08-themes-axes-annotations)  |[EG: Ch 18](https://ggplot2-book.org/polishing.html) and [EG: Ch 8](https://ggplot2-book.org/annotations.html) and [DV: Ch 22](https://clauswilke.com/dataviz/figure-titles-captions.html) &emsp; &nbsp; |[A3: Plotly (due 3-Feb)](/assignments/assign3/)   |
 | 4-Feb  | [Tableau + Dashboards](slides/20-tableau) | [download Tableau public](https://www.tableau.com/products/public/download)| 
-| 6-Feb  | [visualizing spatial data I](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)| |
-| 11-Feb | [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) & [Leaflet](https://rstudio.github.io/leaflet/)|            |
+| 6-Feb  | [visualizing spatial data I](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)& [Leaflet](https://rstudio.github.io/leaflet/)| |
+| 11-Feb | [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) |            |
 | 13-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          [A4: Tableau (due 13-Feb)](/assignments/assign4/)  |
 | 18-Feb | [animation ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  |
 | 20-Feb | [Websites and tables](slides/21-websites) |[download jekyll if desired](https://macs40700.netlify.app/slides/21-websites/#51) |  [Final Proposal (due 20-Feb)](/assignments/final-proposal) |
