@@ -72,9 +72,9 @@ class: inverse, middle
 
 ## Announcements
 
-- Final proposals due Thursday
+- Final proposals 
 
-- Clarity around Assignment #3 (sorry!)
+- 
 
 ---
 
@@ -262,7 +262,7 @@ freedom_ranked <- freedom_to_plot %>%
 freedom_faceted_plot <- freedom_ranked %>%
   ggplot(aes(x = civil_liberty, y = factor(rank_in_year))) +
   geom_col(aes(fill = is_turkey), show.legend = FALSE) +
-  scale_fill_manual(values = c("gray", "red")) +
+  scale_fill_manual(values = c("lightgray", "red")) +
   facet_wrap(~year) +
   scale_x_continuous(
     limits = c(-5, 7),
@@ -755,6 +755,20 @@ ggplot(datasaurus_dozen,
 
 ---
 
+## Transition options
+
+`transition_states(states, transition_length, state_length, wrap)`
+
+* `states`: variable that you are switching between
+* `transition_length`: how long to hold for (3 is a great number!)
+* `state_length`: how long to pause on each value of your state variable
+* `wrap`: do you want a loop or not? 
+
+
+Note that transition and state are relative to one another -- long transition vs long pause
+
+---
+
 class: middle, inverse
 
 # Tips
@@ -781,19 +795,19 @@ Sometimes you need more frames, sometimes fewer
 
 ## Considerations in making effective animations
 
-- Pace: speed of animation
+- **Pace**: speed of animation
 
     Quick animations may be hard to follow. Slow animations are boring and tedious.
 
 --
 
-- Perplex: amount of information
+- **Perplex**: amount of information
     
     It is easy for animations to be overwhelming and confusing. Multiple simple animations can be easier to digest.
 
 --
 
-- Purpose: Usefulness of using animation
+- **Purpose**: Usefulness of using animation
 
     Is animation needed? Does it provide additional value?
 
@@ -981,6 +995,62 @@ animate(freedom_bar_race, nframes = 30, fps = 2)
 ```
 
 ---
+# Plotly integration
+
+* Far from perfect
+* Animation is different (hard to have the line plots work similarly with geom_ribbon as in example)
+* geom_label_repel doesn't seem to be supported, either!
+
+---
+## Baby names example: ggplot 
+
+.panelset[
+```{r animate-bn, warning = FALSE, out.height="50%", panelset = TRUE, panelset = c(source = "Code", output = "Plot")}
+library(babynames)
+library(scales)
+library(colorspace)
+wom <- c("Mary", "Helen", "Barbara", "Linda", "Jessica", "Madison", "Caitlyn", "Katelyn" )
+
+bn_dat <- babynames %>% filter(name %in% wom) %>% filter(sex== "F") %>% mutate(name = as.factor(name)) 
+  
+
+bn_dat %>% 
+  ggplot(aes(year, fill  = name, color = name)) + 
+  geom_ribbon(aes(ymin = 0, ymax = prop), alpha = 0.5) + 
+  scale_color_discrete_qualitative( palette = "Harmonic",  guide = "none") +
+  scale_fill_discrete_qualitative( palette = "Harmonic",  guide = "none") +   
+  ggrepel::geom_text_repel(aes(label = name, y = prop), show.legend = FALSE) +
+  labs(title = "What's in a name? Popularity over time") +
+  ylab("Proportion of babies born") +
+  transition_reveal(along = year) + #note, this gives a warning bc we're going year-by-year in animation
+  scale_y_continuous(labels = scales::percent)
+```
+]
+
+
+---
+
+## Baby names example: plotly 
+
+.panelset[
+```{r animate-bn-pt, warning = FALSE, out.height="50%", panelset = TRUE, panelset = c(source = "Code", output = "Plot")}
+library(plotly)
+bn_gif_p <- bn_dat %>%
+  ggplot(aes(x=year, y = prop, color  = name, frame = year)) +
+  geom_text(aes(label = name), show.legend = FALSE) + #geom_text_repel NOT supported in plotly
+  labs(title = "What's in a name? Popularity over time") +
+  ylab("Proportion of babies born") + 
+  scale_color_discrete_qualitative( palette = "Harmonic",  guide = "none") + 
+  scale_y_continuous(labels = scales::percent)
+
+  ggplotly(bn_gif_p) %>%  style(showlegend = FALSE) %>%
+  animation_opts(
+    600, easing = "linear", redraw = FALSE)
+```
+]
+
+
+---
 
 class: inverse, center, middle
 
@@ -997,6 +1067,7 @@ library(ggimage) # Images in ggplot2 plots
 library(extrafont) # Custom fonts
 library(ggtext) # Customizing text colour in titles
 library(magick)
+library(rsvg)
 loadfonts()
 
  
@@ -1039,7 +1110,7 @@ p <- ggplot() +
              size = 0.028) +
   coord_map(projection = "mercator") +
   theme_map() +
-  transition_events(start = flower_doy - 3,
+  transition_events(start = flower_doy - 1,
                     end = full_bloom_doy,
                     range(0, 151),
                     enter_length = 6,
@@ -1060,11 +1131,11 @@ p <- ggplot() +
         panel.background = element_blank(),
         plot.background = element_rect(fill = "#FFF9F3", colour = NA),
         plot.margin = margin(10, 50, 10, 50),
-        plot.title = element_textbox_simple(size = 11, halign = 0.5, margin = margin(10, 10, 10, 10)), ###
-        plot.subtitle = element_textbox_simple(size = 8, halign = 0.5),                                ###
-        plot.caption = element_text(size = 14))
+        plot.title = element_textbox_simple(size = 15, halign = 0.5, margin = margin(10, 10, 10, 10)), ###
+        plot.subtitle = element_textbox_simple(size = 11, halign = 0.5),                                ###
+        plot.caption = element_text(size = 10))
 
-animate(p, nframes = 152 * 2, start_pause = 3, end_pause = 15, height = 715, width = 600)
+animate(p, nframes = 152, start_pause = 3, end_pause = 15, height = 715, width = 600)
 
 ```
 
