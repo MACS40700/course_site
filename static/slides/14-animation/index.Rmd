@@ -1057,7 +1057,7 @@ class: inverse, center, middle
 # Discussion: Designing an animation
 
 ---
-```{r sakura-ex, echo = FALSE, warning = FALSE, out.width="65%"}
+```{r sakura-ex, echo = FALSE, warning = FALSE, eval = FALSE}
 
 library(tidyverse) # Data manipulation
 library(gganimate) # Animation
@@ -1124,7 +1124,7 @@ p <- ggplot() +
                      "\n",
                      sep = "\n"),
   #############################################################################
-       caption = "{paste(month(ymd(\"2019-01-01\") + frame_time, label = TRUE, abbr = FALSE),
+       tag = "{paste(month(ymd(\"2019-01-01\") + frame_time, label = TRUE, abbr = FALSE),
                   day(ymd(\"2019-01-01\") + frame_time))}") +
   theme(text = element_text(family = "Luminari", colour = "#3D1308"),
         panel.border = element_blank(),
@@ -1133,10 +1133,15 @@ p <- ggplot() +
         plot.margin = margin(10, 50, 10, 50),
         plot.title = element_textbox_simple(size = 15, halign = 0.5, margin = margin(10, 10, 10, 10)), ###
         plot.subtitle = element_textbox_simple(size = 11, halign = 0.5),                                ###
-        plot.caption = element_text(size = 10))
+        plot.caption = element_text(size = 12))
 
-animate(p, nframes = 152, start_pause = 3, end_pause = 15, height = 715, width = 600)
+p2<-animate(p, nframes = 152, start_pause = 1, end_pause = 5, height = 700, width = 600)
 
+anim_save("sakura.gif", animation = p2)
+```
+
+```{r, echo = FALSE, warning = FALSE, out.width="60%"}
+include_graphics("sakura.gif")
 ```
 
 .footnote[[Building animation step-by-step by Alex Cookson](https://www.alexcookson.com/post/2020-10-18-building-an-animation-step-by-step-with-gganimate/)]
