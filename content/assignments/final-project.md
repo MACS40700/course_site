@@ -50,6 +50,6 @@ The final deliverables include:
 
 ## Getting started
 
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/onTza0gm).
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/GVYlvom8).
 
 [^1]: Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps for communication* by Alberto Cairo.

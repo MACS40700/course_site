@@ -23,4 +23,4 @@ You have two options for this assignment and only need to submit one of the foll
 
 1.  A new project proposal. For this, complete the assignment 2 objectives (providing one graph and at least THREE prototypes). The same criteria apply as above (must have animation or interactive element). The project scope needs to be of sufficient size as well.
 
-In either case, submit a link to your relevant repo (it can be your assignment 2/3 repo or you can reach out re: creating a new repo if needed).
+In either case, submit a link to your relevant repo (it can be your assignment 2/3 repo or you can use the final project repo (https://classroom.github.com/a/GVYlvom8).
