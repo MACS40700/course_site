@@ -694,7 +694,7 @@ ggplot(penguins, aes(y = species, x = body_mass_g, fill = species)) +
 
 ---
 
-## Highlighting across facets
+## Highlighting across facets: Option 1
 
 ```{r warning = FALSE, out.width = "50%"}
 penguins_sans_species <- penguins %>% select(-species)
@@ -703,6 +703,18 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point(data = penguins_sans_species, color = "gray") +
   geom_point(aes(color = species)) +
   facet_wrap(vars(species))
+```
+
+
+---
+
+## Highlighting across facets: Option 2
+```{r warning = FALSE, out.width = "50%"}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  #geom_point(data = penguins_sans_species, color = "gray") +
+  geom_point(aes(color = species)) +
+  facet_wrap(vars(species)) +
+gghighlight::gghighlight()
 ```
 
 ---

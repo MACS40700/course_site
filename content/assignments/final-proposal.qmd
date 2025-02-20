@@ -29,5 +29,5 @@ You have two options for this assignment and only need to submit one of the foll
 
  
 
-In either case, submit a link to your relevant repo (it can be your assignment 2/3 repo or you can use the final project repo (https://classroom.github.com/a/GVYlvom8). 
+In either case, submit a link to your relevant repo (it can be your assignment 2/3 repo or you can use the final project repo: https://classroom.github.com/a/GVYlvom8 ). 
 

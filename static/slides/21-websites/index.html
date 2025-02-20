@@ -7442,11 +7442,70 @@ class: center, middle, inverse
 
 # Getting going with a simple github page
 
+We are going to do this using three options:
+
+1) Forking  
+
+2) On github  
+
+3) In your terminal  
+
+
+---
+
+## Forking
+
+&lt;img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFnczFzMm95d29mOWh5OWZudmh3cnEydGpvbXdsdzVseG85cmJtNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6fJ8baw3aDgUQnJu/giphy.gif" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+## Forking: easy but potential drawbacks
+
+* Super straightforward -- way to copy someone's repo exactly right to your github
+* Forever linked on github showing you forked it -- no matter what you change
+* Great for starting
+
+--
+
+Steps:
+1) Go to the github repo: https://github.com/jmclip/jmclip.github.io/  
+
+2) Choose 'fork' (top middle option) 
+
+3) Change name to either: username.github.io or a name (this will go to username.github.io/repo) 
+
+4) Move to settings option 
+
+---
+### New repo: on github
+This is probably more common -- make the repo on github then copy to your machine. 
+
+1) Go to github 
+
+2) Make a new repository 
+
+3) Name it EITHER: 
+
+  * yourusername.github.io 
+  
+  * whatever you want (no github.io) 
+  
+4) Clone it to your machine (using 'git clone' in terminal) 
+
+5) Copy over files and push to github 
+
+6) Do setup on github pages 
+
+
+
+---
+## New repo: on your machine
+This is how I would do this, but you may or may not have gh installed already
+
 cd to place  
-gh repo create YOURNAME.github.io --public  
-git init 
+gh repo create GITHUBuserNAME.github.io --public  
+git init  
 git branch -M main  
-git remote add origin https://github.com/GITHUBuserNAME/YOURNAME.github.io.git  
+git remote add origin https://github.com/GITHUBuserNAME/GITHUBuserNAME.github.io.git  
 git push -u origin main  
 
 **NOTE** may need to commit changes
@@ -7575,11 +7634,15 @@ https://github.com/collections/github-pages-examples
 ### Jekyll:Netlify
 
 cd to place 
+
 gh repo create GITHUBuserNAME-jekyll --public  
+
 git init  
+
 git branch -M main  
 
-git remote add origin https://github.com/GITHUBuserNAME/jmclip-jekyll  
+git remote add origin https://github.com/GITHUBuserNAME/GITHUBuserNAME-jekyll  
+
 git push -u origin main  
   
 

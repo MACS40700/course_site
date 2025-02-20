@@ -87,6 +87,8 @@ class: inverse, middle
 ## Setup
 
 ```{r message = FALSE, warning = FALSE}
+# install.packages(c("gifski", "png"))
+
 # load packages
 library(tidyverse)
 library(readxl)
@@ -1057,7 +1059,7 @@ class: inverse, center, middle
 # Discussion: Designing an animation
 
 ---
-```{r sakura-ex, echo = FALSE, warning = FALSE, eval = FALSE}
+```{r sakura-ex, eval=FALSE, echo=FALSE, warning=FALSE}
 
 library(tidyverse) # Data manipulation
 library(gganimate) # Animation
