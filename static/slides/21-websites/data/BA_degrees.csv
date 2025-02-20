@@ -1,0 +1,631 @@
+field,year,count,total_yr,pct
+Agriculture and natural resources,1970,12674,839730,0.015092946542340991
+Agriculture and natural resources,1975,19402,925746,0.020958232603759563
+Agriculture and natural resources,1980,21886,935140,0.023403982291421606
+Agriculture and natural resources,1985,17191,987823,0.01740291529960327
+Agriculture and natural resources,1990,13363,1094538,0.012208804079894896
+Agriculture and natural resources,1995,21757,1164792,0.018678871420820198
+Agriculture and natural resources,2000,23766,1244171,0.01910187586754554
+Agriculture and natural resources,2005,23497,1485104,0.01582178756504595
+Agriculture and natural resources,2012,34304,1840381,0.018639618644182916
+Agriculture and natural resources,2013,35953,1870150,0.019224661123439298
+Agriculture and natural resources,2014,37028,1894969,0.019540161343008778
+Agriculture and natural resources,2015,37827,1920750,0.019693869582194455
+Agriculture and natural resources,2016,38782,1956114,0.019826042858442812
+Agriculture and natural resources,2017,40334,1980665,0.02036386769090179
+Agriculture and natural resources,2018,41373,2013086,0.020552028080270787
+Agriculture and natural resources,2019,41858,2038682,0.02053189266398585
+Agriculture and natural resources,2020,41921,2066463,0.02028635402617903
+Agriculture and natural resources,2021,40675,2015035,0.020185753597332056
+Architecture and related services,1970,5570,839730,0.00663308444380932
+Architecture and related services,1975,9146,925746,0.00987959980383388
+Architecture and related services,1980,9455,935140,0.010110785550826614
+Architecture and related services,1985,9119,987823,0.009231410890412553
+Architecture and related services,1990,9781,1094538,0.008936190429203919
+Architecture and related services,1995,8352,1164792,0.00717037891743762
+Architecture and related services,2000,8480,1244171,0.00681578336096887
+Architecture and related services,2005,9515,1485104,0.006406958704575571
+Architecture and related services,2012,9757,1840381,0.005301619610287218
+Architecture and related services,2013,9149,1870150,0.0048921209528647435
+Architecture and related services,2014,9090,1894969,0.004796912245002425
+Architecture and related services,2015,8825,1920750,0.004594559416894442
+Architecture and related services,2016,8579,1956114,0.004385736209648313
+Architecture and related services,2017,8464,1980665,0.0042733122461395545
+Architecture and related services,2018,8806,2013086,0.004374378441854943
+Architecture and related services,2019,9045,2038682,0.004436689979113957
+Architecture and related services,2020,9296,2066463,0.004498507836820693
+Architecture and related services,2021,9462,2015035,0.004695700074688529
+"Area, ethnic, cultural, gender, and group studies",1970,2579,839730,0.0030712252747907066
+"Area, ethnic, cultural, gender, and group studies",1975,3577,925746,0.003863910835153487
+"Area, ethnic, cultural, gender, and group studies",1980,2887,935140,0.003087238274482965
+"Area, ethnic, cultural, gender, and group studies",1985,3021,987823,0.0030582401908034133
+"Area, ethnic, cultural, gender, and group studies",1990,4776,1094538,0.004363484867587968
+"Area, ethnic, cultural, gender, and group studies",1995,5633,1164792,0.0048360565663225705
+"Area, ethnic, cultural, gender, and group studies",2000,6160,1244171,0.004951087913156632
+"Area, ethnic, cultural, gender, and group studies",2005,7878,1485104,0.0053046789989118605
+"Area, ethnic, cultural, gender, and group studies",2012,8850,1840381,0.004808786876195744
+"Area, ethnic, cultural, gender, and group studies",2013,8275,1870150,0.004424778761061947
+"Area, ethnic, cultural, gender, and group studies",2014,7783,1894969,0.004107191199433869
+"Area, ethnic, cultural, gender, and group studies",2015,7840,1920750,0.004081738904073929
+"Area, ethnic, cultural, gender, and group studies",2016,7720,1956114,0.003946600249269725
+"Area, ethnic, cultural, gender, and group studies",2017,7717,1980665,0.003896166186609043
+"Area, ethnic, cultural, gender, and group studies",2018,7733,2013086,0.003841365942637324
+"Area, ethnic, cultural, gender, and group studies",2019,7771,2038682,0.0038117764320281435
+"Area, ethnic, cultural, gender, and group studies",2020,7390,2066463,0.003576158876302165
+"Area, ethnic, cultural, gender, and group studies",2021,6658,2015035,0.003304160969908711
+Biological and biomedical sciences,1970,35705,839730,0.042519619401474286
+Biological and biomedical sciences,1975,54154,925746,0.05849768727059042
+Biological and biomedical sciences,1980,43078,935140,0.046065829715336744
+Biological and biomedical sciences,1985,38395,987823,0.03886829928033666
+Biological and biomedical sciences,1990,39482,1094538,0.03607184035638781
+Biological and biomedical sciences,1995,61014,1164792,0.05238188449096491
+Biological and biomedical sciences,2000,60576,1244171,0.04868784114080781
+Biological and biomedical sciences,2005,70602,1485104,0.04754010493541193
+Biological and biomedical sciences,2012,100397,1840381,0.0545522910745112
+Biological and biomedical sciences,2013,104657,1870150,0.05596182124428522
+Biological and biomedical sciences,2014,109904,1894969,0.057997782549477066
+Biological and biomedical sciences,2015,113794,1920750,0.05924456592476897
+Biological and biomedical sciences,2016,116768,1956114,0.05969386242315121
+Biological and biomedical sciences,2017,118661,1980665,0.05990967680046853
+Biological and biomedical sciences,2018,121233,2013086,0.060222464415330496
+Biological and biomedical sciences,2019,126616,2038682,0.06210679252575929
+Biological and biomedical sciences,2020,131515,2066463,0.0636425621944356
+Biological and biomedical sciences,2021,131462,2015035,0.06524055413429543
+Business,1970,115396,839730,0.13742036130661045
+Business,1975,143171,925746,0.15465473250762088
+Business,1980,200521,935140,0.21442885557242766
+Business,1985,236700,987823,0.23961782627049583
+Business,1990,249165,1094538,0.22764399225974793
+Business,1995,226623,1164792,0.19456091731399255
+Business,2000,263515,1244171,0.2117996641940698
+Business,2005,318043,1485104,0.2141553722836919
+Business,2012,360887,1840381,0.1960936349592829
+Business,2013,358132,1870150,0.19149907761409513
+Business,2014,363741,1894969,0.19195089734977194
+Business,2015,371690,1920750,0.19351295067031107
+Business,2016,381109,1956114,0.19482964694286733
+Business,2017,386240,1980665,0.19500521289566888
+Business,2018,390490,2013086,0.19397581623437846
+Business,2019,387881,2038682,0.19026066841223888
+Business,2020,391352,2066463,0.1893825343110426
+Business,2021,375418,2015035,0.18630842640450415
+"Communication, journalism, and related programs",1970,10324,839730,0.012294427970895408
+"Communication, journalism, and related programs",1975,20045,925746,0.021652807573567696
+"Communication, journalism, and related programs",1980,29428,935140,0.03146908484291122
+"Communication, journalism, and related programs",1985,41666,987823,0.04217962124793612
+"Communication, journalism, and related programs",1990,51650,1094538,0.047188859591900875
+"Communication, journalism, and related programs",1995,47320,1164792,0.04062527901977349
+"Communication, journalism, and related programs",2000,58013,1244171,0.046627834919798
+"Communication, journalism, and related programs",2005,73658,1485104,0.04959787328025512
+"Communication, journalism, and related programs",2012,84818,1840381,0.04608719607516052
+"Communication, journalism, and related programs",2013,87612,1870150,0.0468475790711975
+"Communication, journalism, and related programs",2014,90658,1894969,0.04784141587540482
+"Communication, journalism, and related programs",2015,92551,1920750,0.04818482363660029
+"Communication, journalism, and related programs",2016,93794,1956114,0.04794914815803169
+"Communication, journalism, and related programs",2017,92289,1980665,0.04659495674432577
+"Communication, journalism, and related programs",2018,92528,2013086,0.04596326237428505
+"Communication, journalism, and related programs",2019,91763,2038682,0.04501094334476883
+"Communication, journalism, and related programs",2020,90761,2066463,0.043920941241144894
+"Communication, journalism, and related programs",2021,86043,2015035,0.0427004989987767
+Communications technologies,1970,478,839730,5.692305860216974e-4
+Communications technologies,1975,1237,925746,0.0013362196542032047
+Communications technologies,1980,1854,935140,0.0019825908420129604
+Communications technologies,1985,1479,987823,0.0014972317915254048
+Communications technologies,1990,1397,1094538,0.0012763375963191776
+Communications technologies,1995,853,1164792,7.323195901070749e-4
+Communications technologies,2000,1178,1244171,9.468151885874209e-4
+Communications technologies,2005,2987,1485104,0.0020113069522403816
+Communications technologies,2012,4987,1840381,0.00270976498888002
+Communications technologies,2013,4991,1870150,0.0026687698847686014
+Communications technologies,2014,5135,1894969,0.0027098068622758474
+Communications technologies,2015,4824,1920750,0.002511518937914877
+Communications technologies,2016,4615,1956114,0.00235926944953106
+Communications technologies,2017,4231,1980665,0.002136151242133324
+Communications technologies,2018,4444,2013086,0.0022075559613449203
+Communications technologies,2019,4424,2038682,0.002170029460210077
+Communications technologies,2020,4556,2066463,0.002204733401952999
+Communications technologies,2021,4851,2015035,0.0024074023528127303
+"Computer and information sciences and support 
+   services",1970,2388,839730,0.002843771212175342
+"Computer and information sciences and support 
+   services",1975,5652,925746,0.006105346390910682
+"Computer and information sciences and support 
+   services",1980,15121,935140,0.016169771371131594
+"Computer and information sciences and support 
+   services",1985,42337,987823,0.0428588927368567
+"Computer and information sciences and support 
+   services",1990,25159,1094538,0.022985953891048096
+"Computer and information sciences and support 
+   services",1995,24506,1164792,0.02103894944333409
+"Computer and information sciences and support 
+   services",2000,44142,1244171,0.03547904588677923
+"Computer and information sciences and support 
+   services",2005,47702,1485104,0.03212030941940766
+"Computer and information sciences and support 
+   services",2012,50961,1840381,0.027690461920656648
+"Computer and information sciences and support 
+   services",2013,55271,1870150,0.029554313825094245
+"Computer and information sciences and support 
+   services",2014,59586,1894969,0.03144431386476507
+"Computer and information sciences and support 
+   services",2015,64402,1920750,0.03352961082910322
+"Computer and information sciences and support 
+   services",2016,71416,1956114,0.03650911961163818
+"Computer and information sciences and support 
+   services",2017,79597,1980665,0.04018700789886225
+"Computer and information sciences and support 
+   services",2018,88638,2013086,0.04403090578345883
+"Computer and information sciences and support 
+   services",2019,97054,2038682,0.0476062475658293
+"Computer and information sciences and support 
+   services",2020,104883,2066463,0.05075484051734776
+"Computer and information sciences and support 
+   services",2021,108503,2015035,0.05384670737729121
+Education,1970,176307,839730,0.20995677181951342
+Education,1975,154437,925746,0.16682437731299946
+Education,1980,108074,935140,0.11556986119725389
+Education,1985,87147,987823,0.0882212704097799
+Education,1990,110807,1094538,0.10123632071248326
+Education,1995,105384,1164792,0.09047452248985227
+Education,2000,105458,1244171,0.084761660575596115
+Education,2005,107235,1485104,0.07220706428640687
+Education,2012,104698,1840381,0.05688930715976746
+Education,2013,98838,1870150,0.052850306125177125
+Education,2014,91596,1894969,0.04833641078033467
+Education,2015,87221,1920750,0.04540986593778472
+Education,2016,85130,1956114,0.0435199584482295
+Education,2017,82599,1980665,0.04170266047009464
+Education,2018,83952,2013086,0.04170313637867434
+Education,2019,85052,2038682,0.041719110680331704
+Education,2020,89477,2066463,0.04329958968537061
+Education,2021,89410,2015035,0.04437143771696273
+Engineering,1970,45034,839730,0.05362914270062996
+Engineering,1975,38733,925746,0.041839770304165504
+Engineering,1980,63642,935140,0.06805611993926043
+Engineering,1985,77391,987823,0.07834500715209101
+Engineering,1990,62448,1094538,0.0570542091731854
+Engineering,1995,62168,1164792,0.05337261931744037
+Engineering,2000,58209,1244171,0.04678536953521662
+Engineering,2005,66841,1485104,0.04500762236180093
+Engineering,2012,85987,1840381,0.04672239063541734
+Engineering,2013,92169,1870150,0.049284282009464483
+Engineering,2014,97852,1894969,0.05163778404818232
+Engineering,2015,106789,1920750,0.055597553039177405
+Engineering,2016,115671,1956114,0.05913305666234177
+Engineering,2017,121953,1980665,0.06157174484327234
+Engineering,2018,126692,2013086,0.06293422138944883
+Engineering,2019,128337,2038682,0.06295096537861226
+Engineering,2020,126042,2066463,0.060994075383880575
+Engineering,2021,123017,2015035,0.06104955993320215
+Engineering technologies,1970,5148,839730,0.0061305419599156875
+Engineering technologies,1975,7943,925746,0.008580107286447902
+Engineering technologies,1980,11713,935140,0.012525397266719421
+Engineering technologies,1985,19731,987823,0.019974226151851092
+Engineering technologies,1990,17303,1094538,0.015808496370158003
+Engineering technologies,1995,15829,1164792,0.013589550752409014
+Engineering technologies,2000,14660,1244171,0.011782946234882505
+Engineering technologies,2005,14565,1485104,0.009807393960288303
+Engineering technologies,2012,17010,1840381,0.009242651385772837
+Engineering technologies,2013,16807,1870150,0.008986979654038446
+Engineering technologies,2014,17253,1894969,0.00910463442937589
+Engineering technologies,2015,17159,1920750,0.00893348952232201
+Engineering technologies,2016,18119,1956114,0.009262752579859866
+Engineering technologies,2017,18728,1980665,0.009455410177894799
+Engineering technologies,2018,19620,2013086,0.00974623041439859
+Engineering technologies,2019,19788,2038682,0.009706271012350135
+Engineering technologies,2020,19004,2066463,0.00919639016038516
+Engineering technologies,2021,18405,2015035,0.009133836384975943
+English language and literature/letters,1970,63914,839730,0.07611255998952045
+English language and literature/letters,1975,41452,925746,0.044776861039637225
+English language and literature/letters,1980,31922,935140,0.034136065188100174
+English language and literature/letters,1985,34083,987823,0.03450314479415847
+English language and literature/letters,1990,51064,1094538,0.0466534738857856
+English language and literature/letters,1995,49928,1164792,0.04286430538671282
+English language and literature/letters,2000,50569,1244171,0.04064473452604184
+English language and literature/letters,2005,55094,1485104,0.03709773860955192
+English language and literature/letters,2012,52401,1840381,0.02847290859881731
+English language and literature/letters,2013,50464,1870150,0.026983931770178864
+English language and literature/letters,2014,45851,1894969,0.024196174185435224
+English language and literature/letters,2015,42797,1920750,0.022281400494598463
+English language and literature/letters,2016,41314,1956114,0.02112044594537946
+English language and literature/letters,2017,40002,1980665,0.020196247219999342
+English language and literature/letters,2018,39344,2013086,0.01954412280449022
+English language and literature/letters,2019,38049,2038682,0.018663528691576226
+English language and literature/letters,2020,35764,2066463,0.017306866854136755
+English language and literature/letters,2021,33429,2015035,0.016589786281627862
+Family and consumer sciences/human sciences,1970,11167,839730,0.0132983220797161
+Family and consumer sciences/human sciences,1975,17409,925746,0.018805374260326267
+Family and consumer sciences/human sciences,1980,18370,935140,0.019644117458348483
+Family and consumer sciences/human sciences,1985,13847,987823,0.014017693453179365
+Family and consumer sciences/human sciences,1990,13920,1094538,0.012717694588949858
+Family and consumer sciences/human sciences,1995,14353,1164792,0.012322371719585987
+Family and consumer sciences/human sciences,2000,16421,1244171,0.013198346529536534
+Family and consumer sciences/human sciences,2005,20775,1485104,0.013988919294540988
+Family and consumer sciences/human sciences,2012,23930,1840381,0.013002742366933804
+Family and consumer sciences/human sciences,2013,24689,1870150,0.013201614843729113
+Family and consumer sciences/human sciences,2014,24584,1894969,0.012973299299355293
+Family and consumer sciences/human sciences,2015,25389,1920750,0.013218274111675126
+Family and consumer sciences/human sciences,2016,25080,1956114,0.012821338633637916
+Family and consumer sciences/human sciences,2017,24357,1980665,0.012297384969189641
+Family and consumer sciences/human sciences,2018,23956,2013086,0.011900137400985352
+Family and consumer sciences/human sciences,2019,23248,2038682,0.01140344595184536
+Family and consumer sciences/human sciences,2020,22319,2066463,0.01080058050882111
+Family and consumer sciences/human sciences,2021,20630,2015035,0.010238035567620414
+"Foreign languages, literatures, and linguistics",1970,20988,839730,0.024993747990425495
+"Foreign languages, literatures, and linguistics",1975,17068,925746,0.018437022682247613
+"Foreign languages, literatures, and linguistics",1980,11638,935140,0.012445195371815985
+"Foreign languages, literatures, and linguistics",1985,11550,987823,0.011692378087977299
+"Foreign languages, literatures, and linguistics",1990,13937,1094538,0.01273322625619211
+"Foreign languages, literatures, and linguistics",1995,14832,1164792,0.012733603939587498
+"Foreign languages, literatures, and linguistics",2000,16128,1244171,0.012962848354446454
+"Foreign languages, literatures, and linguistics",2005,19393,1485104,0.01305834473545287
+"Foreign languages, literatures, and linguistics",2012,21647,1840381,0.011762238362599918
+"Foreign languages, literatures, and linguistics",2013,20332,1870150,0.010871855198780846
+"Foreign languages, literatures, and linguistics",2014,19493,1894969,0.010286711814282978
+"Foreign languages, literatures, and linguistics",2015,18436,1920750,0.009598333984120785
+"Foreign languages, literatures, and linguistics",2016,17643,1956114,0.009019412978998156
+"Foreign languages, literatures, and linguistics",2017,16957,1980665,0.00856126603943625
+"Foreign languages, literatures, and linguistics",2018,16605,2013086,0.008248529869066696
+"Foreign languages, literatures, and linguistics",2019,16309,2038682,0.007999776326077339
+"Foreign languages, literatures, and linguistics",2020,15514,2066463,0.0075075140469488206
+"Foreign languages, literatures, and linguistics",2021,13912,2015035,0.006904098439977469
+Health professions and related programs,1970,25221,839730,0.030034653995927262
+Health professions and related programs,1975,53885,925746,0.058207110805771775
+Health professions and related programs,1980,63665,935140,0.06808071518703082
+Health professions and related programs,1985,64941,987823,0.06574153466764796
+Health professions and related programs,1990,59636,1094538,0.05448508868581995
+Health professions and related programs,1995,85755,1164792,0.07362258669358993
+Health professions and related programs,2000,75537,1244171,0.0607127155350832
+Health professions and related programs,2005,91528,1485104,0.06163070061086631
+Health professions and related programs,2012,180437,1840381,0.09804328560227475
+Health professions and related programs,2013,197949,1870150,0.10584658984573429
+Health professions and related programs,2014,215478,1894969,0.11371056729687927
+Health professions and related programs,2015,228075,1920750,0.1187426786411558
+Health professions and related programs,2016,236931,1956114,0.12112330876421312
+Health professions and related programs,2017,243876,1980665,0.12312834325845108
+Health professions and related programs,2018,250650,2013086,0.12451032891789024
+Health professions and related programs,2019,257327,2038682,0.12622223573858013
+Health professions and related programs,2020,267993,2066463,0.12968681268428228
+Health professions and related programs,2021,263765,2015035,0.1308984707461657
+"Homeland security, law enforcement, and firefighting",1970,2045,839730,0.002435306586640944
+"Homeland security, law enforcement, and firefighting",1975,12507,925746,0.013510185299207342
+"Homeland security, law enforcement, and firefighting",1980,13707,935140,0.014657698312552132
+"Homeland security, law enforcement, and firefighting",1985,12704,987823,0.012860603569667846
+"Homeland security, law enforcement, and firefighting",1990,16806,1094538,0.015354423510193341
+"Homeland security, law enforcement, and firefighting",1995,24810,1164792,0.021299940246842355
+"Homeland security, law enforcement, and firefighting",2000,25211,1244171,0.020263291782238936
+"Homeland security, law enforcement, and firefighting",2005,35319,1485104,0.023782172830993653
+"Homeland security, law enforcement, and firefighting",2012,60264,1840381,0.03274539348102377
+"Homeland security, law enforcement, and firefighting",2013,62416,1870150,0.033374862978905434
+"Homeland security, law enforcement, and firefighting",2014,62723,1894969,0.033099749916753254
+"Homeland security, law enforcement, and firefighting",2015,61159,1920750,0.03184120786151243
+"Homeland security, law enforcement, and firefighting",2016,59553,1956114,0.030444544643103623
+"Homeland security, law enforcement, and firefighting",2017,58121,1980665,0.029344184907594165
+"Homeland security, law enforcement, and firefighting",2018,57333,2013086,0.02848015435008738
+"Homeland security, law enforcement, and firefighting",2019,57044,2038682,0.027980822904209682
+"Homeland security, law enforcement, and firefighting",2020,58006,2066463,0.028070185626357696
+"Homeland security, law enforcement, and firefighting",2021,56901,2015035,0.028238219187259776
+Legal professions and studies,1970,545,839730,6.49018136782061e-4
+Legal professions and studies,1975,531,925746,5.735914602925641e-4
+Legal professions and studies,1980,776,935140,8.29822272600894e-4
+Legal professions and studies,1985,1223,987823,0.0012380760520862544
+Legal professions and studies,1990,1827,1094538,0.0016691974147996689
+Legal professions and studies,1995,2123,1164792,0.001822643012658054
+Legal professions and studies,2000,1991,1244171,0.0016002623433595542
+Legal professions and studies,2005,3302,1485104,0.0022234133097749384
+Legal professions and studies,2012,4425,1840381,0.002404393438097872
+Legal professions and studies,2013,4513,1870150,0.002413175413736866
+Legal professions and studies,2014,4420,1894969,0.002332491982718451
+Legal professions and studies,2015,4243,1920750,0.0022090329298451125
+Legal professions and studies,2016,4272,1956114,0.0021839217959689467
+Legal professions and studies,2017,4242,1980665,0.0021417049324343085
+Legal professions and studies,2018,4235,2013086,0.00210373526019256
+Legal professions and studies,2019,4262,2038682,0.0020905663561065434
+Legal professions and studies,2020,4585,2066463,0.0022187670430102065
+Legal professions and studies,2021,4444,2015035,0.002205420749515517
+"Liberal arts and sciences, general studies, and 
+   humanities",1970,7481,839730,0.008908815928929536
+"Liberal arts and sciences, general studies, and 
+   humanities",1975,18855,925746,0.020367357784964773
+"Liberal arts and sciences, general studies, and 
+   humanities",1980,21643,935140,0.02314412815193447
+"Liberal arts and sciences, general studies, and 
+   humanities",1985,21336,987823,0.021599011158881704
+"Liberal arts and sciences, general studies, and 
+   humanities",1990,30526,1094538,0.02788939260217553
+"Liberal arts and sciences, general studies, and 
+   humanities",1995,33997,1164792,0.029187185351547743
+"Liberal arts and sciences, general studies, and 
+   humanities",2000,37962,1244171,0.030511883012865594
+"Liberal arts and sciences, general studies, and 
+   humanities",2005,44898,1485104,0.03023222616059212
+"Liberal arts and sciences, general studies, and 
+   humanities",2012,46790,1840381,0.025424083382734337
+"Liberal arts and sciences, general studies, and 
+   humanities",2013,45281,1870150,0.024212496323824294
+"Liberal arts and sciences, general studies, and 
+   humanities",2014,43649,1894969,0.023034149899022093
+"Liberal arts and sciences, general studies, and 
+   humanities",2015,43669,1920750,0.022735389821684236
+"Liberal arts and sciences, general studies, and 
+   humanities",2016,44103,1956114,0.02254623196807548
+"Liberal arts and sciences, general studies, and 
+   humanities",2017,44262,1980665,0.02234704000928981
+"Liberal arts and sciences, general studies, and 
+   humanities",2018,44222,2013086,0.02196726816440033
+"Liberal arts and sciences, general studies, and 
+   humanities",2019,42922,2038682,0.021053798483530044
+"Liberal arts and sciences, general studies, and 
+   humanities",2020,41827,2066463,0.020240865672407394
+"Liberal arts and sciences, general studies, and 
+   humanities",2021,37887,2015035,0.018802154801281366
+Library science,1970,1013,839730,0.0012063401331380325
+Library science,1975,843,925746,9.10616951085935e-4
+Library science,1980,375,935140,4.010094745171846e-4
+Library science,1985,155,987823,1.5691070161354817e-4
+Library science,1990,90,1094538,8.222647363545167e-5
+Library science,1995,58,1164792,4.979429803776125e-5
+Library science,2000,52,1244171,4.1794897968205334e-5
+Library science,2005,76,1485104,5.1174867214686647e-5
+Library science,2012,102,1840381,5.5423306369713664e-5
+Library science,2013,127,1870150,6.790899125738577e-5
+Library science,2014,99,1894969,5.22435987079472e-5
+Library science,2015,85,1920750,4.4253546791617855e-5
+Library science,2016,99,1956114,5.061054723804441e-5
+Library science,2017,81,1980665,4.0895355852706033e-5
+Library science,2018,99,2013086,4.917822686164426e-5
+Library science,2019,118,2038682,5.788053261862321e-5
+Library science,2020,119,2066463,5.75863202002649e-5
+Library science,2021,135,2015035,6.699635490202404e-5
+Mathematics and statistics,1970,24801,839730,0.029534493229966777
+Mathematics and statistics,1975,15984,925746,0.01726607514372193
+Mathematics and statistics,1980,11078,935140,0.011846354556536988
+Mathematics and statistics,1985,16122,987823,0.01632073762202338
+Mathematics and statistics,1990,14393,1094538,0.013149840389278399
+Mathematics and statistics,1995,12713,1164792,0.010914395016449288
+Mathematics and statistics,2000,11171,1244171,0.008978669330823497
+Mathematics and statistics,2005,14760,1485104,0.009938697895904933
+Mathematics and statistics,2012,20449,1840381,0.011111286195630144
+Mathematics and statistics,2013,20987,1870150,0.011222094484399647
+Mathematics and statistics,2014,21854,1894969,0.011532642486499779
+Mathematics and statistics,2015,22778,1920750,0.011858909280229077
+Mathematics and statistics,2016,24075,1956114,0.012307564896524436
+Mathematics and statistics,2017,25253,1980665,0.012749758288251672
+Mathematics and statistics,2018,26155,2013086,0.01299249013703339
+Mathematics and statistics,2019,27227,2038682,0.013355197132264865
+Mathematics and statistics,2020,27106,2066463,0.013117099120574625
+Mathematics and statistics,2021,26212,2015035,0.013008210775495214
+Military technologies and applied sciences,1970,357,839730,4.251366510664142e-4
+Military technologies and applied sciences,1975,952,925746,0.001028359830882337
+Military technologies and applied sciences,1980,42,935140,4.4913061145924677e-5
+Military technologies and applied sciences,1985,255,987823,2.581434123319664e-4
+Military technologies and applied sciences,1990,183,1094538,1.671938297254184e-4
+Military technologies and applied sciences,1995,7,1164792,6.009656659729806e-6
+Military technologies and applied sciences,2000,21,1244171,1.6878708794852153e-5
+Military technologies and applied sciences,2005,33,1485104,2.2220666027429728e-5
+Military technologies and applied sciences,2012,105,1840381,5.7053403615881715e-5
+Military technologies and applied sciences,2013,185,1870150,9.892254631981392e-5
+Military technologies and applied sciences,2014,276,1894969,1.4564882064033765e-4
+Military technologies and applied sciences,2015,358,1920750,1.8638552648704934e-4
+Military technologies and applied sciences,2016,469,1956114,2.397610773196245e-4
+Military technologies and applied sciences,2017,655,1980665,3.306970133768204e-4
+Military technologies and applied sciences,2018,767,2013086,3.810070707361732e-4
+Military technologies and applied sciences,2019,1156,2038682,5.6703301446719e-4
+Military technologies and applied sciences,2020,1524,2066463,7.374920334891067e-4
+Military technologies and applied sciences,2021,1602,2015035,7.950234115040185e-4
+Multi/interdisciplinary studies,1970,6324,839730,0.007530992104605051
+Multi/interdisciplinary studies,1975,13709,925746,0.014808597606686931
+Multi/interdisciplinary studies,1980,12986,935140,0.013886690762880424
+Multi/interdisciplinary studies,1985,13754,987823,0.013923547032211237
+Multi/interdisciplinary studies,1990,17774,1094538,0.016238814915516868
+Multi/interdisciplinary studies,1995,26885,1164792,0.023081374185262262
+Multi/interdisciplinary studies,2000,26478,1244171,0.021281640546195017
+Multi/interdisciplinary studies,2005,30583,1485104,0.020593170579299498
+Multi/interdisciplinary studies,2012,47658,1840381,0.025895724852625625
+Multi/interdisciplinary studies,2013,48392,1870150,0.025875999251396945
+Multi/interdisciplinary studies,2014,47556,1894969,0.02509592505207209
+Multi/interdisciplinary studies,2015,48833,1920750,0.025423922946765588
+Multi/interdisciplinary studies,2016,49631,1956114,0.025372243131024062
+Multi/interdisciplinary studies,2017,51982,1980665,0.026244720838708213
+Multi/interdisciplinary studies,2018,53303,2013086,0.02647825279198206
+Multi/interdisciplinary studies,2019,55037,2038682,0.02699636333670479
+Multi/interdisciplinary studies,2020,54615,2066463,0.026429217459978716
+Multi/interdisciplinary studies,2021,52573,2015035,0.02609036567603044
+"Parks, recreation, leisure, fitness, and kinesiology",1970,1621,839730,0.0019303823848141664
+"Parks, recreation, leisure, fitness, and kinesiology",1975,5182,925746,0.005597647734907847
+"Parks, recreation, leisure, fitness, and kinesiology",1980,5729,935140,0.006126355412023868
+"Parks, recreation, leisure, fitness, and kinesiology",1985,4623,987823,0.004679988216512472
+"Parks, recreation, leisure, fitness, and kinesiology",1990,4315,1094538,0.003942302597077488
+"Parks, recreation, leisure, fitness, and kinesiology",1995,12974,1164792,0.011138469357619214
+"Parks, recreation, leisure, fitness, and kinesiology",2000,17948,1244171,0.014425669783333641
+"Parks, recreation, leisure, fitness, and kinesiology",2005,25489,1485104,0.017163107768883527
+"Parks, recreation, leisure, fitness, and kinesiology",2012,42628,1840381,0.02316259513655053
+"Parks, recreation, leisure, fitness, and kinesiology",2013,46047,1870150,0.02462208913723498
+"Parks, recreation, leisure, fitness, and kinesiology",2014,49008,1894969,0.02586216449978865
+"Parks, recreation, leisure, fitness, and kinesiology",2015,50912,1920750,0.026506312638292333
+"Parks, recreation, leisure, fitness, and kinesiology",2016,53292,1956114,0.027243810943533966
+"Parks, recreation, leisure, fitness, and kinesiology",2017,53887,1980665,0.027206519022651483
+"Parks, recreation, leisure, fitness, and kinesiology",2018,53540,2013086,0.02659598248659024
+"Parks, recreation, leisure, fitness, and kinesiology",2019,53749,2038682,0.02636458260778287
+"Parks, recreation, leisure, fitness, and kinesiology",2020,54268,2066463,0.026261297685949373
+"Parks, recreation, leisure, fitness, and kinesiology",2021,52776,2015035,0.02619110834303126
+Philosophy and religious studies,1970,8149,839730,0.009704309718600026
+Philosophy and religious studies,1975,8447,925746,0.009124533079267963
+Philosophy and religious studies,1980,6776,935140,0.007245973864875847
+Philosophy and religious studies,1985,6396,987823,0.006474844177550026
+Philosophy and religious studies,1990,7423,1094538,0.006781856819955086
+Philosophy and religious studies,1995,7900,1164792,0.006782326801695066
+Philosophy and religious studies,2000,9442,1244171,0.007588988973380669
+Philosophy and religious studies,2005,12841,1485104,0.008646532498734096
+Philosophy and religious studies,2012,14338,1840381,0.007790778105185829
+Philosophy and religious studies,2013,13776,1870150,0.007366254043793279
+Philosophy and religious studies,2014,12925,1894969,0.006820692053537551
+Philosophy and religious studies,2015,12133,1920750,0.006316803332031758
+Philosophy and religious studies,2016,11740,1956114,0.00600169519772365
+Philosophy and religious studies,2017,11872,1980665,0.0059939464775719264
+Philosophy and religious studies,2018,11981,2013086,0.0059515589497915146
+Philosophy and religious studies,2019,11898,2038682,0.0058361235347150755
+Philosophy and religious studies,2020,11989,2066463,0.005801700780512402
+Philosophy and religious studies,2021,11230,2015035,0.005573104189257259
+Physical sciences and science technologies,1970,21410,839730,0.025496290474319127
+Physical sciences and science technologies,1975,21458,925746,0.023179144171295366
+Physical sciences and science technologies,1980,23936,935140,0.025596167418782213
+Physical sciences and science technologies,1985,21711,987823,0.02197863382407577
+Physical sciences and science technologies,1990,16334,1094538,0.01492319133734964
+Physical sciences and science technologies,1995,19716,1164792,0.01692662724331898
+Physical sciences and science technologies,2000,18025,1244171,0.014487558382248099
+Physical sciences and science technologies,2005,20521,1485104,0.013817887501481378
+Physical sciences and science technologies,2012,28053,1840381,0.015243039348917426
+Physical sciences and science technologies,2013,29307,1870150,0.015670935486458305
+Physical sciences and science technologies,2014,30042,1894969,0.015853557498829798
+Physical sciences and science technologies,2015,30483,1920750,0.01587036313939867
+Physical sciences and science technologies,2016,31272,1956114,0.015986798315435605
+Physical sciences and science technologies,2017,31542,1980665,0.0159249544976056
+Physical sciences and science technologies,2018,31155,2013086,0.015476238968429566
+Physical sciences and science technologies,2019,30743,2038682,0.01507984079910452
+Physical sciences and science technologies,2020,29236,2066463,0.014147845860293651
+Physical sciences and science technologies,2021,28301,2015035,0.01404491733394209
+Precision production,1970,0,839730,0
+Precision production,1975,0,925746,0
+Precision production,1980,0,935140,0
+Precision production,1985,2,987823,2.0246542143683636e-6
+Precision production,1990,2,1094538,1.8272549696767038e-6
+Precision production,1995,12,1164792,1.030226855953681e-5
+Precision production,2000,31,1244171,2.491618917335318e-5
+Precision production,2005,55,1485104,3.703444337904955e-5
+Precision production,2012,36,1840381,1.9561166954016585e-5
+Precision production,2013,37,1870150,1.9784509263962783e-5
+Precision production,2014,48,1894969,2.533022967658046e-5
+Precision production,2015,51,1920750,2.6552128074970716e-5
+Precision production,2016,32,1956114,1.6358964763812335e-5
+Precision production,2017,45,1980665,2.271964214039224e-5
+Precision production,2018,47,2013086,2.3347239015124043e-5
+Precision production,2019,39,2038682,1.9130006543443265e-5
+Precision production,2020,28,2066463,1.3549722400062328e-5
+Precision production,2021,12,2015035,5.955231546846581e-6
+Psychology,1970,38187,839730,0.04547533135650745
+Psychology,1975,50278,925746,0.05431079367342662
+Psychology,1980,41068,935140,0.04391641893192463
+Psychology,1985,40628,987823,0.04112882571067894
+Psychology,1990,58655,1094538,0.05358882012319353
+Psychology,1995,73416,1164792,0.0630292790472462
+Psychology,2000,73645,1244171,0.059192024247470804
+Psychology,2005,88132,1485104,0.059343992070589
+Psychology,2012,114446,1840381,0.06218603647831617
+Psychology,2013,117312,1870150,0.06272865812902709
+Psychology,2014,117573,1894969,0.062044814453429055
+Psychology,2015,117447,1920750,0.06114642717688403
+Psychology,2016,116859,1956114,0.0597403832291983
+Psychology,2017,116436,1980665,0.05878631671686025
+Psychology,2018,116550,2013086,0.057896185259844836
+Psychology,2019,119989,2038682,0.058856162952338816
+Psychology,2020,126950,2066463,0.06143347352456831
+Psychology,2021,129609,2015035,0.06432096712960321
+Public administration and social services,1970,5466,839730,0.00650923511128577
+Public administration and social services,1975,15440,925746,0.016678440954646306
+Public administration and social services,1980,16707,935140,0.017865774108689607
+Public administration and social services,1985,11887,987823,0.012033532323098369
+Public administration and social services,1990,14350,1094538,0.01311055440743035
+Public administration and social services,1995,19849,1164792,0.017040810719853847
+Public administration and social services,2000,19447,1244171,0.015630488092070946
+Public administration and social services,2005,21986,1485104,0.014804350402396062
+Public administration and social services,2012,31950,1840381,0.01736053567168972
+Public administration and social services,2013,33483,1870150,0.01790391145095313
+Public administration and social services,2014,34364,1894969,0.018134333595958563
+Public administration and social services,2015,34433,1920750,0.017926851490303267
+Public administration and social services,2016,35461,1956114,0.018128289046548413
+Public administration and social services,2017,35637,1980665,0.017992441932381295
+Public administration and social services,2018,35104,2013086,0.017437903795466263
+Public administration and social services,2019,34352,2038682,0.01685010217385546
+Public administration and social services,2020,34817,2066463,0.01684859588582036
+Public administration and social services,2021,33429,2015035,0.016589786281627862
+Social sciences and history,1970,155324,839730,0.1849689781239208
+Social sciences and history,1975,126396,925746,0.13653421132794524
+Social sciences and history,1980,100513,935140,0.10748444083238873
+Social sciences and history,1985,93840,987823,0.09499677573816362
+Social sciences and history,1990,125107,1094538,0.11430119374567169
+Social sciences and history,1995,126479,1164792,0.10858505209513801
+Social sciences and history,2000,128036,1244171,0.10290868377417574
+Social sciences and history,2005,161468,1485104,0.10872504551869767
+Social sciences and history,2012,177767,1840381,0.09659249905318518
+Social sciences and history,2013,173132,1870150,0.09257653129428121
+Social sciences and history,2014,166971,1894969,0.08811278706933992
+Social sciences and history,2015,161211,1920750,0.08393127684498243
+Social sciences and history,2016,159097,1956114,0.08133319428213284
+Social sciences and history,2017,159962,1980665,0.08076176435692053
+Social sciences and history,2018,160678,2013086,0.07981675894621491
+Social sciences and history,2019,161219,2038682,0.0790800134596764
+Social sciences and history,2020,160851,2066463,0.07783879992044378
+Social sciences and history,2021,151109,2015035,0.07499075698437
+Theology and religious vocations,1970,3720,839730,0.00442999535565003
+Theology and religious vocations,1975,5490,925746,0.005930352386075663
+Theology and religious vocations,1980,5808,935140,0.006210834741322155
+Theology and religious vocations,1985,5510,987823,0.005577922360584841
+Theology and religious vocations,1990,4799,1094538,0.0043844982997392505
+Theology and religious vocations,1995,4933,1164792,0.00423509090034959
+Theology and religious vocations,2000,6220,1244171,0.004999312795427638
+Theology and religious vocations,2005,7687,1485104,0.0051760684773591616
+Theology and religious vocations,2012,7839,1840381,0.004259444104237111
+Theology and religious vocations,2013,7865,1870150,0.004205545009758576
+Theology and religious vocations,2014,7859,1894969,0.004147297396421788
+Theology and religious vocations,2015,7826,1920750,0.004074450084602369
+Theology and religious vocations,2016,7489,1956114,0.0038285089723809553
+Theology and religious vocations,2017,7252,1980665,0.003661396551158323
+Theology and religious vocations,2018,7061,2013086,0.003507550099697678
+Theology and religious vocations,2019,6855,2038682,0.0033624665347513735
+Theology and religious vocations,2020,6735,2066463,0.0032591921558721352
+Theology and religious vocations,2021,6394,2015035,0.0031731458758780867
+Transportation and materials moving,1970,0,839730,0
+Transportation and materials moving,1975,225,925746,2.4304722893752714e-4
+Transportation and materials moving,1980,263,935140,2.8124131146138544e-4
+Transportation and materials moving,1985,1838,987823,0.001860657223004526
+Transportation and materials moving,1990,2622,1094538,0.0023955312652461586
+Transportation and materials moving,1995,3561,1164792,0.003057198195042548
+Transportation and materials moving,2000,3748,1244171,0.0030124476458621846
+Transportation and materials moving,2005,5349,1485104,0.003601767956991564
+Transportation and materials moving,2012,4661,1840381,0.0025326277547964254
+Transportation and materials moving,2013,4588,1870150,0.0024532791487313853
+Transportation and materials moving,2014,4730,1894969,0.0024960830493796996
+Transportation and materials moving,2015,4531,1920750,0.002358974358974359
+Transportation and materials moving,2016,4708,1956114,0.00240681269087589
+Transportation and materials moving,2017,4924,1980665,0.0024860337310953643
+Transportation and materials moving,2018,5051,2013086,0.002509083069476416
+Transportation and materials moving,2019,5251,2038682,0.0025756837015287327
+Transportation and materials moving,2020,5993,2066463,0.0029001245122704834
+Transportation and materials moving,2021,6540,2015035,0.0032456011930313867
+Visual and performing arts,1970,30394,839730,0.03619496743000727
+Visual and performing arts,1975,42138,925746,0.045517885035420085
+Visual and performing arts,1980,40479,935140,0.043286566717282975
+Visual and performing arts,1985,37241,987823,0.037700073798646115
+Visual and performing arts,1990,42186,1094538,0.038542289075390715
+Visual and performing arts,1995,49296,1164792,0.042321719242577216
+Visual and performing arts,2000,61148,1244171,0.049147585018458076
+Visual and performing arts,2005,83292,1485104,0.056084961053232636
+Visual and performing arts,2012,97799,1840381,0.05314062685932967
+Visual and performing arts,2013,97414,1870150,0.05208886987674786
+Visual and performing arts,2014,95840,1894969,0.05057602525423899
+Visual and performing arts,2015,92979,1920750,0.04840765326044514
+Visual and performing arts,2016,91291,1956114,0.046669570382912244
+Visual and performing arts,2017,88507,1980665,0.044685497042659915
+Visual and performing arts,2018,89741,2013086,0.04457882077566482
+Visual and performing arts,2019,92299,2038682,0.0452738583064941
+Visual and performing arts,2020,90027,2066463,0.043565744946800405
+Visual and performing arts,2021,90241,2015035,0.04478383750158186
+Other and not classified,1970,0,839730,0
+Other and not classified,1975,0,925746,0
+Other and not classified,1980,0,935140,0
+Other and not classified,1985,0,987823,0
+Other and not classified,1990,13258,1094538,0.01211287319398687
+Other and not classified,1995,1756,1164792,0.0015075652992122199
+Other and not classified,2000,783,1244171,6.293347136366303e-4
+Other and not classified,2005,0,1485104,0
+Other and not classified,2012,0,1840381,0
+Other and not classified,2013,0,1870150,0
+Other and not classified,2014,0,1894969,0
+Other and not classified,2015,0,1920750,0
+Other and not classified,2016,0,1956114,0
+Other and not classified,2017,0,1980665,0
+Other and not classified,2018,0,2013086,0
+Other and not classified,2019,0,2038682,0
+Other and not classified,2020,0,2066463,0
+Other and not classified,2021,0,2015035,0
