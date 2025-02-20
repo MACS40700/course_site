@@ -48,6 +48,7 @@ class: middle, inverse
 * Considering a professional platform
 
 
+
 ---
 
 class: middle, inverse
@@ -79,6 +80,8 @@ options(dplyr.print_max = 10, dplyr.print_min = 10)
 ```
 ]
 
+Follow along here: `usethis::use_course("MACS40700/tables")`
+
 ---
 
 class: middle, inverse
@@ -109,7 +112,9 @@ class: middle, inverse
 ## Bachelor's degrees
 
 ```{r message = FALSE}
-BA_degrees <- read_csv(here::here("17-tables", "data/BA_degrees.csv"))
+# https://nces.ed.gov/programs/digest/d23/tables/dt23_322.10.asp
+#ba_degrees %>% pivot_longer(names_to = "year", values_to = "count", cols = -'field') %>% separate_wider_delim(year, delim = '-',  too_few = "align_start", names =c("year", "dump"), cols_remove = TRUE) %>% select(-dump) %>% group_by(year) %>% mutate(total_yr = sum(count, na.rm = T)) %>% ungroup() %>% mutate(pct = count / total_yr) %>% write_csv("BA_degrees.csv")
+BA_degrees <- read_csv(here::here("21-websites", "data/BA_degrees.csv"))
 BA_degrees
 ```
 
@@ -120,7 +125,7 @@ class: middle
 .large[
 .hand[In the next few slides:
 
-.purple[Degrees awarded in 2015]
+.purple[Degrees awarded in 2021]
 
 ]
 
@@ -132,8 +137,8 @@ class: middle
 .tiny[
 ```{r echo = FALSE}
 BA_degrees %>%
-  filter(year == 2015) %>%
-  select(field, perc) %>%
+  filter(year == 2021) %>%
+  select(field, pct) %>%
   print(n = 33)
 ```
 ]
@@ -141,8 +146,8 @@ BA_degrees %>%
 .pull-right[
 ```{r fig.asp = 1.1, out.width = "100%", echo = FALSE}
 ggplot(
-  BA_degrees %>% filter(year == 2015),
-  aes(y = fct_rev(fct_inorder(field)), x = perc)
+  BA_degrees %>% filter(year == 2021),
+  aes(y = fct_rev(fct_inorder(field)), x = pct)
 ) +
   geom_col() +
   labs(y = NULL)
@@ -155,9 +160,9 @@ ggplot(
 .tiny[
 ```{r echo = FALSE}
 BA_degrees %>%
-  filter(year == 2015) %>%
-  select(field, perc) %>%
-  arrange(desc(perc)) %>%
+  filter(year == 2021) %>%
+  select(field, pct) %>%
+  arrange(desc(pct)) %>%
   print(n = 33)
 ```
 ]
@@ -165,8 +170,8 @@ BA_degrees %>%
 .pull-right[
 ```{r fig.asp = 1.1, out.width = "100%", echo = FALSE}
 ggplot(
-  BA_degrees %>% filter(year == 2015),
-  aes(y = fct_reorder(field, perc), x = perc)
+  BA_degrees %>% filter(year == 2021),
+  aes(y = fct_reorder(field, pct), x = pct)
 ) +
   geom_col() +
   labs(y = NULL)
@@ -176,26 +181,26 @@ ggplot(
 ---
 
 .pull-left[
-```{r degrees-2015-table, echo = FALSE}
+```{r degrees-2021-table, echo = FALSE}
 BA_degrees %>%
-  filter(year == 2015) %>%
-  select(field, perc) %>%
-  arrange(desc(perc)) %>%
+  filter(year == 2021) %>%
+  select(field, pct) %>%
+  arrange(desc(pct)) %>%
   gt() %>%
   tab_style(
     style = "padding-top:0px;padding-bottom:0px;",
     locations = cells_body(columns = everything())) %>%
   tab_style(  style = cell_text(size = "small"),
     locations = cells_body(columns = everything())) %>%
-  fmt_percent( columns = perc,  decimals = 1  ) %>%
-  cols_label(  field = "Field",  perc = "Percentage" )
+  fmt_percent( columns = pct,  decimals = 1  ) %>%
+  cols_label(  field = "Field",  pct = "Percentage" )
 ```
 ]
 .pull-right[
 ```{r fig.asp = 1.2, out.width = "100%", echo = FALSE}
 ggplot(
-  BA_degrees %>% filter(year == 2015),
-  aes(y = fct_reorder(field, perc), x = perc, fill = perc)
+  BA_degrees %>% filter(year == 2021),
+  aes(y = fct_reorder(field, pct), x = pct, fill = pct)
 ) +
   geom_col(show.legend = FALSE) +
   labs(y = NULL, x = "Percentage") +
@@ -236,7 +241,7 @@ BA_degrees_other <- BA_degrees %>%
     ),
   ) %>%
   group_by(year, field) %>%
-  summarise(perc = sum(perc), .groups = "drop")
+  summarise(pct = sum(pct), .groups = "drop")
 ```
 
 .pull-left-narrow[
@@ -247,7 +252,7 @@ In a table?
 .pull-right-wide[
 ```{r echo = FALSE}
 BA_degrees_other %>%
-  pivot_wider(names_from = field, values_from = perc) %>%
+  pivot_wider(names_from = field, values_from = pct) %>%
   rename(Year = year) %>%
   gt() %>%
   cols_align(
@@ -276,18 +281,18 @@ Or in a plot?
 .pull-right-wide[
 ```{r degrees-years-plot, echo = FALSE, out.width = "100%", fig.asp = 0.5}
 degrees_years_plot <- ggplot(BA_degrees_other, aes(
-  x = year, y = perc,
+  x = year, y = pct,
   group = field, color = field )) +
   geom_line(size = 1, show.legend = FALSE) +
   geom_text(
     data = BA_degrees_other %>% filter(year == min(year)),
-    aes(x = year, y = perc,
+    aes(x = year, y = pct,
       label = str_wrap(field, 25)),
     show.legend = FALSE,
     hjust = "right", nudge_x = -1,
     nudge_y = c(-0.02, 0, 0.02, 0),
     fontface = "bold" ) +
-  coord_cartesian(clip = "off", xlim = c(1970, 2015)) +
+  coord_cartesian(clip = "off", xlim = c(1970, 2021)) +
   scale_y_continuous(position = "right", labels = label_percent()) +
   scale_color_okabeito() +
   theme(plot.margin = margin(0.1, 0.1, 0.1, 1.5, "in")) +
@@ -324,7 +329,7 @@ knitr::include_graphics("images/gt-parts.png")
 
 ---
 
-`r chunk_reveal(chunk_name = "degrees-2015-table", title = '## Generating a **gt** table', widths = c(60, 40))`
+`r chunk_reveal(chunk_name = "degrees-2021-table", title = '## Generating a **gt** table', widths = c(60, 40))`
 
 ---
 
@@ -340,7 +345,7 @@ Should these data be displayed in a table or a plot?
 
 ```{r echo = FALSE}
 BA_degrees_other %>%
-  pivot_wider(names_from = year, values_from = perc) %>%
+  pivot_wider(names_from = year, values_from = pct) %>%
   gt() %>%
   cols_align(
     align = "left",
@@ -376,7 +381,7 @@ Example: Add **sparklines** to display trend alongside raw data
 
 ```{r sparklines-color, echo = FALSE}
 plot_spark_color <- function(df) {
-  ggplot(df, aes(x = year, y = perc, color = line_color)) + #<<
+  ggplot(df, aes(x = year, y = pct, color = line_color)) + #<<
     geom_line(size = 20) +
     theme_void() +
     scale_color_identity() #<<
@@ -389,11 +394,11 @@ BA_degrees_other_plots_color <- BA_degrees_other %>%
     field == "Social sciences and history" ~ "#026D4E", #<<
     field == "Other" ~ "#A39A09" #<<
   )) %>% #<<
-  nest(field_df = c(year, perc, line_color)) %>%
+  nest(field_df = c(year, pct, line_color)) %>%
   mutate(plot = map(field_df, plot_spark_color))
 
 BA_degrees_other %>%
-  pivot_wider(names_from = year, values_from = perc) %>%
+  pivot_wider(names_from = year, values_from = pct) %>%
   mutate(ggplot = NA, .after = field) %>%
   gt() %>%
   text_transform(
@@ -420,7 +425,7 @@ BA_degrees_other %>%
 
 ```{r custom-ggplot, out.width = "40%"}
 plot_spark <- function(df) { #<<
-  ggplot(df, aes(x = year, y = perc)) + #<<
+  ggplot(df, aes(x = year, y = pct)) + #<<
     geom_line(size = 20) + #<<
     theme_void() } #<<
 
@@ -435,7 +440,7 @@ BA_degrees_other %>%
 
 ```{r data-prep}
 BA_degrees_other_plots <- BA_degrees_other %>%
-  nest(field_df = c(year, perc)) %>% #<<
+  nest(field_df = c(year, pct)) %>% #<<
   mutate(plot = map(field_df, plot_spark))
 BA_degrees_other_plots
 ```
@@ -446,7 +451,7 @@ BA_degrees_other_plots
 
 ```{r sparklines-1}
 BA_degrees_other %>%
-  pivot_wider(names_from = year, values_from = perc) %>% #<<
+  pivot_wider(names_from = year, values_from = pct) %>% #<<
   mutate(ggplot = NA, .after = field) #<<
 ```
 
@@ -457,7 +462,7 @@ BA_degrees_other %>%
 .small[
 ```{r sparklines-2}
 BA_degrees_other %>%
-  pivot_wider(names_from = year, values_from = perc) %>%
+  pivot_wider(names_from = year, values_from = pct) %>%
   mutate(ggplot = NA, .after = field) %>%
   gt() #<<
 ```
@@ -470,7 +475,7 @@ BA_degrees_other %>%
 .small[
 ```{r sparklines-3}
 BA_degrees_other %>%
-  pivot_wider(names_from = year, values_from = perc) %>%
+  pivot_wider(names_from = year, values_from = pct) %>%
   mutate(ggplot = NA, .after = field) %>%
   gt() %>%
   text_transform( #<<
@@ -481,14 +486,6 @@ BA_degrees_other %>%
 ```
 ]
 
-
----
-
-## Generate the table
-
-```{r ref.label = "sparklines-final", echo = FALSE}
-
-```
 
 ---
 
@@ -527,6 +524,8 @@ class: middle, inverse
 9. Group similar data and increase white space
 10. Add visualizations when appropriate
 
+
+
 .footnote[
 Source: Schwabish, Jonathan A. "Ten Guidelines for Better Tables." Journal of Benefit-Cost Analysis 11.2 (2020): 151-178.
 ]
@@ -536,6 +535,8 @@ Source: Schwabish, Jonathan A. "Ten Guidelines for Better Tables." Journal of Be
 class: middle, inverse
 
 # Table resources
+
+### Bonus: Maybe learn some css: https://htmlcheatsheet.com/css/ 
 
 ---
 
@@ -555,7 +556,7 @@ class: middle, inverse
 
 --
 - Interactivity: useful with Shiny applications!
-  - [**DT**](https://rstudio.github.io/DT/)
+  - [**DT**](https://rstudio.github.io/DT/) Will discuss in Shiny time!
   - [**reactable**](https://glin.github.io/reactable/)
   
   
@@ -569,28 +570,89 @@ class: center, middle, inverse
 
 ## Let's get this party started: steps
 
-1) Download sample page repo: https://github.com/jmclip/jmclip.github.io  
+1) Download sample page repo: `usethis::use_course("jmclip/jmclip.github.io")`
 
 2) Make new github repo (see next slide) and push updates
 
+3) Deploy from branch: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site 
 
-3) Update at will :) 
+
+4) Update at will :) 
   * compile Rmd to make new html files
   * can link to other pages in navbar
 
-4) BRING YOUR PATIENCE
+5) BRING YOUR PATIENCE
 
 ---
 
 # Getting going with a simple github page
 
 cd to place  
-gh repo create jmclip.github.io --public  
+gh repo create YOURNAME.github.io --public  
 git init 
 git branch -M main  
-git remote add origin https://github.com/jmclip/jmclip.github.io.git  
+git remote add origin https://github.com/GITHUBuserNAME/YOURNAME.github.io.git  
 git push -u origin main  
 
+**NOTE** may need to commit changes
+
+---
+# Deploying
+
+3) Deploy from branch: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site 
+
+* Go to the repository
+* Settings: publish from branch -- will link your new site!
+
+---
+# Pages: moving to advanced
+
+* _site.yml: provides the layout for navigating
+* .Rmd files: base for waht you are doing
+* .html files: what will be rendered on your webpage
+
+`usethis::use_course('MACS40700/expanded-github')`
+
+---
+## Expanding on _site.yml
+
+Inspo: https://gist.github.com/kirstengott/1389e0422e5e9fe168ae7c0abe03fefd 
+
+navbar:
+  title: "NavBar Title"
+  right:
+    - text: "Home"
+      href: index.html
+    - text: 'Menu' ## setting up a drop down menu
+      menu:
+        - text: 'Whatever Menu 1'
+          href: pages/example.html
+        - text: 'Whatever Menu 2'
+          href: whatevermenu2.html
+        - text: 'Whatever Menu 3'
+          href: whatevermenu3.html
+    - text: 'Unicorns'
+      href: unicorns.html
+    - text: 'Downloads'
+      href: downloads.html
+    - text: "About"
+      href: about.html
+    - icon: fa-github fa-lg
+      href: http://github.com/jmclip
+
+---
+# THEMES!
+
+See here for theme options: https://rstudio4edu.github.io/rstudio4edu-book/rmd-themes.html 
+
+You can change the theme at the bottom of the page. 
+---
+
+# Is this the right option for you?
+
+* You want a simple webpage with a bit of information but not too much
+* Webpages are not your passion
+* You're looking for a place to house multiple options/types of visualizations
 
 ---
 class: center, middle, inverse
@@ -628,18 +690,18 @@ LOTS of startup but TONS of flexibility!
 #### Jekyll: start it up, basic
 Follow: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll 
 
-cd to place 
-gh repo create jekyll --public 
-git init 
-mkdir docs 
-cd docs 
-git checkout --orphan gh-pages 
-jekyll new --skip-bundle . **(DO THIS EXACTLY)**   
-(items 9 and 10 in items) 
-bundle install  
-(add to gitignore (open .gitignore)) 
-git remote add origin git remote add origin https://github.com/jmclip/jekyll 
-git add, commit, push 
+* cd to place 
+* gh repo create jekyll --public 
+* git init 
+* mkdir docs 
+* cd docs 
+* git checkout --orphan gh-pages 
+* jekyll new --skip-bundle . **(DO THIS EXACTLY)**   
+* (items 9 and 10 in items) 
+* bundle install  
+* (add to gitignore (open .gitignore)) 
+* git remote add origin git remote add origin https://github.com/GITHUBuserNAME/jekyll 
+* git add, commit, push 
 
   
 ---
@@ -648,20 +710,21 @@ git add, commit, push
 * I suggest choosing a theme FIRST
 * THIS CAN BE TIME-CONSUMING
 * Test on machine locally 
-* BUDGET 4X time you think it will take..
+* BUDGET 4X time you think it will take...at least...
 
 https://pages.github.com/themes/ 
+https://github.com/collections/github-pages-examples 
 
   
 ---
 ### Jekyll:Netlify
 
 cd to place 
-gh repo create jmclip-jekyll --public  
+gh repo create GITHUBuserNAME-jekyll --public  
 git init  
 git branch -M main  
 
-git remote add origin https://github.com/jmclip/jmclip-jekyll  
+git remote add origin https://github.com/GITHUBuserNAME/jmclip-jekyll  
 git push -u origin main  
   
 
@@ -697,10 +760,10 @@ git push -u origin main
 
 # Recap: Tables and websites
 
-* Tables: 
+* **Tables**: 
   * Think about overall structure
   * Consider screen readers
-* Websites: lots of pre-planning can save you effort later
+* **Websites**: lots of pre-planning can save you effort later
   * Consider structure and desired format
   * For this class, probably just github pages
   * If Jekyll, probably host on netlify or elsewhere

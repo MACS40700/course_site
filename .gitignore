@@ -2,6 +2,9 @@
 .Rhistory
 .Rapp.history
 
+# example repos
+*static/slides/21-websites/tables
+
 # Session Data files
 .RData
 .RDataTmp
