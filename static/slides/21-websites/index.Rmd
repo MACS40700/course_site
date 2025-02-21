@@ -416,7 +416,7 @@ BA_degrees_other %>%
   tab_style(style = cell_text(color = "#A39A09"), locations = cells_body(rows = 4, columns = field)) %>% #<<
   cols_label(field = "Field", ggplot = "Trend") %>%
   tab_spanner(label = "Popular Bachelor's degrees over the years", columns = everything()) %>%
-  tab_style(style = cell_text(weight = "bold"), locations = cells_column_spanners())
+  tab_style(style = list(cell_text(weight = "bold")), locations = cells_column_spanners()) 
 ```
 
 ---
@@ -464,7 +464,7 @@ BA_degrees_other %>%
 BA_degrees_other %>%
   pivot_wider(names_from = year, values_from = pct) %>%
   mutate(ggplot = NA, .after = field) %>%
-  gt() #<<
+  gt() #<< 
 ```
 ]
 
@@ -497,10 +497,51 @@ BA_degrees_other %>%
 
 ---
 
-class: tiny
 
-```{r ref.label = "sparklines-color", eval = FALSE}
+## Final version: 
+remove row highlighting with an additional style line:
+`tab_style(style = list(cell_text(weight = "bold")), locations = cells_column_spanners()) `
 
+```{r, echo = F}
+
+plot_spark_color <- function(df) {
+  ggplot(df, aes(x = year, y = pct, color = line_color)) + #<<
+    geom_line(size = 20) +
+    theme_void() +
+    scale_color_identity() #<<
+}
+
+BA_degrees_other_plots_color <- BA_degrees_other %>%
+  mutate(line_color = case_when( #<<
+    field == "Business" ~ "#9D6C06", #<<
+    field == "Health professions" ~ "#077DAA", #<<
+    field == "Social sciences and history" ~ "#026D4E", #<<
+    field == "Other" ~ "#A39A09" #<<
+  )) %>% #<<
+  nest(field_df = c(year, pct, line_color)) %>%
+  mutate(plot = map(field_df, plot_spark_color))
+
+BA_degrees_other %>%
+  pivot_wider(names_from = year, values_from = pct) %>%
+  mutate(ggplot = NA, .after = field) %>%
+  gt() %>%
+  text_transform(
+    locations = cells_body(columns = ggplot),
+    fn = function(x) {
+      map(BA_degrees_other_plots_color$plot, ggplot_image, height = px(15), aspect_ratio = 4)
+    }
+  ) %>%
+  cols_width(ggplot ~ px(300)) %>%
+  cols_align(align = "left", columns = field) %>%
+  fmt_percent(columns = where(is.numeric), decimals = 0) %>%
+  tab_style(style = cell_text(color = "#9D6C06"), locations = cells_body(rows = 1, columns = field)) %>% #<<
+  tab_style(style = cell_text(color = "#077DAA"), locations = cells_body(rows = 2, columns = field)) %>% #<<
+  tab_style(style = cell_text(color = "#026D4E"), locations = cells_body(rows = 3, columns = field)) %>% #<<
+  tab_style(style = cell_text(color = "#A39A09"), locations = cells_body(rows = 4, columns = field)) %>% #<<
+  cols_label(field = "Field", ggplot = "Trend") %>%
+  tab_spanner(label = "Popular Bachelor's degrees over the years", columns = everything()) %>%
+  tab_style(style = list(cell_text(weight = "bold")), locations = cells_column_spanners()) %>%
+  tab_style(style = cell_fill(color = "white"), locations = cells_body())
 ```
 
 ---
