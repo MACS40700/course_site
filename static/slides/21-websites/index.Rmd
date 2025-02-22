@@ -611,32 +611,40 @@ class: center, middle, inverse
 
 ## Let's get this party started: steps
 
-1) Download sample page repo: `usethis::use_course("jmclip/jmclip.github.io")`
 
-2) Make new github repo (see next slide) and push updates
+1) Make new github repo (see next slides) and push updates
 
-3) Deploy from branch: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site 
+2) Deploy from branch: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site 
 
 
-4) Update at will :) 
+3) Update at will :) 
   * compile Rmd to make new html files
   * can link to other pages in navbar
 
-5) BRING YOUR PATIENCE
+4) BRING YOUR PATIENCE
 
 ---
 
 # Getting going with a simple github page
 
-We are going to do this using three options:
+We are going to do this using four options:
 
-1) Forking  
+1) New from a template
 
-2) On github  
+2) Forking  
 
-3) In your terminal  
+3) On github  
 
+4) In your terminal  
 
+---
+
+## Using a template
+
+1) Go to this repo: https://github.com/MACS40700/site_example    
+2) Create a new repo   
+3) Naming options: username.github.io or a name (this will go to username.github.io/repo)    
+4) Go to settings and activate pages (will take a minute or so to appear)  
 ---
 
 ## Forking
@@ -655,13 +663,14 @@ knitr::include_graphics("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFnc
 --
 
 Steps:
-1) Go to the github repo: https://github.com/jmclip/jmclip.github.io/  
+1) Go to the github repo: https://github.com/MACS40700/site_example
 
 2) Choose 'fork' (top middle option) 
 
 3) Change name to either: username.github.io or a name (this will go to username.github.io/repo) 
 
 4) Move to settings option 
+
 
 ---
 ### New repo: on github
