@@ -771,6 +771,15 @@ Here is the code you will need:
  
 ---
 
+# Steps to success:
+
+1) Compile Rmd files to generate .html files
+2) Push files (ESPECIALLY HTML) to github
+3) Check on `actions` on github to see process
+4) Check your site (WARNING: may need to check in incognito tab)
+
+---
+
 # Is this the right option for you?
 
 * You want a simple webpage with a bit of information but not too much

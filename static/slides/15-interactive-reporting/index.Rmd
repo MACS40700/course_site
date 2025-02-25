@@ -274,6 +274,15 @@ knitr::include_app("https://jclip.shinyapps.io/age-rule/", height = "650px")
 ]
 
 ---
+# Let's look at some examples!
+
+https://shiny.posit.co/r/gallery/
+
+```{r, echo= F, fig.align = "center", out.height = "50%"}
+knitr::include_url("https://shiny.posit.co/r/gallery/")
+```
+
+---
 
 class: middle, inverse
 
