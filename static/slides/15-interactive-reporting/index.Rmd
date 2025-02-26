@@ -499,7 +499,7 @@ ui <- fluidPage(
   sliderInput(
     inputId = "num",
     label = "Choose a number",
-    min = 0, max = 100,
+    min = 1, max = 100,
     value = 20),
     plotOutput("myplot")
 )
@@ -508,6 +508,49 @@ server <- function(input, output) {}
 
 shinyApp(ui = ui, server = server)
 ```
+
+---
+# Outputs: cont'd (we're going to reuse the ui from the prior page)
+
+```r
+library(shiny)
+
+
+server <- function(input, output) {
+  
+    select_data <- reactive({ 
+      data("starwars") # a bit random: star wars dataset
+      starwars[0:input$num,] # plot the first (selected) rows
+      })  
+    
+    output$myplot <-renderPlot({
+      hist(select_data()$birth_year, # make it into a histogram
+      main = "Histogram of Birth year", 
+           xlab = "birth year", col = "orchid")
+      
+
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+
+---
+# Application: age-rule 
+---
+class: center, middle
+
+# Application: Baby Names!
+
+---
+# Baby Names
+
+```{r echo = FALSE, fig.align = "center", out.height = "100%"}
+knitr::include_app("https://jclip.shinyapps.io/age-gap/", height = "650px")
+```
+
+
 
 ---
 class: center, middle

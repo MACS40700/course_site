@@ -177,7 +177,7 @@ usethis::use_course("MACS40700/shiny")
 
 https://shiny.posit.co/r/gallery/
 
-&lt;iframe src="https://shiny.posit.co/r/gallery/" width="80%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://shiny.posit.co/r/gallery/" width="60%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
@@ -290,7 +290,7 @@ fluidPage(
 ]
 
 .panel[.panel-name[Output]
-&lt;img src="images/shiny-sidebarlayout.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/shiny-sidebarlayout.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -343,7 +343,7 @@ sliderInput(inputId = "num", label = "Choose a number",
 
 ## Inputs
 
-&lt;img src="images/shiny-inputs.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/shiny-inputs.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -396,7 +396,7 @@ ui &lt;- fluidPage(
   sliderInput(
     inputId = "num",
     label = "Choose a number",
-    min = 0, max = 100,
+    min = 1, max = 100,
     value = 20),
     plotOutput("myplot")
 )
@@ -407,6 +407,35 @@ shinyApp(ui = ui, server = server)
 ```
 
 ---
+# Outputs: cont'd (we're going to reuse the ui from the prior page)
+
+```r
+library(shiny)
+
+
+server &lt;- function(input, output) {
+  
+    select_data &lt;- reactive({ 
+      data("starwars") # a bit random: star wars dataset
+      starwars[0:input$num,] # plot the first (selected) rows
+      })  
+    
+    output$myplot &lt;-renderPlot({
+      hist(select_data()$birth_year, # make it into a histogram
+      main = "Histogram of Birth year", 
+           xlab = "birth year", col = "orchid")
+      
+
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+
+---
+# Application: age-rule 
+---
 class: center, middle
 
 # Application: Baby Names!
@@ -414,7 +443,19 @@ class: center, middle
 ---
 # Baby Names
 
-&lt;iframe src="https://jclip.shinyapps.io/baby-names/?showcase=0" width="80%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://jclip.shinyapps.io/age-gap/?showcase=0" width="60%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
+
+
+
+---
+class: center, middle
+
+# Application: Baby Names!
+
+---
+# Baby Names
+
+&lt;iframe src="https://jclip.shinyapps.io/baby-names/?showcase=0" width="60%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
