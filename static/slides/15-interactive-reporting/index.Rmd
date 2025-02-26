@@ -490,18 +490,20 @@ Function | Outputs
 
 ---
 
-# Outputs
+# Finalizing inputs
+Going to have a bit of a frivolous example so you can see how it can go/look. 
 
 ```r
 library(shiny)
 
+library(shiny)
 ui <- fluidPage(
   sliderInput(
     inputId = "num",
-    label = "Choose a number",
-    min = 1, max = 100,
+    label = "How many observations? Choose a number from 0 to 87",
+    min = 1, max = 87,
     value = 20),
-    plotOutput("myplot")
+  plotOutput("myplot")
 )
 
 server <- function(input, output) {}
@@ -513,8 +515,6 @@ shinyApp(ui = ui, server = server)
 # Outputs: cont'd (we're going to reuse the ui from the prior page)
 
 ```r
-library(shiny)
-
 
 server <- function(input, output) {
   
@@ -535,6 +535,24 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
+---
+# Add a twist: incorporate side panel
+We're going to demonstrate how annoying it is to change an app mid-stream. 
+
+Add a side panel in your code. 
+
+```r
+  titlePanel(),
+  
+  sidebarLayout(
+    sidebarPanel(),
+    mainPanel(),
+    position = ("right")
+  )
+)
+```
+
+
 
 ---
 # Application: age-rule 
@@ -550,19 +568,6 @@ class: center, middle
 knitr::include_app("https://jclip.shinyapps.io/age-gap/", height = "650px")
 ```
 
-
-
----
-class: center, middle
-
-# Application: Baby Names!
-
----
-# Baby Names
-
-```{r echo = FALSE, fig.align = "center", out.height = "100%"}
-knitr::include_app("https://jclip.shinyapps.io/baby-names/", height = "650px")
-```
 
 ---
 
@@ -610,6 +615,53 @@ include_graphics(path = "https://media.giphy.com/media/14jQC2AONxNBHq/giphy.gif?
 
 ```{r echo = FALSE, out.width = "35%", fig.cap = "Users exploring your Shiny app"} 
 include_graphics(path = "https://media.giphy.com/media/jL0c2TrfDUz9S/giphy.gif?cid=790b7611j2e6l95hb8bbvbisuzyisfabrww0mjdo0lg29ly2&ep=v1_gifs_search&rid=giphy.gif&ct=g")
+```
+
+
+---
+# App code: sidepanel
+
+
+```r
+library(shiny)
+ui <- fluidPage( # Application title
+  titlePanel("My App!"),
+  
+  sidebarLayout(
+    
+    # Sidebar with a slider input
+    sidebarPanel(
+  sliderInput(
+    inputId = "num",
+    label = "How many observations? Choose a number from 0 to 87",
+    min = 1, max = 87,
+    value = 20)),
+  
+  mainPanel(
+  plotOutput("myplot")
+  )
+  )
+)
+
+
+server <- function(input, output) {
+  
+  select_data <- reactive({ 
+    data("starwars") # a bit random: star wars dataset
+    starwars[0:input$num,] # plot the first (selected) rows
+  })  
+  
+  output$myplot <-renderPlot({
+    hist(select_data()$birth_year, # make it into a histogram
+         main = "Histogram of Birth year", 
+         xlab = "birth year", col = "orchid")
+    
+    
+  })
+}
+
+shinyApp(ui = ui, server = server)
+
 ```
 
 <!-- class: inverse, middle -->

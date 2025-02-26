@@ -177,7 +177,7 @@ usethis::use_course("MACS40700/shiny")
 
 https://shiny.posit.co/r/gallery/
 
-&lt;iframe src="https://shiny.posit.co/r/gallery/" width="60%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://shiny.posit.co/r/gallery/" width="80%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
@@ -290,7 +290,7 @@ fluidPage(
 ]
 
 .panel[.panel-name[Output]
-&lt;img src="images/shiny-sidebarlayout.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/shiny-sidebarlayout.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -343,7 +343,7 @@ sliderInput(inputId = "num", label = "Choose a number",
 
 ## Inputs
 
-&lt;img src="images/shiny-inputs.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/shiny-inputs.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -387,18 +387,20 @@ Function | Outputs
 
 ---
 
-# Outputs
+# Finalizing inputs
+Going to have a bit of a frivolous example so you can see how it can go/look. 
 
 ```r
 library(shiny)
 
+library(shiny)
 ui &lt;- fluidPage(
   sliderInput(
     inputId = "num",
-    label = "Choose a number",
-    min = 1, max = 100,
+    label = "How many observations? Choose a number from 0 to 87",
+    min = 1, max = 87,
     value = 20),
-    plotOutput("myplot")
+  plotOutput("myplot")
 )
 
 server &lt;- function(input, output) {}
@@ -410,8 +412,6 @@ shinyApp(ui = ui, server = server)
 # Outputs: cont'd (we're going to reuse the ui from the prior page)
 
 ```r
-library(shiny)
-
 
 server &lt;- function(input, output) {
   
@@ -432,6 +432,24 @@ server &lt;- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
+---
+# Add a twist: incorporate side panel
+We're going to demonstrate how annoying it is to change an app mid-stream. 
+
+Add a side panel in your code. 
+
+```r
+  titlePanel(),
+  
+  sidebarLayout(
+    sidebarPanel(),
+    mainPanel(),
+    position = ("right")
+  )
+)
+```
+
+
 
 ---
 # Application: age-rule 
@@ -443,19 +461,8 @@ class: center, middle
 ---
 # Baby Names
 
-&lt;iframe src="https://jclip.shinyapps.io/age-gap/?showcase=0" width="60%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://jclip.shinyapps.io/age-gap/?showcase=0" width="80%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
 
-
-
----
-class: center, middle
-
-# Application: Baby Names!
-
----
-# Baby Names
-
-&lt;iframe src="https://jclip.shinyapps.io/baby-names/?showcase=0" width="60%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
 
 ---
 
@@ -503,6 +510,53 @@ class: center, middle
 &lt;img src="https://media.giphy.com/media/jL0c2TrfDUz9S/giphy.gif?cid=790b7611j2e6l95hb8bbvbisuzyisfabrww0mjdo0lg29ly2&amp;ep=v1_gifs_search&amp;rid=giphy.gif&amp;ct=g" alt="Users exploring your Shiny app" width="35%" /&gt;
 &lt;p class="caption"&gt;Users exploring your Shiny app&lt;/p&gt;
 &lt;/div&gt;
+
+
+---
+# App code: sidepanel
+
+
+```r
+library(shiny)
+ui &lt;- fluidPage( # Application title
+  titlePanel("My App!"),
+  
+  sidebarLayout(
+    
+    # Sidebar with a slider input
+    sidebarPanel(
+  sliderInput(
+    inputId = "num",
+    label = "How many observations? Choose a number from 0 to 87",
+    min = 1, max = 87,
+    value = 20)),
+  
+  mainPanel(
+  plotOutput("myplot")
+  )
+  )
+)
+
+
+server &lt;- function(input, output) {
+  
+  select_data &lt;- reactive({ 
+    data("starwars") # a bit random: star wars dataset
+    starwars[0:input$num,] # plot the first (selected) rows
+  })  
+  
+  output$myplot &lt;-renderPlot({
+    hist(select_data()$birth_year, # make it into a histogram
+         main = "Histogram of Birth year", 
+         xlab = "birth year", col = "orchid")
+    
+    
+  })
+}
+
+shinyApp(ui = ui, server = server)
+
+```
 
 &lt;!-- class: inverse, middle --&gt;
 
