@@ -59,6 +59,9 @@ YES! If you have another dataset around which you want to build an interactive v
 * Ideally you have some variety in plot types (e.g. not all bar plots)
 * Prefer you use a Shiny theme to make it a little more polished than the baseline shiny app using [Shiny Themes](https://rstudio.github.io/shinythemes/) (discussed in class) or other theme approaches like [thematic](https://rstudio.github.io/thematic/?_gl=1*10f2rmo*_ga*MTk0NTgzNTU1NS4xNzM1MjM4NzAx*_ga_8QJS108GF1*MTc0MTAxNzM0OS4xMy4wLjE3NDEwMTczNTQuMC4wLjA.*_ga_2C0WZ1JHG0*MTc0MTAxNzM0OS4yMS4wLjE3NDEwMTczNTQuMC4wLjA.) or (advanced) [theming (bslib)](https://rstudio.github.io/bslib/articles/theming/index.html?_gl=1*10f2rmo*_ga*MTk0NTgzNTU1NS4xNzM1MjM4NzAx*_ga_8QJS108GF1*MTc0MTAxNzM0OS4xMy4wLjE3NDEwMTczNTQuMC4wLjA.*_ga_2C0WZ1JHG0*MTc0MTAxNzM0OS4yMS4wLjE3NDEwMTczNTQuMC4wLjA.).
 
+# What do I submit?
+Submit the link to your shiny app!
+
 ## Grading
 
 Your visualization will be evaluated using the following criteria:
