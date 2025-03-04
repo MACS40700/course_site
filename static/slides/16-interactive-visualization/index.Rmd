@@ -35,14 +35,22 @@ library(scales)
 
 class: inverse, middle
 
-# Announcements
+# For today/thursday:
+
+
+```r
+# install bslib and dependencies, if necessary
+# install.packages(c("bslib", "curl", "bsicons"))
+usethis::use_course("MACS40700/shiny")
+usethis::use_course("MACS40700/shiny-sep")
+```
+
 
 ---
 
 ## Announcements
-* Tuesday: in-class lightning talks
-* Thursday: office hours (open work time)
-* 3/5 final due!!
+* Thursday: Last wrap on bslib/dashboards
+* 3/12 final due!!
 
 
 ---
@@ -55,6 +63,243 @@ knitr::include_graphics("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWFtZz
 
 ---
 
+
+# Sandbox party time 
+
+`usethis::use_course("MACS40700/shiny")`
+
+```{r, eval = FALSE}
+
+ui <-fluidPage()
+
+server <- function(input, output) {
+  
+  select_data <- reactive({ 
+    data("starwars") # a bit random: star wars dataset
+    starwars[0:input$num,] # plot the first (selected) rows
+  })  
+  
+  output$myplot <-renderPlot({
+    hist(select_data()$birth_year, # make it into a histogram
+         main = "Histogram of Birth year", 
+         xlab = "birth year", col = "orchid")
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+---
+## More on layouts: 
+
+If you want to shuffle things around, you can use fluidRow (and incorporate columns within them). 
+
+Prior example:
+```{r, eval = FALSE}
+ui <- fluidPage( theme = shinytheme("superhero"), # Application title
+                 titlePanel( h1("First level title", align = "center")),
+                 sidebarLayout(
+                   sidebarPanel(
+                     sliderInput(
+                       inputId = "num",
+                       label = "How many observations? Choose a number from 0 to 87",
+                       min = 1, max = 87,
+                       value = 20)),
+                   mainPanel(  
+                     plotOutput("myplot")), 
+                 position = c("right"))
+)
+```
+
+
+---
+
+
+## fluidRow
+
+```{r, eval = FALSE}
+ui <- fluidPage( theme = shinytheme("superhero"), # Application title
+                 titlePanel( h1("First level title", align = "center")),
+                 sidebarLayout(
+                   sidebarPanel(
+                     sliderInput(
+                       inputId = "num",
+                       label = "How many observations? Choose a number from 0 to 87",
+                       min = 1, max = 87,
+                       value = 20)),
+                     mainPanel(fluidRow(h2("A little about my plot")), #<< 
+                       fluidRow(    plotOutput("myplot"))), #<<
+                 position = c("right")
+                 )
+```
+
+
+---
+
+## fluidRow + columns
+
+You can further subdivide your space using columns:
+
+```{r, eval = FALSE}
+ui <- fluidPage( theme = shinytheme("superhero"), # Application title
+                 titlePanel( h1("First level title", align = "center")),
+                 sidebarLayout(
+                   sidebarPanel(
+                     sliderInput(
+                       inputId = "num",
+                       label = "How many observations? Choose a number from 0 to 87",
+                       min = 1, max = 87,
+                       value = 20)),
+                   mainPanel(fluidRow(
+                     column(4, 
+                     h2("A little about my plot")), #<< 
+                     column(6, h3("and more stuff goes here"))),#<<
+                             fluidRow(    plotOutput("myplot"))), #<<
+                   position = c("right")
+                 )
+)
+```
+
+https://shiny.posit.co/r/reference/shiny/0.14/column.html 
+https://mastering-shiny.org/action-layout.html 
+
+---
+## Tabsets
+
+You might also want to have tabs in some way. Here is the generic code:
+
+```r
+ui <- fluidPage
+  tabsetPanel(
+    tabPanel("name",
+      input(details)),
+    tabPanel("n2", 
+      input(details)),
+  )
+  )
+  
+```
+
+---
+## Tabsets: incorporation
+
+Most likely, you will want to have tabs within a sidebar of some type. In that case, you can fold the tabset into where you would like them:
+
+```r
+
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+        tabsetPanel(
+        tabPanel("name",
+          input(details)),
+        tabPanel("n2", 
+          input(details)),
+      ),
+      main panel()
+    )
+  )  
+```
+
+---
+## Tabsets working example
+
+```{r, eval = FALSE}
+ui <- fluidPage( theme = shinytheme("superhero"), # Application title
+                 titlePanel( h1("First level title", align = "center")),
+  sidebarLayout(
+    sidebarPanel( textOutput("panel"),
+      tabsetPanel(tabPanel("Import data", 
+                 fileInput("file", "Data", buttonLabel = "Upload..."),),
+        tabPanel("Set parameters",
+                 textInput("delim", "Delimiter (leave blank to guess)", ""), 
+        tabPanel("Visualise results",
+                 sliderInput( inputId = "num",
+                   label = "How many observations? Choose a number from 0 to 87",
+                   min = 1, max = 87, value = 20)),
+        tabPanel("Inputs",
+                 numericInput("skip", "Rows to skip", 0, min = 0),
+                 numericInput("rows", "Rows to preview", 10, min = 1)) )),
+    mainPanel(fluidRow(
+        column(4,  h2("A little about my plot")), #<< 
+        column(6, h3("and more stuff goes here"))),#<<
+      fluidRow(    plotOutput("myplot")),  ), #<< 
+    position = "right"))
+```
+
+---
+# Fancying up a header: application
+In sandbox, test out adding a dropdown menu:
+
+```r
+
+header <- dashboardHeader(dropdownMenu(
+
+))
+
+sidebar <- dashboardSidebar()
+
+body <- dashboardBody()
+
+dashboardPage(header, sidebar, body)
+
+```
+
+---
+# Building out your sidebar
+Can place any number of items there: 
+
+* Static tabs: `tabName`
+* Dynamic info: `renderMenu` and `sidebarMenuOutput`
+* No sidebar!: `dashboardSidebar(disable = TRUE)`
+
+---
+# Body: Where and how to place things
+
+* Truly sketch out what it will look like
+* Consider your goals
+
+
+---
+
+# Building from ui and server files
+* Put all ui elements in file -- need ui to be last object
+* put all server elements in file -- need server to be last object
+
+---
+# How to decide to build
+
+* Overall complexity
+* Purpose of design
+* Length of use
+
+---
+# Sample example: Separate Files
+
+``` 
+usethis::use_course("MACS40700/shiny-sep")
+```
+
+```{r web, echo = FALSE}
+#include_url("https://jclip.shinyapps.io/sep_files/")
+```
+
+
+---
+class: middle, center
+
+# Dashboards 
+
+---
+
+## bslib, fluidPage vs alternatives
+
+Everything we've done so far has been with fluidPage. R/Shiny runs on `bootstrap` and using fluidPage runs a pior version of boostrap while bslib runs the curent version. 
+
+
+
+---
+
 ## Interactive visualizations with Shiny
 
 We will continue to build a dashboard today!
@@ -63,6 +308,7 @@ We will continue to build a dashboard today!
 <!-- #- Dynamic UI elements -->
 <!-- #- Linked brushing -->
 
+Helpful resource: https://rstudio.github.io/shinydashboard/get_started.html 
 
 ---
 # Starting point:
@@ -84,6 +330,20 @@ server <- function(input, output) { }
 shinyApp(ui, server)
 
 ```
+
+---
+# Fancying up a header
+
+* Dropdown menus: `dropdownMenu()`
+* Additional elements (not likely to be sueful for our purposes--place in dropdown menu): 
+  * Messages: `messageItem()`
+  * Notifications; `notificationItem()`
+  * Tasks: `taskItem()`
+* No header!: `dashboardHeader(disable = TRUE)`
+
+https://rstudio.github.io/shinydashboard/structure.html#header 
+
+
 ---
 
 # Additional Skills:
@@ -130,34 +390,15 @@ shinyApp(ui, server)
 ```
 
 
----
 
-# Building from ui and server files
-* Put all ui elements in file -- need ui to be last object
-* put all server elements in file -- need server to be last object
 
 ---
-# How to decide to build
+## bslib demo
 
-* Overall complexity
-* Purpose of design
-* Length of use
+`bslib::bs_theme_preview()`
 
----
-# Sample example
-
-```{r web}
-include_url("https://jclip.shinyapps.io/sep_files/")
-```
 
 ---
-# Let's see what we have!
-
-``` 
-usethis::use_course("MACS40700/shiny-sep")
-```
-
---- 
 # Recap
 
 * Shiny can be wonderful
