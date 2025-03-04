@@ -208,22 +208,24 @@ ui <- fluidPage(
 ui <- fluidPage( theme = shinytheme("superhero"), # Application title
                  titlePanel( h1("First level title", align = "center")),
   sidebarLayout(
-    sidebarPanel( textOutput("panel"),
-      tabsetPanel(tabPanel("Import data", 
-                 fileInput("file", "Data", buttonLabel = "Upload..."),),
+    sidebarPanel(
+      textOutput("panel"),
+      tabsetPanel(
+        tabPanel("Import data", 
+                 fileInput("file", "Data", buttonLabel = "Upload..."),  ),
         tabPanel("Set parameters",
-                 textInput("delim", "Delimiter (leave blank to guess)", ""), 
+                 textInput("delim", "Delimiter (leave blank to guess)", ""),  ),
         tabPanel("Visualise results",
                  sliderInput( inputId = "num",
                    label = "How many observations? Choose a number from 0 to 87",
                    min = 1, max = 87, value = 20)),
         tabPanel("Inputs",
                  numericInput("skip", "Rows to skip", 0, min = 0),
-                 numericInput("rows", "Rows to preview", 10, min = 1)) )),
-    mainPanel(fluidRow(
-        column(4,  h2("A little about my plot")), #<< 
-        column(6, h3("and more stuff goes here"))),#<<
-      fluidRow(    plotOutput("myplot")),  ), #<< 
+                 numericInput("rows", "Rows to preview", 10, min = 1))  ), width = 4),
+    mainPanel(
+      fluidRow( column(4,  h2("A little about my plot")),  
+        column(8, h3("and more stuff goes here"))), 
+      fluidRow(    plotOutput("myplot"))), 
     position = "right"))
 ```
 
