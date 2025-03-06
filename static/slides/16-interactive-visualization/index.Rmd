@@ -298,53 +298,169 @@ class: middle, center
 
 Everything we've done so far has been with fluidPage. R/Shiny runs on `bootstrap` and using fluidPage runs a pior version of boostrap while bslib runs the curent version. 
 
+* INCOMING: NEW VOCABULARY!
 
+
+
+---
+
+## Vocab basics
+
+* `title`: 
+* `page_*`: what kind of page you want (sidebar, fillable, etc.)
+* `card`: items you are putting in
+* `layout`:
+
+---
+## bslib demo
+
+`bslib::bs_theme_preview()`
 
 ---
 
-## Interactive visualizations with Shiny
+---
 
-We will continue to build a dashboard today!
-
-<!-- #- Data pre-processing -->
-<!-- #- Dynamic UI elements -->
-<!-- #- Linked brushing -->
-
-Helpful resource: https://rstudio.github.io/shinydashboard/get_started.html 
+# SKETCH IT OUT!
+Let't try a left sidebar, and a three-plot layout
 
 ---
-# Starting point:
 
+# Start: penguins and packages
+Inspo:  https://rstudio.github.io/bslib/articles/dashboards/index.html
 
-```{r, eval = FALSE}
-## app.R ##
+Goal: https://jclip.shinyapps.io/penguin-dash/ 
+
+--
+Packages:
+```r
+library(tidyverse)
+library(palmerpenguins)
+library(gghighlight)
 library(shiny)
-library(shinydashboard)
+library(bslib)
 
-ui <- dashboardPage(
-  dashboardHeader(),
-  dashboardSidebar(),
-  dashboardBody()
+data(penguins, package = "palmerpenguins")
+```
+
+---
+
+# specify UI + server
+```r
+ui <- page_sidebar(
+  title = "Penguins dashboard",
+  sidebar = color_by,
+  layout_columns(cards[[1]], cards[[2]]),
+  cards[[3]]
 )
+```
 
-server <- function(input, output) { }
+---
+# filtering
 
+```r
+color_by <- varSelectInput(
+  "color_by", "Color by",
+  penguins[c("species", "island", "sex")],
+  selected = "species"
+)
+```
+
+---
+## UI: plots/items
+
+```r
+cards <- list(
+  card(
+    full_screen = TRUE,
+    card_header("Bill Length"),
+    plotOutput("bill_length")
+  ),
+  card(
+    full_screen = TRUE,
+    card_header("Bill depth"),
+    plotOutput("bill_depth")
+  ),
+  card(
+    full_screen = TRUE,
+    card_header("Body Mass"),
+    plotOutput("body_mass")
+  )
+)
+```
+
+---
+# Server:
+
+Two main kind of plots, so specify two plot 'types':
+
+```r
+server <- function(input, output) {
+  gg_plot <- reactive({
+    ggplot(penguins) +
+      geom_density(aes(fill = !!input$color_by), alpha = 0.5) +
+      theme_minimal(base_size = 16) + scale_fill_discrete(h = c(0,190)) + 
+      theme(axis.title = element_blank(), legend.position = "bottom")
+  })
+  
+  gg_plot_h <- reactive({
+    ggplot(penguins) +
+      geom_point(aes(x = flipper_length_mm, y=body_mass_g, color = !!input$color_by))+
+      gghighlight() +
+      facet_wrap(vars(!!input$color_by)) + scale_color_discrete(h = c(0,190)) +
+      theme_minimal(base_size = 16) + 
+      theme(axis.title = element_blank(), legend.position = "bottom")
+  })
+  
+  output$bill_length <- renderPlot(gg_plot() + aes(bill_length_mm))
+  output$bill_depth <- renderPlot(gg_plot() + aes(bill_depth_mm))
+  output$body_mass <- renderPlot(gg_plot_h())
+}
+
+
+```
+
+---
+## Alternative: split it out:
+
+```r
+gp1<-ggplot(penguins) +
+  theme_minimal(base_size = 16) + scale_fill_discrete(h = c(0,190)) + 
+  theme(axis.title = element_blank(), legend.position = "bottom")
+```
+
+---
+## Then server
+
+```r
+server <- function(input, output) {
+  gg_plot <- reactive({gp1+
+      geom_density(aes(fill = !!input$color_by), alpha = 0.5)  })
+  
+  gg_plot_h <- reactive({
+    gp1 +
+      geom_point(aes(x = flipper_length_mm, y=body_mass_g, color = !!input$color_by))+
+      gghighlight() +
+      facet_wrap(vars(!!input$color_by)) })
+  
+  output$bill_length <- renderPlot(gg_plot() + aes(bill_length_mm))
+  output$bill_depth <- renderPlot(gg_plot() + aes(bill_depth_mm))
+  output$body_mass <- renderPlot(gg_plot_h())}
+  
+  ```
+  
+---
+# Finally, launch
+
+```r
 shinyApp(ui, server)
 
 ```
 
 ---
-# Fancying up a header
+center: middle, center 
+# Code for these:
 
-* Dropdown menus: `dropdownMenu()`
-* Additional elements (not likely to be sueful for our purposes--place in dropdown menu): 
-  * Messages: `messageItem()`
-  * Notifications; `notificationItem()`
-  * Tasks: `taskItem()`
-* No header!: `dashboardHeader(disable = TRUE)`
-
-https://rstudio.github.io/shinydashboard/structure.html#header 
-
+`usethis::use_course("MACS40700/bslib-ex")`
 
 ---
 
@@ -390,15 +506,6 @@ https://rstudio.github.io/shinydashboard/structure.html#header
   color: #8300a5;
 }
 ```
-
-
-
-
----
-## bslib demo
-
-`bslib::bs_theme_preview()`
-
 
 ---
 # Recap
@@ -454,3 +561,9 @@ Role of evaluations to help understand how the course contributes to your learni
   * NO: 'I didn't like this class'
   * YES: 'I didn't like this class because I wanted more assignments'
 * Think about elements that were/not helpful for learning -- I tried to build a course that would meet people where they were with their level of experience and allow them to deepen their skillset in a meaningful way
+
+
+---
+class: center, inverse, middle
+
+# GOOD LUCK! 
