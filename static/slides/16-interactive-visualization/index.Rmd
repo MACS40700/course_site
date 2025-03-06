@@ -407,3 +407,50 @@ https://rstudio.github.io/shinydashboard/structure.html#header
 * Work outside the app for plots
 * Shiny can be not wonderful
 * Dashboard vs shiny: think about workload
+
+---
+class: center, middle, inverse
+
+# Work time
+
+
+---
+# Learning Objectives
+*By the end of the course, students will be able to:*
+
+1. Understand the principles of designing and creating effective data visualizations.
+2. Evaluate, critique, and improve upon one’s own and others’ data visualizations based on how good a job the visualization does for communicating a message clearly and correctly.
+3. Post-process and refine plots for effective communication.
+4. Use visualizations for evaluating statistical models and for statistical inference.
+5. Master using R and a variety of modern data visualization packages to create data visualizations.
+6. Work reproducibly individually and collaboratively using Git and GitHub.
+
+---
+
+# What we did
+
+* Assignments on github (items 5 and 6)
+* In-class applications and analysis (items 1,2, 3, 4)
+* Final project (items 1-6) 
+
+
+---
+
+# How we did it 
+
+* Build a community of inquiry -- can offer feedback and critique
+* Strong engagement
+* Challenging ourselves to think through beyond the superficial
+* Continuing to build, scaffold, and refine
+
+
+---
+
+# Looking ahead: evaluations
+Role of evaluations to help understand how the course contributes to your learning. 
+
+* Please fill them out!
+* Be specific!
+  * NO: 'I didn't like this class'
+  * YES: 'I didn't like this class because I wanted more assignments'
+* Think about elements that were/not helpful for learning -- I tried to build a course that would meet people where they were with their level of experience and allow them to deepen their skillset in a meaningful way

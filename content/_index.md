@@ -31,7 +31,7 @@ You can see our topics below. See the assignments linked to the side -- if you h
 | 25-Feb | [Shiny, part I](slides/15-interactive-reporting)  | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
 | 27-Feb | [Continue Shiny, part I](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |   [A5: Shiny (due 5-Mar)](/assignments/assign5/)      |
 | 4-Mar |  [Shiny, part II](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
-| 6-Mar | [Wrap Shiny, Final Project Prep](slides/19-last-day) ||      project progress report (will submit in class)|
+| 6-Mar | [Wrap Shiny, Final Project Prep](slides/16-interactive-visualization) ||      project progress report (will submit in class)|
 | 12-Mar | Final project due             |  | [Final Project (due 12-Mar)](/assignments/final-project/)|
 
 ## Readings
