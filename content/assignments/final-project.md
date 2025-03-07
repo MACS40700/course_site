@@ -36,7 +36,7 @@ Your project will be assessed on the following criteria:[^1]
 
 ## Final Deliverables
 
-Submit final deliverables to your GitHub repo by **March 5 at 11:59 pm**.
+Submit final deliverables to your GitHub repo by **March 12 at 11:59 pm**.
 
 The final deliverables include:
 
