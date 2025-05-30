@@ -14,7 +14,7 @@ You can see our topics below. See the assignments linked to the side -- if you h
 
 | Date &emsp; &emsp; <br> | Topic (Slides linked) <br> | Readings <br> (complete BEFORE class)  |   Assignment  <br>    | 
 | ------ | ----------------------------- | --------------- | --------------- | 
-| 7-Jan  | [Welcome + Grammar of Graphics](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg), [EG: Ch 13](https://ggplot2-book.org/mastery.html)  |
+| 7-Jan  | [Welcome + Grammar of Graphics + RMD files](slides/01-intro)  | [Ch 2 TA](https://uchicago.box.com/s/m4k9lktogthqmernmjn1r7gnflews4bg), [EG: Ch 13](https://ggplot2-book.org/mastery.html)  |
 | 9-Jan  | [Looking at data ](slides/03-look-at-data)       |[DV Healy: Ch 1](https://socviz.co/lookatdata.html) and [DV: Ch 2](https://clauswilke.com/dataviz/aesthetic-mapping.html) | [A1: analyze (due 13-Jan)](/assignments/assign1/)   |     
 | 14-Jan | [geoms](slides/04-geoms) 	|     [EG: Ch 14](https://ggplot2-book.org/layers.html)  |                 |
 | 16-Jan | [stats + scales + guides ](slides/05-stats-scales-guides)    |[EG: CH 15](https://ggplot2-book.org/scales-guides.html)      |   |
@@ -22,15 +22,15 @@ You can see our topics below. See the assignments linked to the side -- if you h
 | 23-Jan | [optimizing color spaces ](slides/07-optimizing-color-spaces)       |  [DV: Ch 4](https://clauswilke.com/dataviz/color-basics.html) *Opt* [DIY palette](https://blog.datawrapper.de/colors-for-data-vis-style-guides/)       | [A2: EDA (due 23-Jan)](/assignments/assign2/) |
 | 28-Jan | [Plotly](slides/10-plotly) | [Plotly overview](https://plotly.com/ggplot2/)| | 
 | 30-Jan | [themes + axes + annotation](slides/08-themes-axes-annotations)  |[EG: Ch 18](https://ggplot2-book.org/polishing.html) and [EG: Ch 8](https://ggplot2-book.org/annotations.html) and [DV: Ch 22](https://clauswilke.com/dataviz/figure-titles-captions.html) &emsp; &nbsp; |[A3: Plotly (due 3-Feb)](/assignments/assign3/)   |
-| 4-Feb  | [Tableau + Dashboards](slides/20-tableau) | [download Tableau public](https://www.tableau.com/products/public/download)| 
-| 6-Feb  | [visualizing spatial data I](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)& [Leaflet](https://rstudio.github.io/leaflet/)| |
-| 11-Feb | [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) |            |
-| 13-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          [A4: Tableau (due 13-Feb)](/assignments/assign4/)  |
-| 18-Feb | [animation ](slides/14-animation)     | [MS: Ch 1](https://mastering-shiny.org/basic-app.html)          |  |
-| 20-Feb | [Websites and tables](slides/21-websites) |[download jekyll if desired](https://macs40700.netlify.app/slides/21-websites/#51) |  [Final Proposal (due 20-Feb)](/assignments/final-proposal) |
-| 25-Feb | [Shiny, part I](slides/15-interactive-reporting)  | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |         |
-| 27-Feb | [Continue Shiny, part I](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |   [A5: Shiny (due 5-Mar)](/assignments/assign5/)      |
-| 4-Mar |  [Shiny, part II](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
+| 4-Feb  | [Tableau + Dashboards, part I](slides/20-tableau) | [download Tableau public](https://www.tableau.com/products/public/download)| 
+| 6-Feb  | [Tableau + Dashboards, part II](slides/20-tableau) | [download Tableau public](https://www.tableau.com/products/public/download)| 
+| 11-Feb | [visualizing spatial data I](slides/11-visualize-spatial-i) |[DV: Ch 15](https://clauswilke.com/dataviz/geospatial-data.html)& [Leaflet](https://rstudio.github.io/leaflet/)| |
+| 13-Feb | [visualizing spatial data II](slides/12-visualize-spatial-ii)   |[Accessibility](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81) |            |
+| 18-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          [A4: Tableau (due 13-Feb)](/assignments/assign4/)  |
+| 20-Feb | [Shiny, part I](slides/15-interactive-reporting)  |  [MS: Ch 1](https://mastering-shiny.org/basic-app.html) and [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) |         |
+| 25-Feb | [Shiny, part II](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |   [A5: Shiny (due 5-Mar)](/assignments/assign5/)      | 
+| 27-Feb | [Shiny, part III](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
+| 4-Mar |  [Websites and tables](slides/21-websites) |[download jekyll if desired](https://macs40700.netlify.app/slides/21-websites/#51) |  [Final Proposal (due 20-Feb)](/assignments/final-proposal) |
 | 6-Mar | [Wrap Shiny, Final Project Prep](slides/16-interactive-visualization) ||      project progress report (will submit in class)|
 | 12-Mar | Final project due             |  | [Final Project (due 12-Mar)](/assignments/final-project/)|
 
