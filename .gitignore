@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+*cache*
+*/old/*
+*_gen/*
