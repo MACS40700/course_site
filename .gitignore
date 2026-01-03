@@ -4,5 +4,7 @@
 .Ruserdata
 
 *cache*
-*/old/*
-*_gen/*
+*_gen
+.quarto*
+*rsconnect*
+Static/slides/old
