@@ -24,13 +24,13 @@ set.seed(123)
 theme_set(theme_minimal())
 ```
 
-About seven months ago, my wife and I became addicted to Hamilton.
+This example is borrowed from Benjamin Soltoff -- you can see [more on his website here](https://bensoltoff.com/).
 
 {{< figure src="https://media.giphy.com/media/d4bmtcUmgA8ylgCk/giphy.gif" caption="My name is Alexander Hamilton" >}}
 
-I admit, we were quite late to the party. I promise we did like it, but I wanted to wait and see the musical in-person before listening to the soundtrack. Alas, having three small children limits your free time to go out to the theater for an entire evening. So I finally caved and started listening to the soundtrack on Spotify. And it's amazing! My son's favorite song (he's four BTW) is My Shot.
+<!--I admit, we were quite late to the party. I promise we did like it, but I wanted to wait and see the musical in-person before listening to the soundtrack. Alas, having three small children limits your free time to go out to the theater for an entire evening. So I finally caved and started listening to the soundtrack on Spotify. And it's amazing! My son's favorite song (he's four BTW) is My Shot.
 
-{{< figure src="https://media.giphy.com/media/l378ovNpNyKXCQCHu/giphy.gif" caption="My Shot" >}}
+{{< figure src="https://media.giphy.com/media/l378ovNpNyKXCQCHu/giphy.gif" caption="My Shot" >}} -->
 
 One of the nice things about the musical is that it is [sung-through](https://en.wikipedia.org/wiki/Sung-through), so the lyrics contain essentially all of the dialogue. This provides an interesting opportunity to use the `tidytext` package to analyze the lyrics. Here, I use the `geniusr` package to obtain the complete lyrics from [Genius](https://genius.com/albums/Lin-manuel-miranda/Hamilton-an-american-musical-original-broadway-cast-recording).[^lyrics]
 

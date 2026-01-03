@@ -24,29 +24,61 @@ library(here)
 set.seed(123)
 theme_set(theme_minimal())
 ```
-
-About seven months ago, my wife and I became addicted to Hamilton.
+This example is borrowed from Benjamin Soltoff -- you can see [more on his website here](https://bensoltoff.com/).
 
 {{< figure src="https://media.giphy.com/media/d4bmtcUmgA8ylgCk/giphy.gif" caption="My name is Alexander Hamilton" >}}
 
-I admit, we were quite late to the party. I promise we did like it, but I wanted to wait and see the musical in-person before listening to the soundtrack. Alas, having three small children limits your free time to go out to the theater for an entire evening. So I finally caved and started listening to the soundtrack on Spotify. And it's amazing! My son's favorite song (he's four BTW) is My Shot.
+<!--I admit, we were quite late to the party. I promise we did like it, but I wanted to wait and see the musical in-person before listening to the soundtrack. Alas, having three small children limits your free time to go out to the theater for an entire evening. So I finally caved and started listening to the soundtrack on Spotify. And it's amazing! My son's favorite song (he's four BTW) is My Shot.
 
-{{< figure src="https://media.giphy.com/media/l378ovNpNyKXCQCHu/giphy.gif" caption="My Shot" >}}
+{{< figure src="https://media.giphy.com/media/l378ovNpNyKXCQCHu/giphy.gif" caption="My Shot" >}} -->
 
 One of the nice things about the musical is that it is [sung-through](https://en.wikipedia.org/wiki/Sung-through), so the lyrics contain essentially all of the dialogue. This provides an interesting opportunity to use the `tidytext` package to analyze the lyrics. Here, I use the `geniusr` package to obtain the complete lyrics from [Genius](https://genius.com/albums/Lin-manuel-miranda/Hamilton-an-american-musical-original-broadway-cast-recording).[^lyrics]
 
+
+
 ```{r get-hamilton, eval = FALSE, include = FALSE}
-library(geniusr)
+library(musixmatchR)
 
-# Genius album ID number
-hamilton_id <- 131575
+https://api.musixmatch.com/ws/1.1/album.tracks.get?album_id=20890901&apikey=8d4479eef57d783c1e73defecb105a9b
 
-# retrieve track list
-hamilton_tracks <- get_album_tracklist_id(album_id = hamilton_id)
+id_album <- "20890901"
+apikey <- keyring::key_get("musixmatch")
 
+getAlbumTracks<-function(id_album,apikey){
+  require(jsonlite)
+  data<-jsonlite::fromJSON(paste0(
+    "https://api.musixmatch.com/ws/1.1/album.tracks.get?album_id=",id_album,"&apikey=",apikey))
+
+  metadata<-data.frame(track_id=data$message$body$track_list$track$track_id,
+                       track_name = data$message$body$track_list$track$track_name ,
+                       album_name = data$message$body$track_list$track$album_name )
+  
+  return(metadata)
+}
+
+
+getLyrics<-function(id_track,apikey){
+  require(jsonlite)
+  metadata<-jsonlite::fromJSON(paste0(
+    "http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=",id_track,"&apikey=",apikey))
+
+tracks <- gsub("[\r\n]", " ", metadata$message$body$lyrics$lyrics_body)
+  return(tracks)
+}
+
+
+hamilton_tracks <- getAlbumTracks(id_album,apikey)
+
+
+```
+```{r get-hamilton2, eval = FALSE, include = FALSE}
 # retrieve song lyrics
-hamilton_lyrics <- hamilton_tracks %>%
-  mutate(lyrics = map(.x = song_lyrics_url, get_lyrics_url))
+
+    
+# retrieve song lyrics
+hamilton_lyrics <- hamilton_tracks %>% 
+  mutate(lyrics = map(.x = track_id, getLyrics, apikey))
+
 
 # unnest and clean-up
 hamilton <- hamilton_lyrics %>%
