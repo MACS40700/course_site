@@ -1,5 +1,5 @@
 ---
-date: "2025-01-07T00:00:00-05:00"
+date: "2026-01-04T00:00:00-05:00"
 draft: false
 title: "Syllabus"
 toc: true
