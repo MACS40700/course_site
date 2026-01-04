@@ -8,3 +8,4 @@
 .quarto*
 *rsconnect*
 Static/slides/old
+/.quarto/
