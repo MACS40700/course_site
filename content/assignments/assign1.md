@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1"
-date: 2025-01-14T12:25:00-05:00  # Schedule page publish date
+date: 2026-01-14T12:25:00-05:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 

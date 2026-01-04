@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1"
-date: 2025-01-13T12:25:00-05:00  # Schedule page publish date
+date: 2026-01-14T12:25:00-05:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 
@@ -40,10 +40,12 @@ Some good resources for finding visualizations to critique:
 * [FiveThirtyEight](https://fivethirtyeight.com/) or [The Upshot](https://www.nytimes.com/section/upshot) - or really any other data journalism site
 
 #### Submission details
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/fLOfyUGC)
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/4G-lKClM)
 
 Be sure to include a link to the original visualization in your critique. Submit your critique as a [Markdown](http://daringfireball.net/projects/markdown/basics) formatted document that can be read directly in the repo on GitHub. Write either in the original `.md` file or write it as an [R Markdown](http://rmarkdown.rstudio.com/) document rendered using the `github_output` format.
 
 The repo should be 'nice' in that you need good folder and file name conventions, nice headings for paragraphs, and it's easily readable. 
+
+Note: your assignment has example assignments and descriptions to help you understand the assignment prompt. 
 
 <!--## Part 2: `ggplot2` and the grammar of graphics (10 points)-->
