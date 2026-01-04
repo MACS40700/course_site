@@ -12,9 +12,8 @@ draft: false
 **Welcome to Data Visualization!** 
 
 
-## TA & Office Hours 
-TA: **Yangyu Wang** email: wangyd\@uchicago.edu OH [TBD]( )  <br>
-Prof: Jean Clipperton OH Mondays 12-2pm (in person or zoom) and Weds 12-1:30pm on zoom only. [Please sign up here!](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
+## Office Hours 
+Prof: Jean Clipperton OH Weds 11-12:00pm on zoom only and Thurs 10-11:00 am in person or on zoom. [Please sign up here!](https://outlook.office365.com/book/ClippertonMACSS@uchicagoedu.onmicrosoft.com/)
 
 ## Learning Objectives 
 By the end of the course, students will be able to:
