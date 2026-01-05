@@ -1,6 +1,6 @@
 ---
 title: "Assignment 5"
-date: 2025-03-05T13:30:00-06:00  # Schedule page publish date
+date: 2026-02-27T13:30:00-06:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 
@@ -11,9 +11,9 @@ summary: "Interactive graphics using Shiny or animation"
 knitr::opts_chunk$set()
 ```
 
-# Assignment 5: Interactive/Animated graphics (with Gapminder)
+# Assignment 5: Interactive graphics (with Gapminder) using Shiny
 
-[Gapminder](http://www.gapminder.org/data/) compiles detailed indicators of global development. For this assignment, you should build an interactive visualization to tell a story about the data. **This assignment requires you to develop both the visualization as well as a written narrative.**
+[Gapminder](http://www.gapminder.org/data/) compiles detailed indicators of global development. For this assignment, you should build a Shiny visualization to tell a story about the data. **This assignment requires you to develop both the visualization as well as a written narrative.**
 
 * You do not need to analyze all 500+ variables. You can focus on a small set of variables (whichever ones you wish, though check the indicator's coverage for all the countries and the time period available)
 * You can build either a highly linear or non-linear structure to your visualization. Note that if you design a non-linear interactive visualization, you still need to situate it using an introduction or text description (a la [America's Public Bible](http://americaspublicbible.org/)^[Though with far less detail]. See FA ch 9 for more details.)

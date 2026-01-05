@@ -31,7 +31,7 @@ You can see our topics below. See the assignments linked to the side -- if you h
 | 24-Feb | [Shiny, part III](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
 | 26-Feb |  [Plotly](slides/10-plotly) | [Plotly overview](https://plotly.com/ggplot2/)| | 
 | 3-Mar |[Websites and tables](slides/21-websites) |[download jekyll if desired](https://macs40700.netlify.app/slides/21-websites/#51) |  [Final Proposal (due 4-Mar)](/assignments/final-proposal) |
-| 5-Mar | [Wrap Shiny, Final Project Prep](slides/16-interactive-visualization) ||      project progress report (will submit in class)|
+| 5-Mar | [Wrap Shiny, Final Project Prep](slides/16-interactive-visualization) ||      project check-in (during class)|
 | 11-Mar | Final project due             |  | [Final Project (due 11-Mar)](/assignments/final-project/)|
 
 ## Readings

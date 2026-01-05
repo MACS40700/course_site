@@ -4,43 +4,51 @@ date: 2025-02-03T13:30:00-06:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 
-summary: "Plotly assignment: informative plots"
+summary: "Creating effective maps"
 ---
 
 # Tasks
 
-For this assignment, you will submit **SIX** plots: a 'rough draft and a 'final' version. See the description here for the final version, with the drafts described below.
-
-**Final plots** Complete two plots in plotly, each using at least two, if not three, variables from the dataset in each plot: one plot needs continuous-y data and the other should involve categorical data. This means that, for example, you might have one plot to showcase continuous data, such as a boxplot. You could include categorical variables to include the continuous data by variable, separating out the plots. Similarly, you could do a scatterplot where you color-code the points by a secondary variable. For categorical data, you could have a bar plot where you showcase the proportion of each category aligns with a secondary variable. You could also focus on the categories for a box plot -- e.g. the key emphasis is on the categorical variable. You need two different types of plots for this assignment.
-
-You can use any data for this assignment but the dataset should be the same for both and there should be some connection between the two plots -- some narrative of some sort. This assignment should be able to stand alone, meaning that all information needed to understand and interpret the plots is provided by you in your writeup. Keep the writing to approximately 500-750 words. The final plots should be professional quality--something we could expect to see in a final report, thesis, etc.
-
-## Components
-
-You will first want to describe your data and provide some summary of the relevant variables to describe what they are, etc. Be sure to include your source for the data. BE WISE in how you select your data.
-
-For each data type, you will provide three plots:
-1. **The final plot**. This is the plot that you selected to represent the data most effectively.
-2. **The rough draft / initial plot**. This is the initial version of your final plot with all 'defaults' -- e.g. not at all customized.
-3. **The alternative plot**. This is a second plot option you tried before committing to the final form. For example, maybe you were debating between histograms, dot plots, and box plots. Include one version you tried.
-
-### Continuous-y plot
-
-Describe the plot type you selected and what it tells us about the data. Your plot should be appropriate for the data (e.g. don't use a plot for nominal data with continuous data), and be customized to showcase some finding. Effective graphs are ones that make your intended takeaway obvious.
-
-Secondly, describe the plot you chose, alternatives you considered, and why this was the selected form.
-
-Finally, describe the customizations (scales, labels, colors, titles, etc.) that you made to improve the graph from the original baseline.
-
-### Categorical plot
-
-Describe the plot type you selected and what it tells us about the data. Your plot should be appropriate for the data (e.g. don't use a plot for continuous data with categorical data), and be customized to showcase some finding. Effective graphs are ones that make your intended takeaway obvious.
-
-Secondly, describe the plot you chose, alternatives you considered, and why this was the selected form.
-
-Finally, describe the customizations (scales, labels, colors, titles, etc.) that you made to improve the graph from the original baseline.
-
 ## Assessment
+
+Assignment Requirements Summary \[check the assignment page for full details\]
+You will create geographic visualizations that reveal spatial patterns and tell compelling stories through cartographic design.
+
+Follow this sequence:
+
+1.  Choose and Describe Your Dataset
+    Data Requirements: Select a dataset with geographic components (countries, states, cities, regions, etc.) and at least one quantitative or categorical variable to map
+    Data Sources: You may collect data from online sources, APIs, government databases, or use existing datasets with spatial information
+    Data Preparation: Clean and prepare your data for geographic analysis, including proper handling of geographic identifiers (country codes, state abbreviations, etc.)
+    Describe your dataset: source, variables of interest, geographic scope, and what story you want to tell
+    Ensure your data can be meaningfully linked to geographic boundaries and that you have sufficient coverage for effective visualization.
+
+2.  Create Your Geographic Visualizations
+    Your submission must include at least two different types of maps:
+
+Choropleth Map: Show quantitative data across geographic regions using color intensity or categories
+Alternative Map Type: Choose from point maps, graduated symbols, cartograms, or other cartographic techniques that complement your story
+Technical Requirements:
+
+Use appropriate map projections (avoid distorting Mercator when showing global patterns)
+Include proper legends, scales, and geographic context
+Handle missing data appropriately (don't force zeros where data doesn't exist)
+Use colorblind-friendly palettes when appropriate
+3. Demonstrate Data Processing Skills
+Your work should include:
+
+Data Cleaning: Show how you prepared and cleaned your geographic data
+Spatial Joins: Demonstrate linking your data to geographic boundaries
+Data Transformation: Include necessary data reshaping, aggregation, or conversion processes
+4. Analysis and Narrative (750-1000 words)
+Write a comprehensive analysis that includes:
+
+Data Description: Source, collection method, limitations, and scope
+Geographic Patterns: What spatial patterns emerge from your visualizations?
+Design Justification: Why did you choose these map types and design elements?
+Insights: What non-obvious findings does your geographic analysis reveal?
+Broader Context: How do your findings connect to larger geographic, social, or economic questions?
+Your narrative should weave together the technical aspects of cartographic design with substantive insights about spatial patterns.
 
 Your plots will be assessed on the following criteria:[^1]
 
@@ -52,6 +60,6 @@ Your plots will be assessed on the following criteria:[^1]
 
 ## Getting started
 
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/NWf40EhJ)
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom]() NOTE: link forthcoming!
 
 [^1]: Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps for communication* by Alberto Cairo.
