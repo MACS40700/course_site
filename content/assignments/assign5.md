@@ -77,7 +77,7 @@ In addition to the visualization and accompanying narrative, write an approximat
 
 ## Submission details
 
-Deploy your app on [shinyapps.io](http://www.shinyapps.io) and include a link to it in your submission on [github classroom](https://classroom.github.com/a/QiYvVFqi). Include your design explanation in a separate tab in the shiny app.
+Deploy your app on [shinyapps.io](http://www.shinyapps.io) and include a link to it in your submission on [github classroom](https://classroom.github.com/a/G3tSI6E2). Include your design explanation in a separate tab in the shiny app.
 
 [^1]: Though with far less detail
 

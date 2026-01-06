@@ -55,4 +55,4 @@ Your plots will be assessed on the following criteria:^[Drawn from chapter 2 of 
 
 
 ## Getting started
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom]()[NOTE: LINK FORTHCOMING]
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/My3QBcYL)

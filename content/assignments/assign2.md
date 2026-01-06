@@ -4,7 +4,7 @@ date: 2026-01-23T13:30:00-06:00  # Schedule page publish date
 publishDate: 2019-03-01T12:25:00-05:00
 draft: false
 
-summary: "EDA assignment: informative plots"
+summary: "Refining assignment: informative plots"
 ---
 
 # Tasks
@@ -52,6 +52,6 @@ Your plots will be assessed on the following criteria:[^1]
 
 ## Getting started
 
-All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom]()\[NOTE: LINK FORTHCOMING\]
+All work will be performed inside a version-controlled GitHub repo. Create your project repo by going [to this link on github classroom](https://classroom.github.com/a/My3QBcYL)
 
 [^1]: Drawn from chapter 2 of *The Truthful Art: Data, charts, and maps for communication* by Alberto Cairo.

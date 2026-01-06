@@ -1,0 +1,393 @@
+---
+title: "Drawing raster maps with ggmap"
+date: 2019-03-01
+
+type: book
+toc: true
+draft: false
+aliases: ["/geoviz_ggmap.html", "/notes/raster-maps-with-ggmap/"]
+categories: ["dataviz", "geospatial"]
+
+weight: 52
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(cache = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r packages, cache = FALSE, message = FALSE}
+library(tidyverse)
+library(ggmap)
+library(RColorBrewer)
+library(patchwork)
+library(here)
+
+options(digits = 3)
+set.seed(1234)
+theme_set(theme_minimal())
+```
+
+[`ggmap`](https://github.com/dkahle/ggmap) is a package for R that retrieves raster map tiles from online mapping services like [Stamen Maps](http://maps.stamen.com/) and plots them using the `ggplot2` framework. The map tiles are **raster** because they are static image files generated previously by the mapping service. You do not need any data files containing information on things like scale, projection, boundaries, etc. because that information is already created by the map tile. This severely limits your ability to redraw or change the appearance of the geographic map, however the tradeoff means you can immediately focus on incorporating additional data into the map.
+
+## Obtain map images
+
+`ggmap` supports open-source map providers such as [OpenStreetMap](https://www.openstreetmap.org/) and [Stamen Maps](http://maps.stamen.com/#terrain/12/37.7706/-122.3782). Obtaining map tiles requires use of the `get_map()` function. To identify which map tiles need to be obtained, you specify the mapping region using a **bounding box**. The bounding box requires the user to specify the four corners of the box defining the map region. For instance, to obtain a map of New York City using Stamen Maps:
+
+```{r bb-nyc-stamen}
+# store bounding box coordinates
+nyc_bb <- c(
+  left = -74.263045,
+  bottom = 40.487652,
+  right = -73.675963,
+  top = 40.934743
+)
+
+nyc_stamen <- get_stamenmap(
+  bbox = nyc_bb,
+  zoom = 11
+)
+nyc_stamen
+```
+
+To view the map, use `ggmap()`:
+
+```{r bb-nyc-stamen-plot}
+ggmap(nyc_stamen)
+```
+
+The `zoom` argument in `get_stamenmap()` controls the level of detail in the map. The larger the number, the greater the detail.
+
+```{r bb-nyc-stamen-zoom-in}
+get_stamenmap(
+  bbox = nyc_bb,
+  zoom = 12
+) %>%
+  ggmap()
+```
+
+The smaller the number, the lesser the detail.
+
+```{r bb-nyc-stamen-zoom-out}
+get_stamenmap(
+  bbox = nyc_bb,
+  zoom = 10
+) %>%
+  ggmap()
+```
+
+
+Trial and error will help you decide on the appropriate level of detail depending on what data you need to visualize on the map.
+
+{{% callout note %}}
+
+Use [bboxfinder.com](http://bboxfinder.com/#0.000000,0.000000,0.000000,0.000000) to determine the exact longitude/latitude coordinates for the bounding box you wish to obtain.
+
+{{% /callout %}}
+
+## Types of map tiles
+
+Each map tile provider offers a range of different types of maps depending on the background you want for the map. Stamen Maps offers several different types:
+
+```{r stamen-maptype, fig.asp = 4 / 3, echo = FALSE}
+stamen_maptype <- tibble(maptype = c(
+  "terrain", "terrain-background",
+  "terrain-labels", "terrain-lines",
+  "toner", "toner-2010", "toner-2011",
+  "toner-background", "toner-hybrid",
+  "toner-labels", "toner-lines",
+  "toner-lite", "watercolor"
+)) %>%
+  mutate(
+    bb = map(maptype, ~ get_stamenmap(bbox = nyc_bb, zoom = 10, maptype = .x)),
+    ggmap = map2(bb, maptype, ~ ggmap(.x) +
+      ggtitle(.y))
+  )
+
+wrap_plots(stamen_maptype$ggmap)
+```
+
+
+{{% callout note %}}
+
+`get_map()` is a wrapper that automatically queries OpenStreetMap or Stamen Maps depending on the function arguments and inputs. While useful, it also combines all the different arguments of `get_stamenmap()` and `getopenstreetmap()` and can become a bit jumbled. Use at your own risk.
+
+{{% /callout %}}
+
+## Import crime data
+
+Now that we can obtain map tiles and draw them using `ggmap()`, let's explore how to add data to the map. New York City has [an excellent data portal](https://opendata.cityofnewyork.us/) publishing a large volume of public records. Here we'll look at [crime data from 2022](https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243). I previously downloaded a `.csv` file containing all the records, which I import using `read_csv()`:
+
+{{% callout note %}}
+
+If you are copying-and-pasting code from this demonstration, change this line of code to `crimes <- read_csv("https://info5940.infosci.cornell.edu/data/nyc-crimes.csv")` to download the file from the course website.
+
+{{% /callout %}}
+
+```{r import-crimes}
+crimes <- here("static", "data", "nyc-crimes.csv") %>%
+  read_csv()
+glimpse(crimes)
+```
+
+Each row of the data frame is a single reported incident of crime. Geographic location is encoded using the exact `longitude` and `latitude` of the incident.
+
+## Plot high-level map of crime
+
+Let's start with a simple high-level overview of reported crime in New York City. First we need a map for the entire city.
+
+```{r import-nyc}
+nyc <- nyc_stamen
+ggmap(nyc)
+```
+
+## Using `geom_point()`
+
+Since each row is a single reported incident of crime, we could use `geom_point()` to map the location of every crime in the dataset. Because `ggmap()` uses the map tiles (here, defined by `nyc`) as the basic input, we specify `data` and `mapping` inside of `geom_point()`, rather than inside `ggplot()`:
+
+```{r plot-crime-point, dependson = "import-crimes"}
+ggmap(nyc) +
+  geom_point(
+    data = crimes,
+    mapping = aes(
+      x = longitude,
+      y = latitude
+    )
+  )
+```
+
+What went wrong? All we get is a sea of black.
+
+```{r num-crimes, dependson = "import-crimes"}
+nrow(crimes)
+```
+
+Oh yeah. There were `r scales::comma_format()(nrow(crimes))` reported incidents of crime in the city. Each incident is represented by a dot on the map. How can we make this map more usable? One option is to decrease the size and increase the transparency of each data point so dense clusters of crime become apparent:
+
+```{r plot-crime-point-alpha, dependson = "import-crimes"}
+ggmap(nyc) +
+  geom_point(
+    data = crimes,
+    aes(
+      x = longitude,
+      y = latitude
+    ),
+    size = .25,
+    alpha = .01
+  )
+```
+
+Better, but still not quite as useful as it could be.
+
+## Using `stat_density_2d()`
+
+Instead of relying on `geom_point()` and plotting the raw data, a better approach is to create a **heatmap**. More precisely, this will be a two-dimensional kernel density estimation (KDE). In this context, KDE will take all the raw data (i.e. reported incidents of crime) and convert it into a smoothed plot showing geographic concentrations of crime. The core function in `ggplot2` to generate this kind of plot is `geom_density_2d()`:
+
+```{r kde-contour, dependson = "import-crimes"}
+ggmap(nyc) +
+  geom_density_2d(
+    data = crimes,
+    aes(
+      x = longitude,
+      y = latitude
+    )
+  )
+```
+
+By default, `geom_density_2d()` draws a [**contour plot**](https://en.wikipedia.org/wiki/Contour_line) with lines of constant value. That is, each line represents approximately the same frequency of crime all along that specific line. Contour plots are frequently used in maps (known as **topographic maps**) to denote elevation.
+
+{{< figure src="contour-map.jpg" caption="The Cadillac Mountains. Source: [US Geological Survey](https://www.usgs.gov/media/images/cadillacmountainss)" >}}
+
+Rather than drawing lines, instead we can fill in the graph so that we use the `fill` aesthetic to draw bands of crime density. To do that, we use the related function `stat_density_2d()`:
+
+```{r kde-fill, dependson = "import-crimes"}
+ggmap(nyc) +
+  stat_density_2d(
+    data = crimes,
+    aes(
+      x = longitude,
+      y = latitude,
+      fill = stat(level)
+    ),
+    geom = "polygon"
+  )
+```
+
+Note the two new arguments:
+
+* `geom = "polygon"` - change the [geometric object](/notes/grammar-of-graphics/#geometric-objects) to be drawn from a `density_2d` geom to a `polygon` geom
+* `fill = stat(level)` - the value for the `fill` aesthetic is the `level` calculated within `stat_density_2d()`, which we access using the `stat()` notation.
+
+This is an improvement, but we can adjust some additional settings to make the graph visually more useful. Specifically,
+
+* Increase the number of `bins`, or unique bands of color allowed on the graph
+* Make the heatmap semi-transparent using `alpha` so we can still view the underlying map
+* Change the color palette to better distinguish between high and low crime areas. Here I use `brewer.pal()` from the `RColorBrewer` package to create a custom color palette using reds and yellows.
+
+```{r plot-crime-density, dependson = "import-crimes"}
+ggmap(nyc) +
+  stat_density_2d(
+    data = crimes,
+    aes(
+      x = longitude,
+      y = latitude,
+      fill = stat(level)
+    ),
+    alpha = .2,
+    bins = 25,
+    geom = "polygon"
+  ) +
+  scale_fill_gradientn(colors = brewer.pal(7, "YlOrRd"))
+```
+
+From this map, a couple trends are noticeable:
+
+* The downtown region has the highest crime incidence rate. Not surprising given its population density during the workday.
+* There are clusters of crime on the south and west sides. Also not surprising if you know anything about the city of Chicago.
+
+## Looking for variation
+
+Because `ggmap` is built on `ggplot2`, we can use the core features of `ggplot2` to modify the graph. One major feature is faceting. Let's focus our analysis on four types of crimes with similar frequency of reported incidents[^types] and facet by type of crime:
+
+```{r plot-crime-wday, dependson = "import-crimes"}
+ggmap(nyc) +
+  stat_density_2d(
+    data = crimes %>%
+      filter(ofns_desc %in% c(
+        "DANGEROUS DRUGS", "GRAND LARCENY OF MOTOR VEHICLE",
+        "ROBBERY", "VEHICLE AND TRAFFIC LAWS"
+      )),
+    aes(
+      x = longitude,
+      y = latitude,
+      fill = stat(level)
+    ),
+    alpha = .4,
+    bins = 10,
+    geom = "polygon"
+  ) +
+  scale_fill_gradientn(colors = brewer.pal(7, "YlOrRd")) +
+  facet_wrap(facets = vars(ofns_desc))
+```
+
+There is a substantial difference in the geographic density of drug crimes relative to the other categories. While burglaries, motor vehicle thefts, and robberies are reasonably prevalent all across the city, the vast majority of narcotics crimes occur in Manhattan and the Bronx.
+
+## Locations of murders
+
+While `geom_point()` was not appropriate for graphing a large number of observations in a dense geographic location, it does work rather well for less dense areas. Now let's limit our analysis strictly to reported incidents of murder.
+
+```{r homicide, dependson = "import-crimes"}
+(homicides <- crimes %>%
+  filter(ofns_desc == "MURDER & NON-NEGL. MANSLAUGHTER"))
+```
+
+We can draw a map of the city with all homicides indicated on the map using `geom_point()`:
+
+```{r homicide-city, dependson = "homicide"}
+ggmap(nyc) +
+  geom_point(
+    data = homicides,
+    mapping = aes(
+      x = longitude,
+      y = latitude
+    ),
+    size = 1
+  )
+```
+
+Compared to our previous overviews, few if any homicides are reported in downtown Manhattan.
+
+We can also narrow down the geographic location to map specific neighborhoods in New York City. First we obtain map tiles for those ares. Here we'll examine Roosevelt Island and Fordham.
+
+```{r get-high-low-murder-maps}
+# compare Roosevelt Island to Harlem
+roosevelt_bb <- c(
+  left = -73.993958,
+  bottom = 40.737279,
+  right = -73.912204,
+  top = 40.780838
+)
+roosevelt <- get_stamenmap(
+  bbox = roosevelt_bb,
+  zoom = 14
+)
+
+fordham_bb <- c(
+  left = -73.939754,
+  bottom = 40.837444,
+  right = -73.858000,
+  top = 40.880937
+)
+fordham <- get_stamenmap(
+  bbox = fordham_bb,
+  zoom = 14
+)
+
+ggmap(roosevelt)
+ggmap(fordham)
+```
+
+To plot homicides specifically in these neighborhoods, change `ggmap(nyc)` to the appropriate map tile:
+
+```{r plot-murder, dependson = "homicide"}
+ggmap(roosevelt) +
+  geom_point(
+    data = homicides,
+    aes(x = longitude, y = latitude)
+  )
+
+ggmap(fordham) +
+  geom_point(
+    data = homicides,
+    aes(x = longitude, y = latitude)
+  )
+```
+
+Even though `homicides` contained data for homicides across the entire city, `ggmap()` automatically cropped the graph to keep just the homicides that occurred within the bounding box.
+
+All the other aesthetic customizations of `geom_point()` work with `ggmap`. So we could expand these neighborhood maps to include all violent crimes[^violent] and distinguish each type by `color`:
+
+```{r violent, dependson = "import-crimes"}
+(violent <- crimes %>%
+  filter(ofns_desc %in% c(
+    "MURDER & NON-NEGL. MANSLAUGHTER",
+    "RAPE",
+    "ROBBERY",
+    "FELONY ASSAULT"
+  )))
+```
+
+```{r plot-violent, dependson = "violent"}
+ggmap(roosevelt) +
+  geom_point(
+    data = violent,
+    aes(
+      x = longitude, y = latitude,
+      color = ofns_desc
+    ),
+    alpha = 0.5
+  ) +
+  scale_color_brewer(type = "qual", palette = "Dark2")
+
+ggmap(fordham) +
+  geom_point(
+    data = violent,
+    aes(
+      x = longitude, y = latitude,
+      color = ofns_desc
+    ),
+    alpha = 0.5
+  ) +
+  scale_color_brewer(type = "qual", palette = "Dark2")
+```
+
+### Additional resources
+
+* [Kahle, D., & Wickham, H. (2013). `ggmap`: Spatial Visualization with ggplot2. *R Journal*, 5(1).](https://journal.r-project.org/archive/2013/RJ-2013-014/RJ-2013-014.pdf)
+
+### Session Info
+
+```{r child = here::here("R", "_session-info.Rmd")}
+```
+
+[^types]: Specifically drugs, motor vehicle thefts, robbery, and other vehicle/traffic crimes.
+[^violent]: [The FBI defines violent crime](https://ucr.fbi.gov/crime-in-the-u.s/2010/crime-in-the-u.s.-2010/violent-crime) as one of four offenses: murder and nonnegligent manslaughter, forcible rape, robbery, and aggravated assault. In the NYPD database, the comparable categories are murder and nonnegligent manslaughter, rape, robbery, and felony assault.
