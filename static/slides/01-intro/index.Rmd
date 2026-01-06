@@ -14,34 +14,6 @@ output:
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
-library(xaringanthemer)
-style_xaringan(
-  text_color = "#464A53",
-  header_color = "#586891",
-  background_color = "#F1F3F2",
-  title_slide_background_color = "#586891",
-  title_slide_text_color = "#F1F3F2",
-  table_row_even_background_color = "#B3A6A3",
-  link_color= "#586891",
-  text_bold_color= "#586891",
-  #code_highlight_color= rgba(255,255,0,0.5),
-  inverse_text_color= "#464A53",
-  inverse_background_color= "#B3A6A3",
-  inverse_header_color= "#464A53",
-  inverse_link_color= "#586891",
-  header_background_color= "#586891",
-  header_background_text_color= "#F1F3F2",
-  code_highlight_color = "#9ab7c4",
-  text_font_family = "Nunito",
-  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
-  header_font_google = google_font("Afacad"),
-  base_font_size= "28px",
-  text_font_size= "1rem",
-  code_font_size= "20px",
-  code_inline_font_size= "1em",
-  header_h1_font_size= "2rem",
-  header_h2_font_size= "1.75rem",
-  header_h3_font_size= "1.5rem")
 
 
 # source in the default knitr options
@@ -80,7 +52,6 @@ library(datasauRus)
 library(gganimate)
 library(socviz)
 library(patchwork)
-#library(rcis)
 library(tidycensus)
 library(statebins)
 library(here)
@@ -100,9 +71,6 @@ class: middle, inverse
 
 * Jean Clipperton - clipperton@uchicago.edu
 
-### Teaching assistant
-
-* Yangyu Wang - wangyd@uchicago.edu
 
 ---
 
@@ -176,7 +144,7 @@ class: middle, inverse
 ## Assessments
 
 - Homework assignments
-  - Accessed on GitHub, submitted on Canvas, individual or team
+  - Accessed on GitHub, submitted on Canvas, individual 
 - Final Project
   - Accessed on GitHub, submitted on Canvas, individual or team-based
 
@@ -223,7 +191,7 @@ class: middle, inverse
 
 ## Sharing / reusing code policy
 
-- We are aware that a huge volume of code is available on the web, and many tasks may have solutions posted
+- A huge volume of code is available on the web, and many tasks may have solutions posted
 
 - Unless explicitly stated otherwise, this course's policy is that you may make use of any online resources (e.g. RStudio Community, StackOverflow, etc.) but you must explicitly cite where you obtained any code you directly use or use as inspiration in your solution(s).
 
@@ -254,7 +222,7 @@ class: middle, inverse
 
 ## GitHub
 
-.center[.large[https://classroom.github.com/a/fLOfyUGC]]
+.center[.large[https://classroom.github.com/a/4G-lKClM]]
 
 - GitHub classroom for the course
 
@@ -262,7 +230,7 @@ class: middle, inverse
 
 - Each assignment is a private repo on GitHub, I distribute the assignments on GitHub and you submit them there
 
-- Feedback on assignments is given as GitHub issues, only points recorded on Canvas gradebook
+- Feedback on assignments is in Canvas 
 
 
 ---
@@ -281,13 +249,13 @@ Some brief advice about selecting your account names (particularly for GitHub),
 
 - Shorter is better than longer, but be as unique as possible
 
-- Make it timeless. Avoid highlighting your current university, employer, or place of residence
+- Make it timeless. Avoid highlighting your current university, employer, or place of residence, or year (birth, graduation, etc.)
 
 ---
 
 ## Ed Discussions
 
-.center[.midi[https://edstem.org/us/courses/70315/discussion]]
+.center[.midi[https://edstem.org/us/courses/91046]
 
 <br>
 
@@ -356,12 +324,12 @@ class: center
 # oh no: all these data have the same summary stats!
 
 ```{r datasaurus-graph, echo=FALSE, warning=FALSE}
-ggplot(datasaurus_dozen, aes(x = x, y = y))+
-  geom_point() +
-  coord_fixed() +
-  #theme_minimal(base_size = rcfss::base_size) +
-  transition_states(dataset, 3, 3) + 
-  ease_aes('cubic-in-out')
+# ggplot(datasaurus_dozen, aes(x = x, y = y))+
+#   geom_point() +
+#   coord_fixed() +
+#   #theme_minimal(base_size = rcfss::base_size) +
+#   transition_states(dataset, 3, 3) + 
+#   ease_aes('cubic-in-out')
 ```
 
 ---
@@ -462,7 +430,6 @@ class: center middle inverse
 
 .footnote[Alberto Cairo, *The Truthful Art*]
 
-???
 
 Alberto Cairo, *The Truthful Art*:
 
@@ -1803,7 +1770,7 @@ class: middle, inverse
 
 - Create a GitHub account if you don't have one
 
-- Complete the [*FIRST ASSIGNMENT*](https://macs40700.netlify.app/assignments/assign1/)
+- Start (or even complete!!) the [*FIRST ASSIGNMENT*](https://macs40700.netlify.app/assignments/assign1/)
 
 - Read the [syllabus](https://macs40700.netlify.app/course-syllabus/)
 
