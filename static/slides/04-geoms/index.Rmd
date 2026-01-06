@@ -3,7 +3,7 @@ title: "Deep dive: geometric objects (AKA geoms)"
 author: "MACS 40700 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: slides-theme.css
     nature:
       highlightStyle: magula
       highlightLines: true
@@ -47,7 +47,7 @@ class: middle, inverse
 ---
 
 ## Announcements
-* Assignment deadlines (primarily Thursdays)
+* Assignment deadlines (often BUT NOT ALWAYS Fridays)
 * Contrast Ed discussion: memorable vs preferable
 
 ---
@@ -63,8 +63,8 @@ class: middle, inverse
 ```{r}
 # load packages
 library(tidyverse)
-# remotes::install_github("MACS40700/c3s2")
-library(c3s2)
+# remotes::install_github("MACS40700/c3s2datasets")
+library(c3s2datasets)
 ```
 
 ---
@@ -767,7 +767,7 @@ https://scales.r-lib.org/
 .panelset[
 ```{r panelset = c(output = "Plot", source = "Code"), fig.show = "hold"}
 library(tidyverse)
-library(c3s2)
+library(c3s2datasets)
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_point(alpha = 0.4, size = 2, color = "#012169") +
   scale_x_continuous(labels = label_number(big.mark = ",")) +
@@ -849,31 +849,35 @@ countdown(minutes = 3, bottom = 0)
 
 class: inverse, middle
 
-# Assignment 2
+# Assignment 2: Refining plots
 
 ---
 
 ## Assignment 2
 
 .task[
-**TWO PARTS**
-- **Part 1**: propose a portfolio: THREE GRAPH PLAN for exploring a question / dataset
-- Part 2: EDA (first graph): rough draft of your first plot + critique
-]
+For this assignment, you will submit **SIX plots**: a ‘rough draft and a ‘final’ version for each. ]
 
 
 https://macs40700.netlify.app/assignments/assign2/ 
 --
 
-### Tips
+### Info
 
-- Start with a research question / topic area / theme
-- Work on how the graphs will fit together
-- Can submit in groups (prep for assignment 3 + final) or separately (you can change your mind later as well!)
-- Three graphs cannot have all the same graph type
-- Can potentially resubmit if you get a check-minus (determined on a case-by-case basis -- basically this should be a good faith effort) 
-- Include what you're hoping the takeaway will be from each graph
+* You can use any data for this assignment but the dataset should be the same for both and there should be some connection between the two plots – some narrative of some sort. 
 
+* This assignment should be able to stand alone, meaning that all information needed to understand and interpret the plots is provided by you in your writeup. 
+* Keep it to 500-750 words
+* The final plots should be professional quality–something we could expect to see in a final report, thesis, etc.
+
+---
+## A2: Refining components
+
+For each data type (continuous-y and categorical), you will provide three plots:
+
+1. The final plot. This is the plot that you selected to represent the data most effectively.
+2. The rough draft / initial plot. This is the initial version of your final plot with all ‘defaults’ – e.g. not at all customized.
+3. The alternative plot. This is a second plot option you tried before committing to the final form. For example, maybe you were debating between histograms, dot plots, and box plots. Include one version you tried.
 
 ---
 
@@ -882,5 +886,5 @@ https://macs40700.netlify.app/assignments/assign2/
 * Geoms: consider the layering options
 * Jitter: consider different seeds
 * Scales: way to format axes nicely
-* Work on narrative for A2
+* Work on graph ideas for A2
 
