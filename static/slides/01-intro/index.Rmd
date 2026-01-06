@@ -3,7 +3,7 @@ title: "Introduction to data visualization"
 author: "MACS 40700 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: "slides-theme.css"
     nature:
       highlightStyle: magula
       highlightLines: true
@@ -13,8 +13,6 @@ output:
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
-# generate CSS file
-
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -62,6 +60,7 @@ set.seed(123)
 class: middle, inverse
 
 # Course Details
+
 
 ---
 
@@ -237,7 +236,7 @@ class: middle, inverse
 
 ## Username advice
 
-.hand[in case you don't yet have a GitHub account...]
+.task[in case you don't yet have a GitHub account...]
 
 Some brief advice about selecting your account names (particularly for GitHub),
 
@@ -255,7 +254,7 @@ Some brief advice about selecting your account names (particularly for GitHub),
 
 ## Ed Discussions
 
-.center[.midi[https://edstem.org/us/courses/91046]
+.center[.midi[https://edstem.org/us/courses/91046]]
 
 <br>
 
@@ -430,7 +429,7 @@ class: center middle inverse
 
 .footnote[Alberto Cairo, *The Truthful Art*]
 
-
+---
 Alberto Cairo, *The Truthful Art*:
 
 > 1. It is truthful, as it’s based on thorough and honest research.
@@ -1787,7 +1786,7 @@ class: middle, inverse
 Here will be your workflow for class:
 
 * Start on on the website: read over the assignment description.
-* Click the github link to accept the assignment: this will create a repo with the proper format/setup for the assignment. The permissions are set so that it will be private to all except you and me/the TA
+* Click the github link to accept the assignment: this will create a repo with the proper format/setup for the assignment. The permissions are set so that it will be private to all except you and me 
 * Connect to the github repo and push your work to it
 * When complete, go to Canvas, submit the github repo link. (we can't push grades from github to Canvas, unfortunately)
 
