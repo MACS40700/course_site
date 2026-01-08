@@ -102,6 +102,7 @@ staff <- read_csv("data/instructional-staff.csv")
 staff
 ```
 .footnote[alt link: https://uchicago.box.com/s/eqk73widao74ysdd172ob81jac38ecjx]
+.footnote[alt option: `c3s2datasets`]
 ---
 
 ## Recreate the visualization
@@ -761,39 +762,6 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 ]
 ]
 
----
-
-## Activity: Spot the difference I
-
-.task[
-Can you spot the differences between the code here and the one provided in the previous slide? Are there any differences in the resulting plot? Work in a pair (or group) to answer.
-]
-
-.panelset[
-.panel[.panel-name[Plot]
-```{r mean-netcost-pctpell-lollipop-global, out.width = "50%", echo = FALSE}
-ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
-  geom_point(size = 4) +
-  geom_segment(aes(
-    xend = 0,
-    yend = pctpell_cat
-  )) +
-  labs(
-    x = "Mean net cost of attendance", y = "Pell grant recipients",
-    title = "Mean net cost of attendance, by Pell grant recipients"
-  ) +
-  theme_minimal(base_size = 16)
-```
-]
-.panel[.panel-name[Code]
-```{r ref.label = "mean-netcost-pctpell-lollipop-global", fig.show = "hide"}
-```
-]
-]
-
-```{r cache = FALSE, echo = FALSE}
-countdown(minutes = 3, bottom = 0)
-```
 
 ---
 

@@ -81,6 +81,7 @@ staff
 ## # ℹ 2 more variables: `2009` &lt;dbl&gt;, `2011` &lt;dbl&gt;
 ```
 .footnote[alt link: https://uchicago.box.com/s/eqk73widao74ysdd172ob81jac38ecjx]
+.footnote[alt option: `c3s2datasets`]
 ---
 
 ## Recreate the visualization
@@ -796,7 +797,7 @@ This is Minard’s visualization of Napoleon’s retreat. Discuss in a pair (or 
 
 .footnote[Source: [Wikipedia](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#/media/File:Minard.png)]
 
-<countdown-timer class="countdown" id="timer_b4b50501" minutes="5" seconds="0" update-every="1" tabindex="0" style="top:0;right:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_cabd47d1" minutes="5" seconds="0" update-every="1" tabindex="0" style="top:0;right:0;"></countdown-timer>
 
 ---
 
@@ -860,37 +861,6 @@ ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
 ]
 ]
 
----
-
-## Activity: Spot the difference I
-
-.task[
-Can you spot the differences between the code here and the one provided in the previous slide? Are there any differences in the resulting plot? Work in a pair (or group) to answer.
-]
-
-.panelset[
-.panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/mean-netcost-pctpell-lollipop-global-1.png" width="50%" style="display: block; margin: auto;" /&gt;
-]
-.panel[.panel-name[Code]
-
-``` r
-ggplot(mean_netcost_pctpell, aes(y = pctpell_cat, x = mean_netcost)) +
-  geom_point(size = 4) +
-  geom_segment(aes(
-    xend = 0,
-    yend = pctpell_cat
-  )) +
-  labs(
-    x = "Mean net cost of attendance", y = "Pell grant recipients",
-    title = "Mean net cost of attendance, by Pell grant recipients"
-  ) +
-  theme_minimal(base_size = 16)
-```
-]
-]
-
-<countdown-timer class="countdown" id="timer_e9eb8fca" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 
