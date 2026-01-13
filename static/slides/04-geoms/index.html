@@ -39,8 +39,7 @@ class: middle, inverse
 ---
 
 ## Announcements
-* Assignment deadlines (often BUT NOT ALWAYS Fridays)
-* Contrast Ed discussion: memorable vs preferable
+* Assignment deadlines (often BUT NOT ALWAYS Weds / Fridays)
 
 ---
 
@@ -184,7 +183,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_smooth(method = "lm", se = FALSE, size = 0.5)
 ```
 
-<countdown-timer class="countdown" id="timer_281a55c7" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_f1c981c0" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 
@@ -516,7 +515,7 @@ ggplot(scorecard, aes(x = netcost)) +
 
 &lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-<countdown-timer class="countdown" id="timer_78605d75" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_e6e8f6ed" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 
@@ -563,6 +562,16 @@ ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
 
 &lt;img src="index_files/figure-html/unnamed-chunk-36-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
+
+.panel[.panel-name[Hisogram (identity + alpha)]
+
+``` r
+ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
+  geom_histogram(binwidth = 5000, position = "identity", alpha = 0.5)
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
 ]
 
 ---
@@ -586,7 +595,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_rug(alpha = 0.1)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-37-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -600,7 +609,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   coord_cartesian(clip = "off")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-38-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -615,7 +624,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   theme(plot.margin = margin(1, 1, 1, 1, "cm"))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-39-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -628,7 +637,7 @@ sample_n(scorecard, size = 50) %&gt;%
   geom_text(aes(label = type))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-40-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -642,7 +651,7 @@ sample_n(scorecard, size = 50) %&gt;%
   geom_text(aes(label = type, color = type))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-41-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -657,7 +666,7 @@ sample_n(scorecard, size = 50) %&gt;%
   )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-42-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -673,11 +682,12 @@ sample_n(scorecard, size = 50) %&gt;%
 
 
 ``` r
+library(hexbin)
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_hex()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-43-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-44-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -725,7 +735,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_point()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-45-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Plot B]
 
@@ -734,7 +744,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-46-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-47-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Plot C]
 
@@ -743,11 +753,11 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-47-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-48-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
-<countdown-timer class="countdown" id="timer_fe1b330a" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_8983585b" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 
@@ -762,7 +772,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-49-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-50-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Plot B]
 
@@ -772,7 +782,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-50-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-51-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 .panel[.panel-name[Plot C]
 
@@ -782,7 +792,7 @@ ggplot(scorecard, aes(x = type, y = netcost)) +
   geom_jitter()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-51-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-52-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -845,7 +855,7 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_line()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-53-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-54-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -857,7 +867,7 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_area()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-54-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-55-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -869,7 +879,7 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
   geom_step()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-55-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-56-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -892,11 +902,11 @@ ggplot(mean_netcost_pctpell, aes(x = pctpell, y = mean_netcost)) +
 ```
 ]
 .panel[.panel-name[Plot]
-&lt;img src="index_files/figure-html/unnamed-chunk-56-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-57-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
-<countdown-timer class="countdown" id="timer_1b14751d" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_659f1e44" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 class: center, inverse, middle 
@@ -946,7 +956,7 @@ ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
 
 .panel[.panel-name[Plot]
 
-&lt;img src="index_files/figure-html/unnamed-chunk-59-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-60-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ]
 ]
@@ -974,7 +984,7 @@ ggplot(scorecard, aes(x = type, y = locale)) +
  geom_tile(aes(fill = netcost))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-60-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-61-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1016,7 +1026,7 @@ ggplot(mean_netcost_type_locale, aes(x = type, y = locale)) +
   geom_point(aes(color = mean_netcost), size = 30, pch = "square")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-62-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-63-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 ]
 ]
 
@@ -1033,7 +1043,7 @@ For each of the following problems, suggest a useful geom:
 1. Label outlying points in a single variable
 ]
 
-<countdown-timer class="countdown" id="timer_0725ad68" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
+<countdown-timer class="countdown" id="timer_f107ff79" minutes="3" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 

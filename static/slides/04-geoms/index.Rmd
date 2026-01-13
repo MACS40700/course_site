@@ -47,8 +47,7 @@ class: middle, inverse
 ---
 
 ## Announcements
-* Assignment deadlines (often BUT NOT ALWAYS Fridays)
-* Contrast Ed discussion: memorable vs preferable
+* Assignment deadlines (often BUT NOT ALWAYS Weds / Fridays)
 
 ---
 
@@ -464,6 +463,13 @@ ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
   geom_histogram(binwidth = 5000, position = "identity")
 ```
 ]
+
+.panel[.panel-name[Hisogram (identity + alpha)]
+```{r}
+ggplot(scorecard, aes(x = netcost, fill = pctpell_cat)) +
+  geom_histogram(binwidth = 5000, position = "identity", alpha = 0.5)
+```
+]
 ]
 
 ---
@@ -555,6 +561,7 @@ sample_n(scorecard, size = 50) %>%
 ## `geom_hex()`
 
 ```{r}
+library(hexbin)
 ggplot(scorecard, aes(x = avgfacsal, y = netcost)) +
   geom_hex()
 ```
