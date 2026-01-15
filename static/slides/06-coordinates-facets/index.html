@@ -9,7 +9,7 @@
     <script src="index_files/panelset/panelset.js"></script>
     <link href="index_files/countdown/countdown.css" rel="stylesheet" />
     <script src="index_files/countdown/countdown.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -54,7 +54,7 @@ library(knitr)
 library(openintro)
 library(palmerpenguins)
 library(ggrepel)
-library(waffle)
+library(ggwaffle) #devtools::install_github("liamgilbey/ggwaffle")
 library(broom)
 
 # set default theme for ggplot2
@@ -123,14 +123,11 @@ class: middle, inverse
 
 ## Setting limits: what the plots say
 Identify the differences: focus on the range of the `x` and `y` axes and the plots.
-<div class="countdown" id="timer_bff8c958" data-update-every="1" tabindex="0" style="top:0;right:0;">
-<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
+<countdown-timer class="countdown" id="timer_7106cc09" minutes="5" seconds="0" update-every="1" tabindex="0" style="top:0;right:0;"></countdown-timer>
 .tiny[
 
 ``` r
-p &lt;- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+p &lt;- ggplot(palmerpenguins::penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() 
 
 p + labs(title = "Plot 1")
@@ -158,7 +155,7 @@ p + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plo
 .tiny[
 
 ``` r
-p &lt;- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+p &lt;- ggplot(palmerpenguins::penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() 
 
 p + labs(title = "Plot 1")
@@ -207,7 +204,7 @@ p + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plo
 .pull-left[
 
 ``` r
-library(c3s2)
+library(c3s2datasets)
 ggplot(scorecard, 
        aes(x = netcost, 
            y = avgfacsal)) + 
@@ -228,7 +225,7 @@ ggplot(scorecard,
 .pull-left[
 
 ``` r
-library(c3s2)
+library(c3s2datasets)
 ggplot(scorecard, 
        aes(x = netcost, 
            y = avgfacsal)) + 
@@ -409,7 +406,24 @@ What do you know about pie charts and data visualization best practices? Love 'e
 - Like with pie charts, work best when the number of levels represented is low
 - Unlike pie charts, easier to compare proportions that represent non-simple fractions
 
-&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="50%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-13-2.png" width="50%" /&gt;
+.panelset[
+.panel[.panel-name[Homeownership - Raw]
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="50%" /&gt;
+]
+
+.panel[.panel-name[Homeownership - Transformed]
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="50%" /&gt;
+]
+
+.panel[.panel-name[Loan Status - Raw]
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="50%" /&gt;
+]
+
+.panel[.panel-name[Loan Status - Transformed]
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="50%" /&gt;
+]
+]
+```
 
 ---
 
@@ -419,12 +433,12 @@ What do you know about pie charts and data visualization best practices? Love 'e
 .panel[.panel-name[Code]
 
 ``` r
-*library(waffle)
+*library(ggwaffle)
 
 penguins %&gt;%
-  count(species) %&gt;%
-  ggplot(aes(fill = species, values = n)) +
-* geom_waffle(color = "white", flip = TRUE, make_proportional = TRUE) +
+  waffle_iron(aes_d(group = species)) %&gt;%
+  ggplot(aes(x, y, fill = group)) +
+* geom_waffle() +
   labs(fill = NULL, title = "Penguin species")
 ```
 ]
@@ -442,11 +456,13 @@ penguins %&gt;%
 
 ``` r
 penguins %&gt;%
-  count(species) %&gt;%
-  ggplot(aes(fill = species, values = n)) +
-  geom_waffle(color = "white", flip = TRUE, make_proportional = TRUE) +
+  waffle_iron(aes_d(group = species), rows = 10) %&gt;%
+  ggplot(aes(x, y, fill = group)) +
+  geom_waffle() +  
   labs(fill = NULL, title = "Penguin species") +
-* theme_enhance_waffle()
+* coord_equal() +
+* scale_fill_waffle() +
+* theme_waffle()
 ```
 ]
 .panel[.panel-name[Plot]
@@ -478,7 +494,7 @@ ggplot(map_data("italy"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#008c45") +labs(x = NULL, y = NULL)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="80%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="80%" /&gt;
 ]
 .panel[.panel-name[Quickmap]
 
@@ -488,7 +504,7 @@ ggplot(map_data("italy"), aes(long, lat, group = group)) +
   coord_quickmap()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="80%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="80%" /&gt;
 ]
 ]
 ]
@@ -513,7 +529,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
   geom_polygon(fill = "white", color = "#3c3b6e") + labs(x = NULL, y = NULL)
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="45%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="45%" /&gt;
 ]
 .panel[.panel-name[Mercator]
 
@@ -523,7 +539,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
   coord_map()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="45%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-22-1.png" width="45%" /&gt;
 ]
 .panel[.panel-name[Stereographic]
 
@@ -533,7 +549,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
   coord_map(projection = "stereographic")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="45%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="45%" /&gt;
 ]
 ]
 ]
@@ -552,7 +568,7 @@ ggplot(map_data("county", "iowa"), aes(long, lat, group = group)) +
      coord_map()
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="60%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-24-1.png" width="60%" /&gt;
 
 
 ---
@@ -656,7 +672,7 @@ ggplot(penguins, aes(y = species, x = body_mass_g, fill = species)) +
 
 ---
 
-## Highlighting across facets
+## Highlighting across facets: Option 1
 
 
 ``` r
@@ -668,7 +684,22 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   facet_wrap(vars(species))
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-23-1.png" width="50%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="50%" /&gt;
+
+
+---
+
+## Highlighting across facets: Option 2
+
+``` r
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  #geom_point(data = penguins_sans_species, color = "gray") +
+  geom_point(aes(color = species)) +
+  facet_wrap(vars(species)) +
+gghighlight::gghighlight()
+```
+
+&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="50%" /&gt;
 
 ---
 # Discussion
@@ -710,7 +741,7 @@ p + theme_void() + labs(title = "Void")
 p + theme_dark() + labs(title = "Dark")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-26-1.png" width="33%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-26-2.png" width="33%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-26-3.png" width="33%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-30-1.png" width="33%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-30-2.png" width="33%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-30-3.png" width="33%" /&gt;
 
 ---
 
@@ -725,7 +756,7 @@ p + theme_economist() + labs(title = "Economist")
 p + theme_wsj() + labs(title = "Wall Street Journal")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-27-1.png" width="30%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-27-2.png" width="30%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-27-3.png" width="30%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-31-1.png" width="30%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-31-2.png" width="30%" /&gt;&lt;img src="index_files/figure-html/unnamed-chunk-31-3.png" width="30%" /&gt;
 
 ---
 
@@ -741,7 +772,7 @@ p +
   labs(title = "Wall Street Journal")
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-28-1.png" width="40%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-32-1.png" width="40%" /&gt;
 
 ---
 
@@ -757,11 +788,11 @@ p +
   )
 ```
 
-&lt;img src="index_files/figure-html/unnamed-chunk-29-1.png" width="60%" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-33-1.png" width="60%" /&gt;
 
+---
 
-
---- 
+---
 
 # Custom themes!
 
@@ -843,11 +874,11 @@ p + scale_fill_taylor_d(album = "reputation")
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "magula",
-"highlightLines": true,
-"highlightLanguage": "r",
-"ratio": "16:9",
-"countIncrementalSlides": false
+  "highlightStyle": "magula",
+  "highlightLines": true,
+  "highlightLanguage": "r",
+  "ratio": "16:9",
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

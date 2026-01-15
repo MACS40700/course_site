@@ -14,34 +14,7 @@ output:
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
-library(xaringanthemer)
-style_xaringan(
-  text_color = "#464A53",
-  header_color = "#586891",
-  background_color = "#F1F3F2",
-  title_slide_background_color = "#586891",
-  title_slide_text_color = "#F1F3F2",
-  table_row_even_background_color = "#B3A6A3",
-  link_color= "#586891",
-  text_bold_color= "#586891",
-  inverse_text_color= "#464A53",
-  inverse_background_color= "#B3A6A3",
-  inverse_header_color= "#464A53",
-  inverse_link_color= "#586891",
-  header_background_color= "#586891",
-  header_background_text_color= "#F1F3F2",
-  code_highlight_color = "#9ab7c4",
-  text_font_family = "Nunito",
-  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
-  header_font_google = google_font("Afacad"),
-  base_font_size= "28px",
-  text_font_size= "1rem",
-  code_font_size= "20px",
-  footnote_font_size = "0.75em",
-  code_inline_font_size= "1em",
-  header_h1_font_size= "1.75rem",
-  header_h2_font_size= "1.5rem",
-  header_h3_font_size= "1.1rem")
+
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -58,6 +31,7 @@ library(countdown)
 library(patchwork)
 library(emoji)
 library(maps)
+library(ggwaffle)
 library(mapproj)
 library(ggthemes)
 ```
@@ -88,7 +62,7 @@ library(knitr)
 library(openintro)
 library(palmerpenguins)
 library(ggrepel)
-library(waffle)
+library(ggwaffle) #devtools::install_github("liamgilbey/ggwaffle")
 library(broom)
 
 # set default theme for ggplot2
@@ -162,7 +136,7 @@ countdown(minutes = 5, top = 0)
 ```
 .tiny[
 ```{r set-limits, out.width = "20%", fig.width = 6, fig.show = "hold", warning = FALSE, message = FALSE}
-p <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+p <- ggplot(palmerpenguins::penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point() + geom_smooth() 
 
 p + labs(title = "Plot 1")
@@ -209,7 +183,7 @@ p + coord_cartesian(xlim = c(190,220), ylim = c(4000, 5000)) + labs(title = "Plo
 .panel[.panel-name[Breaks]
 .pull-left[
 ```{r breaks, fig.show = "hide"}
-library(c3s2)
+library(c3s2datasets)
 ggplot(scorecard, 
        aes(x = netcost, 
            y = avgfacsal)) + 
@@ -230,7 +204,7 @@ ggplot(scorecard,
 
 .pull-left[
 ```{r limits, fig.show = "hide"}
-library(c3s2)
+library(c3s2datasets)
 ggplot(scorecard, 
        aes(x = netcost, 
            y = avgfacsal)) + 
@@ -454,27 +428,78 @@ loans %>%
 - Like with pie charts, work best when the number of levels represented is low
 - Unlike pie charts, easier to compare proportions that represent non-simple fractions
 
-```{r out.width = "50%",  fig.asp = 0.5, fig.show = "hold", echo = FALSE}
-loans %>%
+.panelset[
+.panel[.panel-name[Homeownership - Raw]
+```{r out.width = "50%", fig.asp = 0.5, echo = FALSE}
+library(ggwaffle)
+# First plot - Homeownership RAW DATA
+loans[1:600,] %>%  
+  waffle_iron(aes_d(group = homeownership), rows = 35) %>%
+  ggplot(aes(x = x, y = y, fill = group)) +
+  labs(fill = NULL, title = "Homeownership") +
+  geom_waffle() + 
+  coord_equal() + 
+  scale_fill_waffle() + 
+  theme_waffle()
+```
+]
+
+.panel[.panel-name[Homeownership - Transformed]
+```{r out.width = "50%", fig.asp = 0.5, echo = FALSE}
+# First plot - Homeownership TRANSFORMED DATA
+loans_waffle <- loans %>%
   count(homeownership) %>%
-  ggplot(aes(fill = homeownership, values = n)) +
-  geom_waffle(color = "white", flip = TRUE, make_proportional = TRUE) +
+  mutate(n_scaled = round(n / sum(n) * 100)) %>%
+  uncount(n_scaled)
+
+loans_waffle %>%
+  waffle_iron(aes_d(group = homeownership), rows = 10) %>%
+  ggplot(aes(x = x, y = y, fill = group)) +
+  geom_waffle() +
   labs(fill = NULL, title = "Homeownership") +
   scale_fill_openintro("hot") +
   coord_equal() +
-  theme_enhance_waffle() +
+  theme_waffle() +
   theme(legend.position = "bottom")
+```
+]
 
-loans %>%
+.panel[.panel-name[Loan Status - Raw]
+```{r out.width = "50%", fig.asp = 0.5, echo = FALSE}
+# Second plot - Loan status -- RAW
+loans[1:600,]  %>%
+  waffle_iron(aes_d(group = loan_status), rows = 10) %>%
+  ggplot(aes(x = x, y = y, fill = group)) +
+  geom_waffle() +
+  labs(fill = NULL, title = "Loan status") +
+  coord_equal() +
+  theme_waffle() +
+  theme(legend.position = "bottom") +
+  guides(fill = guide_legend(nrow = 2))
+```
+]
+
+.panel[.panel-name[Loan Status - Transformed]
+```{r out.width = "50%", fig.asp = 0.5, echo = FALSE}
+# For loan_status TRANSFORMED
+loans_waffle_status <- loans %>%
   count(loan_status) %>%
-  ggplot(aes(fill = loan_status, values = n)) +
-  geom_waffle(color = "white", flip = TRUE, make_proportional = TRUE)  +
+  mutate(n_scaled = round(n / sum(n) * 100)) %>%
+  uncount(n_scaled)
+
+loans_waffle_status %>%
+  waffle_iron(aes_d(group = loan_status), rows = 10) %>%
+  ggplot(aes(x = x, y = y, fill = group)) +
+  geom_waffle() +
   labs(fill = NULL, title = "Loan status") +
   scale_fill_openintro("four") +
   coord_equal() +
-  theme_enhance_waffle() +
+  theme_waffle() +
   theme(legend.position = "bottom") +
-  guides(fill=guide_legend(nrow = 2))
+  guides(fill = guide_legend(nrow = 2))
+```
+]
+]
 ```
 
 ---
@@ -488,12 +513,12 @@ loans %>%
 ]
 .panel[.panel-name[Plot]
 ```{r waffle-penguin, echo = FALSE}
-library(waffle) #<<
+library(ggwaffle) #<<
 
 penguins %>%
-  count(species) %>%
-  ggplot(aes(fill = species, values = n)) +
-  geom_waffle(color = "white", flip = TRUE, make_proportional = TRUE) + #<<
+  waffle_iron(aes_d(group = species)) %>%
+  ggplot(aes(x, y, fill = group)) +
+  geom_waffle() + #<<
   labs(fill = NULL, title = "Penguin species")
 ```
 ]
@@ -511,11 +536,13 @@ penguins %>%
 .panel[.panel-name[Plot]
 ```{r waffle-penguin-theme, echo = FALSE}
 penguins %>%
-  count(species) %>%
-  ggplot(aes(fill = species, values = n)) +
-  geom_waffle(color = "white", flip = TRUE, make_proportional = TRUE) +
+  waffle_iron(aes_d(group = species), rows = 10) %>%
+  ggplot(aes(x, y, fill = group)) +
+  geom_waffle() +  
   labs(fill = NULL, title = "Penguin species") +
-  theme_enhance_waffle() #<<
+  coord_equal() + #<<
+  scale_fill_waffle() + #<<
+  theme_waffle() #<<
 ```
 ]
 ]
@@ -798,9 +825,9 @@ p +
   )
 ```
 
+---
 
-
---- 
+---
 
 # Custom themes!
 
