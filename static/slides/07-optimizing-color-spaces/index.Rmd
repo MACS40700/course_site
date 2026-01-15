@@ -743,7 +743,7 @@ pen_fig
 # Inspecting for color vision deficiency
 
 ```{r echo = TRUE, eval = FALSE}
-library(colorblindr) #https://www.rdocumentation.org/packages/colorblindr/versions/0.1.0 
+library(colorblindr) # https://www.rdocumentation.org/packages/colorblindr/versions/0.1.0 
 cvd_grid(plot = pen_fig)
 ```
 

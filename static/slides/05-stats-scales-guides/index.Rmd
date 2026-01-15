@@ -275,9 +275,7 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
   scale_x_continuous(name = "Percent of students receiving a Pell grant") 
 ```
 
-```{r echo = FALSE, cache = FALSE}
-countdown(minutes = 2, bottom = 0)
-```
+
 
 ---
 
@@ -288,6 +286,18 @@ ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) +
   geom_point(alpha = 0.8) +
   scale_x_continuous(name = "pctpell") +
   scale_x_continuous(name = "Percent of students receiving a Pell grant") 
+```
+
+
+---
+
+## Fixing axes
+
+```{r out.width = "50%", message = TRUE}
+ggplot(scorecard, aes(x = pctpell, y = avgfacsal, color = type)) + 
+  geom_point(alpha = 0.8) +
+  scale_y_continuous(name = "Average Faculty Salary", labels = label_dollar()) +
+  scale_x_continuous(name = "Percent of students receiving a Pell grant", labels = label_percent()) 
 ```
 
 ---
@@ -470,9 +480,7 @@ ggplot(scorecard,
 ]
 ]
 ]
-```{r echo = FALSE, cache = FALSE}
-countdown(minutes = 5, bottom = 0, left = 0)
-```
+
 ---
 # Scales exercise
 
@@ -485,7 +493,7 @@ countdown(minutes = 5, bottom = 0, left = 0)
 ]
 
 ```{r echo = FALSE, cache = FALSE}
-countdown(minutes = 2, bottom = 0)
+countdown(minutes = 4, bottom = 0)
 ```
 ---
 
@@ -597,7 +605,7 @@ ggplot(scorecard, aes(x = netcost, y = avgfacsal)) +
   scale_x_continuous(
     name = "Net cost of attendance", breaks = seq(from = 0, to = 60000, by = 10000),
     limits = c(0, 60000), labels = label_currency()) +
-  scale_y_continuous( name = "Average faculty salary (USD)", labels = label_currency()) 
+  scale_y_continuous( name = "Average faculty salary (USD)", labels = label_dollar()) 
 ```
 ]
 
@@ -667,6 +675,10 @@ p_pctpell_avgfacsal_type + labs(  x = "Percent of students receiving a Pell gran
   * Legend and labs: polish
 ]
 
+```{r echo = FALSE, cache = FALSE}
+countdown(minutes = 5, bottom = 0)
+```
+
 Post this graph and code on Ed -- it should be reproducible based on the code you submit!! Provide approx 2-3 sentences explaining why/how you made the choices you did. 
 
 ---
@@ -727,5 +739,5 @@ ggplot(mpg, aes(displ, hwy)) +
 # Recap
 
 * Assignment 2 (Next week!)
-* Scales can help you rework how the axis labels appear
-* Guides: pulling together legends / axes
+* **Scales** can help you rework how the axis labels appear
+* **Guides**: pulling together legends / axes
