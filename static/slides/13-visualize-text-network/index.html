@@ -9,7 +9,7 @@
     <script src="slides/panelset/panelset.js"></script>
     <link href="slides/countdown/countdown.css" rel="stylesheet" />
     <script src="slides/countdown/countdown.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -31,7 +31,7 @@ class: center, middle, inverse, title-slide
 
 .small[
 
-```r
+``` r
 # load packages
 library(tidyverse)
 library(tidytext)
@@ -101,7 +101,7 @@ class: center, middle, inverse
 ---
 ## `Tidy text`: Application
 
-```r
+``` r
 love_actually %&gt;%
   slice_head(n = 6)
 ```
@@ -127,7 +127,7 @@ love_actually %&gt;%
 With `tidytext::unnest_tokens()`:
 
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(
     output = word,    # first argument is output
@@ -158,7 +158,7 @@ Why do these words appear so commonly in Love Actually?
 ]
 
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   count(word, sort = TRUE)
@@ -193,7 +193,7 @@ love_actually %&gt;%
 English:
 .small[
 
-```r
+``` r
 get_stopwords("en")
 ```
 
@@ -220,7 +220,7 @@ get_stopwords("en")
 Spanish:
 .small[
 
-```r
+``` r
 get_stopwords("es")
 ```
 
@@ -248,7 +248,7 @@ get_stopwords("es")
 ## Most common words
 
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -277,7 +277,7 @@ love_actually %&gt;%
 ## Portuguese?!
 
 
-```r
+``` r
 love_actually %&gt;%
   filter(str_detect(dialogue, "[Pp]ortuguese"))
 ```
@@ -306,7 +306,7 @@ love_actually %&gt;%
 - Remove language identifiers
 
 
-```r
+``` r
 love_actually &lt;- love_actually %&gt;%
   mutate(dialogue = str_remove(dialogue, "(Portuguese)"))
 ```
@@ -314,7 +314,7 @@ love_actually &lt;- love_actually %&gt;%
 - Take another look
 
 
-```r
+``` r
 love_actually %&gt;%
   filter(str_detect(dialogue, "[Pp]ortuguese"))
 ```
@@ -331,7 +331,7 @@ love_actually %&gt;%
 Without "Portuguese"
 
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -364,7 +364,7 @@ Visualize the top 10 words
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -394,7 +394,7 @@ Reorder the words by frequency
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -424,7 +424,7 @@ Bring in some color
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -458,7 +458,7 @@ Use `ggtext::element_textbox_simple()` to add color to title
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 love_actually %&gt;%
   unnest_tokens(word, dialogue) %&gt;%
   anti_join(stop_words) %&gt;%
@@ -512,7 +512,7 @@ Using `ggwordcloud::geom_text_wordcloud()`:
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(42)
 love_actually %&gt;%
   unnest_tokens(output = word, input = dialogue) %&gt;%
@@ -542,7 +542,7 @@ love_actually %&gt;%
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(42)
 love_actually %&gt;%
   unnest_tokens(output = word, input = dialogue) %&gt;%
@@ -572,7 +572,7 @@ love_actually %&gt;%
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(42)
 love_actually %&gt;%
   unnest_tokens(output = word, input = dialogue) %&gt;%
@@ -609,10 +609,7 @@ class: inverse, center, middle
 - Remove stopwords
 - Create a relevant visualization (e.g. top words)
 
-<div class="countdown" id="timer_a672fbdf" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
-<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
-</div>
+<countdown-timer class="countdown" id="timer_d91bac56" minutes="8" seconds="0" update-every="1" tabindex="0" style="right:0;bottom:0;"></countdown-timer>
 
 ---
 
@@ -635,7 +632,7 @@ class: inverse, center, middle
 Data source: [Kaggle Office data](https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript)
 
 
-```r
+``` r
 office_words &lt;- office %&gt;%
   unnest_tokens(
     output = word,    # first argument is output
@@ -665,7 +662,7 @@ office_words %&gt;%
 
 Notice what we have here -- why would this NOT be a good approach? 
 
-```r
+``` r
 office_words %&gt;% 
   anti_join(stop_words) %&gt;%
   count(word, sort = TRUE)
@@ -693,7 +690,7 @@ office_words %&gt;%
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 *custom_words &lt;-data.frame("word" = c("hey", "uh", "um"))
 *custom_words &lt;- full_join(stop_words, custom_words)
 *char_names &lt;- c("michael", "jim", "dwight", "pam")
@@ -795,7 +792,7 @@ Source: https://kateto.net/network-visualization
 **Bigram** is a sequence of two adjacent elements ferom a string of tokens, e.g., two consecutive words
 
 
-```r
+``` r
 bigrams &lt;- love_actually %&gt;%
   unnest_tokens(bigram, dialogue, token = "ngrams", n = 2)
 
@@ -824,7 +821,7 @@ bigrams
 ## Most common bigrams
 
 
-```r
+``` r
 bigrams %&gt;%
   count(bigram, sort = TRUE)
 ```
@@ -853,7 +850,7 @@ bigrams %&gt;%
 Step 1: Separate the bigram into words
 
 
-```r
+``` r
 bigrams_separated &lt;- bigrams %&gt;%
   separate(bigram, c("word1", "word2"), sep = " ")
 
@@ -884,7 +881,7 @@ bigrams_separated
 Step 2: Remove bigram if either word is a stop word
 
 
-```r
+``` r
 bigrams_filtered &lt;- bigrams_separated %&gt;%
   filter(!(word1 %in% stop_words$word)) %&gt;%
   filter(!(word2 %in% stop_words$word))
@@ -916,7 +913,7 @@ bigrams_filtered
 Step 3: Put the bigrams back together
 
 
-```r
+``` r
 bigrams_united &lt;- bigrams_filtered %&gt;%
   unite(bigram, word1, word2, sep = " ")
 
@@ -947,7 +944,7 @@ bigrams_united
 Hmm...
 
 
-```r
+``` r
 bigrams_united %&gt;%
   count(bigram, sort = TRUE)
 ```
@@ -974,7 +971,7 @@ bigrams_united %&gt;%
 ## Most common bigrams, again
 
 
-```r
+``` r
 bigrams_united &lt;- bigrams_united %&gt;%
   filter(bigram != "NA NA")
 
@@ -1006,7 +1003,7 @@ bigrams_united %&gt;%
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 bigrams_united %&gt;%
   count(bigram, sort = TRUE) %&gt;%
   slice_head(n = 10) %&gt;%
@@ -1056,7 +1053,7 @@ bigrams_united %&gt;%
 Using `igraph::graph_from_data_frame()`:
 
 
-```r
+``` r
 bigram_graph &lt;- bigrams_united %&gt;%
   separate(bigram, c("word1", "word2"), sep = " ") %&gt;%
   count(word1, word2, sort = TRUE) %&gt;%
@@ -1067,9 +1064,9 @@ bigram_graph
 ```
 
 ```
-## IGRAPH 6b3a350 DN-- 83 62 -- 
+## IGRAPH 2c63c62 DN-- 83 62 -- 
 ## + attr: name (v/c), n (e/n)
-## + edges from 6b3a350 (vertex names):
+## + edges from 2c63c62 (vertex names):
 ##  [1] prime    -&gt;minister  bye      -&gt;bye       baby     -&gt;baby     
 ##  [4] merry    -&gt;christmas uncle    -&gt;jamie     baby     -&gt;bye      
 ##  [7] billy    -&gt;mack      bye      -&gt;baby      goodbye  -&gt;baby     
@@ -1096,7 +1093,7 @@ Common bigrams in Love Actually that occurred more than once and where neither w
 Step 1. Set up the plot object with `ggraph::ggraph()`:
 
 
-```r
+``` r
 set.seed(42)
 ggraph(bigram_graph)
 ```
@@ -1110,7 +1107,7 @@ ggraph(bigram_graph)
 Step 2. Add edges
 
 
-```r
+``` r
 set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link()
@@ -1125,7 +1122,7 @@ ggraph(bigram_graph) +
 Step 3. Add nodes
 
 
-```r
+``` r
 set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link() +
@@ -1141,7 +1138,7 @@ ggraph(bigram_graph) +
 Step 4. Add text
 
 
-```r
+``` r
 set.seed(42)
 ggraph(bigram_graph) +
   geom_edge_link() +
@@ -1168,7 +1165,7 @@ Step 5. Consider layouts
 Step 6. Pick a layout
 
 
-```r
+``` r
 set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
@@ -1185,7 +1182,7 @@ ggraph(bigram_graph, layout = "fr") +
 Step 7. Adjust text
 
 
-```r
+``` r
 set.seed(42)
 ggraph(bigram_graph, layout = "fr") +
   geom_edge_link() +
@@ -1204,7 +1201,7 @@ Step 8. Add more context with `edge_alpha = n`
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 a &lt;- grid::arrow(type = "closed", length = unit(0.1, "inches"))
 
 set.seed(42)
@@ -1246,7 +1243,7 @@ Build on your prior data to explore word occurrences
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 a &lt;- grid::arrow(type = "closed", length = unit(0.1, "inches"))
 
 set.seed(42)
@@ -1279,13 +1276,13 @@ class: center, middle, inverse
 ## Main characters
 
 
-```r
+``` r
 main_characters &lt;- read_csv(here::here("13-visualize-text-network", "data/love-actually-cast.csv"))
 ```
 
 .pull-left[
 
-```r
+``` r
 main_characters %&gt;% slice(1:10)
 ```
 
@@ -1307,7 +1304,7 @@ main_characters %&gt;% slice(1:10)
 ]
 .pull-right[
 
-```r
+``` r
 main_characters %&gt;% slice(11:20)
 ```
 
@@ -1333,7 +1330,7 @@ main_characters %&gt;% slice(11:20)
 ## Dialogues for main characters
 
 
-```r
+``` r
 love_actually &lt;- love_actually %&gt;%
   inner_join(main_characters) %&gt;%
   mutate(character = glue("{speaker} ({actor})"))
@@ -1350,7 +1347,7 @@ dim(love_actually)
 ## Lines-per-scene-per-character
 
 
-```r
+``` r
 character_scene_counts &lt;- love_actually %&gt;%
     count(scene, character)
 
@@ -1379,7 +1376,7 @@ character_scene_counts
 ## Look who's talking to whom
 
 
-```r
+``` r
 character_scene_counts %&gt;%
   ggplot(aes(x = scene, y = character)) +
   geom_point() +
@@ -1393,7 +1390,7 @@ character_scene_counts %&gt;%
 ## Identify monologues
 
 
-```r
+``` r
 character_scene_counts %&gt;%
   group_by(scene) %&gt;%
   mutate(conversation = if_else(n() == 1, "monologue", "not monologue"))
@@ -1428,7 +1425,7 @@ What's happening in the last scene?
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 character_scene_counts %&gt;%
   group_by(scene) %&gt;%
   mutate(conversation = if_else(n() == 1, "monologue", "not monologue")) %&gt;%
@@ -1456,7 +1453,7 @@ character_scene_counts %&gt;%
 So that it doesn't look like everyone is connected to each other in the network
 
 
-```r
+``` r
 character_scene_counts &lt;- character_scene_counts %&gt;%
   filter(scene != max(character_scene_counts$scene))
 ```
@@ -1469,7 +1466,7 @@ Each row is a character, each column is a scene
 
 .small[
 
-```r
+``` r
 character_scene_counts %&gt;%
   pivot_wider(
     names_from = scene,
@@ -1519,7 +1516,7 @@ character_scene_counts %&gt;%
 
 .small[
 
-```r
+``` r
 character_scene_occurences &lt;- character_scene_counts %&gt;%
   pivot_wider(
     names_from = scene,
@@ -1572,7 +1569,7 @@ character_scene_occurences
 
 .small[
 
-```r
+``` r
 character_scene_matrix &lt;- character_scene_occurences %&gt;%
   column_to_rownames(var = "character") %&gt;%
   as.matrix()
@@ -1737,7 +1734,7 @@ character_scene_matrix
 
 .small[
 
-```r
+``` r
 cooccur &lt;- character_scene_matrix %*% t(character_scene_matrix)
 
 cooccur
@@ -1965,7 +1962,7 @@ Using `igraph::graph_from_adjacency_matrix()`:
 
 .small[
 
-```r
+``` r
 cooccur_graph &lt;- graph_from_adjacency_matrix(
   cooccur, 
   weighted = TRUE, 
@@ -1977,9 +1974,9 @@ cooccur_graph
 ```
 
 ```
-## IGRAPH d7733a0 UNW- 20 37 -- 
+## IGRAPH 84230bf UNW- 20 37 -- 
 ## + attr: name (v/c), weight (e/n)
-## + edges from d7733a0 (vertex names):
+## + edges from 84230bf (vertex names):
 ##  [1] Billy (Bill Nighy)   --Joe (Gregor Fisher)         
 ##  [2] Jamie (Colin Firth)  --Karen (Emma Thompson)       
 ##  [3] Jamie (Colin Firth)  --Harry (Alan Rickman)        
@@ -1999,7 +1996,7 @@ cooccur_graph
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(42)
 ggraph(cooccur_graph, layout = "fr") +
   geom_edge_link(color = "gray") +
@@ -2024,7 +2021,7 @@ ggraph(cooccur_graph, layout = "fr") +
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 char_names &lt;- c("michael", "jim", "dwight", "pam", "angela", "bob", "phyllis", "oscar", "creed", "kevin", "stanley", "andy", "kelly", "toby", "robert", "nellie", "todd", "jan", "carol", "ryan", "meredith", "holly", "david", "karen", "jo") 
 character_scene_counts_office &lt;- office %&gt;% 
     count(scene, speaker, season, episode) 
@@ -2051,7 +2048,7 @@ character_scene_counts_office %&gt;% filter(speaker %in% str_to_sentence(char_na
 ### Co-occurences: The Office
 
 
-```r
+``` r
 character_scene_matrix_office &lt;- character_scene_counts_office %&gt;%
   filter(speaker %in% str_to_sentence(char_names)) %&gt;%
   filter(season &lt; 4) %&gt;%
@@ -2080,7 +2077,7 @@ cooccur_office &lt;- graph_from_adjacency_matrix(
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(42)
 ggraph(cooccur_office, layout = "fr") +
   geom_edge_link(color = "gray") +
@@ -2108,7 +2105,7 @@ Play around setting different values for the seed for your visualization
 .panelset.sideways[
 .panel[.panel-name[Code]
 
-```r
+``` r
 set.seed(13)
 ggraph(cooccur_office, layout = "fr") +
   geom_edge_link(color = "gray") +
@@ -2149,11 +2146,11 @@ ggraph(cooccur_office, layout = "fr") +
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "magula",
-"highlightLines": true,
-"highlightLanguage": "r",
-"ratio": "16:9",
-"countIncrementalSlides": false
+  "highlightStyle": "magula",
+  "highlightLines": true,
+  "highlightLanguage": "r",
+  "ratio": "16:9",
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

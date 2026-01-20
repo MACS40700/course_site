@@ -3,7 +3,7 @@ title: "Other options: Tableau and dashboards"
 author: "MACS 40700 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: slides-theme.css
     nature:
       highlightStyle: magula
       highlightLines: true
@@ -13,9 +13,6 @@ output:
 ---
 
 ```{r setup, include = FALSE, cache = FALSE}
-# generate CSS file
-library(xaringanthemer)
-
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -53,7 +50,7 @@ class: inverse, middle
 ## Starting a visualization
 
 ```{r}
-library(c3s2)
+library(c3s2datasets)
 write.table(yob2023, file = 'yob2023.txt', row.names = FALSE) # pulling out the data we want to use!
 # note: can export as other data types, too
 
@@ -67,7 +64,7 @@ write.table(yob2023, file = 'yob2023.txt', row.names = FALSE) # pulling out the 
 Today assumes you've gone through the post on Ed and completed the download steps there:
 * **Sign in** to an existing Tableau.com account, or create a new account using your **school-issued email**
 * Once signed in, visit the **TFT Activation page** to **download** the latest versions of Tableau Desktop and Tableau Prep Builder
-* **Activate** with product key:    **TC6P-A348-35B0-D0BF-5666**       
+* **Activate** with product key:    **TCH3-8A9F-AEC0-E7EA-CC2E**       
   * Already have a copy of Tableau Desktop installed? **Update the license key** in the application: Help menu → Manage Product Keys
 
 

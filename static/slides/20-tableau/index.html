@@ -7,7 +7,7 @@
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -46,9 +46,11 @@ class: inverse, middle
 
 
 ``` r
-library(c3s2)
-write.csv(yob2023, file = 'yob2023.csv', row.names = FALSE) # pulling out the data we want to use!
+library(c3s2datasets)
+write.table(yob2023, file = 'yob2023.txt', row.names = FALSE) # pulling out the data we want to use!
 # note: can export as other data types, too
+
+#hint: 1880 data is also there...if issues, re-install package
 ```
 
 ---
@@ -58,7 +60,7 @@ write.csv(yob2023, file = 'yob2023.csv', row.names = FALSE) # pulling out the da
 Today assumes you've gone through the post on Ed and completed the download steps there:
 * **Sign in** to an existing Tableau.com account, or create a new account using your **school-issued email**
 * Once signed in, visit the **TFT Activation page** to **download** the latest versions of Tableau Desktop and Tableau Prep Builder
-* **Activate** with product key:    **TC6P-A348-35B0-D0BF-5666**       
+* **Activate** with product key:    **TCH3-8A9F-AEC0-E7EA-CC2E**       
   * Already have a copy of Tableau Desktop installed? **Update the license key** in the application: Help menu → Manage Product Keys
 
 
@@ -405,11 +407,11 @@ esquisser(babynames)
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "magula",
-"highlightLines": true,
-"highlightLanguage": "r",
-"ratio": "16:9",
-"countIncrementalSlides": false
+  "highlightStyle": "magula",
+  "highlightLines": true,
+  "highlightLanguage": "r",
+  "ratio": "16:9",
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

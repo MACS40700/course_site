@@ -4,7 +4,7 @@ author: "MACS 40700 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
     lib_dir: slides
-    css: xaringan-themer.css
+    css: slides-theme.css
     nature:
       highlightStyle: magula
       highlightLines: true
@@ -32,6 +32,7 @@ library(countdown)
 library(patchwork)
 library(flipbookr)
 library(extrafont)
+library(stopwords)
 font_import()
 ```
 

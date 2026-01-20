@@ -7,7 +7,7 @@
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -53,7 +53,7 @@ library(ggthemes)
 library(ggpomological)
 library(colorspace)
 library(lubridate)
-library(hrbrthemes)
+#library(hrbrthemes)
 library(WDI)
 library(ggrepel)
 library(ggtext)
@@ -369,8 +369,9 @@ ggplot( midnights, aes(x = tempo, color = tempo)) + coord_flip() +
 
 ``` r
 midnights %&gt;% filter(tempo &gt; 125) %&gt;%
-ggplot( aes(x = tempo, color = tempo)) +  geom_boxplot(show.legend = FALSE) +   labs(x = NULL) +  theme_minimal() +
-  scale_color_pomological() + theme_pomological_fancy() + scale_x_continuous(breaks = seq(125, 200, 10)) + coord_flip() 
+ggplot( aes(x = tempo, color = tempo)) + 
+  geom_boxplot(show.legend = FALSE) +   labs(x = NULL) +  theme_minimal() +
+  scale_color_pomological() + theme_pomological_fancy() + scale_x_continuous(breaks = seq(0, 200, 10)) + coord_flip() 
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="45%" style="display: block; margin: auto;" /&gt;
@@ -379,9 +380,9 @@ ggplot( aes(x = tempo, color = tempo)) +  geom_boxplot(show.legend = FALSE) +   
 
 
 ``` r
-ggplot( midnights, aes(x = tempo, color = tempo)) + coord_flip() +
+ggplot( midnights, aes(x = tempo, color = tempo)) + 
   geom_boxplot(show.legend = FALSE) +   labs(x = NULL) +  theme_minimal() +
-  scale_color_pomological() + theme_pomological_fancy() + xlim(125, 200) + scale_x_continuous(breaks = seq(0, 200, 10))
+  scale_color_pomological() + theme_pomological_fancy() + xlim(125, 200) + scale_x_continuous(breaks = seq(125, 200, 10))+  coord_flip() 
 ```
 
 &lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="45%" style="display: block; margin: auto;" /&gt;
@@ -912,12 +913,12 @@ head(wdi_clean)
 
 ```
 ##   iso2c iso3c     country year population co2_emissions gdp_per_cap     region
-## 1    AF   AFG Afghanistan 2001   20284307        0.9883    277.1181 South Asia
-## 2    AF   AFG Afghanistan 2015   33831764        8.7196    565.5697 South Asia
-## 3    AF   AFG Afghanistan 2000   20130327        1.0712    308.3183 South Asia
-## 4    AF   AFG Afghanistan 2014   32792523        8.2797    575.1462 South Asia
-## 5    AF   AFG Afghanistan 1998   19159996        1.3258          NA South Asia
-## 6    AF   AFG Afghanistan 2009   27466101        6.4864    488.8307 South Asia
+## 1    AF   AFG Afghanistan 1999   19887785        1.3633          NA South Asia
+## 2    AF   AFG Afghanistan 2001   20284307        0.9402    277.1181 South Asia
+## 3    AF   AFG Afghanistan 2014   32792523        7.9588    575.1462 South Asia
+## 4    AF   AFG Afghanistan 1998   19159996        1.4093          NA South Asia
+## 5    AF   AFG Afghanistan 1997   18452091        1.3735          NA South Asia
+## 6    AF   AFG Afghanistan 2000   20130327        1.0093    308.3183 South Asia
 ##       income
 ## 1 Low income
 ## 2 Low income
@@ -938,12 +939,12 @@ head(co2_rankings)
 ## # A tibble: 6 × 9
 ##   iso3c country     region       income rank_2014 rank_1995 rank_diff big_change
 ##   &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;     
-## 1 AFG   Afghanistan South Asia   Low i…        70        37        33 TRUE      
-## 2 ALB   Albania     Europe &amp; Ce… Upper…        49        46         3 FALSE     
-## 3 DZA   Algeria     Middle East… Lower…       143       135         8 FALSE     
-## 4 AGO   Angola      Sub-Saharan… Lower…       104        91        13 FALSE     
-## 5 ARG   Argentina   Latin Ameri… Upper…       146       144         2 FALSE     
-## 6 ARM   Armenia     Europe &amp; Ce… Upper…        53        62        -9 FALSE     
+## 1 AFG   Afghanistan South Asia   Low i…        66        38        28 TRUE      
+## 2 ALB   Albania     Europe &amp; Ce… Upper…        48        45         3 FALSE     
+## 3 DZA   Algeria     Middle East… Upper…       142       134         8 FALSE     
+## 4 AGO   Angola      Sub-Saharan… Lower…       101        90        11 FALSE     
+## 5 ARG   Argentina   Latin Ameri… Upper…       146       143         3 FALSE     
+## 6 ARM   Armenia     Europe &amp; Ce… Upper…        54        61        -7 FALSE     
 ## # ℹ 1 more variable: better_big_change &lt;chr&gt;
 ```
 ]
@@ -1412,11 +1413,11 @@ base4 +
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "magula",
-"highlightLines": true,
-"highlightLanguage": "r",
-"ratio": "16:9",
-"countIncrementalSlides": false
+  "highlightStyle": "magula",
+  "highlightLines": true,
+  "highlightLanguage": "r",
+  "ratio": "16:9",
+  "countIncrementalSlides": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

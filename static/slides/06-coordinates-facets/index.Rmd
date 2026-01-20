@@ -49,6 +49,9 @@ class: middle, inverse
 
 ## Announcements
 
+* Grading up-to-date
+* Feedback: formatting, technical details
+* A2 coming up! (Jan 23)
 
 ---
 
@@ -500,7 +503,7 @@ loans_waffle_status %>%
 ```
 ]
 ]
-```
+
 
 ---
 
@@ -614,7 +617,7 @@ ggplot(map_data("state"), aes(long, lat, group = group)) +
 ```
 ]
 ]
-]
+
 
 ---
 

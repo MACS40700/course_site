@@ -3,7 +3,7 @@ title: "Deep dive: themes + axes + annotation"
 author: "MACS 40700 <br /> University of Chicago"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: slides-theme.css
     nature:
       highlightStyle: magula
       highlightLines: true
@@ -16,35 +16,6 @@ class: inverse, middle
 
 ```{r setup, include = FALSE, cache = FALSE}
 # generate CSS file
-library(xaringanthemer)
-style_xaringan(
-  text_color = "#464A53",
-  header_color = "#586891",
-  background_color = "#F1F3F2",
-  title_slide_background_color = "#586891",
-  title_slide_text_color = "#F1F3F2",
-  table_row_even_background_color = "#B3A6A3",
-  link_color= "#586891",
-  text_bold_color= "#586891",
-  inverse_text_color= "#464A53",
-  inverse_background_color= "#B3A6A3",
-  inverse_header_color= "#464A53",
-  inverse_link_color= "#586891",
-  header_background_color= "#586891",
-  header_background_text_color= "#F1F3F2",
-  code_highlight_color = "#9ab7c4",
-  text_font_family = "Nunito",
-  text_font_url = "https://fonts.google.com/specimen/Nunito?stroke=Sans+Serif",
-  header_font_google = google_font("Afacad"),
-  base_font_size= "28px",
-  text_font_size= "1rem",
-  code_font_size= "20px",
-  footnote_font_size = "0.75em",
-  code_inline_font_size= "1em",
-  header_h1_font_size= "1.75rem",
-  header_h2_font_size= "1.5rem",
-  header_h3_font_size= "1.1rem")
-
 
 # source in the default knitr options
 source(here::here("R", "slide-opts.R"))
@@ -92,7 +63,7 @@ library(ggthemes)
 library(ggpomological)
 library(colorspace)
 library(lubridate)
-library(hrbrthemes)
+#library(hrbrthemes)
 library(WDI)
 library(ggrepel)
 library(ggtext)
@@ -122,7 +93,7 @@ class: middle, inverse
 .pull-left[
 ```{r standard-grey, echo = FALSE, out.width = "95%"}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
-  geom_point(size = 2) + theme_grey()
+  geom_point(size = 2) #+ theme_grey()
 ```
 
 Some say these are good enough. Others want more thought. 
