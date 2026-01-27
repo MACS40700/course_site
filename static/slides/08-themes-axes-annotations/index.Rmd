@@ -93,7 +93,7 @@ class: middle, inverse
 .pull-left[
 ```{r standard-grey, echo = FALSE, out.width = "95%"}
 ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
-  geom_point(size = 2) #+ theme_grey()
+  geom_point(size = 2) + theme_grey()
 ```
 
 Some say these are good enough. Others want more thought. 
