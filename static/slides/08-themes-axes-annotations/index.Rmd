@@ -45,8 +45,11 @@ font_add_google("Comic Neue", 'comic neue')
 ```
 
 
+# Announcements:
 
+For next class: you will need an API key: https://docs.stadiamaps.com/tutorials/getting-started-in-r-with-ggmap/#set-up-api-key-authentication 
 
+---
 # Agenda
 
 * Themes
