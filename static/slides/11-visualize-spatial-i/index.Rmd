@@ -130,7 +130,7 @@ include_graphics(path = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/
 * maps -- map data
 * ggmap -- nice way to render but need API
 * leaflet -- more interactive
-* plotly -- old friend :) 
+* plotly -- soon-to-be new friend :) 
 * sf -- ways to visualize objects
 
 
@@ -568,9 +568,43 @@ ggmap(chicago) +
     bins = 10,
     geom = "polygon"
   ) +
-  facet_wrap(facets = vars(`Primary Type`)) #<<
+  facet_wrap(facets = vars(`Primary Type`), labeller = label_wrap_gen(10)) #<<
 ```
 ]
+
+---
+
+# API keys: what are they and how to store?
+
+---
+## API Keys
+APIs: application programming interface. They **provide the opportunity for users to respectfully access data in a structured format**. 
+
+You can think of like when you order through an app -- you can check off the items you want and then you receive them in a tidy package. This is the same idea here -- you can choose from a menu of data options (e.g. variables) and then you receive them in a structured format (maybe JSON, maybe for mapping, etc.).
+
+---
+## How to store API keys:
+* In document: e.g. register_stadiamaps(apikey)
+* In RProfile
+* In R envion
+
+For more: https://cran.r-project.org/web/packages/httr/vignettes/secrets.html 
+
+.task[code: `file.edit("~/.Renviron")`]
+
+The file looks something like
+
+`VAR1 = value1`
+
+`VAR2 = value2`
+
+
+And you can access the values in R using `Sys.getenv():`
+
+.task[ `Sys.getenv("VAR1")`]
+
+This would then be used, something like: `apikey <- Sys.getenv("VAR1")`
+
 
 ---
 
