@@ -7,14 +7,13 @@ draft: false
 summary: "Creating effective maps"
 ---
 
-# Tasks
+# Creating effective maps
 
-## Assessment
+## Assignment Requirements Summary
 
-Assignment Requirements Summary  
 You will create geographic visualizations that reveal spatial patterns and tell compelling stories through cartographic design. You MUST have social-science data for this, in addition to spatial data.
 
-Follow this sequence:
+A successful submission needs to do the following:
 
 ### Choose and Describe Your Dataset
 
