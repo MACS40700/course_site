@@ -109,17 +109,11 @@ include_graphics(path = "https://media1.tenor.com/m/rr9KpqBthKQAAAAC/its-me-hi-t
 ```
 ]
 
----
 
-class: inverse, middle 
-
-```{r alternatives, echo = FALSE, fig.align = "center"}
-include_graphics(path = "https://i.imgur.com/9luIDwf.gif")
-```
 
 ---
 
-# Like this!
+# Or should you pursue alternatives -- like this!
 
 .pull-left[
 ```{r hrbrlight, fig.show = "hide", warning = FALSE}
