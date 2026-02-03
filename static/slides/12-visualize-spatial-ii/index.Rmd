@@ -387,7 +387,7 @@ ggplot() +
 
 class: inverse, middle
 
-# Choropleths
+# Application: Immigration and Choropleths
 
 ---
 
