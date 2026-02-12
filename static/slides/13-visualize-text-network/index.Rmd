@@ -388,6 +388,10 @@ love_actually %>%
 ]
 
 ---
+
+# CAVEAT: WORDCLOUDS ARE NOT ANALYSIS!!!!!!
+
+---
 class: inverse, center, middle
 
 # Your turn!
