@@ -388,6 +388,7 @@ love_actually %>%
 ]
 
 ---
+class: center, middle
 
 # CAVEAT: WORDCLOUDS ARE NOT ANALYSIS!!!!!!
 
@@ -400,7 +401,7 @@ class: inverse, center, middle
 # Activity: Make a visualization
 
 - Find relevant data (see next slides for more detail)
-  * If you are struggling -- you can use The Office data: 
+  * If you are struggling -- you can use The Office data: https://www.kaggle.com/datasets/nasirkhalid24/the-office-us-complete-dialoguetranscript 
 - Remove stopwords
 - Create a relevant visualization (e.g. top words)
 
