@@ -7,7 +7,6 @@
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
-    <script src="index_files/twitter-widget/widgets.js"></script>
     <link rel="stylesheet" href="slides-theme.css" type="text/css" />
   </head>
   <body>
@@ -118,59 +117,16 @@ class: middle, center
 
 class: inverse, middle
 
-# Dating rules
+# Shiny Repos!
 
 ---
+## Shiny very basic example:
 
-## Age gaps
+&lt;iframe src="https://gallery.shinyapps.io/001-hello/" width="80%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 
-
-
-.pull-left[
-
-&lt;img src="index_files/figure-html/women-1.png" width="95%" style="display: block; margin: auto;" /&gt;
-]
-
---
-
-.pull-right[
-
-&lt;img src="index_files/figure-html/men-1.png" width="95%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-## Dating rules
-
-- [A Shiny app for determining if this relationship is skeezy](https://jclip.shinyapps.io/age-rule/)
-
-<blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">In <a href="https://twitter.com/hashtag/RedTaylorsVersion?src=hash&amp;ref_src=twsrc%5Etfw">#RedTaylorsVersion</a>, Taylor Swift sings &quot;I&#39;ll get older, but your lovers stay my age&quot;<br><br>As a connoisseur of pop culture &amp; statistics, I obviously had to analyze this 🤓<br><br>Verdict: there is a significant interaction of Year x Person on Age across Jake&#39;s relationships (p = 0.0084) <a href="https://t.co/nZBs7RhWDS">pic.twitter.com/nZBs7RhWDS</a></p>&mdash; Celine St. Pierre (@stpierreceline) <a href="https://twitter.com/stpierreceline/status/1460680119454945291?ref_src=twsrc%5Etfw">November 16, 2021</a></blockquote>
+[https://github.com/rstudio/shiny-examples?tab=readme-ov-file](repo with examples)
 
 
-
-[Relevant analysis](https://twitter.com/stpierreceline/status/1460680119454945291)
-
----
-
-.pull-left[
-
-```r
-usethis::use_course("MACS40700/shiny")
-```
-
-.task[
-
-- Navigate to the `age-rule` folder, and launch the app by opening the `app.R` file and clicking on *Run App*.
-- Close the app by clicking the stop icon
-- Select view mode in the drop down menu next to Run App
-
-]
-]
-
-.pull-right[
-&lt;iframe src="https://jclip.shinyapps.io/age-rule/?showcase=0" width="100%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
-]
 
 ---
 # Let's look at some examples!
@@ -193,6 +149,7 @@ class: middle, inverse
 
 ``` r
 library(shiny)
+
 
 ui &lt;- fluidPage()
 
@@ -392,6 +349,7 @@ Going to have a bit of a frivolous example so you can see how it can go/look.
 
 ```r
 library(shiny)
+library(tidyverse)  
 
 library(shiny)
 ui &lt;- fluidPage(
@@ -451,8 +409,7 @@ Add a side panel in your code.
 
 
 
----
-# Application: age-rule 
+
 ---
 class: center, middle
 
@@ -461,7 +418,7 @@ class: center, middle
 ---
 # Baby Names
 
-&lt;iframe src="https://jclip.shinyapps.io/age-gap/?showcase=0" width="80%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://jclip.shinyapps.io/baby-names/?showcase=0" width="80%" height="650px" data-external="1"&gt;&lt;/iframe&gt;
 
 
 ---
@@ -532,10 +489,7 @@ ui &lt;- fluidPage( # Application title
     value = 20)),
   
   mainPanel(
-  plotOutput("myplot")
-  )
-  )
-)
+  plotOutput("myplot"))))
 
 
 server &lt;- function(input, output) {
@@ -557,6 +511,26 @@ server &lt;- function(input, output) {
 shinyApp(ui = ui, server = server)
 
 ```
+
+---
+
+# TASKS:
+
+* Go to MPG example
+* Change dataset to dplyr::starwars
+* Choose THREE factor variables to include
+* Update title
+* Change plot color
+
+---
+# Get inspired!
+
+
+``` r
+knitr::include_url("https://posit.co/blog/winners-of-the-2024-shiny-contest/")
+```
+
+&lt;iframe src="https://posit.co/blog/winners-of-the-2024-shiny-contest/" width="80%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
 
 &lt;!-- class: inverse, middle --&gt;
 
