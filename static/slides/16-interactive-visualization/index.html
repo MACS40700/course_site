@@ -7,7 +7,7 @@
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/panelset/panelset.css" rel="stylesheet" />
     <script src="index_files/panelset/panelset.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="slides-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -27,13 +27,12 @@ class: center, middle, inverse, title-slide
 
 class: inverse, middle
 
-# For today/thursday:
+# For today/Tuesday:
 
 
 ```r
 # install bslib and dependencies, if necessary
 # install.packages(c("bslib", "curl", "bsicons"))
-usethis::use_course("MACS40700/shiny")
 usethis::use_course("MACS40700/shiny-sep")
 ```
 
@@ -41,8 +40,18 @@ usethis::use_course("MACS40700/shiny-sep")
 ---
 
 ## Announcements
-* Thursday: Last wrap on bslib/dashboards
-* 3/12 final due!!
+* Tuesday: Last wrap on bslib/dashboards
+* 3/11 final due!!
+
+
+---
+
+### Agenda:
+
+* Build on last class
+* More on layouts, including tabsets 
+* Small discussion of themes
+* Prep for dashboards
 
 
 ---
@@ -56,7 +65,7 @@ usethis::use_course("MACS40700/shiny-sep")
 
 # Sandbox party time 
 
-`usethis::use_course("MACS40700/shiny")`
+`usethis::use_course("MACS40700/shiny-sep")`
 
 
 ``` r
@@ -82,7 +91,15 @@ shinyApp(ui = ui, server = server)
 ---
 ## More on layouts: 
 
-If you want to shuffle things around, you can use fluidRow (and incorporate columns within them). 
+We've previously worked in a somewhat standard layout: panels on the side and main -- everything is on one page. 
+
+* How to divide the page 
+* How to 
+
+---
+## Fluidity: dynamic page adjustment
+
+If you want to use the column grid system (and adjust width based on item size), you can use fluidRow. This is our prior example: 
 
 Prior example:
 
@@ -106,7 +123,7 @@ ui &lt;- fluidPage( theme = shinytheme("superhero"), # Application title
 ---
 
 
-## fluidRow
+## fluidRow usecase
 
 
 ``` r
@@ -157,6 +174,33 @@ https://shiny.posit.co/r/reference/shiny/0.14/column.html
 https://mastering-shiny.org/action-layout.html 
 
 ---
+#Fillable and fluid
+
+&lt;img src="https://shiny.posit.co/r/articles/build/layout-guide/pages.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+# Exercise: 
+
+
+* Test out a different theme
+* Add this plot under the prior plot and fix the color issue :) 
+
+
+``` r
+  output$myplot2 &lt;-renderPlot({
+    ggplot(select_data(), aes(x = fct_infreq(eye_color))) + geom_bar(col = "orchid") +
+      labs(
+         title  = "Bar plot of eye color", 
+         x = "Eyecolor")
+  })
+```
+
+---
+## More sophisticated layouts
+
+&lt;iframe src="https://shiny.posit.co/r/layouts/" width="80%" height="400px" data-external="1"&gt;&lt;/iframe&gt;
+
+---
 ## Tabsets
 
 You might also want to have tabs in some way. Here is the generic code:
@@ -201,7 +245,7 @@ ui &lt;- fluidPage(
 ``` r
 ui &lt;- fluidPage( theme = shinytheme("superhero"), # Application title
                  titlePanel( h1("First level title", align = "center")),
-  sidebarLayout(
+  sidebarLayout( 
     sidebarPanel(
       textOutput("panel"),
       tabsetPanel(
@@ -224,21 +268,14 @@ ui &lt;- fluidPage( theme = shinytheme("superhero"), # Application title
 ```
 
 ---
-# Fancying up a header: application
-In sandbox, test out adding a dropdown menu:
+## example, cont'd
 
-```r
 
-header &lt;- dashboardHeader(dropdownMenu(
+``` r
+server &lt;- function(input, output) {
 
-))
-
-sidebar &lt;- dashboardSidebar()
-
-body &lt;- dashboardBody()
-
-dashboardPage(header, sidebar, body)
-
+}
+shinyApp(ui = ui, server = server)
 ```
 
 ---
@@ -308,7 +345,24 @@ Everything we've done so far has been with fluidPage. R/Shiny runs on `bootstrap
 
 `bslib::bs_theme_preview()`
 
+
 ---
+# Fancying up a header: application
+In sandbox, test out adding a dropdown menu:
+
+```r
+
+header &lt;- dashboardHeader(dropdownMenu(
+
+))
+
+sidebar &lt;- dashboardSidebar()
+
+body &lt;- dashboardBody()
+
+dashboardPage(header, sidebar, body)
+
+```
 
 ---
 
