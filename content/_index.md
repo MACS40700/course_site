@@ -1,5 +1,5 @@
 ---
-title: ''
+title: '**Welcome to Data Visualization!** '
 draft: false
 date: "2026-01-04T03:30:00-06:00"
 toc: true
@@ -7,7 +7,7 @@ type: book
 weight: 1
 ---
 
-**Welcome to Data Visualization!** 
+
 
 # Schedule 
 You can see our topics below. See the assignments linked to the side -- if you have any questions, please check in!
@@ -27,7 +27,7 @@ You can see our topics below. See the assignments linked to the side -- if you h
 | 10-Feb | [Tableau + Dashboards, part II](slides/20-tableau) | [download Tableau public](https://www.tableau.com/products/public/download)| 
 | 12-Feb | [text + network data](slides/13-visualize-text-network)   |[TM: Ch 1](https://www.tidytextmining.com/tidytext.html) and [EG: Ch 7](https://ggplot2-book.org/networks.html)  |          [A4: Tableau (due 13-Feb)](/assignments/assign4/)  |
 | 17-Feb | [Shiny, part I](slides/15-interactive-reporting)  |  [MS: Ch 1](https://mastering-shiny.org/basic-app.html) and [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) |         |
-| 19-Feb | [Shiny, part II](slides/15-interactive-reporting)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |   [A5: Shiny (due 27-Feb)](/assignments/assign5/)      | 
+| 19-Feb | [Shiny, part II](slides/16-interactive-visualization)   | [MS: Ch 3](https://mastering-shiny.org/basic-reactivity.html) and [MS: Ch 7](https://mastering-shiny.org/action-graphics.html) |   [A5: Shiny (due 27-Feb)](/assignments/assign5/)      | 
 | 24-Feb | [Shiny, part III](slides/16-interactive-visualization)   | [DV: Ch 23](https://clauswilke.com/dataviz/balance-data-context.html) and [DV: Ch 29](https://clauswilke.com/dataviz/telling-a-story.html) and [EG: Ch 8](https://socviz.co/refineplots.html) ||
 | 26-Feb |  [Plotly](slides/10-plotly) | [Plotly overview](https://plotly.com/ggplot2/)| | 
 | 3-Mar |[Websites and tables](slides/21-websites) |[download jekyll if desired](https://macs40700.netlify.app/slides/21-websites/#51) |  [Final Proposal (due 4-Mar)](/assignments/final-proposal) |
